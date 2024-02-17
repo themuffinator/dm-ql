@@ -18,11 +18,6 @@ static char		*ui_botInfos[MAX_BOTS];
 static int		ui_numArenas;
 static char		*ui_arenaInfos[MAX_ARENAS];
 
-#ifndef MISSIONPACK // bk001206
-static int		ui_numSinglePlayerArenas;
-static int		ui_numSpecialSinglePlayerArenas;
-#endif
-
 /*
 ===============
 UI_ParseInfos
@@ -165,6 +160,9 @@ void UI_LoadArenas( void ) {
 			}
 			if( strstr( type, "tourney" ) ) {
 				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_TOURNAMENT);
+			}
+			if( strstr( type, "ca" ) ) {
+				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_CA);
 			}
 			if( strstr( type, "ctf" ) ) {
 				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_CTF);

@@ -1,0 +1,70 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.Cpp.Analysis.props(24,5): warning MSB4211: The property "MsvcAnalysisPluginPath" is being set to a value for the first time, but it was already consumed at "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CodeAnalysis.Extensions.props (33,5)".
+cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  q_shared.c
+  q_math.c
+  bg_slidemove.c
+  bg_pmove.c
+  bg_misc.c
+  bg_lib.c
+  cg_weapons.c
+  cg_view.c
+C:\dm-ql\code\game\bg_lib.c(172,6): warning C4018: '<': signed/unsigned mismatch
+C:\dm-ql\code\game\bg_lib.c(174,20): warning C4018: '>': signed/unsigned mismatch
+C:\dm-ql\code\game\bg_lib.c(176,20): warning C4018: '>': signed/unsigned mismatch
+  cg_syscalls.c
+  cg_snapshot.c
+  cg_servercmds.c
+  cg_scoreboard.c
+  cg_predict.c
+  cg_playerstate.c
+  cg_players.c
+  cg_marks.c
+  cg_main.c
+  cg_localents.c
+C:\dm-ql\code\cgame\cg_main.c(412,1): error C1020: unexpected #endif
+  cg_info.c
+C:\dm-ql\code\cgame\cg_localents.c(639,13): error C2039: 'shaderTime': is not a member of 'refEntity_t'
+  C:\dm-ql\code\cgame\tr_types.h(54,16):
+  see declaration of 'refEntity_t'
+  
+C:\dm-ql\code\cgame\cg_localents.c(639,30): error C2039: 'shaderTime': is not a member of 'refEntity_t'
+  C:\dm-ql\code\cgame\tr_types.h(54,16):
+  see declaration of 'refEntity_t'
+  
+C:\dm-ql\code\cgame\cg_localents.c(708,13): error C2039: 'shaderTime': is not a member of 'refEntity_t'
+  C:\dm-ql\code\cgame\tr_types.h(54,16):
+  see declaration of 'refEntity_t'
+  
+C:\dm-ql\code\cgame\cg_localents.c(708,30): error C2039: 'shaderTime': is not a member of 'refEntity_t'
+  C:\dm-ql\code\cgame\tr_types.h(54,16):
+  see declaration of 'refEntity_t'
+  
+  cg_event.c
+C:\dm-ql\code\cgame\cg_event.c(1170,7): error C2196: case value '66' already used
+C:\dm-ql\code\cgame\cg_event.c(1171,7): error C2196: case value '67' already used
+  Generating Code...
+  Compiling...
+  cg_ents.c
+C:\dm-ql\code\cgame\cg_ents.c(827,9): error C2166: l-value specifies const object
+C:\dm-ql\code\cgame\cg_ents.c(854,10): error C2166: l-value specifies const object
+C:\dm-ql\code\cgame\cg_ents.c(878,8): error C2166: l-value specifies const object
+C:\dm-ql\code\cgame\cg_ents.c(879,8): error C2166: l-value specifies const object
+  cg_effects.c
+C:\dm-ql\code\cgame\cg_effects.c(241,7): error C2039: 'intShaderTime': is not a member of 'refEntity_t'
+  C:\dm-ql\code\cgame\tr_types.h(54,16):
+  see declaration of 'refEntity_t'
+  
+C:\dm-ql\code\cgame\cg_effects.c(243,7): error C2039: 'shaderTime': is not a member of 'refEntity_t'
+  C:\dm-ql\code\cgame\tr_types.h(54,16):
+  see declaration of 'refEntity_t'
+  
+  cg_drawtools.c
+  cg_draw.c
+C:\dm-ql\code\cgame\cg_draw.c(1593,132): error C2065: 'DF_SHADOW': undeclared identifier
+C:\dm-ql\code\cgame\cg_draw.c(1593,149): error C2065: 'DF_FORCE_COLOR': undeclared identifier
+C:\dm-ql\code\cgame\cg_draw.c(1593,160): error C2065: 'DF_CENTER': undeclared identifier
+  cg_consolecmds.c
+C:\dm-ql\code\ui\ui_shared.h(9,10): error C1083: Cannot open include file: '../../ui/menudef.h': No such file or directory
+  (compiling source file '../../code/cgame/cg_consolecmds.c')
+  
+  Generating Code...

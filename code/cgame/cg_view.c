@@ -460,6 +460,11 @@ static int CG_CalcFov( void ) {
 	float	f;
 	int		inwater;
 
+	// Based on LordHavoc's code for Darkplaces
+	const float baseAspect = 0.75f; // 3/4
+	const float aspect = (float)cg.refdef.width / (float)cg.refdef.height;
+	const float desiredFov = fov_x;
+
 	cgs.fov = cg_fov.value;
 	if ( cgs.fov < 1.0 )
 		cgs.fov = 1.0;
@@ -499,15 +504,7 @@ static int CG_CalcFov( void ) {
 		}
 	}
 
-	if ( cg_fovAdjust.integer ) {
-		// Based on LordHavoc's code for Darkplaces
-		// http://www.quakeworld.nu/forum/topic/53/what-does-your-qw-look-like/page/30
-		const float baseAspect = 0.75f; // 3/4
-		const float aspect = (float)cg.refdef.width/(float)cg.refdef.height;
-		const float desiredFov = fov_x;
-
-		fov_x = atan2( tan( desiredFov * M_PI / 360.0f ) * baseAspect * aspect, 1 ) * 360.0f / M_PI;
-	}
+	fov_x = atan2( tan( desiredFov * M_PI / 360.0f ) * baseAspect * aspect, 1 ) * 360.0f / M_PI;
 
 	x = cg.refdef.width / tan( fov_x / 360 * M_PI );
 	fov_y = atan2( cg.refdef.height, x );
@@ -647,12 +644,6 @@ static int CG_CalcViewValues( void ) {
 	VectorCopy( ps->origin, cg.refdef.vieworg );
 	VectorCopy( ps->viewangles, cg.refdefViewAngles );
 
-	if (cg_cameraOrbit.integer) {
-		if (cg.time > cg.nextOrbitTime) {
-			cg.nextOrbitTime = cg.time + cg_cameraOrbitDelay.integer;
-			cg_thirdPersonAngle.value += cg_cameraOrbit.value;
-		}
-	}
 	// add error decay
 	if ( cg_errorDecay.value > 0 ) {
 		int		t;
@@ -862,11 +853,6 @@ void CG_DrawActiveFrame( int serverTime, stereoFrame_t stereoView, qboolean demo
 
 	// add buffered sounds
 	CG_PlayBufferedSounds();
-
-#ifdef MISSIONPACK
-	// play buffered voice chats
-	CG_PlayBufferedVoiceChats();
-#endif
 
 	// finish up the rest of the refdef
 	if ( cg.testModelEntity.hModel ) {

@@ -945,7 +945,7 @@ void CG_ColorForHealth( vec4_t hcolor ) {
 
 
 
-// bk001205 - code below duplicated in q3_ui/ui-atoms.c
+// bk001205 - code below duplicated in ui/ui-atoms.c
 // bk001205 - FIXME: does this belong in ui_shared.c?
 // bk001205 - FIXME: HARD_LINKED flags not visible here
 #ifndef Q3_STATIC // bk001205 - q_shared defines not visible here 

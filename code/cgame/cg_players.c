@@ -754,7 +754,6 @@ static void CG_LoadClientInfo( clientInfo_t *ci ) {
 		trap_Cvar_Set( "r_vertexlight", "0" );
 	}
 
-#ifdef MISSIONPACK
 	if( cgs.gametype >= GT_TEAM) {
 		if( ci->team == TEAM_BLUE ) {
 			Q_strncpyz(teamname, cg_blueTeamName.string, sizeof(teamname) );
@@ -765,7 +764,7 @@ static void CG_LoadClientInfo( clientInfo_t *ci ) {
 	if( teamname[0] ) {
 		strcat( teamname, "/" );
 	}
-#endif
+
 	modelloaded = qtrue;
 	if ( !CG_RegisterClientModelname( ci, ci->modelName, ci->skinName, ci->headModelName, ci->headSkinName, teamname ) ) {
 		if ( cg_buildScript.integer ) {
@@ -1790,7 +1789,6 @@ static void CG_HasteTrail( centity_t *cent ) {
 }
 
 
-#ifdef MISSIONPACK
 /*
 ===============
 CG_BreathPuffs
@@ -1874,7 +1872,6 @@ static void CG_DustTrail( centity_t *cent ) {
 				  0,
 				  cgs.media.dustPuffShader );
 }
-#endif
 
 
 /*
@@ -2020,7 +2017,6 @@ static void CG_PlayerFlag( centity_t *cent, qhandle_t hSkin, refEntity_t *torso 
 }
 
 
-#ifdef MISSIONPACK // bk001204
 /*
 ===============
 CG_PlayerTokens
@@ -2085,7 +2081,6 @@ static void CG_PlayerTokens( centity_t *cent, int renderfx ) {
 		VectorCopy(trail->positions[i], origin);
 	}
 }
-#endif
 
 
 /*
@@ -2411,17 +2406,7 @@ void CG_AddRefEntityWithPowerups( refEntity_t *ent, entityState_t *state, int te
 		ent->customShader = cgs.media.invisShader;
 		trap_R_AddRefEntityToScene( ent );
 	} else {
-		/*
-		if ( state->eFlags & EF_KAMIKAZE ) {
-			if (team == TEAM_BLUE)
-				ent->customShader = cgs.media.blueKamikazeShader;
-			else
-				ent->customShader = cgs.media.redKamikazeShader;
-			trap_R_AddRefEntityToScene( ent );
-		}
-		else {*/
-			trap_R_AddRefEntityToScene( ent );
-		//}
+		trap_R_AddRefEntityToScene( ent );
 
 		if ( state->powerups & ( 1 << PW_QUAD ) )
 		{
@@ -2507,14 +2492,14 @@ void CG_Player( centity_t *cent ) {
 	int				renderfx;
 	qboolean		shadow;
 	float			shadowPlane;
-#ifdef MISSIONPACK
+
 	refEntity_t		skull;
 	refEntity_t		powerup;
 	int				t;
 	float			c;
 	float			angle;
 	vec3_t			dir, angles;
-#endif
+
 	qboolean		darken;
 
 	// the client number is stored in clientNum.  It can't be derived
@@ -2573,11 +2558,11 @@ void CG_Player( centity_t *cent ) {
 		renderfx |= RF_SHADOW_PLANE;
 	}
 	renderfx |= RF_LIGHTING_ORIGIN;			// use the same origin for all
-#ifdef MISSIONPACK
+
 	if( cgs.gametype == GT_HARVESTER ) {
 		CG_PlayerTokens( cent, renderfx );
 	}
-#endif
+
 	//
 	// add the legs
 	//
@@ -2641,7 +2626,6 @@ void CG_Player( centity_t *cent ) {
 
 	CG_AddRefEntityWithPowerups( &torso, &cent->currentState, ci->team );
 
-#ifdef MISSIONPACK
 	if ( cent->currentState.eFlags & EF_KAMIKAZE ) {
 
 		memset( &skull, 0, sizeof(skull) );
@@ -2687,15 +2671,6 @@ void CG_Player( centity_t *cent ) {
 			angles[2] = 0;
 			AnglesToAxis( angles, skull.axis );
 
-			/*
-			dir[2] = 0;
-			VectorInverse(dir);
-			VectorCopy(dir, skull.axis[1]);
-			VectorNormalize(skull.axis[1]);
-			VectorSet(skull.axis[2], 0, 0, 1);
-			CrossProduct(skull.axis[1], skull.axis[2], skull.axis[0]);
-			*/
-
 			skull.hModel = cgs.media.kamikazeHeadModel;
 			trap_R_AddRefEntityToScene( &skull );
 			// flip the trail because this skull is spinning in the other direction
@@ -2717,14 +2692,6 @@ void CG_Player( centity_t *cent ) {
 				angles[1] -= 360;
 			angles[2] = 0;
 			AnglesToAxis( angles, skull.axis );
-
-			/*
-			dir[2] = 0;
-			VectorCopy(dir, skull.axis[1]);
-			VectorNormalize(skull.axis[1]);
-			VectorSet(skull.axis[2], 0, 0, 1);
-			CrossProduct(skull.axis[1], skull.axis[2], skull.axis[0]);
-			*/
 
 			skull.hModel = cgs.media.kamikazeHeadModel;
 			trap_R_AddRefEntityToScene( &skull );
@@ -2843,7 +2810,6 @@ void CG_Player( centity_t *cent ) {
 		}
 		trap_R_AddRefEntityToScene( &powerup );
 	}
-#endif // MISSIONPACK
 
 	//
 	// add the head
@@ -2875,11 +2841,8 @@ void CG_Player( centity_t *cent ) {
 	
 	CG_AddRefEntityWithPowerups( &head, &cent->currentState, ci->team );
 
-#ifdef MISSIONPACK
 	CG_BreathPuffs(cent, &head);
-
 	CG_DustTrail(cent);
-#endif
 
 	//
 	// add the gun / barrel / flash

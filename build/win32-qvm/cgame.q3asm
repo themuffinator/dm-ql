@@ -1,5 +1,6 @@
 cg_main
 ../../../../code/cgame/cg_syscalls
+cg_newdraw
 cg_consolecmds
 cg_draw
 cg_drawtools

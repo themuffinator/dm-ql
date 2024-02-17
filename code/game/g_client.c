@@ -308,10 +308,8 @@ just like the existing corpse to leave behind.
 =============
 */
 void CopyToBodyQue( gentity_t *ent ) {
-#ifdef MISSIONPACK
 	gentity_t	*e;
 	int i;
-#endif
 	gentity_t		*body;
 	int			contents;
 
@@ -331,7 +329,7 @@ void CopyToBodyQue( gentity_t *ent ) {
 
 	body->s = ent->s;
 	body->s.eFlags = EF_DEAD;		// clear EF_TALK, etc
-#ifdef MISSIONPACK
+
 	if ( ent->s.eFlags & EF_KAMIKAZE ) {
 		body->s.eFlags |= EF_KAMIKAZE;
 
@@ -348,7 +346,7 @@ void CopyToBodyQue( gentity_t *ent ) {
 			break;
 		}
 	}
-#endif
+
 	body->s.powerups = 0;	// clear powerups
 	body->s.loopSound = 0;	// clear lava burning
 	body->s.number = body - g_entities;
@@ -642,7 +640,6 @@ qboolean ClientUserinfoChanged( int clientNum ) {
 	}
 
 	// set max health
-#ifdef MISSIONPACK
 	if (client->ps.powerups[PW_GUARD]) {
 		client->pers.maxHealth = HEALTH_SOFT_LIMIT*2;
 	} else {
@@ -652,16 +649,9 @@ qboolean ClientUserinfoChanged( int clientNum ) {
 			client->pers.maxHealth = HEALTH_SOFT_LIMIT;
 		}
 	}
-#else
-	health = atoi( Info_ValueForKey( userinfo, "handicap" ) );
-	client->pers.maxHealth = health;
-	if ( client->pers.maxHealth < 1 || client->pers.maxHealth > HEALTH_SOFT_LIMIT ) {
-		client->pers.maxHealth = HEALTH_SOFT_LIMIT;
-	}
-#endif
+
 	client->ps.stats[STAT_MAX_HEALTH] = client->pers.maxHealth;
 
-#ifdef MISSIONPACK
 	if (g_gametype.integer >= GT_TEAM) {
 		client->pers.teamInfo = qtrue;
 	} else {
@@ -672,15 +662,6 @@ qboolean ClientUserinfoChanged( int clientNum ) {
 			client->pers.teamInfo = qfalse;
 		}
 	}
-#else
-	// teamInfo
-	s = Info_ValueForKey( userinfo, "teamoverlay" );
-	if ( ! *s || atoi( s ) != 0 ) {
-		client->pers.teamInfo = qtrue;
-	} else {
-		client->pers.teamInfo = qfalse;
-	}
-#endif
 
 	// set model
 	Q_strncpyz( model, Info_ValueForKey( userinfo, "model" ), sizeof( model ) );
@@ -1005,10 +986,8 @@ void ClientSpawn(gentity_t *ent) {
 	}
 	client->pers.teamState.state = TEAM_ACTIVE;
 
-#ifdef MISSIONPACK
 	// always clear the kamikaze flag
 	ent->s.eFlags &= ~EF_KAMIKAZE;
-#endif
 
 	// toggle the teleport bit so the client knows to not lerp
 	// and never clear the voted flag
@@ -1209,13 +1188,10 @@ void ClientDisconnect( int clientNum ) {
 		// They don't get to take powerups with them!
 		// Especially important for stuff like CTF flags
 		TossClientItems( ent );
-#ifdef MISSIONPACK
 		TossClientPersistantPowerups( ent );
 		if( g_gametype.integer == GT_HARVESTER ) {
 			TossClientCubes( ent );
 		}
-#endif
-
 	}
 
 	G_RevertVote( ent->client );

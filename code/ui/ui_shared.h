@@ -4,7 +4,7 @@
 
 #include "../game/q_shared.h"
 #include "../cgame/tr_types.h"
-#include "keycodes.h"
+#include "../ui/keycodes.h"
 
 #include "../../ui/menudef.h"
 
@@ -381,7 +381,6 @@ qboolean Color_Parse(char **p, vec4_t *c);
 qboolean Int_Parse(char **p, int *i);
 qboolean Rect_Parse(char **p, rectDef_t *r);
 qboolean String_Parse(char **p, const char **out);
-qboolean Script_Parse(char **p, const char **out);
 qboolean PC_Float_Parse(int handle, float *f);
 qboolean PC_Color_Parse(int handle, vec4_t *c);
 qboolean PC_Int_Parse(int handle, int *i);
