@@ -555,6 +555,12 @@ void SP_worldspawn( void ) {
 	G_SpawnString( "message", "", &s );
 	trap_SetConfigstring( CS_MESSAGE, s );				// map specific message
 
+	G_SpawnString("author", "", &s);
+	trap_SetConfigstring(CS_MAP_AUTHOR1, s);
+
+	G_SpawnString("author2", "", &s);
+	trap_SetConfigstring(CS_MAP_AUTHOR2, s);
+
 	trap_SetConfigstring( CS_MOTD, g_motd.string );		// message of the day
 
 	G_SpawnString( "gravity", "800", &s );

@@ -56,6 +56,8 @@
 #define CS_VOTE_STRING			9
 #define	CS_VOTE_YES				10
 #define	CS_VOTE_NO				11
+#define	CS_MAP_AUTHOR1			12
+#define	CS_MAP_AUTHOR2			13
 
 #define	CS_GAME_VERSION			20
 #define	CS_LEVEL_START_TIME		21		// so the timer only shows the current level
