@@ -51,7 +51,7 @@ int SpawnTime(gentity_t *ent, qboolean firstSpawn) {
 			return g_weaponRespawn.value * 1000;
 
 	case IT_AMMO:
-		return firstSpawn ? SPAWN_AMMO : RESPAWN_AMMO;
+		return firstSpawn ? SPAWN_AMMO : g_ammoRespawn.integer ? g_ammoRespawn.integer*1000 : RESPAWN_AMMO;
 
 	case IT_ARMOR:
 		return firstSpawn ? SPAWN_ARMOR : RESPAWN_ARMOR;
@@ -237,10 +237,23 @@ int Pickup_Holdable(gentity_t *ent, gentity_t *other) {
 //======================================================================
 
 
-static void Add_Ammo(gentity_t *ent, int weapon, int count) {
-	ent->client->ps.ammo[weapon] += count;
-	if (ent->client->ps.ammo[weapon] > AMMO_HARD_LIMIT) {
-		ent->client->ps.ammo[weapon] = AMMO_HARD_LIMIT;
+static void Add_Ammo(gentity_t *ent, weapon_t weapon, int count) {
+	if (weapon == WP_NONE) {
+		// it is an ammo pack
+		int i;
+		for (i = WP_NONE + 1; i < WP_NUM_WEAPONS; i++) {
+			ent->client->ps.ammo[i] += bgWeapons[i].ammo_pickup;
+			if (ent->client->ps.ammo[i] > bgWeapons[i].ammo_max) {
+				ent->client->ps.ammo[i] = bgWeapons[i].ammo_max;
+			}
+		}
+
+	} else {
+		// normal ammo
+		ent->client->ps.ammo[weapon] += count;
+		if (ent->client->ps.ammo[weapon] > bgWeapons[weapon].ammo_max) {
+			ent->client->ps.ammo[weapon] = bgWeapons[weapon].ammo_max;
+		}
 	}
 }
 
@@ -920,9 +933,19 @@ void SaveRegisteredItems(void) {
 G_ItemDisabled
 ============
 */
-int G_ItemDisabled(gitem_t *item) {
+static int G_ItemDisabled(gitem_t *item) {
 
 	char name[128];
+
+	if (item->giType == IT_AMMO) {
+		if (g_ammoPack.integer) {
+			if (item->giTag != WP_NONE)
+				return qtrue;
+		} else {
+			if (item->giTag == WP_NONE)
+				return qtrue;
+		}
+	}
 
 	Com_sprintf(name, sizeof(name), "disable_%s", item->classname);
 	return trap_Cvar_VariableIntegerValue(name);

@@ -716,7 +716,9 @@ typedef struct gitem_armor_s {
 extern	gitem_armor_t	bgArmor[ARMOR_NUM];
 
 typedef struct gitem_weapons_s {
-	const char *shortName;
+	const char	*shortName;
+	int			ammo_max;
+	int			ammo_pickup;
 } gitem_weapons_t;
 extern	gitem_weapons_t	bgWeapons[WP_NUM_WEAPONS];
 

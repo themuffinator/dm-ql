@@ -13,21 +13,21 @@ gitem_armor_t bgArmor[ARMOR_NUM] = {
 };
 
 gitem_weapons_t bgWeapons[WP_NUM_WEAPONS] = {
-	{ NULL },
-	{ "g" },
-	{ "mg" },
-	{ "sg" },
-	{ "gl" },
-	{ "rl" },
-	{ "lg" },
-	{ "rg" },
-	{ "pg" },
-	{ "bfg" },
-	{ "gh" },
-	{ "ng" },
-	{ "pl" },
-	{ "cg" },
-	{ "hmg" }
+	{ NULL, -1, -1 },
+	{ "g", -1, -1 },
+	{ "mg", 150, 50 },
+	{ "sg", 25, 5 },
+	{ "gl", 25, 5 },
+	{ "rl", 25, 5 },
+	{ "lg", 150, 50 },
+	{ "rg", 25, 5 },
+	{ "pg", 150, 50 },
+	{ "bfg", 25, 5 },
+	{ "gh", -1, -1 },
+	{ "ng", 50, 5 },
+	{ "pl", 25, 5 },
+	{ "cg", 150, 50 },
+	{ "hmg", 150, 50 }
 };
 
 /*QUAKED item_***** ( 0 0 0 ) (-16 -16 -16) (16 16 16) suspended

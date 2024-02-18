@@ -106,4 +106,7 @@ G_CVAR(g_startingAmmo_ng, "g_startingAmmo_ng", "10", 0, 0, qfalse, qfalse)
 G_CVAR(g_startingAmmo_pl, "g_startingAmmo_pl", "5", 0, 0, qfalse, qfalse)
 G_CVAR(g_startingAmmo_cg, "g_startingAmmo_cg", "100", 0, 0, qfalse, qfalse)
 G_CVAR(g_startingAmmo_hmg, "g_startingAmmo_hmg", "50", 0, 0, qfalse, qfalse)
+
+G_CVAR(g_ammoRespawn, "g_ammoRespawn", "40", 0, 0, qfalse, qfalse)
+G_CVAR(g_ammoPack, "g_ammoPack", "0", 0, 0, qfalse, qfalse)
 #undef G_CVAR
