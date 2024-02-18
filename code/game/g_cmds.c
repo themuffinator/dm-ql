@@ -1176,23 +1176,31 @@ void Cmd_CallVote_f(gentity_t *ent) {
 		trap_SendServerCommand(ent - g_entities, "print \"Voting not allowed here.\n\"");
 		return;
 	}
-
+	if (g_training.integer) {
+		trap_SendServerCommand(ent - g_entities, "print \"Voting is not allowed in training.\n\"");
+		return;
+	}
+	if (!g_allowVoteMidGame.integer && level.warmupTime) {
+		trap_SendServerCommand(ent - g_entities, "print \"Voting is only allowed during the warm up period.\n\"");
+		return;
+	}
+	if (level.voteDelayedTime > level.time) {
+		trap_SendServerCommand(ent - g_entities, va("print \"Voting will be allowed in %.1f seconds.\n\"", ((float)level.voteDelayedTime - (float)level.time)/1000.0f));
+		return;
+	}
 	if (level.voteTime) {
 		trap_SendServerCommand(ent - g_entities, "print \"A vote is already in progress.\n\"");
 		return;
 	}
-
-	// if there is still a vote to be executed
 	if (level.voteExecuteTime || level.restarted) {
-		trap_SendServerCommand(ent - g_entities, "print \"Previous vote command is waiting execution^1.^7\n\"");
+		trap_SendServerCommand(ent - g_entities, "print \"A vote is being executed.\n\"");
 		return;
 	}
-
-	if (ent->client->pers.voteCount >= MAX_VOTE_COUNT) {
+	if (g_voteLimit.integer > 0 && ent->client->pers.voteCount >= g_voteLimit.integer) {
 		trap_SendServerCommand(ent - g_entities, "print \"You have called the maximum number of votes.\n\"");
 		return;
 	}
-	if (ent->client->sess.sessionTeam == TEAM_SPECTATOR) {
+	if (!g_allowSpecVote.integer && ent->client->sess.sessionTeam == TEAM_SPECTATOR) {
 		trap_SendServerCommand(ent - g_entities, "print \"Not allowed to call a vote as spectator.\n\"");
 		return;
 	}

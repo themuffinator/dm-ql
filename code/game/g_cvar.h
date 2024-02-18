@@ -66,6 +66,11 @@ G_CVAR(g_blood, "com_blood", "1", 0, 0, qfalse, qfalse)
 
 G_CVAR(g_allowKill, "g_allowKill", "1000", CVAR_ARCHIVE, 0, qfalse, qfalse)
 G_CVAR(g_allowVote, "g_allowVote", "1", CVAR_ARCHIVE, 0, qfalse, qfalse)
+G_CVAR(g_allowSpecVote, "g_allowSpecVote", "0", CVAR_ARCHIVE, 0, qfalse, qfalse)
+G_CVAR(g_allowVoteMidGame, "g_allowVoteMidGame", "0", CVAR_ARCHIVE, 0, qfalse, qfalse)
+G_CVAR(g_voteLimit, "g_voteLimit", "0", CVAR_ARCHIVE, 0, qfalse, qfalse)
+G_CVAR(g_voteDelay, "g_voteDelay", "0", CVAR_ARCHIVE, 0, qfalse, qfalse)
+//G_CVAR(g_voteFlags, "g_voteFlags", "0", CVAR_ARCHIVE, 0, qfalse, qfalse)
 G_CVAR(g_listEntity, "g_listEntity", "0", 0, 0, qfalse, qfalse)
 
 G_CVAR(g_unlagged, "g_unlagged", "1", CVAR_SERVERINFO | CVAR_ARCHIVE, 0, qfalse, qfalse)
@@ -166,4 +171,6 @@ G_CVAR(g_knockback_cg, "g_knockback_cg", "1", 0, 0, qfalse, qfalse)
 G_CVAR(g_knockback_hmg, "g_knockback_hmg", "1", 0, 0, qfalse, qfalse)
 G_CVAR(g_knockback_z, "g_knockback_z", "24", 0, 0, qfalse, qfalse)
 G_CVAR(g_knockback_z_self, "g_knockback_z_self", "24", 0, 0, qfalse, qfalse)
+
+G_CVAR(g_training, "g_training", "0", CVAR_ROM, 0, qfalse, qfalse)
 #undef G_CVAR

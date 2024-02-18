@@ -394,6 +394,8 @@ static void G_InitGame(int levelTime, int randomSeed, int restart) {
 	level.previousTime = levelTime;
 	level.msec = FRAMETIME;
 
+	level.voteDelayedTime = level.time + g_voteDelay.integer;
+
 	level.snd_fry = G_SoundIndex("sound/player/fry.wav");	// FIXME standing in lava / slime
 
 	if (g_log.string[0]) {

@@ -218,7 +218,6 @@ typedef struct {
 
 //
 #define MAX_NETNAME			36
-#define	MAX_VOTE_COUNT		3
 
 // client data that stays across multiple respawns, but is cleared
 // on each level change or team change at ClientBegin()
@@ -386,6 +385,7 @@ typedef struct {
 	char		voteDisplayString[MAX_CVAR_VALUE_STRING];
 	int			voteTime;				// level.time vote was called
 	int			voteExecuteTime;		// time the vote is executed
+	int			voteDelayedTime;
 	int			voteYes;
 	int			voteNo;
 	int			numVotingClients;		// set by CalculateRanks
