@@ -13,56 +13,56 @@
 
 
 int				ui_numBots;
-static char		*ui_botInfos[MAX_BOTS];
+static char *ui_botInfos[MAX_BOTS];
 
 static int		ui_numArenas;
-static char		*ui_arenaInfos[MAX_ARENAS];
+static char *ui_arenaInfos[MAX_ARENAS];
 
 /*
 ===============
 UI_ParseInfos
 ===============
 */
-int UI_ParseInfos( char *buf, int max, char *infos[] ) {
-	char	*token;
+int UI_ParseInfos(char *buf, int max, char *infos[]) {
+	char *token;
 	int		count;
 	char	key[MAX_TOKEN_CHARS];
 	char	info[MAX_INFO_STRING];
 
 	count = 0;
 
-	while ( 1 ) {
-		token = COM_Parse( &buf );
-		if ( !token[0] ) {
+	while (1) {
+		token = COM_Parse(&buf);
+		if (!token[0]) {
 			break;
 		}
-		if ( strcmp( token, "{" ) ) {
-			Com_Printf( "Missing { in info file\n" );
+		if (strcmp(token, "{")) {
+			Com_Printf("Missing { in info file\n");
 			break;
 		}
 
-		if ( count == max ) {
-			Com_Printf( "Max infos exceeded\n" );
+		if (count == max) {
+			Com_Printf("Max infos exceeded\n");
 			break;
 		}
 
 		info[0] = '\0';
-		while ( 1 ) {
-			token = COM_ParseExt( &buf, qtrue );
-			if ( !token[0] ) {
-				Com_Printf( "Unexpected end of info file\n" );
+		while (1) {
+			token = COM_ParseExt(&buf, qtrue);
+			if (!token[0]) {
+				Com_Printf("Unexpected end of info file\n");
 				break;
 			}
-			if ( !strcmp( token, "}" ) ) {
+			if (!strcmp(token, "}")) {
 				break;
 			}
-			Q_strncpyz( key, token, sizeof( key ) );
+			Q_strncpyz(key, token, sizeof(key));
 
-			token = COM_ParseExt( &buf, qfalse );
-			if ( !token[0] ) {
-				strcpy( token, "<NULL>" );
+			token = COM_ParseExt(&buf, qfalse);
+			if (!token[0]) {
+				strcpy(token, "<NULL>");
 			}
-			Info_SetValueForKey( info, key, token );
+			Info_SetValueForKey(info, key, token);
 		}
 		//NOTE: extra space for arena number
 		infos[count] = UI_Alloc(strlen(info) + strlen("\\num\\") + strlen(va("%d", MAX_ARENAS)) + 1);
@@ -79,27 +79,27 @@ int UI_ParseInfos( char *buf, int max, char *infos[] ) {
 UI_LoadArenasFromFile
 ===============
 */
-static void UI_LoadArenasFromFile( char *filename ) {
+static void UI_LoadArenasFromFile(char *filename) {
 	int				len;
 	fileHandle_t	f;
 	char			buf[MAX_ARENAS_TEXT];
 
-	len = trap_FS_FOpenFile( filename, &f, FS_READ );
-	if ( !f ) {
-		trap_Print( va( S_COLOR_RED "file not found: %s\n", filename ) );
+	len = trap_FS_FOpenFile(filename, &f, FS_READ);
+	if (!f) {
+		trap_Print(va(S_COLOR_RED "file not found: %s\n", filename));
 		return;
 	}
-	if ( len >= MAX_ARENAS_TEXT ) {
-		trap_Print( va( S_COLOR_RED "file too large: %s is %i, max allowed is %i", filename, len, MAX_ARENAS_TEXT ) );
-		trap_FS_FCloseFile( f );
+	if (len >= MAX_ARENAS_TEXT) {
+		trap_Print(va(S_COLOR_RED "file too large: %s is %i, max allowed is %i", filename, len, MAX_ARENAS_TEXT));
+		trap_FS_FCloseFile(f);
 		return;
 	}
 
-	trap_FS_Read( buf, len, f );
+	trap_FS_Read(buf, len, f);
 	buf[len] = 0;
-	trap_FS_FCloseFile( f );
+	trap_FS_FCloseFile(f);
 
-	ui_numArenas += UI_ParseInfos( buf, MAX_ARENAS - ui_numArenas, &ui_arenaInfos[ui_numArenas] );
+	ui_numArenas += UI_ParseInfos(buf, MAX_ARENAS - ui_numArenas, &ui_arenaInfos[ui_numArenas]);
 }
 
 /*
@@ -107,42 +107,41 @@ static void UI_LoadArenasFromFile( char *filename ) {
 UI_LoadArenas
 ===============
 */
-void UI_LoadArenas( void ) {
+void UI_LoadArenas(void) {
 	int			numdirs;
 	vmCvar_t	arenasFile;
 	char		filename[128];
 	char		dirlist[1024];
-	char*		dirptr;
+	char *dirptr;
 	int			i, n;
 	int			dirlen;
-	char		*type;
+	char *type;
 
 	ui_numArenas = 0;
 	uiInfo.mapCount = 0;
 
-	trap_Cvar_Register( &arenasFile, "g_arenasFile", "", CVAR_INIT|CVAR_ROM );
-	if( *arenasFile.string ) {
+	trap_Cvar_Register(&arenasFile, "g_arenasFile", "", CVAR_INIT | CVAR_ROM);
+	if (*arenasFile.string) {
 		UI_LoadArenasFromFile(arenasFile.string);
-	}
-	else {
+	} else {
 		UI_LoadArenasFromFile("scripts/arenas.txt");
 	}
 
 	// get all arenas from .arena files
-	numdirs = trap_FS_GetFileList("scripts", ".arena", dirlist, 1024 );
-	dirptr  = dirlist;
-	for (i = 0; i < numdirs; i++, dirptr += dirlen+1) {
+	numdirs = trap_FS_GetFileList("scripts", ".arena", dirlist, 1024);
+	dirptr = dirlist;
+	for (i = 0; i < numdirs; i++, dirptr += dirlen + 1) {
 		dirlen = strlen(dirptr);
 		strcpy(filename, "scripts/");
 		strcat(filename, dirptr);
 		UI_LoadArenasFromFile(filename);
 	}
-	trap_Print( va( "%i arenas parsed\n", ui_numArenas ) );
+	trap_Print(va("%i arenas parsed\n", ui_numArenas));
 	if (UI_OutOfMemory()) {
 		trap_Print(S_COLOR_YELLOW"WARNING: not anough memory in pool to load all arenas\n");
 	}
 
-	for( n = 0; n < ui_numArenas; n++ ) {
+	for (n = 0; n < ui_numArenas; n++) {
 		// determine type
 
 		uiInfo.mapList[uiInfo.mapCount].cinematic = -1;
@@ -152,29 +151,44 @@ void UI_LoadArenas( void ) {
 		uiInfo.mapList[uiInfo.mapCount].imageName = String_Alloc(va("levelshots/%s", uiInfo.mapList[uiInfo.mapCount].mapLoadName));
 		uiInfo.mapList[uiInfo.mapCount].typeBits = 0;
 
-		type = Info_ValueForKey( ui_arenaInfos[n], "type" );
+		type = Info_ValueForKey(ui_arenaInfos[n], "type");
 		// if no type specified, it will be treated as "ffa"
-		if( *type ) {
-			if( strstr( type, "ffa" ) ) {
+		if (*type) {
+			if (strstr(type, "ffa")) {
 				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_FFA);
 			}
-			if( strstr( type, "tourney" ) ) {
-				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_TOURNAMENT);
+			if (strstr(type, "duel")) {
+				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_DUEL);
 			}
-			if( strstr( type, "ca" ) ) {
+			if (strstr(type, "race")) {
+				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_RACE);
+			}
+			if (strstr(type, "ca")) {
 				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_CA);
 			}
-			if( strstr( type, "ctf" ) ) {
+			if (strstr(type, "ctf")) {
 				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_CTF);
 			}
-			if( strstr( type, "oneflag" ) ) {
+			if (strstr(type, "oneflag")) {
 				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_1FCTF);
 			}
-			if( strstr( type, "overload" ) ) {
+			if (strstr(type, "ob")) {
 				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_OBELISK);
 			}
-			if( strstr( type, "harvester" ) ) {
+			if (strstr(type, "har")) {
 				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_HARVESTER);
+			}
+			if (strstr(type, "ft")) {
+				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_FREEZE);
+			}
+			if (strstr(type, "dom")) {
+				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_DOM);
+			}
+			if (strstr(type, "ad")) {
+				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_AD);
+			}
+			if (strstr(type, "rr")) {
+				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_RR);
 			}
 		} else {
 			uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_FFA);
@@ -193,29 +207,29 @@ void UI_LoadArenas( void ) {
 UI_LoadBotsFromFile
 ===============
 */
-static void UI_LoadBotsFromFile( char *filename ) {
+static void UI_LoadBotsFromFile(char *filename) {
 	int				len;
 	fileHandle_t	f;
 	char			buf[MAX_BOTS_TEXT];
 
-	len = trap_FS_FOpenFile( filename, &f, FS_READ );
-	if ( !f ) {
-		trap_Print( va( S_COLOR_RED "file not found: %s\n", filename ) );
+	len = trap_FS_FOpenFile(filename, &f, FS_READ);
+	if (!f) {
+		trap_Print(va(S_COLOR_RED "file not found: %s\n", filename));
 		return;
 	}
-	if ( len >= MAX_BOTS_TEXT ) {
-		trap_Print( va( S_COLOR_RED "file too large: %s is %i, max allowed is %i", filename, len, MAX_BOTS_TEXT ) );
-		trap_FS_FCloseFile( f );
+	if (len >= MAX_BOTS_TEXT) {
+		trap_Print(va(S_COLOR_RED "file too large: %s is %i, max allowed is %i", filename, len, MAX_BOTS_TEXT));
+		trap_FS_FCloseFile(f);
 		return;
 	}
 
-	trap_FS_Read( buf, len, f );
+	trap_FS_Read(buf, len, f);
 	buf[len] = 0;
-	trap_FS_FCloseFile( f );
+	trap_FS_FCloseFile(f);
 
 	COM_Compress(buf);
 
-	ui_numBots += UI_ParseInfos( buf, MAX_BOTS - ui_numBots, &ui_botInfos[ui_numBots] );
+	ui_numBots += UI_ParseInfos(buf, MAX_BOTS - ui_numBots, &ui_botInfos[ui_numBots]);
 }
 
 /*
@@ -223,35 +237,34 @@ static void UI_LoadBotsFromFile( char *filename ) {
 UI_LoadBots
 ===============
 */
-void UI_LoadBots( void ) {
+void UI_LoadBots(void) {
 	vmCvar_t	botsFile;
 	int			numdirs;
 	char		filename[128];
 	char		dirlist[1024];
-	char*		dirptr;
+	char *dirptr;
 	int			i;
 	int			dirlen;
 
 	ui_numBots = 0;
 
-	trap_Cvar_Register( &botsFile, "g_botsFile", "", CVAR_INIT|CVAR_ROM );
-	if( *botsFile.string ) {
+	trap_Cvar_Register(&botsFile, "g_botsFile", "", CVAR_INIT | CVAR_ROM);
+	if (*botsFile.string) {
 		UI_LoadBotsFromFile(botsFile.string);
-	}
-	else {
+	} else {
 		UI_LoadBotsFromFile("scripts/bots.txt");
 	}
 
 	// get all bots from .bot files
-	numdirs = trap_FS_GetFileList("scripts", ".bot", dirlist, 1024 );
-	dirptr  = dirlist;
-	for (i = 0; i < numdirs; i++, dirptr += dirlen+1) {
+	numdirs = trap_FS_GetFileList("scripts", ".bot", dirlist, 1024);
+	dirptr = dirlist;
+	for (i = 0; i < numdirs; i++, dirptr += dirlen + 1) {
 		dirlen = strlen(dirptr);
 		strcpy(filename, "scripts/");
 		strcat(filename, dirptr);
 		UI_LoadBotsFromFile(filename);
 	}
-	trap_Print( va( "%i bots parsed\n", ui_numBots ) );
+	trap_Print(va("%i bots parsed\n", ui_numBots));
 }
 
 
@@ -260,9 +273,9 @@ void UI_LoadBots( void ) {
 UI_GetBotInfoByNumber
 ===============
 */
-char *UI_GetBotInfoByNumber( int num ) {
-	if( num < 0 || num >= ui_numBots ) {
-		trap_Print( va( S_COLOR_RED "Invalid bot number: %i\n", num ) );
+char *UI_GetBotInfoByNumber(int num) {
+	if (num < 0 || num >= ui_numBots) {
+		trap_Print(va(S_COLOR_RED "Invalid bot number: %i\n", num));
 		return NULL;
 	}
 	return ui_botInfos[num];
@@ -274,13 +287,13 @@ char *UI_GetBotInfoByNumber( int num ) {
 UI_GetBotInfoByName
 ===============
 */
-char *UI_GetBotInfoByName( const char *name ) {
+char *UI_GetBotInfoByName(const char *name) {
 	int		n;
-	char	*value;
+	char *value;
 
-	for ( n = 0; n < ui_numBots ; n++ ) {
-		value = Info_ValueForKey( ui_botInfos[n], "name" );
-		if ( !Q_stricmp( value, name ) ) {
+	for (n = 0; n < ui_numBots; n++) {
+		value = Info_ValueForKey(ui_botInfos[n], "name");
+		if (!Q_stricmp(value, name)) {
 			return ui_botInfos[n];
 		}
 	}
@@ -293,10 +306,10 @@ int UI_GetNumBots() {
 }
 
 
-char *UI_GetBotNameByNumber( int num ) {
+char *UI_GetBotNameByNumber(int num) {
 	char *info = UI_GetBotInfoByNumber(num);
 	if (info) {
-		return Info_ValueForKey( info, "name" );
+		return Info_ValueForKey(info, "name");
 	}
 	return "Sarge";
 }

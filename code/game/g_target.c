@@ -116,6 +116,33 @@ void SP_target_score( gentity_t *ent ) {
 }
 
 
+
+
+
+//==========================================================
+
+/*QUAKED target_cvar (1 0 0) (-8 -8 -8) (8 8 8)
+	"cvar" : name of cvar to set
+	"cvarValue" : value to set cvar to
+*/
+static void Use_Target_Cvar(gentity_t *ent, gentity_t *other, gentity_t *activator) {
+	if (!activator)
+		return;
+
+	trap_Cvar_Set(ent->cvar, ent->cvarValue);
+}
+
+void SP_target_cvar(gentity_t *ent) {
+
+	if (!ent->cvar || !ent->cvarValue) {
+		G_FreeEntity(ent);
+		return;
+	}
+
+	ent->use = Use_Target_Cvar;
+}
+
+
 //==========================================================
 
 /*QUAKED target_print (1 0 0) (-8 -8 -8) (8 8 8) redteam blueteam private

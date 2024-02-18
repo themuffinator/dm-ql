@@ -905,7 +905,7 @@ void ClientBegin( int clientNum ) {
 
 		client->sess.spectatorTime = 0;
 
-		if ( g_gametype.integer != GT_TOURNAMENT && !client->pers.inGame ) {
+		if ( g_gametype.integer != GT_DUEL && !client->pers.inGame ) {
 			G_BroadcastServerCommand( -1, va("print \"%s" S_COLOR_WHITE " entered the game\n\"", client->pers.netname) );
 		}
 	}
@@ -1199,7 +1199,7 @@ void ClientDisconnect( int clientNum ) {
 	G_LogPrintf( "ClientDisconnect: %i\n", clientNum );
 
 	// if we are playing in tourney mode and losing, give a win to the other player
-	if ( (g_gametype.integer == GT_TOURNAMENT )
+	if ( (g_gametype.integer == GT_DUEL )
 		&& !level.intermissiontime
 		&& !level.warmupTime && level.sortedClients[1] == clientNum ) {
 		level.clients[ level.sortedClients[0] ].sess.wins++;

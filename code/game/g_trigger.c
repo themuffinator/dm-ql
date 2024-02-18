@@ -441,5 +441,3 @@ void SP_func_timer( gentity_t *self ) {
 
 	self->r.svFlags = SVF_NOCLIENT;
 }
-
-

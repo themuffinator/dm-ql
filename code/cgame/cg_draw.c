@@ -1319,7 +1319,7 @@ CG_DrawSpectator
 */
 static void CG_DrawSpectator(void) {
 	CG_DrawString(320, cgs.screenYmax - 40 + 1, "SPECTATOR", colorWhite, BIGCHAR_WIDTH, BIGCHAR_HEIGHT, 0, DS_SHADOW | DS_CENTER | DS_PROPORTIONAL);
-	if (cgs.gametype == GT_TOURNAMENT) {
+	if (cgs.gametype == GT_DUEL) {
 		CG_DrawString(320, cgs.screenYmax - 20 + 1, "waiting to play", colorWhite, BIGCHAR_WIDTH, BIGCHAR_HEIGHT, 0, DS_SHADOW | DS_CENTER | DS_PROPORTIONAL);
 	} else if (cgs.gametype >= GT_TEAM) {
 		CG_DrawString(320, cgs.screenYmax - 20 + 1, "press ESC and use the JOIN menu to play", colorWhite, BIGCHAR_WIDTH, BIGCHAR_HEIGHT, 0, DS_SHADOW | DS_CENTER | DS_PROPORTIONAL);
@@ -1367,13 +1367,6 @@ static qboolean CG_DrawScoreboard(void) {
 		menuScoreboard->window.flags &= ~WINDOW_FORCED;
 	}
 	if (cg_paused.integer) {
-		cg.deferredPlayerLoading = 0;
-		firstTime = qtrue;
-		return qfalse;
-	}
-
-	// should never happen in Team Arena
-	if (cgs.gametype == GT_SINGLE_PLAYER && cg.predictedPlayerState.pm_type == PM_INTERMISSION) {
 		cg.deferredPlayerLoading = 0;
 		firstTime = qtrue;
 		return qfalse;
@@ -1546,7 +1539,7 @@ static void CG_DrawWarmup(void) {
 		return;
 	}
 
-	if (cgs.gametype == GT_TOURNAMENT) {
+	if (cgs.gametype == GT_DUEL) {
 		// find the two active players
 		ci1 = NULL;
 		ci2 = NULL;

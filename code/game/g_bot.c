@@ -430,7 +430,7 @@ void G_CheckMinimumPlayers( void ) {
 			G_RemoveRandomBot( TEAM_BLUE );
 		}
 	}
-	else if (g_gametype.integer == GT_TOURNAMENT ) {
+	else if (g_gametype.integer == GT_DUEL ) {
 		if (minplayers >= level.maxclients) {
 			minplayers = level.maxclients-1;
 		}
@@ -483,11 +483,6 @@ void G_CheckBotSpawn( void ) {
 		}
 		ClientBegin( botSpawnQueue[n].clientNum );
 		botSpawnQueue[n].spawnTime = 0;
-
-		if( g_gametype.integer == GT_SINGLE_PLAYER ) {
-			trap_GetUserinfo( botSpawnQueue[n].clientNum, userinfo, sizeof(userinfo) );
-			PlayerIntroSound( Info_ValueForKey (userinfo, "model") );
-		}
 	}
 }
 
@@ -902,7 +897,7 @@ static void G_LoadBots( void ) {
 
 	trap_Cvar_Register( &botsFile, "g_botsFile", "", CVAR_ARCHIVE | CVAR_LATCH );
 
-	if ( *botsFile.string && g_gametype.integer != GT_SINGLE_PLAYER ) {
+	if ( *botsFile.string ) {
 		G_LoadBotsFromFile( botsFile.string );
 	} else {
 		G_LoadBotsFromFile( "scripts/bots.txt" );
@@ -962,54 +957,8 @@ G_InitBots
 ===============
 */
 void G_InitBots( qboolean restart ) {
-	int			fragLimit;
-	int			timeLimit;
-	const char	*arenainfo;
-	char		*strValue;
-	int			basedelay;
-
 	G_LoadBots();
 	G_LoadArenas();
 
 	trap_Cvar_Register( &bot_minplayers, "bot_minplayers", "0", CVAR_SERVERINFO );
-
-	if( g_gametype.integer == GT_SINGLE_PLAYER ) {
-		arenainfo = G_GetArenaInfoByMap( mapname );
-		if ( !arenainfo ) {
-			return;
-		}
-
-		strValue = Info_ValueForKey( arenainfo, "fraglimit" );
-		fragLimit = atoi( strValue );
-		if ( fragLimit ) {
-			trap_Cvar_Set( "fraglimit", strValue );
-		}
-		else {
-			trap_Cvar_Set( "fraglimit", "0" );
-		}
-
-		strValue = Info_ValueForKey( arenainfo, "timelimit" );
-		timeLimit = atoi( strValue );
-		if ( timeLimit ) {
-			trap_Cvar_Set( "timelimit", strValue );
-		}
-		else {
-			trap_Cvar_Set( "timelimit", "0" );
-		}
-
-		if ( !fragLimit && !timeLimit ) {
-			trap_Cvar_Set( "fraglimit", "10" );
-			trap_Cvar_Set( "timelimit", "0" );
-		}
-
-		basedelay = BOT_BEGIN_DELAY_BASE;
-		strValue = Info_ValueForKey( arenainfo, "special" );
-		if( Q_stricmp( strValue, "training" ) == 0 ) {
-			basedelay += 10000;
-		}
-
-		if( !restart ) {
-			G_SpawnBots( Info_ValueForKey( arenainfo, "bots" ), basedelay );
-		}
-	}
 }

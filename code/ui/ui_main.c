@@ -48,7 +48,7 @@ static const serverFilter_t serverFilters[] = {
 
 static const char *teamArenaGameTypes[] = {
 	"FFA",
-	"TOURNAMENT",
+	"DUEL",
 	"SP",
 	"TEAM DM",
 	"CA",
@@ -64,7 +64,7 @@ static int const numTeamArenaGameTypes = sizeof(teamArenaGameTypes) / sizeof(con
 
 static const char *teamArenaGameNames[] = {
 	"Free For All",
-	"Tournament",
+	"Duel",
 	"Single Player",
 	"Team Deathmatch",
 	"Clan Arena",
@@ -2256,7 +2256,7 @@ static qboolean UI_GameType_HandleKey(int flags, float *special, int key, qboole
 			}
 		}
 
-		if (uiInfo.gameTypes[ui_gameType.integer].gtEnum == GT_TOURNAMENT) {
+		if (uiInfo.gameTypes[ui_gameType.integer].gtEnum == GT_DUEL) {
 			trap_Cvar_Set("ui_Q3Model", "1");
 		} else {
 			trap_Cvar_Set("ui_Q3Model", "0");
@@ -2919,7 +2919,7 @@ static void UI_StartSkirmish(qboolean next) {
 
 	delay = 500;
 
-	if (g == GT_TOURNAMENT) {
+	if (g == GT_DUEL) {
 		trap_Cvar_Set("sv_maxClients", "2");
 		Com_sprintf(buff, sizeof(buff), "wait ; addbot %s %f "", %i \n", uiInfo.mapList[ui_currentMap.integer].opponentName, skill, delay);
 		trap_Cmd_ExecuteText(EXEC_APPEND, buff);
@@ -3422,13 +3422,10 @@ static void UI_GetTeamColor(vec4_t *color) {}
 UI_MapCountByGameType
 ==================
 */
-static int UI_MapCountByGameType(qboolean singlePlayer) {
+static int UI_MapCountByGameType(void) {
 	int i, c, game;
 	c = 0;
-	game = singlePlayer ? uiInfo.gameTypes[ui_gameType.integer].gtEnum : uiInfo.gameTypes[ui_netGameType.integer].gtEnum;
-	if (game == GT_SINGLE_PLAYER) {
-		game++;
-	}
+	game = uiInfo.gameTypes[ui_netGameType.integer].gtEnum;
 	if (game == GT_TEAM) {
 		game = GT_FFA;
 	}
@@ -3436,11 +3433,6 @@ static int UI_MapCountByGameType(qboolean singlePlayer) {
 	for (i = 0; i < uiInfo.mapCount; i++) {
 		uiInfo.mapList[i].active = qfalse;
 		if (uiInfo.mapList[i].typeBits & (1 << game)) {
-			if (singlePlayer) {
-				if (!(uiInfo.mapList[i].typeBits & (1 << GT_SINGLE_PLAYER))) {
-					continue;
-				}
-			}
 			c++;
 			uiInfo.mapList[i].active = qtrue;
 		}
@@ -4065,7 +4057,7 @@ static int UI_FeederCount(float feederID) {
 	} else if (feederID == FEEDER_CINEMATICS) {
 		return uiInfo.movieCount;
 	} else if (feederID == FEEDER_MAPS || feederID == FEEDER_ALLMAPS) {
-		return UI_MapCountByGameType(feederID == FEEDER_MAPS ? qtrue : qfalse);
+		return UI_MapCountByGameType();
 	} else if (feederID == FEEDER_SERVERS) {
 		return uiInfo.serverStatus.numDisplayServers;
 	} else if (feederID == FEEDER_SERVERSTATUS) {

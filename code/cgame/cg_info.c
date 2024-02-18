@@ -118,10 +118,6 @@ void CG_LoadingClient(int clientNum) {
 	BG_CleanName(Info_ValueForKey(info, "n"), personality, sizeof(personality), "unknown client");
 	BG_StripColor(personality);
 
-	if (cgs.gametype == GT_SINGLE_PLAYER) {
-		trap_S_RegisterSound(va("sound/player/announce/%s.wav", personality), qtrue);
-	}
-
 	CG_LoadingString(personality);
 }
 
@@ -246,11 +242,11 @@ void CG_DrawInformation(void) {
 	case GT_FFA:
 		s = "Free For All";
 		break;
-	case GT_SINGLE_PLAYER:
-		s = "Single Player";
+	case GT_RACE:
+		s = "Race";
 		break;
-	case GT_TOURNAMENT:
-		s = "Tournament";
+	case GT_DUEL:
+		s = "Duel";
 		break;
 	case GT_TEAM:
 		s = "Team Deathmatch";
@@ -259,7 +255,7 @@ void CG_DrawInformation(void) {
 		s = "Clan Arena";
 		break;
 	case GT_CTF:
-		s = "Capture The Flag";
+		s = "Capture the Flag";
 		break;
 	case GT_1FCTF:
 		s = "One Flag CTF";
@@ -269,6 +265,18 @@ void CG_DrawInformation(void) {
 		break;
 	case GT_HARVESTER:
 		s = "Harvester";
+		break;
+	case GT_FREEZE:
+		s = "Freeze Tag";
+		break;
+	case GT_DOM:
+		s = "Domination";
+		break;
+	case GT_AD:
+		s = "Attack and Defend";
+		break;
+	case GT_RR:
+		s = "Red Rover";
 		break;
 	default:
 		BG_sprintf(buf, "Gametype #%i", cgs.gametype);

@@ -136,17 +136,17 @@ void G_InitSessionData( gclient_t *client, const char *team, qboolean isBot ) {
 			switch ( g_gametype.integer ) {
 			default:
 			case GT_FFA:
-			case GT_SINGLE_PLAYER:
+			case GT_RACE:
 				if ( g_maxGameClients.integer > 0 && level.numNonSpectatorClients >= g_maxGameClients.integer ) {
 					sess->sessionTeam = TEAM_SPECTATOR;
 				} else {
-					if ( g_autoJoin.integer & 1 || isBot || g_gametype.integer == GT_SINGLE_PLAYER )
+					if ( g_autoJoin.integer & 1 || isBot )
 						sess->sessionTeam = TEAM_FREE;
 					else
 						sess->sessionTeam = TEAM_SPECTATOR;
 				}
 				break;
-			case GT_TOURNAMENT:
+			case GT_DUEL:
 				// if the game is full, go into a waiting mode
 				if ( level.numNonSpectatorClients >= 2 ) {
 					sess->sessionTeam = TEAM_SPECTATOR;

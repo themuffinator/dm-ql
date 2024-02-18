@@ -4,6 +4,7 @@ build/win32-msvc/.vs
 *.jts
 *.qvm
 *.pk3
+*.ipch
 
 # Prerequisites
 *.d

@@ -1065,7 +1065,7 @@ static void CG_SetSkinAndModel(clientInfo_t *newInfo,
 			}
 		} else { // not team game
 
-			if (pm_model && myClientNum != clientNum && cgs.gametype != GT_SINGLE_PLAYER) {
+			if (pm_model && myClientNum != clientNum) {
 				Q_strncpyz(modelName, infomodel, modelNameSize);
 
 				// strip skin name from model name
@@ -1086,7 +1086,7 @@ static void CG_SetSkinAndModel(clientInfo_t *newInfo,
 					newInfo->coloredSkin = qtrue;
 				}
 
-			} else if (cg_enemyModel.string[0] && myClientNum != clientNum && !allowNativeModel && cgs.gametype != GT_SINGLE_PLAYER) {
+			} else if (cg_enemyModel.string[0] && myClientNum != clientNum && !allowNativeModel) {
 
 				Q_strncpyz(modelName, cg_enemyModel.string, modelNameSize);
 

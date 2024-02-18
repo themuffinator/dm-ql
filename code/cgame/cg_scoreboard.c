@@ -109,14 +109,14 @@ static void CG_DrawClientScore(int y, score_t *score, float *color, float fade, 
 			}
 		} else if (ci->handicap < 100) {
 			BG_sprintf(string, "%i", ci->handicap);
-			if (cgs.gametype == GT_TOURNAMENT)
+			if (cgs.gametype == GT_DUEL)
 				CG_DrawString(iconx, y - SMALLCHAR_HEIGHT / 2, string, color, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT, 0, DS_FORCE_COLOR);
 			else
 				CG_DrawString(iconx, y, string, color, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT, 0, DS_FORCE_COLOR);
 		}
 
 		// draw the wins / losses
-		if (cgs.gametype == GT_TOURNAMENT) {
+		if (cgs.gametype == GT_DUEL) {
 			BG_sprintf(string, "%i/%i", ci->wins, ci->losses);
 			if (ci->handicap < 100 && !ci->botSkill) {
 				CG_DrawString(iconx, y + SMALLCHAR_HEIGHT / 2, string, color, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT, 0, DS_FORCE_COLOR);
@@ -290,11 +290,6 @@ qboolean CG_DrawOldScoreboard(void) {
 
 	// don't draw anything if the menu or console is up
 	if (cg_paused.integer) {
-		cg.deferredPlayerLoading = 0;
-		return qfalse;
-	}
-
-	if (cgs.gametype == GT_SINGLE_PLAYER && cg.predictedPlayerState.pm_type == PM_INTERMISSION) {
 		cg.deferredPlayerLoading = 0;
 		return qfalse;
 	}

@@ -152,6 +152,9 @@ struct gentity_s {
 	float		wait;
 	float		random;
 
+	char		*cvar;
+	char		*cvarValue;
+
 	gitem_t		*item;			// for bonus items
 
 	// team for spawn spot
