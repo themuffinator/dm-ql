@@ -1,0 +1,111 @@
+﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  q_shared.c
+  q_math.c
+  g_weapon.c
+  g_utils.c
+  g_unlagged.c
+  g_trigger.c
+  g_team.c
+  g_target.c
+  g_syscalls.c
+  g_svcmds.c
+  g_spawn.c
+  g_session.c
+  g_rotation.c
+  g_rankings.c
+C:\dm-ql\code\game\g_rankings.c(15,17): error C2065: 'grank_status_t': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(15,17): error C2146: syntax error: missing ';' before identifier 'old_status'
+C:\dm-ql\code\game\g_rankings.c(15,27): error C2065: 'old_status': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(16,17): error C2065: 'grank_status_t': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(16,17): error C2146: syntax error: missing ';' before identifier 'status'
+C:\dm-ql\code\game\g_rankings.c(16,23): error C2065: 'status': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(21,7): warning C4013: 'trap_RankCheckInit' undefined; assuming extern returning int
+C:\dm-ql\code\game\g_rankings.c(23,3): warning C4013: 'trap_RankBegin' undefined; assuming extern returning int
+C:\dm-ql\code\game\g_rankings.c(23,30): error C2065: 'GR_GAMEKEY': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(26,2): warning C4013: 'trap_RankPoll' undefined; assuming extern returning int
+C:\dm-ql\code\game\g_rankings.c(28,6): warning C4013: 'trap_RankActive' undefined; assuming extern returning int
+C:\dm-ql\code\game\g_rankings.c(45,15): error C2065: 'old_status': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(45,30): error C2039: 'client_status': is not a member of 'gclient_s'
+  C:\dm-ql\code\game\g_local.h(254,8):
+  see declaration of 'gclient_s'
+  
+C:\dm-ql\code\game\g_rankings.c(46,11): error C2065: 'status': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(46,13): warning C4013: 'trap_RankUserStatus' undefined; assuming extern returning int
+C:\dm-ql\code\game\g_rankings.c(48,21): error C2039: 'client_status': is not a member of 'gclient_s'
+  C:\dm-ql\code\game\g_local.h(254,8):
+  see declaration of 'gclient_s'
+  
+C:\dm-ql\code\game\g_rankings.c(48,45): error C2065: 'status': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(52,60): error C2065: 'status': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(57,18): error C2039: 'client_status': is not a member of 'gclient_s'
+  C:\dm-ql\code\game\g_local.h(254,8):
+  see declaration of 'gclient_s'
+  
+C:\dm-ql\code\game\g_rankings.c(57,40): error C2065: 'status': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(60,19): error C2065: 'status': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(62,23): error C2065: 'QGR_STATUS_NEW': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(63,29): error C2065: 'QGR_STATUS_SPECTATOR': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(70,61): error C2065: 'status': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(74,27): error C2065: 'QGR_STATUS_NO_USER': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(75,32): error C2065: 'QGR_STATUS_BAD_PASSWORD': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(76,27): error C2065: 'QGR_STATUS_TIMEOUT': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(77,33): error C2065: 'QGR_STATUS_NO_MEMBERSHIP': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(78,31): error C2065: 'QGR_STATUS_INVALIDUSER': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(79,25): error C2065: 'QGR_STATUS_ERROR': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(82,6): warning C4013: 'trap_RankUserReset' undefined; assuming extern returning int
+C:\dm-ql\code\game\g_rankings.c(85,26): error C2065: 'QGR_STATUS_ACTIVE': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(92,20): error C2065: 'old_status': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(92,41): error C2065: 'QGR_STATUS_ACTIVE': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(105,69): error C2065: 'QGR_STATUS_ACTIVE': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(107,8): warning C4013: 'trap_RankReportInt' undefined; assuming extern returning int
+C:\dm-ql\code\game\g_rankings.c(141,46): error C2065: 'PERS_MATCH_TIME': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(62,4): error C2051: case expression not constant
+C:\dm-ql\code\game\g_rankings.c(63,4): error C2051: case expression not constant
+C:\dm-ql\code\game\g_rankings.c(74,4): error C2051: case expression not constant
+C:\dm-ql\code\game\g_rankings.c(75,4): error C2051: case expression not constant
+C:\dm-ql\code\game\g_rankings.c(76,4): error C2051: case expression not constant
+C:\dm-ql\code\game\g_rankings.c(77,4): error C2051: case expression not constant
+C:\dm-ql\code\game\g_rankings.c(78,4): error C2051: case expression not constant
+C:\dm-ql\code\game\g_rankings.c(79,4): error C2051: case expression not constant
+C:\dm-ql\code\game\g_rankings.c(85,4): error C2051: case expression not constant
+C:\dm-ql\code\game\g_rankings.c(633,31): error C2039: 'weapon_change_time': is not a member of 'gclient_s'
+  C:\dm-ql\code\game\g_local.h(254,8):
+  see declaration of 'gclient_s'
+  
+C:\dm-ql\code\game\g_rankings.c(634,10): error C2039: 'weapon_change_time': is not a member of 'gclient_s'
+  C:\dm-ql\code\game\g_local.h(254,8):
+  see declaration of 'gclient_s'
+  
+C:\dm-ql\code\game\g_rankings.c(1007,2): warning C4013: 'trap_RankReportStr' undefined; assuming extern returning int
+C:\dm-ql\code\game\g_rankings.c(1036,57): error C2065: 'PERS_MATCH_RATING': undeclared identifier
+C:\dm-ql\code\game\g_rankings.c(1060,53): error C2065: 'QGR_STATUS_ACTIVE': undeclared identifier
+  g_mover.c
+  g_missile.c
+  g_misc.c
+  g_mem.c
+  g_main.c
+  g_items.c
+  Generating Code...
+  Compiling...
+  g_combat.c
+  g_cmds.c
+  g_client.c
+  g_bot.c
+  g_arenas.c
+  g_active.c
+  bg_slidemove.c
+  bg_pmove.c
+  bg_misc.c
+  bg_lib.c
+C:\dm-ql\code\game\bg_lib.c(172,6): warning C4018: '<': signed/unsigned mismatch
+C:\dm-ql\code\game\bg_lib.c(174,20): warning C4018: '>': signed/unsigned mismatch
+C:\dm-ql\code\game\bg_lib.c(176,20): warning C4018: '>': signed/unsigned mismatch
+  ai_team.c
+  ai_main.c
+  ai_dmq3.c
+C:\dm-ql\code\game\ai_dmq3.c(3119,28): error C2065: 'maxclients': undeclared identifier
+C:\dm-ql\code\game\ai_dmq3.c(3148,28): error C2065: 'maxclients': undeclared identifier
+  ai_dmnet.c
+  ai_cmd.c
+  ai_chat.c
+  Generating Code...

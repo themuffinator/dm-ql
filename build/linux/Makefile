@@ -97,7 +97,7 @@ BR=$(BUILD_DIR)/release-$(PLATFORM)-$(ARCH)
 
 QADIR=$(MOUNT_DIR)/game
 CGDIR=$(MOUNT_DIR)/cgame
-UIDIR=$(MOUNT_DIR)/q3_ui
+UIDIR=$(MOUNT_DIR)/ui
 
 bin_path=$(shell which $(1) 2> /dev/null)
 

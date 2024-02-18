@@ -1,10 +1,10 @@
-PK3 = pak8a.pk3
+PK3 = pak0.pk3
 
 basedir = ../../code
 
 QADIR = $(basedir)/game
 CGDIR = $(basedir)/cgame
-UIDIR = $(basedir)/q3_ui
+UIDIR = $(basedir)/ui
 
 Q3ASM = ./tools/q3asm -vq3 -r -m -v
 Q3LCC = ./../../tools/q3lcc -DQ3_VM -S -Wf-g -I$(QADIR)

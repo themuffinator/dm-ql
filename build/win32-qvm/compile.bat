@@ -35,6 +35,8 @@ cd vm\cgame
 @if errorlevel 1 goto quit
 %cc1% %cgamedir%\cg_newdraw.c
 @if errorlevel 1 goto quit
+%cc1% %uidir%\ui_shared.c
+@if errorlevel 1 goto quit
 %cc1% %cgamedir%\cg_consolecmds.c
 @if errorlevel 1 goto quit
 %cc1% %cgamedir%\cg_draw.c

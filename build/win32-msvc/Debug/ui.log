@@ -1,0 +1,100 @@
+﻿  ui_atoms.c
+C:\dm-ql\code\game\bg_public.h(742,7): warning C4273: 'strtok': inconsistent dll linkage
+  (compiling source file '../../code/ui/ui_atoms.c')
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt\string.h(436,24):
+  see previous definition of 'strtok'
+  
+  ui_gameinfo.c
+C:\dm-ql\code\ui\ui_atoms.c(20,2): error C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_atoms.c(31,2): error C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\game\bg_public.h(742,7): warning C4273: 'strtok': inconsistent dll linkage
+  (compiling source file '../../code/ui/ui_gameinfo.c')
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt\string.h(436,24):
+  see previous definition of 'strtok'
+  
+C:\dm-ql\code\ui\ui_gameinfo.c(63,5): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_gameinfo.c(70,4): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_gameinfo.c(136,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_gameinfo.c(137,3): error C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_gameinfo.c(250,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_gameinfo.c(251,3): error C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  ui_main.c
+C:\dm-ql\code\game\bg_public.h(742,7): warning C4273: 'strtok': inconsistent dll linkage
+  (compiling source file '../../code/ui/ui_main.c')
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt\string.h(436,24):
+  see previous definition of 'strtok'
+  
+C:\dm-ql\code\ui\ui_main.c(960,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_main.c(1248,4): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_main.c(1249,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_main.c(1257,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_main.c(1258,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_main.c(1259,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_main.c(1315,25): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(1315,26): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(1315,60): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(1315,61): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(1316,22): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(1316,23): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(1318,96): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(1318,97): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(1404,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_main.c(1405,4): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_main.c(1627,27): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(1627,28): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(1627,62): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(1627,63): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(1628,24): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(1628,25): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(1630,58): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(1630,59): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(2442,23): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(2442,24): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(2444,23): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(2444,24): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(2447,28): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(2447,29): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(2448,26): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(2448,27): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(2449,35): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(2449,36): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(2450,26): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(2450,27): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(3388,6): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_main.c(3397,7): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_main.c(3705,27): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(3705,28): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(3706,84): error C2065: 'ui_serverFilterType': undeclared identifier
+C:\dm-ql\code\ui\ui_main.c(3706,85): error C2224: left of '.integer' must have struct/union type
+C:\dm-ql\code\ui\ui_main.c(3706,9): error C2198: 'Q_stricmp': too few arguments for call
+C:\dm-ql\code\ui\ui_main.c(3637,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_main.c(4872,4): error C2198: 'COM_StripExtension': too few arguments for call
+C:\dm-ql\code\ui\ui_main.c(5400,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  ui_players.c
+C:\dm-ql\code\game\bg_public.h(742,7): warning C4273: 'strtok': inconsistent dll linkage
+  (compiling source file '../../code/ui/ui_players.c')
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt\string.h(436,24):
+  see previous definition of 'strtok'
+  
+C:\dm-ql\code\ui\ui_players.c(73,3): error C2198: 'COM_StripExtension': too few arguments for call
+C:\dm-ql\code\ui\ui_players.c(79,2): error C2198: 'COM_StripExtension': too few arguments for call
+C:\dm-ql\code\ui\ui_players.c(72,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_players.c(74,3): error C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_players.c(78,2): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_players.c(80,2): error C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  ui_shared.c
+C:\dm-ql\code\ui\ui_shared.c(169,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_shared.c(240,2): error C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_shared.c(262,2): error C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_shared.c(2892,3): error C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_shared.c(3292,5): error C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_shared.c(3293,5): error C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\dm-ql\code\ui\ui_shared.c(3298,2): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  ui_syscalls.c
+C:\dm-ql\code\game\bg_public.h(742,7): warning C4273: 'strtok': inconsistent dll linkage
+  (compiling source file '../../code/ui/ui_syscalls.c')
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt\string.h(436,24):
+  see previous definition of 'strtok'
+  
+  ui_util.c
+  Generating Code...

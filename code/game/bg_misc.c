@@ -899,7 +899,7 @@ Only in One Flag CTF games
 	{NULL}
 };
 
-int		bg_numItems = ARRAY_LEN( bg_itemlist ) - 1;
+int		bg_numItems = ARRAY_LEN(bg_itemlist) - 1;
 
 
 /*
@@ -907,14 +907,14 @@ int		bg_numItems = ARRAY_LEN( bg_itemlist ) - 1;
 BG_FindItemForPowerup
 ==============
 */
-gitem_t	*BG_FindItemForPowerup( powerup_t pw ) {
+gitem_t *BG_FindItemForPowerup(powerup_t pw) {
 	int		i;
 
-	for ( i = 0 ; i < bg_numItems ; i++ ) {
-		if ( (bg_itemlist[i].giType == IT_POWERUP || 
-					bg_itemlist[i].giType == IT_TEAM ||
-					bg_itemlist[i].giType == IT_PERSISTANT_POWERUP) && 
-			bg_itemlist[i].giTag == pw ) {
+	for (i = 0; i < bg_numItems; i++) {
+		if ((bg_itemlist[i].giType == IT_POWERUP ||
+			bg_itemlist[i].giType == IT_TEAM ||
+			bg_itemlist[i].giType == IT_PERSISTANT_POWERUP) &&
+			bg_itemlist[i].giTag == pw) {
 			return &bg_itemlist[i];
 		}
 	}
@@ -928,16 +928,16 @@ gitem_t	*BG_FindItemForPowerup( powerup_t pw ) {
 BG_FindItemForHoldable
 ==============
 */
-gitem_t	*BG_FindItemForHoldable( holdable_t pw ) {
+gitem_t *BG_FindItemForHoldable(holdable_t pw) {
 	int		i;
 
-	for ( i = 0 ; i < bg_numItems ; i++ ) {
-		if ( bg_itemlist[i].giType == IT_HOLDABLE && bg_itemlist[i].giTag == pw ) {
+	for (i = 0; i < bg_numItems; i++) {
+		if (bg_itemlist[i].giType == IT_HOLDABLE && bg_itemlist[i].giTag == pw) {
 			return &bg_itemlist[i];
 		}
 	}
 
-	Com_Error( ERR_DROP, "HoldableItem not found" );
+	Com_Error(ERR_DROP, "HoldableItem not found");
 
 	return NULL;
 }
@@ -949,16 +949,16 @@ BG_FindItemForWeapon
 
 ===============
 */
-gitem_t	*BG_FindItemForWeapon( weapon_t weapon ) {
-	gitem_t	*it;
-	
-	for ( it = bg_itemlist + 1 ; it->classname ; it++) {
-		if ( it->giType == IT_WEAPON && it->giTag == weapon ) {
+gitem_t *BG_FindItemForWeapon(weapon_t weapon) {
+	gitem_t *it;
+
+	for (it = bg_itemlist + 1; it->classname; it++) {
+		if (it->giType == IT_WEAPON && it->giTag == weapon) {
 			return it;
 		}
 	}
 
-	Com_Error( ERR_DROP, "Couldn't find item for weapon %i", weapon);
+	Com_Error(ERR_DROP, "Couldn't find item for weapon %i", weapon);
 	return NULL;
 }
 
@@ -968,11 +968,11 @@ BG_FindItem
 
 ===============
 */
-gitem_t	*BG_FindItem( const char *pickupName ) {
-	gitem_t	*it;
-	
-	for ( it = bg_itemlist + 1 ; it->classname ; it++ ) {
-		if ( !Q_stricmp( it->pickup_name, pickupName ) )
+gitem_t *BG_FindItem(const char *pickupName) {
+	gitem_t *it;
+
+	for (it = bg_itemlist + 1; it->classname; it++) {
+		if (!Q_stricmp(it->pickup_name, pickupName))
 			return it;
 	}
 
@@ -987,18 +987,18 @@ Items can be picked up without actually touching their physical bounds to make
 grabbing them easier
 ============
 */
-qboolean	BG_PlayerTouchesItem( playerState_t *ps, entityState_t *item, int atTime ) {
+qboolean	BG_PlayerTouchesItem(playerState_t *ps, entityState_t *item, int atTime) {
 	vec3_t		origin;
 
-	BG_EvaluateTrajectory( &item->pos, atTime, origin );
+	BG_EvaluateTrajectory(&item->pos, atTime, origin);
 
 	// we are ignoring ducked differences here
-	if ( ps->origin[0] - origin[0] > 44
+	if (ps->origin[0] - origin[0] > 44
 		|| ps->origin[0] - origin[0] < -50
 		|| ps->origin[1] - origin[1] > 36
 		|| ps->origin[1] - origin[1] < -36
 		|| ps->origin[2] - origin[2] > 36
-		|| ps->origin[2] - origin[2] < -36 ) {
+		|| ps->origin[2] - origin[2] < -36) {
 		return qfalse;
 	}
 
@@ -1015,40 +1015,39 @@ Returns false if the item should not be picked up.
 This needs to be the same for client side prediction and server use.
 ================
 */
-qboolean BG_CanItemBeGrabbed( int gametype, const entityState_t *ent, const playerState_t *ps ) {
-	gitem_t	*item;
+qboolean BG_CanItemBeGrabbed(int gametype, const entityState_t *ent, const playerState_t *ps) {
+	gitem_t *item;
 	int		upperBound;
 
-	if ( ent->modelindex < 1 || ent->modelindex >= bg_numItems ) {
-		Com_Error( ERR_DROP, "BG_CanItemBeGrabbed: index out of range" );
+	if (ent->modelindex < 1 || ent->modelindex >= bg_numItems) {
+		Com_Error(ERR_DROP, "BG_CanItemBeGrabbed: index out of range");
 	}
 
 	item = &bg_itemlist[ent->modelindex];
 
-	switch( item->giType ) {
+	switch (item->giType) {
 	case IT_WEAPON:
 		return qtrue;	// weapons are always picked up
 
 	case IT_AMMO:
-		if ( ps->ammo[ item->giTag ] >= 200 ) {
+		if (ps->ammo[item->giTag] >= 200) {
 			return qfalse;		// can't hold any more
 		}
 		return qtrue;
 
 	case IT_ARMOR:
-		if( bg_itemlist[ps->stats[STAT_PERSISTANT_POWERUP]].giTag == PW_SCOUT ) {
+		if (bg_itemlist[ps->stats[STAT_PERSISTANT_POWERUP]].giTag == PW_SCOUT) {
 			return qfalse;
 		}
 
 		// we also clamp armor to the maxhealth for handicapping
-		if( bg_itemlist[ps->stats[STAT_PERSISTANT_POWERUP]].giTag == PW_GUARD ) {
+		if (bg_itemlist[ps->stats[STAT_PERSISTANT_POWERUP]].giTag == PW_GUARD) {
 			upperBound = ps->stats[STAT_MAX_HEALTH];
-		}
-		else {
+		} else {
 			upperBound = ps->stats[STAT_MAX_HEALTH] * 2;
 		}
 
-		if ( ps->stats[STAT_ARMOR] >= upperBound ) {
+		if (ps->stats[STAT_ARMOR] >= upperBound) {
 			return qfalse;
 		}
 		return qtrue;
@@ -1056,16 +1055,16 @@ qboolean BG_CanItemBeGrabbed( int gametype, const entityState_t *ent, const play
 	case IT_HEALTH:
 		// small and mega healths will go over the max, otherwise
 		// don't pick up if already at max
-		if( bg_itemlist[ps->stats[STAT_PERSISTANT_POWERUP]].giTag == PW_GUARD ) {
+		if (bg_itemlist[ps->stats[STAT_PERSISTANT_POWERUP]].giTag == PW_GUARD) {
 			upperBound = ps->stats[STAT_MAX_HEALTH];
-		} else if ( item->quantity == 5 || item->quantity == 100 ) {
-			if ( ps->stats[STAT_HEALTH] >= ps->stats[STAT_MAX_HEALTH] * 2 ) {
+		} else if (item->quantity == 5 || item->quantity == 100) {
+			if (ps->stats[STAT_HEALTH] >= ps->stats[STAT_MAX_HEALTH] * 2) {
 				return qfalse;
 			}
 			return qtrue;
 		}
 
-		if ( ps->stats[STAT_HEALTH] >= ps->stats[STAT_MAX_HEALTH] ) {
+		if (ps->stats[STAT_HEALTH] >= ps->stats[STAT_MAX_HEALTH]) {
 			return qfalse;
 		}
 		return qtrue;
@@ -1075,72 +1074,72 @@ qboolean BG_CanItemBeGrabbed( int gametype, const entityState_t *ent, const play
 
 	case IT_PERSISTANT_POWERUP:
 		// can only hold one item at a time
-		if ( ps->stats[STAT_PERSISTANT_POWERUP] ) {
+		if (ps->stats[STAT_PERSISTANT_POWERUP]) {
 			return qfalse;
 		}
 
 		// check team only
-		if( ( ent->generic1 & 2 ) && ( ps->persistant[PERS_TEAM] != TEAM_RED ) ) {
+		if ((ent->generic1 & 2) && (ps->persistant[PERS_TEAM] != TEAM_RED)) {
 			return qfalse;
 		}
-		if( ( ent->generic1 & 4 ) && ( ps->persistant[PERS_TEAM] != TEAM_BLUE ) ) {
+		if ((ent->generic1 & 4) && (ps->persistant[PERS_TEAM] != TEAM_BLUE)) {
 			return qfalse;
 		}
 		return qtrue;
 
 	case IT_TEAM: // team items, such as flags
-		if ( gametype == GT_1FCTF ) {
+		if (gametype == GT_1FCTF) {
 			// neutral flag can always be picked up
-			if( item->giTag == PW_NEUTRALFLAG ) {
+			if (item->giTag == PW_NEUTRALFLAG) {
 				return qtrue;
 			}
 			if (ps->persistant[PERS_TEAM] == TEAM_RED) {
-				if (item->giTag == PW_BLUEFLAG  && ps->powerups[PW_NEUTRALFLAG] ) {
+				if (item->giTag == PW_BLUEFLAG && ps->powerups[PW_NEUTRALFLAG]) {
 					return qtrue;
 				}
 			} else if (ps->persistant[PERS_TEAM] == TEAM_BLUE) {
-				if (item->giTag == PW_REDFLAG  && ps->powerups[PW_NEUTRALFLAG] ) {
+				if (item->giTag == PW_REDFLAG && ps->powerups[PW_NEUTRALFLAG]) {
 					return qtrue;
 				}
 			}
-		} else if( gametype == GT_CTF ) {
+		} else if (gametype == GT_CTF) {
 			// ent->modelindex2 is non-zero on items if they are dropped
 			// we need to know this because we can pick up our dropped flag (and return it)
 			// but we can't pick up our flag at base
 			if (ps->persistant[PERS_TEAM] == TEAM_RED) {
 				if (item->giTag == PW_BLUEFLAG ||
 					(item->giTag == PW_REDFLAG && ent->modelindex2) ||
-					(item->giTag == PW_REDFLAG && ps->powerups[PW_BLUEFLAG]) )
+					(item->giTag == PW_REDFLAG && ps->powerups[PW_BLUEFLAG]))
 					return qtrue;
 			} else if (ps->persistant[PERS_TEAM] == TEAM_BLUE) {
 				if (item->giTag == PW_REDFLAG ||
 					(item->giTag == PW_BLUEFLAG && ent->modelindex2) ||
-					(item->giTag == PW_BLUEFLAG && ps->powerups[PW_REDFLAG]) )
+					(item->giTag == PW_BLUEFLAG && ps->powerups[PW_REDFLAG]))
 					return qtrue;
 			}
 		}
 
-		if ( gametype == GT_HARVESTER ) {
+		if (gametype == GT_HARVESTER) {
 			return qtrue;
 		}
 		return qfalse;
 
 	case IT_HOLDABLE:
 		// can only hold one item at a time
-		if ( ps->stats[STAT_HOLDABLE_ITEM] ) {
+		if (ps->stats[STAT_HOLDABLE_ITEM]) {
 			return qfalse;
 		}
 		return qtrue;
 
-        case IT_BAD:
-            Com_Error( ERR_DROP, "BG_CanItemBeGrabbed: IT_BAD" );
-        default:
+	case IT_BAD:
+		Com_Error(ERR_DROP, "BG_CanItemBeGrabbed: IT_BAD");
+	default:
 #ifndef Q3_VM
 #ifndef NDEBUG
-          Com_Printf("BG_CanItemBeGrabbed: unknown enum %d\n", item->giType );
+		Com_Printf("BG_CanItemBeGrabbed: unknown enum %d\n", item->giType);
 #endif
 #endif
-         break;
+		break;
 	}
 
 	return qfalse;
@@ -1154,41 +1153,41 @@ BG_EvaluateTrajectory
 
 ================
 */
-void BG_EvaluateTrajectory( const trajectory_t *tr, int atTime, vec3_t result ) {
+void BG_EvaluateTrajectory(const trajectory_t *tr, int atTime, vec3_t result) {
 	float		deltaTime;
 	float		phase;
 
-	switch( tr->trType ) {
+	switch (tr->trType) {
 	case TR_STATIONARY:
 	case TR_INTERPOLATE:
-		VectorCopy( tr->trBase, result );
+		VectorCopy(tr->trBase, result);
 		break;
 	case TR_LINEAR:
-		deltaTime = ( atTime - tr->trTime ) * 0.001;	// milliseconds to seconds
-		VectorMA( tr->trBase, deltaTime, tr->trDelta, result );
+		deltaTime = (atTime - tr->trTime) * 0.001;	// milliseconds to seconds
+		VectorMA(tr->trBase, deltaTime, tr->trDelta, result);
 		break;
 	case TR_SINE:
-		deltaTime = ( ( atTime - tr->trTime ) % tr->trDuration ) / (float) tr->trDuration;
-		phase = sin( deltaTime * M_PI * 2 );
-		VectorMA( tr->trBase, phase, tr->trDelta, result );
+		deltaTime = ((atTime - tr->trTime) % tr->trDuration) / (float)tr->trDuration;
+		phase = sin(deltaTime * M_PI * 2);
+		VectorMA(tr->trBase, phase, tr->trDelta, result);
 		break;
 	case TR_LINEAR_STOP:
-		if ( atTime > tr->trTime + tr->trDuration ) {
+		if (atTime > tr->trTime + tr->trDuration) {
 			atTime = tr->trTime + tr->trDuration;
 		}
-		deltaTime = ( atTime - tr->trTime ) * 0.001;	// milliseconds to seconds
-		if ( deltaTime < 0 ) {
+		deltaTime = (atTime - tr->trTime) * 0.001;	// milliseconds to seconds
+		if (deltaTime < 0) {
 			deltaTime = 0;
 		}
-		VectorMA( tr->trBase, deltaTime, tr->trDelta, result );
+		VectorMA(tr->trBase, deltaTime, tr->trDelta, result);
 		break;
 	case TR_GRAVITY:
-		deltaTime = ( atTime - tr->trTime ) * 0.001;	// milliseconds to seconds
-		VectorMA( tr->trBase, deltaTime, tr->trDelta, result );
+		deltaTime = (atTime - tr->trTime) * 0.001;	// milliseconds to seconds
+		VectorMA(tr->trBase, deltaTime, tr->trDelta, result);
 		result[2] -= 0.5 * DEFAULT_GRAVITY * deltaTime * deltaTime;		// FIXME: local gravity...
 		break;
 	default:
-		Com_Error( ERR_DROP, "BG_EvaluateTrajectory: unknown trType: %i", tr->trType );
+		Com_Error(ERR_DROP, "BG_EvaluateTrajectory: unknown trType: %i", tr->trType);
 		break;
 	}
 }
@@ -1200,38 +1199,38 @@ BG_EvaluateTrajectoryDelta
 For determining velocity at a given time
 ================
 */
-void BG_EvaluateTrajectoryDelta( const trajectory_t *tr, int atTime, vec3_t result ) {
+void BG_EvaluateTrajectoryDelta(const trajectory_t *tr, int atTime, vec3_t result) {
 	float	deltaTime;
 	float	phase;
 
-	switch( tr->trType ) {
+	switch (tr->trType) {
 	case TR_STATIONARY:
 	case TR_INTERPOLATE:
-		VectorClear( result );
+		VectorClear(result);
 		break;
 	case TR_LINEAR:
-		VectorCopy( tr->trDelta, result );
+		VectorCopy(tr->trDelta, result);
 		break;
 	case TR_SINE:
-		deltaTime = ( atTime - tr->trTime ) / (float) tr->trDuration;
-		phase = cos( deltaTime * M_PI * 2 );	// derivative of sin = cos
+		deltaTime = (atTime - tr->trTime) / (float)tr->trDuration;
+		phase = cos(deltaTime * M_PI * 2);	// derivative of sin = cos
 		phase *= 0.5;
-		VectorScale( tr->trDelta, phase, result );
+		VectorScale(tr->trDelta, phase, result);
 		break;
 	case TR_LINEAR_STOP:
-		if ( atTime > tr->trTime + tr->trDuration ) {
-			VectorClear( result );
+		if (atTime > tr->trTime + tr->trDuration) {
+			VectorClear(result);
 			return;
 		}
-		VectorCopy( tr->trDelta, result );
+		VectorCopy(tr->trDelta, result);
 		break;
 	case TR_GRAVITY:
-		deltaTime = ( atTime - tr->trTime ) * 0.001;	// milliseconds to seconds
-		VectorCopy( tr->trDelta, result );
+		deltaTime = (atTime - tr->trTime) * 0.001;	// milliseconds to seconds
+		VectorCopy(tr->trDelta, result);
 		result[2] -= DEFAULT_GRAVITY * deltaTime;		// FIXME: local gravity...
 		break;
 	default:
-		Com_Error( ERR_DROP, "BG_EvaluateTrajectoryDelta: unknown trType: %i", tr->trType );
+		Com_Error(ERR_DROP, "BG_EvaluateTrajectoryDelta: unknown trType: %i", tr->trType);
 		break;
 	}
 }
@@ -1350,18 +1349,18 @@ Handles the sequence numbers
 ===============
 */
 #ifdef CGAME
-void CG_StoreEvent( entity_event_t ev, int eventParm, int entityNum );
+void CG_StoreEvent(entity_event_t ev, int eventParm, int entityNum);
 #endif
 
-void	trap_Cvar_VariableStringBuffer( const char *var_name, char *buffer, int bufsize );
+void	trap_Cvar_VariableStringBuffer(const char *var_name, char *buffer, int bufsize);
 
-void BG_AddPredictableEventToPlayerstate( entity_event_t newEvent, int eventParm, playerState_t *ps, int entityNum ) {
+void BG_AddPredictableEventToPlayerstate(entity_event_t newEvent, int eventParm, playerState_t *ps, int entityNum) {
 
 #ifdef _DEBUG
 	{
 		char buf[256];
 		trap_Cvar_VariableStringBuffer("showevents", buf, sizeof(buf));
-		if ( atof(buf) != 0 ) {
+		if (atof(buf) != 0) {
 #ifdef QAGAME
 			Com_Printf(" game event svt %5d -> %5d: num = %20s parm %d\n", ps->pmove_framecount/*ps->commandTime*/, ps->eventSequence, eventnames[newEvent], eventParm);
 #else
@@ -1372,11 +1371,11 @@ void BG_AddPredictableEventToPlayerstate( entity_event_t newEvent, int eventParm
 #endif
 
 #ifdef CGAME
-	CG_StoreEvent( newEvent, eventParm, entityNum );
+	CG_StoreEvent(newEvent, eventParm, entityNum);
 #endif
-	
-	ps->events[ps->eventSequence & (MAX_PS_EVENTS-1)] = newEvent;
-	ps->eventParms[ps->eventSequence & (MAX_PS_EVENTS-1)] = eventParm;
+
+	ps->events[ps->eventSequence & (MAX_PS_EVENTS - 1)] = newEvent;
+	ps->eventParms[ps->eventSequence & (MAX_PS_EVENTS - 1)] = eventParm;
 	ps->eventSequence++;
 }
 
@@ -1386,39 +1385,39 @@ void BG_AddPredictableEventToPlayerstate( entity_event_t newEvent, int eventParm
 BG_TouchJumpPad
 ========================
 */
-void BG_TouchJumpPad( playerState_t *ps, entityState_t *jumppad ) {
+void BG_TouchJumpPad(playerState_t *ps, entityState_t *jumppad) {
 	vec3_t	angles;
 	float p;
 	int effectNum;
 
 	// spectators don't use jump pads
-	if ( ps->pm_type != PM_NORMAL ) {
+	if (ps->pm_type != PM_NORMAL) {
 		return;
 	}
 
 	// flying characters don't hit bounce pads
-	if ( ps->powerups[PW_FLIGHT] ) {
+	if (ps->powerups[PW_FLIGHT]) {
 		return;
 	}
 
 	// if we didn't hit this same jumppad the previous frame
 	// then don't play the event sound again if we are in a fat trigger
-	if ( ps->jumppad_ent != jumppad->number ) {
+	if (ps->jumppad_ent != jumppad->number) {
 
-		vectoangles( jumppad->origin2, angles);
-		p = fabs( AngleNormalize180( angles[PITCH] ) );
-		if( p < 45 ) {
+		vectoangles(jumppad->origin2, angles);
+		p = fabs(AngleNormalize180(angles[PITCH]));
+		if (p < 45) {
 			effectNum = 0;
 		} else {
 			effectNum = 1;
 		}
-		BG_AddPredictableEventToPlayerstate( EV_JUMP_PAD, effectNum, ps, -1 );
+		BG_AddPredictableEventToPlayerstate(EV_JUMP_PAD, effectNum, ps, -1);
 	}
 	// remember hitting this jumppad this frame
 	ps->jumppad_ent = jumppad->number;
 	ps->jumppad_frame = ps->pmove_framecount;
 	// give the player the velocity from the jumppad
-	VectorCopy( jumppad->origin2, ps->velocity );
+	VectorCopy(jumppad->origin2, ps->velocity);
 }
 
 /*
@@ -1429,12 +1428,12 @@ This is done after each set of usercmd_t on the server,
 and after local prediction on the client
 ========================
 */
-void BG_PlayerStateToEntityState( playerState_t *ps, entityState_t *s, qboolean snap ) {
+void BG_PlayerStateToEntityState(playerState_t *ps, entityState_t *s, qboolean snap) {
 	int		i;
 
-	if ( ps->pm_type == PM_INTERMISSION || ps->pm_type == PM_SPECTATOR ) {
+	if (ps->pm_type == PM_INTERMISSION || ps->pm_type == PM_SPECTATOR) {
 		s->eType = ET_INVISIBLE;
-	} else if ( ps->stats[STAT_HEALTH] <= GIB_HEALTH ) {
+	} else if (ps->stats[STAT_HEALTH] <= GIB_HEALTH) {
 		s->eType = ET_INVISIBLE;
 	} else {
 		s->eType = ET_PLAYER;
@@ -1443,43 +1442,43 @@ void BG_PlayerStateToEntityState( playerState_t *ps, entityState_t *s, qboolean 
 	s->number = ps->clientNum;
 
 	s->pos.trType = TR_INTERPOLATE;
-	VectorCopy( ps->origin, s->pos.trBase );
-	if ( snap ) {
-		SnapVector( s->pos.trBase );
+	VectorCopy(ps->origin, s->pos.trBase);
+	if (snap) {
+		SnapVector(s->pos.trBase);
 	}
 	// set the trDelta for flag direction
-	VectorCopy( ps->velocity, s->pos.trDelta );
+	VectorCopy(ps->velocity, s->pos.trDelta);
 
 	s->apos.trType = TR_INTERPOLATE;
-	VectorCopy( ps->viewangles, s->apos.trBase );
-	if ( snap ) {
-		SnapVector( s->apos.trBase );
+	VectorCopy(ps->viewangles, s->apos.trBase);
+	if (snap) {
+		SnapVector(s->apos.trBase);
 	}
 
 	s->angles2[YAW] = ps->movementDir;
 	s->legsAnim = ps->legsAnim;
 	s->torsoAnim = ps->torsoAnim;
 	s->clientNum = ps->clientNum;		// ET_PLAYER looks here instead of at number
-										// so corpses can also reference the proper config
+	// so corpses can also reference the proper config
 	s->eFlags = ps->eFlags;
-	if ( ps->stats[STAT_HEALTH] <= 0 ) {
+	if (ps->stats[STAT_HEALTH] <= 0) {
 		s->eFlags |= EF_DEAD;
 	} else {
 		s->eFlags &= ~EF_DEAD;
 	}
 
-	if ( ps->externalEvent ) {
+	if (ps->externalEvent) {
 		s->event = ps->externalEvent;
 		s->eventParm = ps->externalEventParm;
-	} else if ( ps->entityEventSequence < ps->eventSequence ) {
+	} else if (ps->entityEventSequence < ps->eventSequence) {
 		int		seq;
 
-		if ( ps->entityEventSequence < ps->eventSequence - MAX_PS_EVENTS) {
+		if (ps->entityEventSequence < ps->eventSequence - MAX_PS_EVENTS) {
 			ps->entityEventSequence = ps->eventSequence - MAX_PS_EVENTS;
 		}
-		seq = ps->entityEventSequence & (MAX_PS_EVENTS-1);
-		s->event = ps->events[ seq ] | ( ( ps->entityEventSequence & 3 ) << 8 );
-		s->eventParm = ps->eventParms[ seq ];
+		seq = ps->entityEventSequence & (MAX_PS_EVENTS - 1);
+		s->event = ps->events[seq] | ((ps->entityEventSequence & 3) << 8);
+		s->eventParm = ps->eventParms[seq];
 		ps->entityEventSequence++;
 	}
 
@@ -1487,8 +1486,8 @@ void BG_PlayerStateToEntityState( playerState_t *ps, entityState_t *s, qboolean 
 	s->groundEntityNum = ps->groundEntityNum;
 
 	s->powerups = 0;
-	for ( i = 0 ; i < MAX_POWERUPS ; i++ ) {
-		if ( ps->powerups[ i ] ) {
+	for (i = 0; i < MAX_POWERUPS; i++) {
+		if (ps->powerups[i]) {
 			s->powerups |= 1 << i;
 		}
 	}
@@ -1505,12 +1504,12 @@ This is done after each set of usercmd_t on the server,
 and after local prediction on the client
 ========================
 */
-void BG_PlayerStateToEntityStateExtraPolate( playerState_t *ps, entityState_t *s, int time, qboolean snap ) {
+void BG_PlayerStateToEntityStateExtraPolate(playerState_t *ps, entityState_t *s, int time, qboolean snap) {
 	int		i;
 
-	if ( ps->pm_type == PM_INTERMISSION || ps->pm_type == PM_SPECTATOR ) {
+	if (ps->pm_type == PM_INTERMISSION || ps->pm_type == PM_SPECTATOR) {
 		s->eType = ET_INVISIBLE;
-	} else if ( ps->stats[STAT_HEALTH] <= GIB_HEALTH ) {
+	} else if (ps->stats[STAT_HEALTH] <= GIB_HEALTH) {
 		s->eType = ET_INVISIBLE;
 	} else {
 		s->eType = ET_PLAYER;
@@ -1519,47 +1518,47 @@ void BG_PlayerStateToEntityStateExtraPolate( playerState_t *ps, entityState_t *s
 	s->number = ps->clientNum;
 
 	s->pos.trType = TR_LINEAR_STOP;
-	VectorCopy( ps->origin, s->pos.trBase );
-	if ( snap ) {
-		SnapVector( s->pos.trBase );
+	VectorCopy(ps->origin, s->pos.trBase);
+	if (snap) {
+		SnapVector(s->pos.trBase);
 	}
 	// set the trDelta for flag direction and linear prediction
-	VectorCopy( ps->velocity, s->pos.trDelta );
+	VectorCopy(ps->velocity, s->pos.trDelta);
 	// set the time for linear prediction
 	s->pos.trTime = time;
 	// set maximum extra polation time
 	s->pos.trDuration = 50; // 1000 / sv_fps (default = 20)
 
 	s->apos.trType = TR_INTERPOLATE;
-	VectorCopy( ps->viewangles, s->apos.trBase );
-	if ( snap ) {
-		SnapVector( s->apos.trBase );
+	VectorCopy(ps->viewangles, s->apos.trBase);
+	if (snap) {
+		SnapVector(s->apos.trBase);
 	}
 
 	s->angles2[YAW] = ps->movementDir;
 	s->legsAnim = ps->legsAnim;
 	s->torsoAnim = ps->torsoAnim;
 	s->clientNum = ps->clientNum;		// ET_PLAYER looks here instead of at number
-										// so corpses can also reference the proper config
+	// so corpses can also reference the proper config
 	s->eFlags = ps->eFlags;
-	if ( ps->stats[STAT_HEALTH] <= 0 ) {
+	if (ps->stats[STAT_HEALTH] <= 0) {
 		s->eFlags |= EF_DEAD;
 	} else {
 		s->eFlags &= ~EF_DEAD;
 	}
 
-	if ( ps->externalEvent ) {
+	if (ps->externalEvent) {
 		s->event = ps->externalEvent;
 		s->eventParm = ps->externalEventParm;
-	} else if ( ps->entityEventSequence < ps->eventSequence ) {
+	} else if (ps->entityEventSequence < ps->eventSequence) {
 		int		seq;
 
-		if ( ps->entityEventSequence < ps->eventSequence - MAX_PS_EVENTS) {
+		if (ps->entityEventSequence < ps->eventSequence - MAX_PS_EVENTS) {
 			ps->entityEventSequence = ps->eventSequence - MAX_PS_EVENTS;
 		}
-		seq = ps->entityEventSequence & (MAX_PS_EVENTS-1);
-		s->event = ps->events[ seq ] | ( ( ps->entityEventSequence & 3 ) << 8 );
-		s->eventParm = ps->eventParms[ seq ];
+		seq = ps->entityEventSequence & (MAX_PS_EVENTS - 1);
+		s->event = ps->events[seq] | ((ps->entityEventSequence & 3) << 8);
+		s->eventParm = ps->eventParms[seq];
 		ps->entityEventSequence++;
 	}
 
@@ -1567,8 +1566,8 @@ void BG_PlayerStateToEntityStateExtraPolate( playerState_t *ps, entityState_t *s
 	s->groundEntityNum = ps->groundEntityNum;
 
 	s->powerups = 0;
-	for ( i = 0 ; i < MAX_POWERUPS ; i++ ) {
-		if ( ps->powerups[ i ] ) {
+	for (i = 0; i < MAX_POWERUPS; i++) {
+		if (ps->powerups[i]) {
 			s->powerups |= 1 << i;
 		}
 	}
@@ -1578,106 +1577,97 @@ void BG_PlayerStateToEntityStateExtraPolate( playerState_t *ps, entityState_t *s
 }
 
 
-int replace_s( char * str1, char * str2, char * src, int max_len ) 
-{
+int replace_s(char *str1, char *str2, char *src, int max_len) {
 	int count = 0; // replace count
 	int len1, len2, d;
 	char *match, *s0, *s1, *s2, *max;
 
-	match = strstr( src, str1 );
+	match = strstr(src, str1);
 
-	if ( !match )
+	if (!match)
 		return count;
 
-	len1 = (int)strlen( str1 );
-	len2 = (int)strlen( str2 );
-	d = len2-len1;
+	len1 = (int)strlen(str1);
+	len2 = (int)strlen(str2);
+	d = len2 - len1;
 
-	if ( d > 0 ) // expand and replace mode
+	if (d > 0) // expand and replace mode
 	{
 		max = src + max_len;
-		src += strlen( src );
+		src += strlen(src);
 
-		do  
-		{
+		do {
 			// expand source string
 			s1 = src;
 			src += d;
-			if ( src >= max )
+			if (src >= max)
 				return count;
 			s2 = src;
 
 			s0 = match + len1;
 
-			while ( s1 >= s0 ) {
+			while (s1 >= s0) {
 				*s2-- = *s1--;
 			}
 
 			// replace match
 			s2 = str2;
-			while ( *s2 ) {
+			while (*s2) {
 				*match = *s2; match++; s2++;
 			}
-			match = strstr ( match, str1 );
+			match = strstr(match, str1);
 
 			count++;
-		}
-		while ( match );
+		} while (match);
 
 		return count;
-	} 
-	else
-	if ( d < 0 ) // shrink and replace mode
-	{
-		do 
+	} else
+		if (d < 0) // shrink and replace mode
 		{
-			// shrink source string
-			s1 = match + len1;
-			s2 = match + len2;
-			while ( (*s2++ = *s1++) != 0 );
+			do {
+				// shrink source string
+				s1 = match + len1;
+				s2 = match + len2;
+				while ((*s2++ = *s1++) != 0);
 
-			//replace match
-			s2 = str2;
-			while ( *s2 ) {
-				*match = *s2;
-				match++; s2++;
-			}
+				//replace match
+				s2 = str2;
+				while (*s2) {
+					*match = *s2;
+					match++; s2++;
+				}
 
-			match = strstr ( match, str1 );
+				match = strstr(match, str1);
 
-			count++;
-		} 
-		while ( match );
+				count++;
+			} while (match);
 
-		return count;
-	}
-	else
-	do  // just replace match
-	{
-		s2 = str2;
-		while ( *s2 ) {
-			*match = *s2;
-			match++; s2++;
-		}
+			return count;
+		} else
+			do  // just replace match
+			{
+				s2 = str2;
+				while (*s2) {
+					*match = *s2;
+					match++; s2++;
+				}
 
-		match = strstr ( match, str1 );
-		count++;
-	} 
-	while ( match );
+				match = strstr(match, str1);
+				count++;
+			} while (match);
 
-	return count;
+			return count;
 }
 
 
-qboolean replace1( const char match, const char replace, char *str )
-{
+qboolean replace1(const char match, const char replace, char *str) {
 	qboolean	res = qfalse;
 
-	if ( !str ) 
+	if (!str)
 		return res;
 
-	while ( *str ) {
-		if ( *str == match ) {
+	while (*str) {
+		if (*str == match) {
 			*str = replace;
 			res = qtrue;
 		}
@@ -1688,31 +1678,28 @@ qboolean replace1( const char match, const char replace, char *str )
 }
 
 
-char *strtok( char *strToken, const char *strDelimit ) {
-	static char		*lastStr = NULL;
+char *strtok(char *strToken, const char *strDelimit) {
+	static char *lastStr = NULL;
 
-	const char		*delimit = strDelimit;
+	const char *delimit = strDelimit;
 	int				loop = 1;
 
 	// check some state
-	if( !strToken )
+	if (!strToken)
 		strToken = lastStr; // use the last string given then
 
 	// if there are no delimiters or no string to work with, bail
-	if( !strToken /*|| !strDelimit */ )
+	if (!strToken /*|| !strDelimit */)
 		return NULL;
 
 	// first up we want to skip all delimiters at the start
 	// and mark our place to return
-	while( *strToken && loop )
-	{
+	while (*strToken && loop) {
 		loop = 0;
 
 		// check all delimiters, we must find _one_ to continue the outside loop
-		for( delimit = strDelimit ; *delimit ; delimit++ )
-		{
-			if( *strToken == *delimit )
-			{
+		for (delimit = strDelimit; *delimit; delimit++) {
+			if (*strToken == *delimit) {
 				strToken++;
 				loop = 1;
 				break;
@@ -1722,13 +1709,10 @@ char *strtok( char *strToken, const char *strDelimit ) {
 
 	// strToken now points to the first non-delimiter found
 	// now we want to find the next delimiter to terminate on
-	for( loop=1, lastStr=strToken ; *lastStr && loop ; lastStr++ )
-	{
+	for (loop = 1, lastStr = strToken; *lastStr && loop; lastStr++) {
 		// check all delimiters
-		for( delimit=strDelimit ; *delimit ; delimit++ )
-		{
-			if( *delimit == *lastStr )
-			{
+		for (delimit = strDelimit; *delimit; delimit++) {
+			if (*delimit == *lastStr) {
 				loop = 0;
 				break;
 			}
@@ -1736,15 +1720,12 @@ char *strtok( char *strToken, const char *strDelimit ) {
 	}
 
 	// if the loop aborted then the token needs termination
-	if( !loop )
-	{
-		*(lastStr-1) = '\0';
+	if (!loop) {
+		*(lastStr - 1) = '\0';
 
-		if ( '\0' == *lastStr )
+		if ('\0' == *lastStr)
 			lastStr = NULL;
-	}
-	else
-	{
+	} else {
 		lastStr = NULL; // clean up for the next call
 	}
 
@@ -1752,16 +1733,15 @@ char *strtok( char *strToken, const char *strDelimit ) {
 }
 
 
-char *BG_StripColor( char *string ) {
-	char	*d;
-	char	*s;
+char *BG_StripColor(char *string) {
+	char *d;
+	char *s;
 	int		c;
 
 	s = string;
 	d = string;
-	while ((c = *s) != 0 ) 
-	{
-		if ( Q_IsColorString( s ) )
+	while ((c = *s) != 0) {
+		if (Q_IsColorString(s))
 			s++;
 		else {
 			*d = c; d++;
@@ -1773,87 +1753,85 @@ char *BG_StripColor( char *string ) {
 }
 
 
-char *EncodedString( const char *in ) 
-{
+char *EncodedString(const char *in) {
 	static const char hextab[16] = { '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f' };
 	static char	buf[16384];
 	unsigned	int		 c;
-	char		*out;
-	
-	if ( !in ) {
+	char *out;
+
+	if (!in) {
 		buf[0] = '\0';
 		return buf;
 	}
 
 	out = buf;
 
-	while ( ( c = *in++ ) != '\0' ) {
-		if ( c == '#' ) {
+	while ((c = *in++) != '\0') {
+		if (c == '#') {
 			*out++ = '#';
 			*out++ = '#';
-		} else 
-		if ( c > 127 || c == '%' ) {
-			*out++ = '#';
-			*out++ = hextab [ (c & 0xF0) >> 4 ];
-			*out++ = hextab [ (c & 0x0F) ];
-		} else {
-			*out++ = c;
-		}
+		} else
+			if (c > 127 || c == '%') {
+				*out++ = '#';
+				*out++ = hextab[(c & 0xF0) >> 4];
+				*out++ = hextab[(c & 0x0F)];
+			} else {
+				*out++ = c;
+			}
 	}
 	*out = '\0';
 	return (char *)buf;
 }
 
 
-static int hex2dec ( char chr ) {
-	switch ( chr ) {
-		case '0':  return 0;
-		case '1':  return 1;
-		case '2':  return 2;
-		case '3':  return 3;
-		case '4':  return 4;
-		case '5':  return 5;
-		case '6':  return 6;
-		case '7':  return 7;
-		case '8':  return 8;
-		case '9':  return 9;
-		case 'a':  return 10;
-		case 'A':  return 10;
-		case 'b':  return 11;
-		case 'B':  return 11;
-		case 'c':  return 12;
-		case 'C':  return 12;
-		case 'd':  return 13;
-		case 'D':  return 13;
-		case 'e':  return 14;
-		case 'E':  return 14;
-		case 'f':  return 15;
-		case 'F':  return 15;
+static int hex2dec(char chr) {
+	switch (chr) {
+	case '0':  return 0;
+	case '1':  return 1;
+	case '2':  return 2;
+	case '3':  return 3;
+	case '4':  return 4;
+	case '5':  return 5;
+	case '6':  return 6;
+	case '7':  return 7;
+	case '8':  return 8;
+	case '9':  return 9;
+	case 'a':  return 10;
+	case 'A':  return 10;
+	case 'b':  return 11;
+	case 'B':  return 11;
+	case 'c':  return 12;
+	case 'C':  return 12;
+	case 'd':  return 13;
+	case 'D':  return 13;
+	case 'e':  return 14;
+	case 'E':  return 14;
+	case 'f':  return 15;
+	case 'F':  return 15;
 	}
 	return 0;
 }
 
 
-char *DecodedString( const char *in ) 
-{
+char *DecodedString(const char *in) {
 	static char	buf[16384];
-	char		*out, c1, c2;
+	char *out, c1, c2;
 
-	if ( !in ) {
+	if (!in) {
 		buf[0] = '\0';
 		return (char *)buf;
 	}
 
 	out = buf;
 
-	while ( *in ) {
+	while (*in) {
 		// new encoding
-		if ( *in == '#' && (c1 = *(in+1)) != 0 && (c2 = *(in+2)) != 0 &&
-		    (( c1 >= '0' && c1 <= '9' ) || ( c1 >= 'a' && c1 <= 'f' )) &&
-		    (( c2 >= '0' && c2 <= '9' ) || ( c2 >= 'a' && c2 <= 'f' ))) {
-			*out++ = hex2dec( c1 ) * 16 + hex2dec( c2 );
+		if (*in == '#' && (c1 = *(in + 1)) != 0 && (c2 = *(in + 2)) != 0 &&
+			((c1 >= '0' && c1 <= '9') || (c1 >= 'a' && c1 <= 'f')) &&
+			((c2 >= '0' && c2 <= '9') || (c2 >= 'a' && c2 <= 'f'))) {
+			*out++ = hex2dec(c1) * 16 + hex2dec(c2);
 			in += 3;
-		} else if ( *in == '#' && *(in+1) == '#' )  {
+		} else if (*in == '#' && *(in + 1) == '#') {
 			*out++ = '#';
 			in += 2;
 		} else {
@@ -1868,44 +1846,41 @@ char *DecodedString( const char *in )
 
 
 // a bit faster string compare function
-int BG_stricmp( const char *s1, const char *s2 ) {
+int BG_stricmp(const char *s1, const char *s2) {
 	int	c1, c2;
 	do {
 		c1 = locase[(unsigned char)*s1]; s1++;
 		c2 = locase[(unsigned char)*s2]; s2++;
-		if (c1 != c2) 
+		if (c1 != c2)
 			return ((c1 < c2) ? -1 : 1);
-	}  while ( c1 );
+	} while (c1);
 	return 0;		// strings are equal
 }
 
 
-char *Q_stristr( const char * str1, const char * str2 )
-{
-	char *cp = (char *) str1;
+char *Q_stristr(const char *str1, const char *str2) {
+	char *cp = (char *)str1;
 	char *s1, *s2;
 
-	if ( !*str2 )
-		return( (char *)str1 );
+	if (!*str2)
+		return((char *)str1);
 
-	while ( *cp )
-	{
+	while (*cp) {
 		s1 = cp;
-		s2 = (char *) str2;
+		s2 = (char *)str2;
 
-		while ( *s1 && locase[(unsigned char)*s1] == locase[(unsigned char)*s2] )
-		{
+		while (*s1 && locase[(unsigned char)*s1] == locase[(unsigned char)*s2]) {
 			s1++;
 			s2++;
 		}
 
-		if ( !*s2 )
-			return( cp );
+		if (!*s2)
+			return(cp);
 
 		cp++;
 	}
 
-	return( NULL );
+	return(NULL);
 }
 
 
@@ -1914,10 +1889,10 @@ char *Q_stristr( const char * str1, const char * str2 )
 BG_CleanName
 ============
 */
-void BG_CleanName( const char *in, char *out, int outSize, const char *blankString ) {
+void BG_CleanName(const char *in, char *out, int outSize, const char *blankString) {
 	int		len, colorlessLen;
 	char	ch;
-	char	*p;
+	char *p;
 	int		spaces;
 
 	//save room for trailing null byte
@@ -1929,32 +1904,32 @@ void BG_CleanName( const char *in, char *out, int outSize, const char *blankStri
 	*p = '\0';
 	spaces = 0;
 
-	while( 1 ) {
+	while (1) {
 		ch = *in++;
-		if( !ch ) {
+		if (!ch) {
 			break;
 		}
 
 		// don't allow leading spaces
-		if( *p == '\0' && ch <= ' ' ) {
+		if (*p == '\0' && ch <= ' ') {
 			continue;
 		}
 
 		// check colors
-		if( ch == Q_COLOR_ESCAPE ) {
+		if (ch == Q_COLOR_ESCAPE) {
 			// solo trailing carat is not a color prefix
-			if( !*in ) {
+			if (!*in) {
 				break;
 			}
 
 			// don't allow black in a name, period
-			if( ColorIndex(*in) == 0 ) {
+			if (ColorIndex(*in) == 0) {
 				in++;
 				continue;
 			}
 
 			// make sure room in dest for both chars
-			if( len > outSize - 2 ) {
+			if (len > outSize - 2) {
 				break;
 			}
 
@@ -1965,22 +1940,21 @@ void BG_CleanName( const char *in, char *out, int outSize, const char *blankStri
 		}
 
 		// let's keep it in printable range
-		if ( ch < ' ' || ch > 126 ) {
+		if (ch < ' ' || ch > 126) {
 			continue;
 		}
 
 		// don't allow too many consecutive spaces
-		if( ch == ' ' ) {
+		if (ch == ' ') {
 			spaces++;
-			if( spaces > 2 ) {
+			if (spaces > 2) {
 				continue;
 			}
-		}
-		else {
+		} else {
 			spaces = 0;
 		}
 
-		if( len > outSize - 1 ) {
+		if (len > outSize - 1) {
 			break;
 		}
 
@@ -1990,10 +1964,10 @@ void BG_CleanName( const char *in, char *out, int outSize, const char *blankStri
 	}
 	*out = '\0';
 
-	if ( blankString ) {
+	if (blankString) {
 		// don't allow empty names
-		if( *p == '\0' || colorlessLen == 0 ) {
-			Q_strncpyz( p, blankString, outSize );
+		if (*p == '\0' || colorlessLen == 0) {
+			Q_strncpyz(p, blankString, outSize);
 		}
 	}
 }
@@ -2006,22 +1980,18 @@ Q_strcpy
 string copy, without any checks
 ===================
 */
-void Q_strcpy( char *dst, const char *src ) 
-{
+void Q_strcpy(char *dst, const char *src) {
 	char c;
-	while ( (c = *src) != '\0' ) 
-	{
+	while ((c = *src) != '\0') {
 		*dst = c; dst++; src++;
 	}
 	*dst = '\0';
 }
 
 
-char *Q_stradd( char *dst, const char *src ) 
-{
+char *Q_stradd(char *dst, const char *src) {
 	char c;
-	while ( (c = *src) != '\0' ) 
-	{
+	while ((c = *src) != '\0') {
 		*dst = c;
 		dst++;
 		src++;
@@ -2030,21 +2000,19 @@ char *Q_stradd( char *dst, const char *src )
 	return dst;
 }
 
-int Q_strlen( const char *s ) 
-{
+int Q_strlen(const char *s) {
 	const char *b = s;
-	while ( *s != '\0' ) 
+	while (*s != '\0')
 		s++;
 	return s - b;
 }
 
 
-qboolean BigEndian( void ) 
-{
+qboolean BigEndian(void) {
 	const char *s = { "123" };
-	int  *i;
-	i = (void*)s;
-	if ( *i != 0x00333231 )
+	int *i;
+	i = (void *)s;
+	if (*i != 0x00333231)
 		return qtrue;
 	else
 		return qfalse;
@@ -2069,49 +2037,49 @@ qboolean BigEndian( void )
 #define is_digit(c)		((unsigned)to_digit(c) <= 9)
 #define to_char(n)		((n) + '0')
 
-static void AddInt( char **buf_p, int val, int width, int flags ) {
+static void AddInt(char **buf_p, int val, int width, int flags) {
 	char	text[32];
 	int		digits;
 	int		signedVal;
-	char	*buf;
+	char *buf;
 
-	if ( flags & REDUCE && val == 0 )
+	if (flags & REDUCE && val == 0)
 		return;
 
 	digits = 0;
 	signedVal = val;
-	if ( val < 0 ) {
+	if (val < 0) {
 		val = -val;
 	}
 	do {
 		text[digits] = '0' + val % 10;
 		digits++;
 		val /= 10;
-	} while ( val );
+	} while (val);
 
-	if ( signedVal < 0 ) {
+	if (signedVal < 0) {
 		text[digits] = '-';
 		digits++;
 	}
 
 	buf = *buf_p;
 
-	if( !( flags & LADJUST ) ) {
-		while ( digits < width ) {
-			*buf = ( flags & ZEROPAD ) ? '0' : ' ';
+	if (!(flags & LADJUST)) {
+		while (digits < width) {
+			*buf = (flags & ZEROPAD) ? '0' : ' ';
 			buf++;
 			width--;
 		}
 	}
 
-	while ( digits-- > 0 ) {
+	while (digits-- > 0) {
 		*buf = text[digits]; buf++;
 		width--;
 	}
 
-	if( flags & LADJUST ) {
-		while ( width > 0 ) {
-			*buf = ( flags & ZEROPAD ) ? '0' : ' ';
+	if (flags & LADJUST) {
+		while (width > 0) {
+			*buf = (flags & ZEROPAD) ? '0' : ' ';
 			buf++;
 			width--;
 		}
@@ -2120,19 +2088,19 @@ static void AddInt( char **buf_p, int val, int width, int flags ) {
 	*buf_p = buf;
 }
 
-static void AddFloat( char **buf_p, float fval, int width, int prec, int reduce ) {
+static void AddFloat(char **buf_p, float fval, int width, int prec, int reduce) {
 	char	text[32];
 	int		digits;
 	float	signedVal;
-	char	*buf;
+	char *buf;
 	int		val;
 
-	if ( reduce && fval == 0.0f )
+	if (reduce && fval == 0.0f)
 		return;
 
 	// get the sign
 	signedVal = fval;
-	if ( fval < 0 ) {
+	if (fval < 0) {
 		fval = -fval;
 	}
 
@@ -2143,9 +2111,9 @@ static void AddFloat( char **buf_p, float fval, int width, int prec, int reduce 
 		text[digits] = '0' + val % 10;
 		digits++;
 		val /= 10;
-	} while ( val );
+	} while (val);
 
-	if ( signedVal < 0 ) {
+	if (signedVal < 0) {
 		text[digits] = '-';
 		digits++;
 	}
@@ -2153,21 +2121,21 @@ static void AddFloat( char **buf_p, float fval, int width, int prec, int reduce 
 	buf = *buf_p;
 
 	// fix precisiion
-	if ( prec < 0 ) {
+	if (prec < 0) {
 		prec = 6;
 	}
 
-	if ( prec ) {
+	if (prec) {
 		width -= prec + 1;
 	}
 	// end
 
-	while ( digits < width ) {
+	while (digits < width) {
 		*buf = ' ';	buf++;
 		width--;
 	}
 
-	while ( digits-- > 0 ) {
+	while (digits-- > 0) {
 		*buf = text[digits]; buf++;
 	}
 
@@ -2176,9 +2144,9 @@ static void AddFloat( char **buf_p, float fval, int width, int prec, int reduce 
 	// write the fraction
 	digits = 0;
 	while (digits < prec) {
-		fval -= (int) fval;
+		fval -= (int)fval;
 		fval *= 10.0;
-		val = (int) fval;
+		val = (int)fval;
 		text[digits] = '0' + val % 10;
 		digits++;
 	}
@@ -2194,36 +2162,35 @@ static void AddFloat( char **buf_p, float fval, int width, int prec, int reduce 
 }
 
 
-static void AddString( char **buf_p, const char *string, int width, int prec ) {
+static void AddString(char **buf_p, const char *string, int width, int prec) {
 	int		size;
-	char	*buf;
+	char *buf;
 
 	buf = *buf_p;
 
-	if ( string == NULL ) {
+	if (string == NULL) {
 		string = "(null)";
 		prec = -1;
 	}
 
-	if ( prec >= 0 ) {
-		for( size = 0; size < prec; size++ ) {
-			if( string[size] == '\0' ) {
+	if (prec >= 0) {
+		for (size = 0; size < prec; size++) {
+			if (string[size] == '\0') {
 				break;
 			}
 		}
-	}
-	else {
-		size = Q_strlen( string );
+	} else {
+		size = Q_strlen(string);
 	}
 
 	width -= size;
 
-	while( size-- ) {
+	while (size--) {
 		*buf = *string;
 		buf++; string++;
 	}
 
-	while( width-- > 0 ) {
+	while (width-- > 0) {
 		*buf = ' '; buf++;
 	}
 
@@ -2241,8 +2208,8 @@ parse and ignore formats we don't support.
 
 returns: number of char written without ending '\0'
 */
-int ED_vsprintf( char *buffer, const char *fmt, va_list ap ) {
-	char	*buf_p;
+int ED_vsprintf(char *buffer, const char *fmt, va_list ap) {
+	char *buf_p;
 	char	ch;
 	int		flags;
 	int		width;
@@ -2251,12 +2218,12 @@ int ED_vsprintf( char *buffer, const char *fmt, va_list ap ) {
 
 	buf_p = buffer;
 
-	while( qtrue ) {
+	while (qtrue) {
 		// run through the format string until we hit a '%' or '\0'
-		for ( /*ch = *fmt */; (ch = *fmt) != '\0' && ch != '%'; fmt++ ) {
+		for ( /*ch = *fmt */; (ch = *fmt) != '\0' && ch != '%'; fmt++) {
 			*buf_p = ch; buf_p++;
 		}
-		if ( ch == '\0' ) {
+		if (ch == '\0') {
 			break;
 		}
 
@@ -2267,24 +2234,24 @@ int ED_vsprintf( char *buffer, const char *fmt, va_list ap ) {
 		flags = 0;
 		width = 0;
 		prec = -1;
-rflag:
+	rflag:
 		ch = *fmt; fmt++;
-reswitch:
-		switch( ch ) {
-		//case ' ':
+	reswitch:
+		switch (ch) {
+			//case ' ':
 		case '-':
 			flags |= LADJUST;
 			goto rflag;
 		case '.':
-			if ( *fmt == '*' ) {
+			if (*fmt == '*') {
 				fmt++;
-				n = va_arg( ap, int );
+				n = va_arg(ap, int);
 				prec = n < 0 ? -1 : n;
 				goto rflag;
 			} else {
 				n = 0;
-				while( is_digit( ( ch = *fmt++ ) ) ) {
-					n = 10 * n + ( ch - '0' );
+				while (is_digit((ch = *fmt++))) {
+					n = 10 * n + (ch - '0');
 				}
 				prec = n < 0 ? -1 : n;
 				goto reswitch;
@@ -2303,36 +2270,36 @@ reswitch:
 		case '9':
 			n = 0;
 			do {
-				n = 10 * n + ( ch - '0' );
+				n = 10 * n + (ch - '0');
 				ch = *fmt; fmt++;
-			} while( is_digit( ch ) );
+			} while (is_digit(ch));
 			width = n;
 			goto reswitch;
 		case '*':
-			width = va_arg( ap, int );
+			width = va_arg(ap, int);
 			goto rflag;
 		case 'c':
-			*buf_p = va_arg( ap, char ); buf_p++;
+			*buf_p = va_arg(ap, char); buf_p++;
 			break;
 		case 'd':
 		case 'i':
-			AddInt( &buf_p, va_arg( ap, int ), width, flags );
+			AddInt(&buf_p, va_arg(ap, int), width, flags);
 			break;
 		case 'f':
-			AddFloat( &buf_p, va_arg( ap, double ), width, prec, flags & REDUCE );
+			AddFloat(&buf_p, va_arg(ap, double), width, prec, flags & REDUCE);
 			break;
 		case 's':
-			AddString( &buf_p, va_arg( ap, char * ), width, prec );
+			AddString(&buf_p, va_arg(ap, char *), width, prec);
 			break;
 		case '%':
 			*buf_p = ch; buf_p++;
 			break;
-		 // edawn extension:
+			// edawn extension:
 		case 'R':
 			flags |= REDUCE;
 			goto rflag;
 		default:
-			*buf_p = va_arg( ap, char ); buf_p++;
+			*buf_p = va_arg(ap, char); buf_p++;
 			break;
 		} // switch ( ch )
 	} // while ( qtrue )
@@ -2342,32 +2309,29 @@ reswitch:
 }
 
 
-int BG_sprintf( char *buf, const char *format, ... ) 
-{
+int BG_sprintf(char *buf, const char *format, ...) {
 	int len;
 	va_list	argptr;
-	va_start( argptr, format );
-	len = ED_vsprintf( buf, format, argptr );
-	va_end( argptr );
+	va_start(argptr, format);
+	len = ED_vsprintf(buf, format, argptr);
+	va_end(argptr);
 	return len;
 }
 
 
-static int _atoi( const char **stringPtr ) 
-{
+static int _atoi(const char **stringPtr) {
 	int		sign;
 	int		value;
 	int		c;
-	const char	*string;
+	const char *string;
 
 	string = *stringPtr;
 
-	if ( !*string )
+	if (!*string)
 		return 0;
 
 	// check sign
-	switch ( *string ) 
-	{
+	switch (*string) {
 	case '+':
 		string++;
 		sign = 1;
@@ -2383,18 +2347,15 @@ static int _atoi( const char **stringPtr )
 
 	// read digits
 	value = 0;
-	do 
-	{
+	do {
 		c = *string;
-		if ( c < '0' || c > '9' ) 
-		{
+		if (c < '0' || c > '9') {
 			break;
 		}
 		c -= '0';
 		value = value * 10 + c;
 		string++;
-	} 
-	while ( 1 );
+	} while (1);
 
 	// not handling 10e10 notation...
 
@@ -2404,9 +2365,8 @@ static int _atoi( const char **stringPtr )
 }
 
 
-static float _atof( const char **stringPtr ) 
-{
-	const char	*string;
+static float _atof(const char **stringPtr) {
+	const char *string;
 	float sign;
 	float value;
 	float fraction;
@@ -2414,12 +2374,11 @@ static float _atof( const char **stringPtr )
 
 	string = *stringPtr;
 
-	if ( !*string )
+	if (!*string)
 		return 0;
 
 	// check sign
-	switch ( *string ) 
-	{
+	switch (*string) {
 	case '+':
 		string++;
 		sign = 1;
@@ -2435,40 +2394,32 @@ static float _atof( const char **stringPtr )
 
 	// read digits
 	value = 0;
-	if ( *string != '.' ) 
-	{
-		do 
-		{
+	if (*string != '.') {
+		do {
 			c = *string;
-			if ( c < '0' || c > '9' ) 
-			{
+			if (c < '0' || c > '9') {
 				break;
 			}
 			c -= '0';
 			value = value * 10 + c;
 			string++;
-		} 
-		while ( 1 );
+		} while (1);
 	}
 
 	// check for decimal point
-	if ( *string == '.' ) 
-	{
+	if (*string == '.') {
 		fraction = 0.1f;
 		string++;
-		do 
-		{
+		do {
 			c = *string;
-			if ( c < '0' || c > '9' ) 
-			{
+			if (c < '0' || c > '9') {
 				break;
 			}
 			c -= '0';
 			value += c * fraction;
 			fraction *= 0.1f;
 			string++;
-		}
-		while ( 1 );
+		} while (1);
 	}
 
 	// not handling 10e10 notation...
@@ -2478,24 +2429,19 @@ static float _atof( const char **stringPtr )
 }
 
 
-static void _atos( const char **stringPtr, char *buffer, int delimiter, int width ) 
-{
-	const char	*string;
+static void _atos(const char **stringPtr, char *buffer, int delimiter, int width) {
+	const char *string;
 
 	string = *stringPtr;
 
-	if ( !delimiter ) 
-	{
+	if (!delimiter) {
 		// skip whitespace
-		while ( *string && *string != ' ' && *string != '\t' && width-- > 0 ) 
-		{
+		while (*string && *string != ' ' && *string != '\t' && width-- > 0) {
 			*buffer = *string;
 			buffer++;
 			string++;
 		}
-	} 
-	else while ( *string && *string != delimiter && width-- > 0 ) 
-	{
+	} else while (*string && *string != delimiter && width-- > 0) {
 		*buffer = *string;
 		buffer++;
 		string++;
@@ -2507,31 +2453,27 @@ static void _atos( const char **stringPtr, char *buffer, int delimiter, int widt
 }
 
 
-int Q_sscanf( const char *buffer, const char *fmt, ... ) 
-{
+int Q_sscanf(const char *buffer, const char *fmt, ...) {
 	va_list ap;
 	int count;
 	int width;
 	int cmd;
 	const char *p;
 
-	va_start( ap, fmt );
+	va_start(ap, fmt);
 	count = 0;
 
-	while ( *fmt ) 
-	{
+	while (*fmt) {
 		// single whitespace char validates any quantity of whitespace characters 
 		// extracted from the stream (including none)
-		if ( *fmt == ' ' || *fmt == '\t' || *fmt == '\n' ) 
-		{
-			while ( *buffer == ' ' || *buffer == '\t' || *buffer == '\n' )
+		if (*fmt == ' ' || *fmt == '\t' || *fmt == '\n') {
+			while (*buffer == ' ' || *buffer == '\t' || *buffer == '\n')
 				buffer++;
 			fmt++;
 		}
 
-		if ( *fmt != '%' ) 
-		{
-			if ( *fmt != *buffer ) 
+		if (*fmt != '%') {
+			if (*fmt != *buffer)
 				break;
 
 			buffer++;
@@ -2541,14 +2483,11 @@ int Q_sscanf( const char *buffer, const char *fmt, ... )
 
 		width = fmt[1];
 		fmt++; // %
-		if ( width >= '0' && width <= '9' ) 
-		{
+		if (width >= '0' && width <= '9') {
 			width -= '0'; // valid width;
 			fmt++;	// ['0'..'9']
 			cmd = *fmt;
-		}
-		else 
-		{
+		} else {
 			cmd = width;
 			width = 1024; // some assumption
 		}
@@ -2559,32 +2498,31 @@ int Q_sscanf( const char *buffer, const char *fmt, ... )
 
 		//printf( "cmd=%c buffer=%s width=%i delim='%c'\n", cmd, buffer, width, *fmt );
 
-		switch ( cmd ) 
-		{
+		switch (cmd) {
 		case 'i':
 		case 'd':
 		case 'u':
-			*(va_arg(ap, int *)) = _atoi( &buffer );
+			*(va_arg(ap, int *)) = _atoi(&buffer);
 			break;
 		case 'f':
-			*(va_arg(ap, float *)) = _atof( &buffer );
+			*(va_arg(ap, float *)) = _atof(&buffer);
 			break;
 		case 'c':
 			*(va_arg(ap, char *)) = *buffer; buffer++;
 			break;
 		case 's':
-			_atos( &buffer, va_arg(ap, char *), *fmt, width );
+			_atos(&buffer, va_arg(ap, char *), *fmt, width);
 			break;
 		default:
 			return count;
 		}
 
-		if ( p != buffer )
+		if (p != buffer)
 			count++;
 		else
 			break;
 	}
-	va_end( ap );
+	va_end(ap);
 
 	return count;
 }

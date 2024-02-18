@@ -519,7 +519,6 @@ static void CG_DrawAreaPowerUp(rectDef_t *rect, int align, float special, float 
 
 float CG_GetValue(int ownerDraw) {
 	centity_t *cent;
-	clientInfo_t *ci;
 	playerState_t *ps;
 
 	cent = &cg_entities[cg.snap->ps.clientNum];
@@ -527,12 +526,10 @@ float CG_GetValue(int ownerDraw) {
 
 	switch (ownerDraw) {
 	case CG_SELECTEDPLAYER_ARMOR:
-		ci = cgs.clientinfo + sortedTeamPlayers[CG_GetSelectedPlayer()];
-		return ci->armor;
+		return 0;
 		break;
 	case CG_SELECTEDPLAYER_HEALTH:
-		ci = cgs.clientinfo + sortedTeamPlayers[CG_GetSelectedPlayer()];
-		return ci->health;
+		return 0;
 		break;
 	case CG_PLAYER_ARMOR_VALUE:
 		return ps->stats[STAT_ARMOR];

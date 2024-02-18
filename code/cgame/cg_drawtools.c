@@ -10,8 +10,7 @@ CG_AdjustFrom640
 Adjusted for resolution and screen aspect ratio
 ================
 */
-void CG_AdjustFrom640( float *x, float *y, float *w, float *h ) 
-{
+void CG_AdjustFrom640(float *x, float *y, float *w, float *h) {
 	// scale for screen sizes
 	*x = *x * cgs.screenXScale + cgs.screenXBias;
 	*y = *y * cgs.screenYScale + cgs.screenYBias;
@@ -27,13 +26,13 @@ CG_FillRect
 Coordinates are 640*480 virtual values
 =================
 */
-void CG_FillRect( float x, float y, float width, float height, const float *color ) {
-	trap_R_SetColor( color );
+void CG_FillRect(float x, float y, float width, float height, const float *color) {
+	trap_R_SetColor(color);
 
-	CG_AdjustFrom640( &x, &y, &width, &height );
-	trap_R_DrawStretchPic( x, y, width, height, 0, 0, 0, 0, cgs.media.whiteShader );
+	CG_AdjustFrom640(&x, &y, &width, &height);
+	trap_R_DrawStretchPic(x, y, width, height, 0, 0, 0, 0, cgs.media.whiteShader);
 
-	trap_R_SetColor( NULL );
+	trap_R_SetColor(NULL);
 }
 
 
@@ -42,11 +41,10 @@ void CG_FillRect( float x, float y, float width, float height, const float *colo
 CG_FillScreen
 ================
 */
-void CG_FillScreen( const float *color )
-{
-	trap_R_SetColor( color );
-	trap_R_DrawStretchPic( 0, 0, cgs.glconfig.vidWidth, cgs.glconfig.vidHeight, 0, 0, 0, 0, cgs.media.whiteShader );
-	trap_R_SetColor( NULL );
+void CG_FillScreen(const float *color) {
+	trap_R_SetColor(color);
+	trap_R_DrawStretchPic(0, 0, cgs.glconfig.vidWidth, cgs.glconfig.vidHeight, 0, 0, 0, 0, cgs.media.whiteShader);
+	trap_R_SetColor(NULL);
 }
 
 
@@ -58,18 +56,18 @@ Coords are virtual 640x480
 ================
 */
 void CG_DrawSides(float x, float y, float w, float h, float size) {
-	CG_AdjustFrom640( &x, &y, &w, &h );
+	CG_AdjustFrom640(&x, &y, &w, &h);
 	size *= cgs.screenXScale;
-	trap_R_DrawStretchPic( x, y, size, h, 0, 0, 0, 0, cgs.media.whiteShader );
-	trap_R_DrawStretchPic( x + w - size, y, size, h, 0, 0, 0, 0, cgs.media.whiteShader );
+	trap_R_DrawStretchPic(x, y, size, h, 0, 0, 0, 0, cgs.media.whiteShader);
+	trap_R_DrawStretchPic(x + w - size, y, size, h, 0, 0, 0, 0, cgs.media.whiteShader);
 }
 
 
 void CG_DrawTopBottom(float x, float y, float w, float h, float size) {
-	CG_AdjustFrom640( &x, &y, &w, &h );
+	CG_AdjustFrom640(&x, &y, &w, &h);
 	size *= cgs.screenYScale;
-	trap_R_DrawStretchPic( x, y, w, size, 0, 0, 0, 0, cgs.media.whiteShader );
-	trap_R_DrawStretchPic( x, y + h - size, w, size, 0, 0, 0, 0, cgs.media.whiteShader );
+	trap_R_DrawStretchPic(x, y, w, size, 0, 0, 0, 0, cgs.media.whiteShader);
+	trap_R_DrawStretchPic(x, y + h - size, w, size, 0, 0, 0, 0, cgs.media.whiteShader);
 }
 
 
@@ -80,13 +78,13 @@ UI_DrawRect
 Coordinates are 640*480 virtual values
 =================
 */
-void CG_DrawRect( float x, float y, float width, float height, float size, const float *color ) {
-	trap_R_SetColor( color );
+void CG_DrawRect(float x, float y, float width, float height, float size, const float *color) {
+	trap_R_SetColor(color);
 
 	CG_DrawTopBottom(x, y, width, height, size);
 	CG_DrawSides(x, y, width, height, size);
 
-	trap_R_SetColor( NULL );
+	trap_R_SetColor(NULL);
 }
 
 
@@ -97,9 +95,9 @@ CG_DrawPic
 Coordinates are 640*480 virtual values
 =================
 */
-void CG_DrawPic( float x, float y, float width, float height, qhandle_t hShader ) {
-	CG_AdjustFrom640( &x, &y, &width, &height );
-	trap_R_DrawStretchPic( x, y, width, height, 0, 0, 1, 1, hShader );
+void CG_DrawPic(float x, float y, float width, float height, qhandle_t hShader) {
+	CG_AdjustFrom640(&x, &y, &width, &height);
+	trap_R_DrawStretchPic(x, y, width, height, 0, 0, 1, 1, hShader);
 }
 
 
@@ -110,7 +108,7 @@ CG_DrawChar
 Coordinates and size in 640*480 virtual screen size
 ===============
 */
-static void CG_DrawChar( int x, int y, int width, int height, int ch ) {
+static void CG_DrawChar(int x, int y, int width, int height, int ch) {
 	int row, col;
 	float frow, fcol;
 	float size;
@@ -118,7 +116,7 @@ static void CG_DrawChar( int x, int y, int width, int height, int ch ) {
 
 	ch &= 255;
 
-	if ( ch == ' ' ) {
+	if (ch == ' ') {
 		return;
 	}
 
@@ -126,19 +124,19 @@ static void CG_DrawChar( int x, int y, int width, int height, int ch ) {
 	ay = y;
 	aw = width;
 	ah = height;
-	CG_AdjustFrom640( &ax, &ay, &aw, &ah );
+	CG_AdjustFrom640(&ax, &ay, &aw, &ah);
 
-	row = ch>>4;
-	col = ch&15;
+	row = ch >> 4;
+	col = ch & 15;
 
-	frow = row*0.0625;
-	fcol = col*0.0625;
+	frow = row * 0.0625;
+	fcol = col * 0.0625;
 	size = 0.0625;
 
-	trap_R_DrawStretchPic( ax, ay, aw, ah,
-					   fcol, frow, 
-					   fcol + size, frow + size, 
-					   cgs.media.charsetShader );
+	trap_R_DrawStretchPic(ax, ay, aw, ah,
+		fcol, frow,
+		fcol + size, frow + size,
+		cgs.media.charsetShader);
 }
 
 
@@ -152,10 +150,10 @@ to a fixed color.
 Coordinates are at 640 by 480 virtual resolution
 ==================
 */
-void CG_DrawStringExt( int x, int y, const char *string, const float *setColor, 
-		qboolean forceColor, qboolean shadow, int charWidth, int charHeight, int maxChars ) {
+void CG_DrawStringExt(int x, int y, const char *string, const float *setColor,
+	qboolean forceColor, qboolean shadow, int charWidth, int charHeight, int maxChars) {
 	vec4_t		color;
-	const char	*s;
+	const char *s;
 	int			xx;
 	int			cnt;
 
@@ -166,16 +164,16 @@ void CG_DrawStringExt( int x, int y, const char *string, const float *setColor,
 	if (shadow) {
 		color[0] = color[1] = color[2] = 0;
 		color[3] = setColor[3];
-		trap_R_SetColor( color );
+		trap_R_SetColor(color);
 		s = string;
 		xx = x;
 		cnt = 0;
-		while ( *s && cnt < maxChars) {
-			if ( Q_IsColorString( s ) ) {
+		while (*s && cnt < maxChars) {
+			if (Q_IsColorString(s)) {
 				s += 2;
 				continue;
 			}
-			CG_DrawChar( xx + 2, y + 2, charWidth, charHeight, *s );
+			CG_DrawChar(xx + 2, y + 2, charWidth, charHeight, *s);
 			cnt++;
 			xx += charWidth;
 			s++;
@@ -186,23 +184,23 @@ void CG_DrawStringExt( int x, int y, const char *string, const float *setColor,
 	s = string;
 	xx = x;
 	cnt = 0;
-	trap_R_SetColor( setColor );
-	while ( *s && cnt < maxChars) {
-		if ( Q_IsColorString( s ) ) {
-			if ( !forceColor ) {
-				memcpy( color, g_color_table[ColorIndex(*(s+1))], sizeof( color ) );
+	trap_R_SetColor(setColor);
+	while (*s && cnt < maxChars) {
+		if (Q_IsColorString(s)) {
+			if (!forceColor) {
+				memcpy(color, g_color_table[ColorIndex(*(s + 1))], sizeof(color));
 				color[3] = setColor[3];
-				trap_R_SetColor( color );
+				trap_R_SetColor(color);
 			}
 			s += 2;
 			continue;
 		}
-		CG_DrawChar( xx, y, charWidth, charHeight, *s );
+		CG_DrawChar(xx, y, charWidth, charHeight, *s);
 		xx += charWidth;
 		cnt++;
 		s++;
 	}
-	trap_R_SetColor( NULL );
+	trap_R_SetColor(NULL);
 }
 
 
@@ -222,8 +220,8 @@ typedef struct {
 
 typedef struct {
 	font_metric_t	metrics[256];
-	qhandle_t		shader[ MAX_FONT_SHADERS ];
-	int				shaderThreshold[ MAX_FONT_SHADERS ];
+	qhandle_t		shader[MAX_FONT_SHADERS];
+	int				shaderThreshold[MAX_FONT_SHADERS];
 	int				shaderCount;
 } font_t;
 
@@ -233,9 +231,8 @@ static const font_t *font = &bigchars;
 static const font_metric_t *metrics = &bigchars.metrics[0];
 
 
-void CG_SelectFont( int index ) 
-{
-	if ( index == 0 )
+void CG_SelectFont(int index) {
+	if (index == 0)
 		font = &bigchars;
 	else
 		font = &numbers;
@@ -244,34 +241,32 @@ void CG_SelectFont( int index )
 }
 
 
-static qboolean CG_FileExist( const char *file )
-{
+static qboolean CG_FileExist(const char *file) {
 	fileHandle_t	f;
 
-	if ( !file || !file[0] )
+	if (!file || !file[0])
 		return qfalse;
-	
-	trap_FS_FOpenFile( file, &f, FS_READ );
-	if ( f == FS_INVALID_HANDLE )
+
+	trap_FS_FOpenFile(file, &f, FS_READ);
+	if (f == FS_INVALID_HANDLE)
 		return qfalse;
 	else {
-		trap_FS_FCloseFile( f );
+		trap_FS_FCloseFile(f);
 		return qtrue;
 	}
 }
 
 
-static void CG_LoadFont( font_t *fnt, const char *fontName )
-{
-	char buf[ 8000 ];
+static void CG_LoadFont(font_t *fnt, const char *fontName) {
+	char buf[8000];
 	fileHandle_t f;
 	char *token, *text;
 	float width, height, r_width, r_height;
 	float char_width;
 	float char_height;
-	char shaderName[ MAX_FONT_SHADERS ][ MAX_QPATH ], tmpName[ MAX_QPATH ];
+	char shaderName[MAX_FONT_SHADERS][MAX_QPATH], tmpName[MAX_QPATH];
 	int shaderCount;
-	int shaderThreshold[ MAX_FONT_SHADERS ];
+	int shaderThreshold[MAX_FONT_SHADERS];
 	font_metric_t *fm;
 	int i, tmp, len, chars;
 	float w1, w2;
@@ -279,172 +274,171 @@ static void CG_LoadFont( font_t *fnt, const char *fontName )
 	float x0, y0;
 	qboolean swapped;
 
-	memset( fnt, 0, sizeof( *fnt ) );
+	memset(fnt, 0, sizeof(*fnt));
 
-	len = trap_FS_FOpenFile( fontName, &f, FS_READ );
-	if ( f == FS_INVALID_HANDLE ) {
-		CG_Printf( S_COLOR_YELLOW "CG_LoadFont: error opening %s\n", fontName );
+	len = trap_FS_FOpenFile(fontName, &f, FS_READ);
+	if (f == FS_INVALID_HANDLE) {
+		CG_Printf(S_COLOR_YELLOW "CG_LoadFont: error opening %s\n", fontName);
 		return;
 	}
 
-	if ( len >= sizeof( buf ) ) {
-		CG_Printf( S_COLOR_YELLOW "CG_LoadFont: font file is too long: %i\n", len );
-		len = sizeof( buf )-1;
+	if (len >= sizeof(buf)) {
+		CG_Printf(S_COLOR_YELLOW "CG_LoadFont: font file is too long: %i\n", len);
+		len = sizeof(buf) - 1;
 	}
 
-	trap_FS_Read( buf, len, f );
-	trap_FS_FCloseFile( f );
-	buf[ len ] = '\0';
+	trap_FS_Read(buf, len, f);
+	trap_FS_FCloseFile(f);
+	buf[len] = '\0';
 
 	shaderCount = 0;
 
 	text = buf; // initialize parser
-	COM_BeginParseSession( fontName );
+	COM_BeginParseSession(fontName);
 
-	while ( 1 )
-	{
-		token = COM_ParseExt( &text, qtrue );
-		if ( token[0] == '\0' ) {
-			Com_Printf( S_COLOR_RED "CG_LoadFont: parse error.\n" );
+	while (1) {
+		token = COM_ParseExt(&text, qtrue);
+		if (token[0] == '\0') {
+			Com_Printf(S_COLOR_RED "CG_LoadFont: parse error.\n");
 			return;
 		}
 
 		// font image
-		if ( strcmp( token, "img" ) == 0 ) {
-			if ( shaderCount >= MAX_FONT_SHADERS ) {
-				Com_Printf( "CG_LoadFont: too many font images, ignoring.\n" );
-				SkipRestOfLine( &text );
+		if (strcmp(token, "img") == 0) {
+			if (shaderCount >= MAX_FONT_SHADERS) {
+				Com_Printf("CG_LoadFont: too many font images, ignoring.\n");
+				SkipRestOfLine(&text);
 				continue;
 			}
-			token = COM_ParseExt( &text, qfalse );
-			if ( !CG_FileExist( token ) ) {
-				Com_Printf( "CG_LoadFont: font image '%s' doesn't exist.\n", token );
+			token = COM_ParseExt(&text, qfalse);
+			if (!CG_FileExist(token)) {
+				Com_Printf("CG_LoadFont: font image '%s' doesn't exist.\n", token);
 				return;
 			}
 			// save shader name
-			Q_strncpyz( shaderName[ shaderCount ], token, sizeof( shaderName[ shaderCount ] ) );
+			Q_strncpyz(shaderName[shaderCount], token, sizeof(shaderName[shaderCount]));
 			// get threshold
-			token = COM_ParseExt( &text, qfalse );
-			shaderThreshold[ shaderCount ] = atoi( token );
+			token = COM_ParseExt(&text, qfalse);
+			shaderThreshold[shaderCount] = atoi(token);
 
 			//Com_Printf( S_COLOR_CYAN "img: %s, threshold: %i\n", shaderName[ shaderCount ], shaderThreshold[ shaderCount ] );
 			shaderCount++;
-			
-			SkipRestOfLine( &text );
+
+			SkipRestOfLine(&text);
 			continue;
 		}
 
 		// font parameters
-		if ( strcmp( token, "fnt" ) == 0 ) {
-			token = COM_ParseExt( &text, qfalse );
-			if ( token[0] == '\0' || (width = atof( token )) <= 0.0 ) {
-				Com_Printf( "CG_LoadFont: error reading image width.\n" );
+		if (strcmp(token, "fnt") == 0) {
+			token = COM_ParseExt(&text, qfalse);
+			if (token[0] == '\0' || (width = atof(token)) <= 0.0) {
+				Com_Printf("CG_LoadFont: error reading image width.\n");
 				return;
 			}
 			r_width = 1.0 / width;
 
-			token = COM_ParseExt( &text, qfalse );
-			if ( token[0] == '\0' || (height = atof( token )) <= 0.0 ) {
-				Com_Printf( "CG_LoadFont: error reading image height.\n" );
+			token = COM_ParseExt(&text, qfalse);
+			if (token[0] == '\0' || (height = atof(token)) <= 0.0) {
+				Com_Printf("CG_LoadFont: error reading image height.\n");
 				return;
 			}
 			r_height = 1.0 / height;
-			
-			token = COM_ParseExt( &text, qfalse );
-			if ( token[0] == '\0' ) {
-				Com_Printf( "CG_LoadFont: error reading char widht.\n" );
-				return;
-			}
-			char_width = atof( token );
 
-			token = COM_ParseExt( &text, qfalse );
-			if ( token[0] == '\0' ) {
-				Com_Printf( "CG_LoadFont: error reading char height.\n" );
+			token = COM_ParseExt(&text, qfalse);
+			if (token[0] == '\0') {
+				Com_Printf("CG_LoadFont: error reading char widht.\n");
 				return;
 			}
-			char_height = atof( token );
+			char_width = atof(token);
+
+			token = COM_ParseExt(&text, qfalse);
+			if (token[0] == '\0') {
+				Com_Printf("CG_LoadFont: error reading char height.\n");
+				return;
+			}
+			char_height = atof(token);
 
 			break; // parse char metrics
 		}
 	}
 
-	if ( shaderCount == 0 ) {
-		Com_Printf( "CG_LoadFont: no font images specified in %s.\n", fontName );
+	if (shaderCount == 0) {
+		Com_Printf("CG_LoadFont: no font images specified in %s.\n", fontName);
 		return;
 	}
 
 	fm = fnt->metrics;
 
 	chars = 0;
-	for ( ;; ) {
+	for (;; ) {
 		// char index
-		token = COM_ParseExt( &text, qtrue );
-		if ( !token[0] )
+		token = COM_ParseExt(&text, qtrue);
+		if (!token[0])
 			break;
 
-		if ( token[0] == '\'' && token[1] && token[2] == '\'' ) // char code in form 'X'
+		if (token[0] == '\'' && token[1] && token[2] == '\'') // char code in form 'X'
 			i = token[1] & 255;
 		else // integer code
-			i = atoi( token );
+			i = atoi(token);
 
-		if ( i < 0 || i > 255 ) {
-			CG_Printf( S_COLOR_RED "CG_LoadFont: bad char index %i.\n", i );
+		if (i < 0 || i > 255) {
+			CG_Printf(S_COLOR_RED "CG_LoadFont: bad char index %i.\n", i);
 			return;
 		}
 		fm = fnt->metrics + i;
 
 		// x0
-		token = COM_ParseExt( &text, qfalse );
-		if ( !token[0] ) {
-			CG_Printf( S_COLOR_RED "CG_LoadFont: error reading x0.\n" );
+		token = COM_ParseExt(&text, qfalse);
+		if (!token[0]) {
+			CG_Printf(S_COLOR_RED "CG_LoadFont: error reading x0.\n");
 			return;
 		}
-		x0 = atof( token );
-	
+		x0 = atof(token);
+
 		// y0
-		token = COM_ParseExt( &text, qfalse );
-		if ( !token[0] ) {
-			CG_Printf( S_COLOR_RED "CG_LoadFont: error reading y0.\n" );
+		token = COM_ParseExt(&text, qfalse);
+		if (!token[0]) {
+			CG_Printf(S_COLOR_RED "CG_LoadFont: error reading y0.\n");
 			return;
 		}
-		y0 = atof( token );
-		
+		y0 = atof(token);
+
 		// w1-offset
-		token = COM_ParseExt( &text, qfalse );
-		if ( !token[0] ) {
-			CG_Printf( S_COLOR_RED "CG_LoadFont: error reading x-offset.\n" );
+		token = COM_ParseExt(&text, qfalse);
+		if (!token[0]) {
+			CG_Printf(S_COLOR_RED "CG_LoadFont: error reading x-offset.\n");
 			return;
 		}
-		w1 = atof( token );
+		w1 = atof(token);
 
 		// w2-offset
-		token = COM_ParseExt( &text, qfalse );
-		if ( !token[0] ) {
-			CG_Printf( S_COLOR_RED "CG_LoadFont: error reading x-length.\n" );
+		token = COM_ParseExt(&text, qfalse);
+		if (!token[0]) {
+			CG_Printf(S_COLOR_RED "CG_LoadFont: error reading x-length.\n");
 			return;
 		}
-		w2 = atof( token );
+		w2 = atof(token);
 
 		// space1
-		token = COM_ParseExt( &text, qfalse );
-		if ( !token[0] ) {
-			CG_Printf( S_COLOR_RED "CG_LoadFont: error reading space1.\n" );
+		token = COM_ParseExt(&text, qfalse);
+		if (!token[0]) {
+			CG_Printf(S_COLOR_RED "CG_LoadFont: error reading space1.\n");
 			return;
 		}
-		s1 = atof( token );
+		s1 = atof(token);
 
 		// space2
-		token = COM_ParseExt( &text, qfalse );
-		if ( !token[0] ) {
-			CG_Printf( S_COLOR_RED "CG_LoadFont: error reading space2.\n" );
+		token = COM_ParseExt(&text, qfalse);
+		if (!token[0]) {
+			CG_Printf(S_COLOR_RED "CG_LoadFont: error reading space2.\n");
 			return;
 		}
-		s2 = atof( token );
+		s2 = atof(token);
 
 		fm->tc_mono[0] = x0 * r_width;
 		fm->tc_mono[1] = y0 * r_height;
-		fm->tc_mono[2] = ( x0 + char_width ) * r_width;
-		fm->tc_mono[3] = ( y0 + char_height ) * r_height;
+		fm->tc_mono[2] = (x0 + char_width) * r_width;
+		fm->tc_mono[3] = (y0 + char_height) * r_height;
 
 		// proportional y-coords is matching with mono
 		fm->tc_prop[1] = fm->tc_mono[1];
@@ -458,62 +452,60 @@ static void CG_LoadFont( font_t *fnt, const char *fontName )
 
 		chars++;
 
-		SkipRestOfLine( &text );
+		SkipRestOfLine(&text);
 	}
 
 	// sort images by threshold
 	do {
-		for ( swapped = qfalse, i = 1 ; i < shaderCount; i++ ) {
-			if ( shaderThreshold[i-1] > shaderThreshold[i] ) {
-				tmp = shaderThreshold[i-1];
-				shaderThreshold[i-1] = shaderThreshold[i];
+		for (swapped = qfalse, i = 1; i < shaderCount; i++) {
+			if (shaderThreshold[i - 1] > shaderThreshold[i]) {
+				tmp = shaderThreshold[i - 1];
+				shaderThreshold[i - 1] = shaderThreshold[i];
 				shaderThreshold[i] = tmp;
-				strcpy( tmpName, shaderName[i-1] );
-				strcpy( shaderName[i-1], shaderName[i] );
-				strcpy( shaderName[i], tmpName );
+				strcpy(tmpName, shaderName[i - 1]);
+				strcpy(shaderName[i - 1], shaderName[i]);
+				strcpy(shaderName[i], tmpName);
 				swapped = qtrue;
 			}
 		}
-	} while ( swapped );
+	} while (swapped);
 
 	// always assume zero threshold for lowest-quality shader
 	shaderThreshold[0] = 0;
-	
+
 	fnt->shaderCount = shaderCount;
-	for ( i = 0; i < shaderCount; i++ ) {
-		fnt->shader[i] = trap_R_RegisterShaderNoMip( shaderName[i] );
+	for (i = 0; i < shaderCount; i++) {
+		fnt->shader[i] = trap_R_RegisterShaderNoMip(shaderName[i]);
 		fnt->shaderThreshold[i] = shaderThreshold[i];
 	}
 
-	CG_Printf( "Font '%s' loaded with %i chars and %i images\n", fontName, chars, shaderCount );
+	CG_Printf("Font '%s' loaded with %i chars and %i images\n", fontName, chars, shaderCount);
 }
 
 
-void CG_LoadFonts( void ) 
-{
-	CG_LoadFont( &bigchars, "gfx/2d/bigchars.cfg" );
-	CG_LoadFont( &numbers, "gfx/2d/numbers.cfg" );
+void CG_LoadFonts(void) {
+	CG_LoadFont(&bigchars, "gfx/2d/bigchars.cfg");
+	CG_LoadFont(&numbers, "gfx/2d/numbers.cfg");
 }
 
 
-static float DrawStringLength( const char *string, float ax, float aw, float max_ax, int proportional )
-{
-	const font_metric_t	*fm;
+static float DrawStringLength(const char *string, float ax, float aw, float max_ax, int proportional) {
+	const font_metric_t *fm;
 	//float			aw1;
 	float			x_end;
-	const byte		*s;
+	const byte *s;
 	float			xx;
 
-	if ( !string )
+	if (!string)
 		return 0.0f;
 
-	s = (const byte*)string;
+	s = (const byte *)string;
 
 	xx = ax;
 
-	while ( *s != '\0' ) {
+	while (*s != '\0') {
 
-		if ( *s == Q_COLOR_ESCAPE && s[1] != '\0' && s[1] != '^' ) {
+		if (*s == Q_COLOR_ESCAPE && s[1] != '\0' && s[1] != '^') {
 			//if ( !(flags & DS_SHOW_CODE) ) {
 			s += 2;
 			continue;
@@ -521,8 +513,8 @@ static float DrawStringLength( const char *string, float ax, float aw, float max
 		}
 
 		//fm = &font->metrics[ *s ];
-		fm = &metrics[ *s ];
-		if ( proportional ) {
+		fm = &metrics[*s];
+		if (proportional) {
 			//aw1 = fm->width * aw;
 			ax += fm->space1 * aw;			// add extra space if required by metrics
 			x_end = ax + fm->space2 * aw;	// final position
@@ -531,7 +523,7 @@ static float DrawStringLength( const char *string, float ax, float aw, float max
 			x_end = ax + aw;
 		}
 
-		if ( x_end > max_ax ) 
+		if (x_end > max_ax)
 			break;
 
 		ax = x_end;
@@ -542,22 +534,21 @@ static float DrawStringLength( const char *string, float ax, float aw, float max
 }
 
 
-void CG_DrawString( float x, float y, const char *string, const vec4_t setColor, float charWidth, float charHeight, int maxChars, int flags ) 
-{
+void CG_DrawString(float x, float y, const char *string, const vec4_t setColor, float charWidth, float charHeight, int maxChars, int flags) {
 	const font_metric_t *fm;
-	const float		*tc; // texture coordinates for char
+	const float *tc; // texture coordinates for char
 	float			ax, ay, aw, aw1, ah; // absolute positions/dimensions
 	float			scale;
 	float			x_end, xx;
 	vec4_t			color;
-	const byte		*s;
+	const byte *s;
 	float			xx_add, yy_add;
 	float			max_ax;
 	int				i;
 	qhandle_t		sh;
 	int				proportional;
 
-	if ( !string )
+	if (!string)
 		return;
 
 	s = (const byte *)string;
@@ -568,7 +559,7 @@ void CG_DrawString( float x, float y, const char *string, const vec4_t setColor,
 	aw = charWidth * cgs.screenXScale;
 	ah = charHeight * cgs.screenYScale;
 
-	if ( maxChars <= 0 ) {
+	if (maxChars <= 0) {
 		max_ax = 9999999.0f;
 	} else {
 		max_ax = ax + aw * maxChars;
@@ -576,17 +567,17 @@ void CG_DrawString( float x, float y, const char *string, const vec4_t setColor,
 
 	proportional = (flags & DS_PROPORTIONAL);
 
-	if ( flags & ( DS_CENTER | DS_RIGHT ) ) {
-		if ( flags & DS_CENTER ) {
-			ax -= 0.5f * DrawStringLength( string, ax, aw, max_ax, proportional );
+	if (flags & (DS_CENTER | DS_RIGHT)) {
+		if (flags & DS_CENTER) {
+			ax -= 0.5f * DrawStringLength(string, ax, aw, max_ax, proportional);
 		} else {
-			ax -= DrawStringLength( string, ax, aw, max_ax, proportional );
+			ax -= DrawStringLength(string, ax, aw, max_ax, proportional);
 		}
 	}
 
 	sh = font->shader[0]; // low-res shader by default
 
-	if ( flags & DS_SHADOW ) { 
+	if (flags & DS_SHADOW) {
 		xx = ax;
 
 		// calculate shadow offsets
@@ -596,18 +587,18 @@ void CG_DrawString( float x, float y, const char *string, const vec4_t setColor,
 
 		color[0] = color[1] = color[2] = 0.0f;
 		color[3] = setColor[3] * 0.5f;
-		trap_R_SetColor( color );
+		trap_R_SetColor(color);
 
-		while ( *s != '\0' ) {
-			if ( *s == Q_COLOR_ESCAPE && s[1] != '\0' && s[1] != '^' ) {
+		while (*s != '\0') {
+			if (*s == Q_COLOR_ESCAPE && s[1] != '\0' && s[1] != '^') {
 				//if ( !(options & DS_SHOW_CODE) ) {
 				s += 2;
 				continue;
 				//}
 			}
 			//fm = &font->metrics[ *s ];
-			fm = &metrics[ *s ];
-			if ( proportional ) {
+			fm = &metrics[*s];
+			if (proportional) {
 				tc = fm->tc_prop;
 				aw1 = fm->width * aw;
 				ax += fm->space1 * aw;			// add extra space if required by metrics
@@ -618,36 +609,36 @@ void CG_DrawString( float x, float y, const char *string, const vec4_t setColor,
 				x_end = ax + aw;
 			}
 
-			if ( x_end > max_ax || ax >= cgs.glconfig.vidWidth )
+			if (x_end > max_ax || ax >= cgs.glconfig.vidWidth)
 				break;
 
-			trap_R_DrawStretchPic( ax + xx_add, ay + yy_add, aw1, ah, tc[0], tc[1], tc[2], tc[3], sh );
+			trap_R_DrawStretchPic(ax + xx_add, ay + yy_add, aw1, ah, tc[0], tc[1], tc[2], tc[3], sh);
 
 			ax = x_end;
 			s++;
 		}
 
 		// recover altered parameters
-		s = (const byte*)string;
+		s = (const byte *)string;
 		ax = xx;
 	}
 
 	// select hi-res shader if accepted
-	for ( i = 1; i < font->shaderCount; i++ ) {
-		if ( ah >= font->shaderThreshold[i] ) {
+	for (i = 1; i < font->shaderCount; i++) {
+		if (ah >= font->shaderThreshold[i]) {
 			sh = font->shader[i];
 		}
 	}
-	
-	Vector4Copy( setColor, color );
-	trap_R_SetColor( color );
-	
-	while ( *s != '\0' ) {
 
-		if ( *s == Q_COLOR_ESCAPE && s[1] != '\0' && s[1] != '^' ) {
-			if ( !( flags & DS_FORCE_COLOR ) ) {
-				VectorCopy( g_color_table[ ColorIndex( s[1] ) ], color );
-				trap_R_SetColor( color );
+	Vector4Copy(setColor, color);
+	trap_R_SetColor(color);
+
+	while (*s != '\0') {
+
+		if (*s == Q_COLOR_ESCAPE && s[1] != '\0' && s[1] != '^') {
+			if (!(flags & DS_FORCE_COLOR)) {
+				VectorCopy(g_color_table[ColorIndex(s[1])], color);
+				trap_R_SetColor(color);
 			}
 			//if ( !(options & DS_SHOW_CODE) ) {
 			s += 2;
@@ -656,8 +647,8 @@ void CG_DrawString( float x, float y, const char *string, const vec4_t setColor,
 		}
 
 		//fm = &font->metrics[ *s ];
-		fm = &metrics[ *s ];
-		if ( proportional ) {
+		fm = &metrics[*s];
+		if (proportional) {
 			tc = fm->tc_prop;
 			aw1 = fm->width * aw;
 			ax += fm->space1 * aw;			// add extra space if required by metrics
@@ -668,10 +659,10 @@ void CG_DrawString( float x, float y, const char *string, const vec4_t setColor,
 			x_end = ax + aw;
 		}
 
-		if ( x_end > max_ax || ax >= cgs.glconfig.vidWidth )
+		if (x_end > max_ax || ax >= cgs.glconfig.vidWidth)
 			break;
 
-		trap_R_DrawStretchPic( ax, ay, aw1, ah, tc[0], tc[1], tc[2], tc[3], sh );
+		trap_R_DrawStretchPic(ax, ay, aw1, ah, tc[0], tc[1], tc[2], tc[3], sh);
 
 		ax = x_end;
 		s++;
@@ -682,12 +673,11 @@ void CG_DrawString( float x, float y, const char *string, const vec4_t setColor,
 #else
 
 
-static float DrawStringLen( const char *s, float charWidth ) 
-{
+static float DrawStringLen(const char *s, float charWidth) {
 	int count;
 	count = 0;
-	while ( *s ) {
-		if ( Q_IsColorString( s ) ) {
+	while (*s) {
+		if (Q_IsColorString(s)) {
 			s += 2;
 		} else {
 			count++;
@@ -698,24 +688,21 @@ static float DrawStringLen( const char *s, float charWidth )
 }
 
 
-void CG_DrawString( float x, float y, const char *s, const vec4_t color, float charWidth, float charHeight, int maxChars, int flags )
-{
-	if ( !color ) 
-	{
-		color = g_color_table[ ColorIndex( COLOR_WHITE ) ];
+void CG_DrawString(float x, float y, const char *s, const vec4_t color, float charWidth, float charHeight, int maxChars, int flags) {
+	if (!color) {
+		color = g_color_table[ColorIndex(COLOR_WHITE)];
 	}
 
-	if ( flags & ( DS_CENTER | DS_RIGHT ) )
-	{
+	if (flags & (DS_CENTER | DS_RIGHT)) {
 		float w;
-		w = DrawStringLen( s, charWidth );
-		if ( flags & DS_CENTER )
+		w = DrawStringLen(s, charWidth);
+		if (flags & DS_CENTER)
 			x -= w * 0.5f;
 		else
 			x -= w;
 	}
 
-	CG_DrawStringExt( x, y, s, color, flags & DS_FORCE_COLOR, flags & DS_SHADOW, charWidth, charHeight, maxChars );
+	CG_DrawStringExt(x, y, s, color, flags & DS_FORCE_COLOR, flags & DS_SHADOW, charWidth, charHeight, maxChars);
 }
 #endif
 
@@ -727,12 +714,12 @@ CG_DrawStrlen
 Returns character count, skiping color escape codes
 =================
 */
-int CG_DrawStrlen( const char *str ) {
+int CG_DrawStrlen(const char *str) {
 	const char *s = str;
 	int count = 0;
 
-	while ( *s ) {
-		if ( Q_IsColorString( s ) ) {
+	while (*s) {
+		if (Q_IsColorString(s)) {
 			s += 2;
 		} else {
 			count++;
@@ -752,14 +739,14 @@ This repeats a 64*64 tile graphic to fill the screen around a sized down
 refresh window.
 =============
 */
-static void CG_TileClearBox( int x, int y, int w, int h, qhandle_t hShader ) {
+static void CG_TileClearBox(int x, int y, int w, int h, qhandle_t hShader) {
 	float	s1, t1, s2, t2;
 
-	s1 = x/64.0;
-	t1 = y/64.0;
-	s2 = (x+w)/64.0;
-	t2 = (y+h)/64.0;
-	trap_R_DrawStretchPic( x, y, w, h, s1, t1, s2, t2, hShader );
+	s1 = x / 64.0;
+	t1 = y / 64.0;
+	s2 = (x + w) / 64.0;
+	t2 = (y + h) / 64.0;
+	trap_R_DrawStretchPic(x, y, w, h, s1, t1, s2, t2, hShader);
 }
 
 
@@ -770,34 +757,34 @@ CG_TileClear
 Clear around a sized down screen
 ==============
 */
-void CG_TileClear( void ) {
+void CG_TileClear(void) {
 	int		top, bottom, left, right;
 	int		w, h;
 
 	w = cgs.glconfig.vidWidth;
 	h = cgs.glconfig.vidHeight;
 
-	if ( cg.refdef.x == 0 && cg.refdef.y == 0 && 
-		cg.refdef.width == w && cg.refdef.height == h ) {
+	if (cg.refdef.x == 0 && cg.refdef.y == 0 &&
+		cg.refdef.width == w && cg.refdef.height == h) {
 		return;		// full screen rendering
 	}
 
 	top = cg.refdef.y;
-	bottom = top + cg.refdef.height-1;
+	bottom = top + cg.refdef.height - 1;
 	left = cg.refdef.x;
-	right = left + cg.refdef.width-1;
+	right = left + cg.refdef.width - 1;
 
 	// clear above view screen
-	CG_TileClearBox( 0, 0, w, top, cgs.media.backTileShader );
+	CG_TileClearBox(0, 0, w, top, cgs.media.backTileShader);
 
 	// clear below view screen
-	CG_TileClearBox( 0, bottom, w, h - bottom, cgs.media.backTileShader );
+	CG_TileClearBox(0, bottom, w, h - bottom, cgs.media.backTileShader);
 
 	// clear left of view screen
-	CG_TileClearBox( 0, top, left, bottom - top + 1, cgs.media.backTileShader );
+	CG_TileClearBox(0, top, left, bottom - top + 1, cgs.media.backTileShader);
 
 	// clear right of view screen
-	CG_TileClearBox( right, top, w - right, bottom - top + 1, cgs.media.backTileShader );
+	CG_TileClearBox(right, top, w - right, bottom - top + 1, cgs.media.backTileShader);
 }
 
 
@@ -806,23 +793,23 @@ void CG_TileClear( void ) {
 CG_FadeColor
 ================
 */
-float *CG_FadeColor( int startMsec, int totalMsec ) {
+float *CG_FadeColor(int startMsec, int totalMsec) {
 	static vec4_t		color;
 	int			t;
 
-	if ( startMsec == 0 ) {
+	if (startMsec == 0) {
 		return NULL;
 	}
 
 	t = cg.time - startMsec;
 
-	if ( t >= totalMsec ) {
+	if (t >= totalMsec) {
 		return NULL;
 	}
 
 	// fade out
-	if ( totalMsec - t < FADE_TIME ) {
-		color[3] = ( totalMsec - t ) * 1.0/FADE_TIME;
+	if (totalMsec - t < FADE_TIME) {
+		color[3] = (totalMsec - t) * 1.0 / FADE_TIME;
 	} else {
 		color[3] = 1.0;
 	}
@@ -837,23 +824,23 @@ float *CG_FadeColor( int startMsec, int totalMsec ) {
 CG_FadeColorTime
 ================
 */
-float *CG_FadeColorTime( int startMsec, int totalMsec, int fadeMsec ) {
+float *CG_FadeColorTime(int startMsec, int totalMsec, int fadeMsec) {
 	static vec4_t		color;
 	int			t;
 
-	if ( startMsec == 0 ) {
+	if (startMsec == 0) {
 		return NULL;
 	}
 
 	t = cg.time - startMsec;
 
-	if ( t >= totalMsec ) {
+	if (t >= totalMsec) {
 		return NULL;
 	}
 
 	// fade out
-	if ( totalMsec - t < fadeMsec ) {
-		color[3] = ( totalMsec - t ) * 1.0f/(float)fadeMsec;
+	if (totalMsec - t < fadeMsec) {
+		color[3] = (totalMsec - t) * 1.0f / (float)fadeMsec;
 	} else {
 		color[3] = 1.0f;
 	}
@@ -868,13 +855,13 @@ float *CG_FadeColorTime( int startMsec, int totalMsec, int fadeMsec ) {
 CG_TeamColor
 ================
 */
-const float *CG_TeamColor( team_t team ) {
-	static vec4_t	red = {1, 0.2f, 0.2f, 1};
-	static vec4_t	blue = {0.2f, 0.2f, 1, 1};
-	static vec4_t	other = {1, 1, 1, 1};
-	static vec4_t	spectator = {0.7f, 0.7f, 0.7f, 1};
+const float *CG_TeamColor(team_t team) {
+	static vec4_t	red = { 1, 0.2f, 0.2f, 1 };
+	static vec4_t	blue = { 0.2f, 0.2f, 1, 1 };
+	static vec4_t	other = { 1, 1, 1, 1 };
+	static vec4_t	spectator = { 0.7f, 0.7f, 0.7f, 1 };
 
-	switch ( team ) {
+	switch (team) {
 	case TEAM_RED:
 		return red;
 	case TEAM_BLUE:
@@ -893,20 +880,20 @@ const float *CG_TeamColor( team_t team ) {
 CG_GetColorForHealth
 =================
 */
-void CG_GetColorForHealth( int health, int armor, vec4_t hcolor ) {
+void CG_GetColorForHealth(int health, int armor, vec4_t hcolor) {
 	int		count;
 	int		max;
 
 	// calculate the total points of damage that can
 	// be sustained at the current health / armor level
-	if ( health <= 0 ) {
-		VectorClear( hcolor );	// black
+	if (health <= 0) {
+		VectorClear(hcolor);	// black
 		hcolor[3] = 1;
 		return;
 	}
 	count = armor;
-	max = health * ARMOR_PROTECTION / ( 1.0 - ARMOR_PROTECTION );
-	if ( max < count ) {
+	max = health * ARMOR_PROTECTION / (1.0 - ARMOR_PROTECTION);
+	if (max < count) {
 		count = max;
 	}
 	health += count;
@@ -914,20 +901,20 @@ void CG_GetColorForHealth( int health, int armor, vec4_t hcolor ) {
 	// set the color based on health
 	hcolor[0] = 1.0;
 	hcolor[3] = 1.0;
-	if ( health >= 100 ) {
+	if (health >= 100) {
 		hcolor[2] = 1.0;
-	} else if ( health < 66 ) {
+	} else if (health < 66) {
 		hcolor[2] = 0;
 	} else {
-		hcolor[2] = ( health - 66 ) / 33.0;
+		hcolor[2] = (health - 66) / 33.0;
 	}
 
-	if ( health > 60 ) {
+	if (health > 60) {
 		hcolor[1] = 1.0;
-	} else if ( health < 30 ) {
+	} else if (health < 30) {
 		hcolor[1] = 0;
 	} else {
-		hcolor[1] = ( health - 30 ) / 30.0;
+		hcolor[1] = (health - 30) / 30.0;
 	}
 }
 
@@ -937,10 +924,10 @@ void CG_GetColorForHealth( int health, int armor, vec4_t hcolor ) {
 CG_ColorForHealth
 =================
 */
-void CG_ColorForHealth( vec4_t hcolor ) {
+void CG_ColorForHealth(vec4_t hcolor) {
 
-	CG_GetColorForHealth( cg.snap->ps.stats[STAT_HEALTH], 
-		cg.snap->ps.stats[STAT_ARMOR], hcolor );
+	CG_GetColorForHealth(cg.snap->ps.stats[STAT_HEALTH],
+		cg.snap->ps.stats[STAT_ARMOR], hcolor);
 }
 
 
@@ -1105,9 +1092,8 @@ static int propMapB[26][3] = {
 UI_DrawBannerString
 =================
 */
-static void UI_DrawBannerString2( int x, int y, const char* str, vec4_t color )
-{
-	const char* s;
+static void UI_DrawBannerString2(int x, int y, const char *str, vec4_t color) {
+	const char *s;
 	unsigned char	ch; // bk001204 : array subscript
 	float	ax;
 	float	ay;
@@ -1119,19 +1105,17 @@ static void UI_DrawBannerString2( int x, int y, const char* str, vec4_t color )
 	float	fheight;
 
 	// draw the colored text
-	trap_R_SetColor( color );
-	
+	trap_R_SetColor(color);
+
 	ax = x * cgs.screenXScale + cgs.screenXBias;
 	ay = y * cgs.screenYScale + cgs.screenYBias;
 
 	s = str;
-	while ( *s )
-	{
+	while (*s) {
 		ch = *s & 127;
-		if ( ch == ' ' ) {
-			ax += ((float)PROPB_SPACE_WIDTH + (float)PROPB_GAP_WIDTH)* cgs.screenXScale;
-		}
-		else if ( ch >= 'A' && ch <= 'Z' ) {
+		if (ch == ' ') {
+			ax += ((float)PROPB_SPACE_WIDTH + (float)PROPB_GAP_WIDTH) * cgs.screenXScale;
+		} else if (ch >= 'A' && ch <= 'Z') {
 			ch -= 'A';
 			fcol = (float)propMapB[ch][0] / 256.0f;
 			frow = (float)propMapB[ch][1] / 256.0f;
@@ -1139,17 +1123,17 @@ static void UI_DrawBannerString2( int x, int y, const char* str, vec4_t color )
 			fheight = (float)PROPB_HEIGHT / 256.0f;
 			aw = (float)propMapB[ch][2] * cgs.screenXScale;
 			ah = (float)PROPB_HEIGHT * cgs.screenXScale;
-			trap_R_DrawStretchPic( ax, ay, aw, ah, fcol, frow, fcol+fwidth, frow+fheight, cgs.media.charsetPropB );
+			trap_R_DrawStretchPic(ax, ay, aw, ah, fcol, frow, fcol + fwidth, frow + fheight, cgs.media.charsetPropB);
 			ax += (aw + (float)PROPB_GAP_WIDTH * cgs.screenXScale);
 		}
 		s++;
 	}
 
-	trap_R_SetColor( NULL );
+	trap_R_SetColor(NULL);
 }
 
-void UI_DrawBannerString( int x, int y, const char* str, int style, vec4_t color ) {
-	const char *	s;
+void UI_DrawBannerString(int x, int y, const char *str, int style, vec4_t color) {
+	const char *s;
 	int				ch;
 	int				width;
 	vec4_t			drawcolor;
@@ -1157,54 +1141,53 @@ void UI_DrawBannerString( int x, int y, const char* str, int style, vec4_t color
 	// find the width of the drawn text
 	s = str;
 	width = 0;
-	while ( *s ) {
+	while (*s) {
 		ch = *s;
-		if ( ch == ' ' ) {
+		if (ch == ' ') {
 			width += PROPB_SPACE_WIDTH;
-		}
-		else if ( ch >= 'A' && ch <= 'Z' ) {
+		} else if (ch >= 'A' && ch <= 'Z') {
 			width += propMapB[ch - 'A'][2] + PROPB_GAP_WIDTH;
 		}
 		s++;
 	}
 	width -= PROPB_GAP_WIDTH;
 
-	switch( style & UI_FORMATMASK ) {
-		case UI_CENTER:
-			x -= width / 2;
-			break;
+	switch (style & UI_FORMATMASK) {
+	case UI_CENTER:
+		x -= width / 2;
+		break;
 
-		case UI_RIGHT:
-			x -= width;
-			break;
+	case UI_RIGHT:
+		x -= width;
+		break;
 
-		case UI_LEFT:
-		default:
-			break;
+	case UI_LEFT:
+	default:
+		break;
 	}
 
-	if ( style & UI_DROPSHADOW ) {
+	if (style & UI_DROPSHADOW) {
 		drawcolor[0] = drawcolor[1] = drawcolor[2] = 0;
 		drawcolor[3] = color[3];
-		UI_DrawBannerString2( x+2, y+2, str, drawcolor );
+		UI_DrawBannerString2(x + 2, y + 2, str, drawcolor);
 	}
 
-	UI_DrawBannerString2( x, y, str, color );
+	UI_DrawBannerString2(x, y, str, color);
 }
 
 
-int UI_ProportionalStringWidth( const char* str ) {
-	const char *	s;
+int UI_ProportionalStringWidth(const char *str) {
+	const char *s;
 	int				ch;
 	int				charWidth;
 	int				width;
 
 	s = str;
 	width = 0;
-	while ( *s ) {
+	while (*s) {
 		ch = *s & 127;
 		charWidth = propMap[ch][2];
-		if ( charWidth != -1 ) {
+		if (charWidth != -1) {
 			width += charWidth;
 			width += PROP_GAP_WIDTH;
 		}
@@ -1215,9 +1198,8 @@ int UI_ProportionalStringWidth( const char* str ) {
 	return width;
 }
 
-static void UI_DrawProportionalString2( int x, int y, const char* str, vec4_t color, float sizeScale, qhandle_t charset )
-{
-	const char* s;
+static void UI_DrawProportionalString2(int x, int y, const char *str, vec4_t color, float sizeScale, qhandle_t charset) {
+	const char *s;
 	unsigned char	ch; // bk001204 - unsigned
 	float	ax;
 	float	ay;
@@ -1229,25 +1211,24 @@ static void UI_DrawProportionalString2( int x, int y, const char* str, vec4_t co
 	float	fheight;
 
 	// draw the colored text
-	trap_R_SetColor( color );
-	
+	trap_R_SetColor(color);
+
 	ax = x * cgs.screenXScale + cgs.screenXBias;
 	ay = y * cgs.screenYScale + cgs.screenYBias;
 
 	s = str;
-	while ( *s )
-	{
+	while (*s) {
 		ch = *s & 127;
-		if ( ch == ' ' ) {
+		if (ch == ' ') {
 			aw = (float)PROP_SPACE_WIDTH * cgs.screenXScale * sizeScale;
-		} else if ( propMap[ch][2] != -1 ) {
+		} else if (propMap[ch][2] != -1) {
 			fcol = (float)propMap[ch][0] / 256.0f;
 			frow = (float)propMap[ch][1] / 256.0f;
 			fwidth = (float)propMap[ch][2] / 256.0f;
 			fheight = (float)PROP_HEIGHT / 256.0f;
 			aw = (float)propMap[ch][2] * cgs.screenXScale * sizeScale;
 			ah = (float)PROP_HEIGHT * cgs.screenXScale * sizeScale;
-			trap_R_DrawStretchPic( ax, ay, aw, ah, fcol, frow, fcol+fwidth, frow+fheight, charset );
+			trap_R_DrawStretchPic(ax, ay, aw, ah, fcol, frow, fcol + fwidth, frow + fheight, charset);
 		} else {
 			aw = 0;
 		}
@@ -1256,7 +1237,7 @@ static void UI_DrawProportionalString2( int x, int y, const char* str, vec4_t co
 		s++;
 	}
 
-	trap_R_SetColor( NULL );
+	trap_R_SetColor(NULL);
 }
 
 /*
@@ -1264,8 +1245,8 @@ static void UI_DrawProportionalString2( int x, int y, const char* str, vec4_t co
 UI_ProportionalSizeScale
 =================
 */
-float UI_ProportionalSizeScale( int style ) {
-	if(  style & UI_SMALLFONT ) {
+float UI_ProportionalSizeScale(int style) {
+	if (style & UI_SMALLFONT) {
 		return 0.75;
 	}
 
@@ -1278,59 +1259,59 @@ float UI_ProportionalSizeScale( int style ) {
 UI_DrawProportionalString
 =================
 */
-void UI_DrawProportionalString( int x, int y, const char* str, int style, vec4_t color ) {
+void UI_DrawProportionalString(int x, int y, const char *str, int style, vec4_t color) {
 	vec4_t	drawcolor;
 	int		width;
 	float	sizeScale;
 
-	sizeScale = UI_ProportionalSizeScale( style );
+	sizeScale = UI_ProportionalSizeScale(style);
 
-	switch( style & UI_FORMATMASK ) {
-		case UI_CENTER:
-			width = UI_ProportionalStringWidth( str ) * sizeScale;
-			x -= width / 2;
-			break;
+	switch (style & UI_FORMATMASK) {
+	case UI_CENTER:
+		width = UI_ProportionalStringWidth(str) * sizeScale;
+		x -= width / 2;
+		break;
 
-		case UI_RIGHT:
-			width = UI_ProportionalStringWidth( str ) * sizeScale;
-			x -= width;
-			break;
+	case UI_RIGHT:
+		width = UI_ProportionalStringWidth(str) * sizeScale;
+		x -= width;
+		break;
 
-		case UI_LEFT:
-		default:
-			break;
+	case UI_LEFT:
+	default:
+		break;
 	}
 
-	if ( style & UI_DROPSHADOW ) {
+	if (style & UI_DROPSHADOW) {
 		drawcolor[0] = drawcolor[1] = drawcolor[2] = 0;
 		drawcolor[3] = color[3];
-		UI_DrawProportionalString2( x+2, y+2, str, drawcolor, sizeScale, cgs.media.charsetProp );
+		UI_DrawProportionalString2(x + 2, y + 2, str, drawcolor, sizeScale, cgs.media.charsetProp);
 	}
 
-	if ( style & UI_INVERSE ) {
+	if (style & UI_INVERSE) {
 		drawcolor[0] = color[0] * 0.8;
 		drawcolor[1] = color[1] * 0.8;
 		drawcolor[2] = color[2] * 0.8;
 		drawcolor[3] = color[3];
-		UI_DrawProportionalString2( x, y, str, drawcolor, sizeScale, cgs.media.charsetProp );
+		UI_DrawProportionalString2(x, y, str, drawcolor, sizeScale, cgs.media.charsetProp);
 		return;
 	}
 
-	if ( style & UI_PULSE ) {
+	if (style & UI_PULSE) {
 		drawcolor[0] = color[0] * 0.8;
 		drawcolor[1] = color[1] * 0.8;
 		drawcolor[2] = color[2] * 0.8;
 		drawcolor[3] = color[3];
-		UI_DrawProportionalString2( x, y, str, color, sizeScale, cgs.media.charsetProp );
+		UI_DrawProportionalString2(x, y, str, color, sizeScale, cgs.media.charsetProp);
 
 		drawcolor[0] = color[0];
 		drawcolor[1] = color[1];
 		drawcolor[2] = color[2];
-		drawcolor[3] = 0.5 + 0.5 * sin( ( cg.time % TMOD_075 ) / PULSE_DIVISOR );
-		UI_DrawProportionalString2( x, y, str, drawcolor, sizeScale, cgs.media.charsetPropGlow );
+		drawcolor[3] = 0.5 + 0.5 * sin((cg.time % TMOD_075) / PULSE_DIVISOR);
+		UI_DrawProportionalString2(x, y, str, drawcolor, sizeScale, cgs.media.charsetPropGlow);
 		return;
 	}
 
-	UI_DrawProportionalString2( x, y, str, color, sizeScale, cgs.media.charsetProp );
+	UI_DrawProportionalString2(x, y, str, color, sizeScale, cgs.media.charsetProp);
 }
 #endif // Q3STATIC

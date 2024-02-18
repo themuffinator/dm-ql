@@ -1,11 +1,11 @@
 // 
 // string allocation/managment
 
-#include "ui_shared.h"
+#include "../ui/ui_shared.h"
 
 #define SCROLL_TIME_START					500
-#define SCROLL_TIME_ADJUST				150
-#define SCROLL_TIME_ADJUSTOFFSET	40
+#define SCROLL_TIME_ADJUST					150
+#define SCROLL_TIME_ADJUSTOFFSET			40
 #define SCROLL_TIME_FLOOR					20
 
 typedef struct scrollInfo_s {
@@ -237,7 +237,7 @@ void PC_SourceWarning(int handle, char *format, ...) {
 	static char string[4096];
 
 	va_start(argptr, format);
-	vsprintf(string, format, argptr);
+	ED_vsprintf(string, format, argptr);
 	va_end(argptr);
 
 	filename[0] = '\0';
@@ -259,7 +259,7 @@ void PC_SourceError(int handle, char *format, ...) {
 	static char string[4096];
 
 	va_start(argptr, format);
-	vsprintf(string, format, argptr);
+	ED_vsprintf(string, format, argptr);
 	va_end(argptr);
 
 	filename[0] = '\0';
