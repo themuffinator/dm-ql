@@ -89,6 +89,10 @@ tryagain:
 		MAKERGB( pi->flashDlightColor, 1, 1, 0 );
 		break;
 
+	case WP_HMG:
+		MAKERGB( pi->flashDlightColor, 1, 1, 0 );
+		break;
+
 	case WP_SHOTGUN:
 		MAKERGB( pi->flashDlightColor, 1, 1, 0 );
 		break;

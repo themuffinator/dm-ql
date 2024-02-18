@@ -717,6 +717,16 @@ void CG_RegisterWeapon(int weaponNum) {
 		cgs.media.bulletExplosionShader = trap_R_RegisterShader("bulletExplosion");
 		break;
 
+	case WP_HMG:
+		MAKERGB(weaponInfo->flashDlightColor, 1, 1, 0);
+		weaponInfo->flashSound[0] = trap_S_RegisterSound("sound/weapons/hmg/machgf1b.wav", qfalse);
+		weaponInfo->flashSound[1] = trap_S_RegisterSound("sound/weapons/hmg/machgf2b.wav", qfalse);
+		weaponInfo->flashSound[2] = trap_S_RegisterSound("sound/weapons/hmg/machgf3b.wav", qfalse);
+		weaponInfo->flashSound[3] = trap_S_RegisterSound("sound/weapons/hmg/machgf4b.wav", qfalse);
+		weaponInfo->ejectBrassFunc = CG_MachineGunEjectBrass;
+		cgs.media.bulletExplosionShader = trap_R_RegisterShader("bulletExplosion");
+		break;
+
 	case WP_SHOTGUN:
 		MAKERGB(weaponInfo->flashDlightColor, 1, 1, 0);
 		weaponInfo->flashSound[0] = trap_S_RegisterSound("sound/weapons/shotgun/sshotf1b.wav", qfalse);
@@ -1394,7 +1404,7 @@ void CG_AddPlayerWeapon(refEntity_t *parent, playerState_t *ps, centity_t *cent,
 			}
 		}
 
-		if (weaponNum == WP_MACHINEGUN) // make it a bit less annoying
+		if (weaponNum == WP_MACHINEGUN || weaponNum == WP_HMG) // make it a bit less annoying
 			radius = MG_FLASH_RADIUS + (rand() & WEAPON_FLASH_RADIUS_MOD);
 		else
 			radius = WEAPON_FLASH_RADIUS + (rand() & WEAPON_FLASH_RADIUS_MOD);
@@ -1998,6 +2008,24 @@ void CG_MissileHitWall(weapon_t weapon, int clientNum, vec3_t origin, vec3_t dir
 		break;
 
 	case WP_MACHINEGUN:
+		mod = cgs.media.bulletFlashModel;
+		shader = cgs.media.bulletExplosionShader;
+		mark = cgs.media.bulletMarkShader;
+
+		r = rand() & 3;
+		if (r == 0) {
+			sfx = cgs.media.sfx_ric1;
+		} else if (r == 1) {
+			sfx = cgs.media.sfx_ric2;
+		} else {
+			sfx = cgs.media.sfx_ric3;
+		}
+
+		radius = 8;
+		break;
+	}
+
+	case WP_HMG:
 		mod = cgs.media.bulletFlashModel;
 		shader = cgs.media.bulletExplosionShader;
 		mark = cgs.media.bulletMarkShader;

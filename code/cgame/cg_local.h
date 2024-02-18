@@ -677,10 +677,10 @@ typedef struct {
 	qhandle_t	charsetPropB;
 	qhandle_t	whiteShader;
 
-	qhandle_t	redCubeModel;
-	qhandle_t	blueCubeModel;
-	qhandle_t	redCubeIcon;
-	qhandle_t	blueCubeIcon;
+	qhandle_t	redSkullModel;
+	qhandle_t	blueSkullModel;
+	qhandle_t	redSkullIcon;
+	qhandle_t	blueSkullIcon;
 	qhandle_t	redFlagModel;
 	qhandle_t	blueFlagModel;
 	qhandle_t	neutralFlagModel;

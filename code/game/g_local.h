@@ -517,7 +517,7 @@ int G_InvulnerabilityEffect( gentity_t *targ, vec3_t dir, vec3_t point, vec3_t i
 void body_die( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int damage, int meansOfDeath );
 void TossClientItems( gentity_t *self );
 void TossClientPersistantPowerups( gentity_t *self );
-void TossClientCubes( gentity_t *self );
+void TossClientSkulls( gentity_t *self );
 
 // damage flags
 #define DAMAGE_RADIUS				0x00000001	// damage was indirect

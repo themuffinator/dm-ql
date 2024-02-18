@@ -269,10 +269,10 @@ qboolean EntityHasKamikaze(aas_entityinfo_t *entinfo) {
 
 /*
 ==================
-EntityCarriesCubes
+EntityCarriesSkulls
 ==================
 */
-qboolean EntityCarriesCubes(aas_entityinfo_t *entinfo) {
+qboolean EntityCarriesSkulls(aas_entityinfo_t *entinfo) {
 	entityState_t state;
 
 	if (gametype != GT_HARVESTER)
@@ -298,14 +298,14 @@ int Bot1FCTFCarryingFlag(bot_state_t *bs) {
 
 /*
 ==================
-BotHarvesterCarryingCubes
+BotHarvesterCarryingSkulls
 ==================
 */
-int BotHarvesterCarryingCubes(bot_state_t *bs) {
+int BotHarvesterCarryingSkulls(bot_state_t *bs) {
 	if (gametype != GT_HARVESTER) return qfalse;
 
-	if (bs->inventory[INVENTORY_REDCUBE] > 0) return qtrue;
-	if (bs->inventory[INVENTORY_BLUECUBE] > 0) return qtrue;
+	if (bs->inventory[INVENTORY_RED_SKULL] > 0) return qtrue;
+	if (bs->inventory[INVENTORY_BLUE_SKULL] > 0) return qtrue;
 	return qfalse;
 }
 
@@ -341,7 +341,7 @@ void BotSetTeamStatus(bot_state_t *bs) {
 		case LTG_TEAMACCOMPANY:
 			BotEntityInfo(bs->teammate, &entinfo);
 			if ( ( (gametype == GT_CTF || gametype == GT_1FCTF) && EntityCarriesFlag(&entinfo))
-				|| ( gametype == GT_HARVESTER && EntityCarriesCubes(&entinfo)) ) {
+				|| ( gametype == GT_HARVESTER && EntityCarriesSkulls(&entinfo)) ) {
 				teamtask = TEAMTASK_ESCORT;
 			}
 			else {
@@ -1126,7 +1126,7 @@ void BotHarvesterSeekGoals(bot_state_t *bs) {
 	int c;
 
 	//when carrying cubes in harvester the bot should rush to the base
-	if (BotHarvesterCarryingCubes(bs)) {
+	if (BotHarvesterCarryingSkulls(bs)) {
 		//if not already rushing to the base
 		if (bs->ltgtype != LTG_RUSHBASE) {
 			BotRefuseOrder(bs);
@@ -1150,7 +1150,7 @@ void BotHarvesterSeekGoals(bot_state_t *bs) {
 	if ( bs->ltgtype == LTG_TEAMACCOMPANY && !bs->ordered ) {
 		// if the team mate being accompanied no longer carries the flag
 		BotEntityInfo(bs->teammate, &entinfo);
-		if (!EntityCarriesCubes(&entinfo)) {
+		if (!EntityCarriesSkulls(&entinfo)) {
 			bs->ltgtype = 0;
 		}
 	}
@@ -1184,13 +1184,13 @@ void BotHarvesterSeekGoals(bot_state_t *bs) {
 	//set the time to send a message to the team mates
 	bs->teammessage_time = FloatTime() + 2 * random();
 	//
-	c = BotEnemyCubeCarrierVisible(bs);
+	c = BotEnemySkullCarrierVisible(bs);
 	if (c >= 0) {
 		//FIXME: attack enemy cube carrier
 	}
 	if (bs->ltgtype != LTG_TEAMACCOMPANY) {
 		//if there is a visible team mate carrying cubes
-		c = BotTeamCubeCarrierVisible(bs);
+		c = BotTeamSkullCarrierVisible(bs);
 		if (c >= 0) {
 			//follow the team mate carrying cubes
 			bs->decisionmaker = bs->client;
@@ -1260,7 +1260,7 @@ BotHarvesterRetreatGoals
 */
 void BotHarvesterRetreatGoals(bot_state_t *bs) {
 	//when carrying cubes in harvester the bot should rush to the base
-	if (BotHarvesterCarryingCubes(bs)) {
+	if (BotHarvesterCarryingSkulls(bs)) {
 		//if not already rushing to the base
 		if (bs->ltgtype != LTG_RUSHBASE) {
 			BotRefuseOrder(bs);
@@ -1590,10 +1590,10 @@ void BotCheckItemPickup(bot_state_t *bs, int *oldinventory) {
 		if (!oldinventory[INVENTORY_GUARD] && bs->inventory[INVENTORY_GUARD] >= 1) {
 			offence = qtrue;
 		}
-		if (!oldinventory[INVENTORY_DOUBLER] && bs->inventory[INVENTORY_DOUBLER] >= 1) {
+		if (!oldinventory[INVENTORY_DAMAGE] && bs->inventory[INVENTORY_DAMAGE] >= 1) {
 			offence = qfalse;
 		}
-		if (!oldinventory[INVENTORY_AMMOREGEN] && bs->inventory[INVENTORY_AMMOREGEN] >= 1) {
+		if (!oldinventory[INVENTORY_ARMORREGEN] && bs->inventory[INVENTORY_ARMORREGEN] >= 1) {
 			offence = qfalse;
 		}
 	}
@@ -1673,9 +1673,10 @@ void BotUpdateInventory(bot_state_t *bs) {
 	bs->inventory[INVENTORY_PLASMAGUN] = (bs->cur_ps.stats[STAT_WEAPONS] & (1 << WP_PLASMAGUN)) != 0;
 	bs->inventory[INVENTORY_BFG10K] = (bs->cur_ps.stats[STAT_WEAPONS] & (1 << WP_BFG)) != 0;
 	bs->inventory[INVENTORY_GRAPPLINGHOOK] = (bs->cur_ps.stats[STAT_WEAPONS] & (1 << WP_GRAPPLING_HOOK)) != 0;
-	bs->inventory[INVENTORY_NAILGUN] = (bs->cur_ps.stats[STAT_WEAPONS] & (1 << WP_NAILGUN)) != 0;;
-	bs->inventory[INVENTORY_PROXLAUNCHER] = (bs->cur_ps.stats[STAT_WEAPONS] & (1 << WP_PROX_LAUNCHER)) != 0;;
-	bs->inventory[INVENTORY_CHAINGUN] = (bs->cur_ps.stats[STAT_WEAPONS] & (1 << WP_CHAINGUN)) != 0;;
+	bs->inventory[INVENTORY_NAILGUN] = (bs->cur_ps.stats[STAT_WEAPONS] & (1 << WP_NAILGUN)) != 0;
+	bs->inventory[INVENTORY_PROXLAUNCHER] = (bs->cur_ps.stats[STAT_WEAPONS] & (1 << WP_PROX_LAUNCHER)) != 0;
+	bs->inventory[INVENTORY_CHAINGUN] = (bs->cur_ps.stats[STAT_WEAPONS] & (1 << WP_CHAINGUN)) != 0;
+	bs->inventory[INVENTORY_HMG] = (bs->cur_ps.stats[STAT_WEAPONS] & (1 << WP_HMG)) != 0;
 	//ammo
 	bs->inventory[INVENTORY_SHELLS] = bs->cur_ps.ammo[WP_SHOTGUN];
 	bs->inventory[INVENTORY_BULLETS] = bs->cur_ps.ammo[WP_MACHINEGUN];
@@ -1705,20 +1706,20 @@ void BotUpdateInventory(bot_state_t *bs) {
 
 	bs->inventory[INVENTORY_SCOUT] = bs->cur_ps.stats[STAT_PERSISTANT_POWERUP] == MODELINDEX_SCOUT;
 	bs->inventory[INVENTORY_GUARD] = bs->cur_ps.stats[STAT_PERSISTANT_POWERUP] == MODELINDEX_GUARD;
-	bs->inventory[INVENTORY_DOUBLER] = bs->cur_ps.stats[STAT_PERSISTANT_POWERUP] == MODELINDEX_DOUBLER;
-	bs->inventory[INVENTORY_AMMOREGEN] = bs->cur_ps.stats[STAT_PERSISTANT_POWERUP] == MODELINDEX_AMMOREGEN;
+	bs->inventory[INVENTORY_DAMAGE] = bs->cur_ps.stats[STAT_PERSISTANT_POWERUP] == MODELINDEX_DAMAGE;
+	bs->inventory[INVENTORY_ARMORREGEN] = bs->cur_ps.stats[STAT_PERSISTANT_POWERUP] == MODELINDEX_ARMORREGEN;
 
 	bs->inventory[INVENTORY_REDFLAG] = bs->cur_ps.powerups[PW_REDFLAG] != 0;
 	bs->inventory[INVENTORY_BLUEFLAG] = bs->cur_ps.powerups[PW_BLUEFLAG] != 0;
 
 	bs->inventory[INVENTORY_NEUTRALFLAG] = bs->cur_ps.powerups[PW_NEUTRALFLAG] != 0;
 	if (BotTeam(bs) == TEAM_RED) {
-		bs->inventory[INVENTORY_REDCUBE] = bs->cur_ps.generic1;
-		bs->inventory[INVENTORY_BLUECUBE] = 0;
+		bs->inventory[INVENTORY_RED_SKULL] = bs->cur_ps.generic1;
+		bs->inventory[INVENTORY_BLUE_SKULL] = 0;
 	}
 	else {
-		bs->inventory[INVENTORY_REDCUBE] = 0;
-		bs->inventory[INVENTORY_BLUECUBE] = bs->cur_ps.generic1;
+		bs->inventory[INVENTORY_RED_SKULL] = 0;
+		bs->inventory[INVENTORY_BLUE_SKULL] = bs->cur_ps.generic1;
 	}
 	BotCheckItemPickup(bs, oldinventory);
 }
@@ -1821,17 +1822,17 @@ void BotUseKamikaze(bot_state_t *bs) {
 	}
 	else if (gametype == GT_HARVESTER) {
 		//
-		if (BotHarvesterCarryingCubes(bs))
+		if (BotHarvesterCarryingSkulls(bs))
 			return;
 		//never use kamikaze if a team mate carrying cubes is visible
-		c = BotTeamCubeCarrierVisible(bs);
+		c = BotTeamSkullCarrierVisible(bs);
 		if (c >= 0) {
 			BotEntityInfo(c, &entinfo);
 			VectorSubtract(entinfo.origin, bs->origin, dir);
 			if (VectorLengthSquared(dir) < Square(KAMIKAZE_DIST))
 				return;
 		}
-		c = BotEnemyCubeCarrierVisible(bs);
+		c = BotEnemySkullCarrierVisible(bs);
 		if (c >= 0) {
 			BotEntityInfo(c, &entinfo);
 			VectorSubtract(entinfo.origin, bs->origin, dir);
@@ -1934,9 +1935,9 @@ void BotUseInvulnerability(bot_state_t *bs) {
 	}
 	else if (gametype == GT_HARVESTER) {
 		//
-		if (BotHarvesterCarryingCubes(bs))
+		if (BotHarvesterCarryingSkulls(bs))
 			return;
-		c = BotEnemyCubeCarrierVisible(bs);
+		c = BotEnemySkullCarrierVisible(bs);
 		if (c >= 0)
 			return;
 		//if near enemy base and enemy base is visible
@@ -1966,7 +1967,7 @@ BotBattleUseItems
 void BotBattleUseItems(bot_state_t *bs) {
 	if (bs->inventory[INVENTORY_HEALTH] < 40) {
 		if (bs->inventory[INVENTORY_TELEPORTER] > 0) {
-			if (!BotCTFCarryingFlag(bs) && !Bot1FCTFCarryingFlag(bs) && !BotHarvesterCarryingCubes(bs)) {
+			if (!BotCTFCarryingFlag(bs) && !Bot1FCTFCarryingFlag(bs) && !BotHarvesterCarryingSkulls(bs)) {
 				trap_EA_Use(bs->client);
 			}
 		}
@@ -2216,7 +2217,7 @@ int BotWantsToRetreat(bot_state_t *bs) {
 		return qfalse;
 	} else if (gametype == GT_HARVESTER) {
 		//if carrying cubes then always retreat
-		if (BotHarvesterCarryingCubes(bs)) return qtrue;
+		if (BotHarvesterCarryingSkulls(bs)) return qtrue;
 	}
 	//
 	if (bs->enemy >= 0) {
@@ -2268,7 +2269,7 @@ int BotWantsToChase(bot_state_t *bs) {
 		}
 	} else if (gametype == GT_HARVESTER) {
 		//never chase if carrying cubes
-		if (BotHarvesterCarryingCubes(bs))
+		if (BotHarvesterCarryingSkulls(bs))
 			return qfalse;
 	}
 	//if the bot is getting the flag
@@ -2326,8 +2327,8 @@ int BotHasPersistantPowerupAndWeapon(bot_state_t *bs) {
 	// if the bot does not have a persistant powerup
 	if (!bs->inventory[INVENTORY_SCOUT] &&
 		!bs->inventory[INVENTORY_GUARD] &&
-		!bs->inventory[INVENTORY_DOUBLER] &&
-		!bs->inventory[INVENTORY_AMMOREGEN] ) {
+		!bs->inventory[INVENTORY_DAMAGE] &&
+		!bs->inventory[INVENTORY_ARMORREGEN] ) {
 		return qfalse;
 	}
 	//if the bot is very low on health
@@ -3108,10 +3109,10 @@ void BotVisibleTeamMatesAndEnemies(bot_state_t *bs, int *teammates, int *enemies
 
 /*
 ==================
-BotTeamCubeCarrierVisible
+BotTeamSkullCarrierVisible
 ==================
 */
-int BotTeamCubeCarrierVisible(bot_state_t *bs) {
+int BotTeamSkullCarrierVisible(bot_state_t *bs) {
 	int i;
 	float vis;
 	aas_entityinfo_t entinfo;
@@ -3123,7 +3124,7 @@ int BotTeamCubeCarrierVisible(bot_state_t *bs) {
 		//if this player is active
 		if (!entinfo.valid) continue;
 		//if this player is carrying a flag
-		if (!EntityCarriesCubes(&entinfo)) continue;
+		if (!EntityCarriesSkulls(&entinfo)) continue;
 		//if the flag carrier is not on the same team
 		if (!BotSameTeam(bs, i)) continue;
 		//if the flag carrier is not visible
@@ -3137,10 +3138,10 @@ int BotTeamCubeCarrierVisible(bot_state_t *bs) {
 
 /*
 ==================
-BotEnemyCubeCarrierVisible
+BotEnemySkullCarrierVisible
 ==================
 */
-int BotEnemyCubeCarrierVisible(bot_state_t *bs) {
+int BotEnemySkullCarrierVisible(bot_state_t *bs) {
 	int i;
 	float vis;
 	aas_entityinfo_t entinfo;
@@ -3154,7 +3155,7 @@ int BotEnemyCubeCarrierVisible(bot_state_t *bs) {
 		if (!entinfo.valid)
 			continue;
 		//if this player is carrying a flag
-		if (!EntityCarriesCubes(&entinfo)) continue;
+		if (!EntityCarriesSkulls(&entinfo)) continue;
 		//if the flag carrier is on the same team
 		if (BotSameTeam(bs, i))
 			continue;
@@ -3223,6 +3224,9 @@ void BotAimAtEnemy(bot_state_t *bs) {
 	trap_BotGetWeaponInfo(bs->ws, bs->weaponnum, &wi);
 	//get the weapon specific aim accuracy and or aim skill
 	if (wi.number == WP_MACHINEGUN) {
+		aim_accuracy = trap_Characteristic_BFloat(bs->character, CHARACTERISTIC_AIM_ACCURACY_MACHINEGUN, 0, 1);
+	}
+	if (wi.number == WP_HMG) {
 		aim_accuracy = trap_Characteristic_BFloat(bs->character, CHARACTERISTIC_AIM_ACCURACY_MACHINEGUN, 0, 1);
 	}
 	else if (wi.number == WP_SHOTGUN) {
@@ -3428,6 +3432,8 @@ void BotAimAtEnemy(bot_state_t *bs) {
 	//
 	if (wi.number == WP_MACHINEGUN ||
 		wi.number == WP_SHOTGUN ||
+		wi.number == WP_HMG ||
+		wi.number == WP_CHAINGUN ||
 		wi.number == WP_LIGHTNING ||
 		wi.number == WP_RAILGUN) {
 		//distance towards the enemy

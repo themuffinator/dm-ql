@@ -749,7 +749,7 @@ void CG_EntityEvent(centity_t *cent, vec3_t position, int entityNum) {
 			case PW_DOUBLER:
 				trap_S_StartSound(NULL, es->number, CHAN_AUTO, cgs.media.doublerSound);
 				break;
-			case PW_AMMOREGEN:
+			case PW_ARMORREGEN:
 				trap_S_StartSound(NULL, es->number, CHAN_AUTO, cgs.media.ammoregenSound);
 				break;
 			}

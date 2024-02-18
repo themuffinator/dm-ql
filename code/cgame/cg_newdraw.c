@@ -264,7 +264,7 @@ static void CG_DrawBlueFlagStatus(rectDef_t *rect, qhandle_t shader) {
 		if (cgs.gametype == GT_HARVESTER) {
 			vec4_t color = { 0, 0, 1, 1 };
 			trap_R_SetColor(color);
-			CG_DrawPic(rect->x, rect->y, rect->w, rect->h, cgs.media.blueCubeIcon);
+			CG_DrawPic(rect->x, rect->y, rect->w, rect->h, cgs.media.blueSkullIcon);
 			trap_R_SetColor(NULL);
 		}
 		return;
@@ -314,7 +314,7 @@ static void CG_DrawRedFlagStatus(rectDef_t *rect, qhandle_t shader) {
 		if (cgs.gametype == GT_HARVESTER) {
 			vec4_t color = { 1, 0, 0, 1 };
 			trap_R_SetColor(color);
-			CG_DrawPic(rect->x, rect->y, rect->w, rect->h, cgs.media.redCubeIcon);
+			CG_DrawPic(rect->x, rect->y, rect->w, rect->h, cgs.media.redSkullIcon);
 			trap_R_SetColor(NULL);
 		}
 		return;
@@ -375,16 +375,16 @@ static void CG_HarvesterSkulls(rectDef_t *rect, float scale, vec4_t color, qbool
 			origin[2] = -10;
 			angles[YAW] = (cg.time & 2047) * 360 / 2048.0;
 			if (cg.snap->ps.persistant[PERS_TEAM] == TEAM_BLUE) {
-				handle = cgs.media.redCubeModel;
+				handle = cgs.media.redSkullModel;
 			} else {
-				handle = cgs.media.blueCubeModel;
+				handle = cgs.media.blueSkullModel;
 			}
 			CG_Draw3DModel(rect->x, rect->y, 35, 35, handle, 0, origin, angles);
 		} else {
 			if (cg.snap->ps.persistant[PERS_TEAM] == TEAM_BLUE) {
-				handle = cgs.media.redCubeIcon;
+				handle = cgs.media.redSkullIcon;
 			} else {
-				handle = cgs.media.blueCubeIcon;
+				handle = cgs.media.blueSkullIcon;
 			}
 			CG_DrawPic(rect->x + 3, rect->y + 16, 20, 20, handle);
 		}

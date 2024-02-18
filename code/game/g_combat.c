@@ -115,12 +115,12 @@ void TossClientItems( gentity_t *self ) {
 
 /*
 =================
-TossClientCubes
+TossClientSkulls
 =================
 */
 extern gentity_t	*neutralObelisk;
 
-void TossClientCubes( gentity_t *self ) {
+void TossClientSkulls( gentity_t *self ) {
 	gitem_t		*item;
 	gentity_t	*drop;
 	vec3_t		velocity;
@@ -136,10 +136,10 @@ void TossClientCubes( gentity_t *self ) {
 	}
 
 	if( self->client->sess.sessionTeam == TEAM_RED ) {
-		item = BG_FindItem( "Red Cube" );
+		item = BG_FindItem( "Red Skull" );
 	}
 	else {
-		item = BG_FindItem( "Blue Cube" );
+		item = BG_FindItem( "Blue Skull" );
 	}
 
 	angles[YAW] = (float)(level.time % 360);
@@ -560,7 +560,7 @@ void player_die( gentity_t *self, gentity_t *inflictor, gentity_t *attacker, int
 
 	TossClientPersistantPowerups( self );
 	if( g_gametype.integer == GT_HARVESTER ) {
-		TossClientCubes( self );
+		TossClientSkulls( self );
 	}
 
 	Cmd_Score_f( self );		// show scores

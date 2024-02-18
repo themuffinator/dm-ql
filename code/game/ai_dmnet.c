@@ -171,7 +171,7 @@ int BotNearbyGoal(bot_state_t *bs, int tfl, bot_goal_t *ltg, float range) {
 	//check if the bot should go for air
 	if (BotGoForAir(bs, tfl, ltg, range)) return qtrue;
 	// if the bot is carrying a flag or cubes
-	if (BotCTFCarryingFlag(bs) || Bot1FCTFCarryingFlag(bs) || BotHarvesterCarryingCubes(bs)) {
+	if (BotCTFCarryingFlag(bs) || Bot1FCTFCarryingFlag(bs) || BotHarvesterCarryingSkulls(bs)) {
 		//if the bot is just a few secs away from the base 
 		if (trap_AAS_AreaTravelTimeToGoalArea(bs->areanum, bs->origin,
 				bs->teamgoal.areanum, TFL_DEFAULT) < 300) {
@@ -920,7 +920,7 @@ int BotGetLongTermGoal(bot_state_t *bs, int tfl, int retreat, bot_goal_t *goal) 
 				default: BotGoHarvest(bs); return qfalse;
 			}
 			//if not carrying any cubes
-			if (!BotHarvesterCarryingCubes(bs)) {
+			if (!BotHarvesterCarryingSkulls(bs)) {
 				BotGoHarvest(bs);
 				return qfalse;
 			}
@@ -1833,7 +1833,7 @@ int AINode_Seek_LTG(bot_state_t *bs)
 			if (Bot1FCTFCarryingFlag(bs))
 				range = 50;
 		} else if (gametype == GT_HARVESTER) {
-			if (BotHarvesterCarryingCubes(bs))
+			if (BotHarvesterCarryingSkulls(bs))
 				range = 80;
 		}
 		//
@@ -2349,7 +2349,7 @@ int AINode_Battle_Retreat(bot_state_t *bs) {
 			if (Bot1FCTFCarryingFlag(bs))
 				range = 50;
 		} else if (gametype == GT_HARVESTER) {
-			if (BotHarvesterCarryingCubes(bs))
+			if (BotHarvesterCarryingSkulls(bs))
 				range = 80;
 		}
 		//

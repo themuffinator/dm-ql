@@ -1190,7 +1190,7 @@ void ClientDisconnect( int clientNum ) {
 		TossClientItems( ent );
 		TossClientPersistantPowerups( ent );
 		if( g_gametype.integer == GT_HARVESTER ) {
-			TossClientCubes( ent );
+			TossClientSkulls( ent );
 		}
 	}
 

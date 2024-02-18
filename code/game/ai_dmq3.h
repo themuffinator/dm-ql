@@ -124,7 +124,7 @@ void BotCTFSeekGoals(bot_state_t *bs);
 void BotCTFRetreatGoals(bot_state_t *bs);
 //
 int Bot1FCTFCarryingFlag(bot_state_t *bs);
-int BotHarvesterCarryingCubes(bot_state_t *bs);
+int BotHarvesterCarryingSkulls(bot_state_t *bs);
 void Bot1FCTFSeekGoals(bot_state_t *bs);
 void Bot1FCTFRetreatGoals(bot_state_t *bs);
 void BotObeliskSeekGoals(bot_state_t *bs);
@@ -132,8 +132,8 @@ void BotObeliskRetreatGoals(bot_state_t *bs);
 void BotGoHarvest(bot_state_t *bs);
 void BotHarvesterSeekGoals(bot_state_t *bs);
 void BotHarvesterRetreatGoals(bot_state_t *bs);
-int BotTeamCubeCarrierVisible(bot_state_t *bs);
-int BotEnemyCubeCarrierVisible(bot_state_t *bs);
+int BotTeamSkullCarrierVisible(bot_state_t *bs);
+int BotEnemySkullCarrierVisible(bot_state_t *bs);
 //get a random alternate route goal towards the given base
 int BotGetAlternateRouteGoal(bot_state_t *bs, int base);
 //returns either the alternate route goal or the given goal

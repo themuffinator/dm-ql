@@ -788,18 +788,15 @@ void FireWeapon( gentity_t *ent ) {
 	case WP_GAUNTLET:
 		Weapon_Gauntlet( ent );
 		break;
-	case WP_LIGHTNING:
-		Weapon_LightningFire( ent );
+	case WP_MACHINEGUN:
+		if (g_gametype.integer != GT_TEAM) {
+			Bullet_Fire(ent, MACHINEGUN_SPREAD, MACHINEGUN_DAMAGE);
+		} else {
+			Bullet_Fire(ent, MACHINEGUN_SPREAD, MACHINEGUN_TEAM_DAMAGE);
+		}
 		break;
 	case WP_SHOTGUN:
 		weapon_supershotgun_fire( ent );
-		break;
-	case WP_MACHINEGUN:
-		if ( g_gametype.integer != GT_TEAM ) {
-			Bullet_Fire( ent, MACHINEGUN_SPREAD, MACHINEGUN_DAMAGE );
-		} else {
-			Bullet_Fire( ent, MACHINEGUN_SPREAD, MACHINEGUN_TEAM_DAMAGE );
-		}
 		break;
 	case WP_GRENADE_LAUNCHER:
 		weapon_grenadelauncher_fire( ent );
@@ -807,11 +804,14 @@ void FireWeapon( gentity_t *ent ) {
 	case WP_ROCKET_LAUNCHER:
 		Weapon_RocketLauncher_Fire( ent );
 		break;
-	case WP_PLASMAGUN:
-		Weapon_Plasmagun_Fire( ent );
+	case WP_LIGHTNING:
+		Weapon_LightningFire(ent);
 		break;
 	case WP_RAILGUN:
-		weapon_railgun_fire( ent );
+		weapon_railgun_fire(ent);
+		break;
+	case WP_PLASMAGUN:
+		Weapon_Plasmagun_Fire( ent );
 		break;
 	case WP_BFG:
 		BFG_Fire( ent );
@@ -827,6 +827,9 @@ void FireWeapon( gentity_t *ent ) {
 		break;
 	case WP_CHAINGUN:
 		Bullet_Fire( ent, CHAINGUN_SPREAD, MACHINEGUN_DAMAGE );
+		break;
+	case WP_HMG:
+		Bullet_Fire( ent, MACHINEGUN_SPREAD, MACHINEGUN_DAMAGE );
 		break;
 	default:
 // FIXME		G_Error( "Bad ent->s.weapon" );

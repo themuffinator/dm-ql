@@ -2036,9 +2036,9 @@ static void CG_PlayerTokens(centity_t *cent, int renderfx) {
 
 	memset(&ent, 0, sizeof(ent));
 	if (cgs.clientinfo[cent->currentState.clientNum].team == TEAM_BLUE) {
-		ent.hModel = cgs.media.redCubeModel;
+		ent.hModel = cgs.media.redSkullModel;
 	} else {
-		ent.hModel = cgs.media.blueCubeModel;
+		ent.hModel = cgs.media.blueSkullModel;
 	}
 	ent.renderfx = renderfx;
 
@@ -2712,7 +2712,7 @@ void CG_Player(centity_t *cent) {
 		powerup.customSkin = 0;
 		trap_R_AddRefEntityToScene(&powerup);
 	}
-	if (cent->currentState.powerups & (1 << PW_AMMOREGEN)) {
+	if (cent->currentState.powerups & (1 << PW_ARMORREGEN)) {
 		memcpy(&powerup, &torso, sizeof(torso));
 		powerup.hModel = cgs.media.ammoRegenPowerupModel;
 		powerup.frame = 0;
