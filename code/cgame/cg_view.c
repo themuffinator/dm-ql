@@ -406,19 +406,6 @@ static void CG_OffsetFirstPersonView(void) {
 	// add kick offset
 
 	VectorAdd(origin, cg.kick_origin, origin);
-
-	// pivot the eye based on a neck length
-#if 0
-	{
-#define	NECK_LENGTH		8
-		vec3_t			forward, up;
-
-		cg.refdef.vieworg[2] -= NECK_LENGTH;
-		AngleVectors(cg.refdefViewAngles, forward, NULL, up);
-		VectorMA(cg.refdef.vieworg, 3, forward, cg.refdef.vieworg);
-		VectorMA(cg.refdef.vieworg, NECK_LENGTH, up, cg.refdef.vieworg);
-	}
-#endif
 }
 
 //======================================================================
@@ -604,28 +591,10 @@ static int CG_CalcViewValues(void) {
 
 	memset(&cg.refdef, 0, sizeof(cg.refdef));
 
-	// strings for in game rendering
-	// Q_strncpyz( cg.refdef.text[0], "Park Ranger", sizeof(cg.refdef.text[0]) );
-	// Q_strncpyz( cg.refdef.text[1], "19", sizeof(cg.refdef.text[1]) );
-
 	// calculate size of 3D view
 	CG_CalcVrect();
 
 	ps = &cg.predictedPlayerState;
-	/*
-		if (cg.cameraMode) {
-			vec3_t origin, angles;
-			if (trap_getCameraInfo(cg.time, &origin, &angles)) {
-				VectorCopy(origin, cg.refdef.vieworg);
-				angles[ROLL] = 0;
-				VectorCopy(angles, cg.refdefViewAngles);
-				AnglesToAxis( cg.refdefViewAngles, cg.refdef.viewaxis );
-				return CG_CalcFov();
-			} else {
-				cg.cameraMode = qfalse;
-			}
-		}
-	*/
 	// intermission view
 	if (ps->pm_type == PM_INTERMISSION) {
 		VectorCopy(ps->origin, cg.refdef.vieworg);

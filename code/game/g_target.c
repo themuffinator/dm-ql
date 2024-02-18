@@ -7,7 +7,7 @@
 /*QUAKED target_give (1 0 0) (-8 -8 -8) (8 8 8)
 Gives the activator all the items pointed to.
 */
-void Use_Target_Give( gentity_t *ent, gentity_t *other, gentity_t *activator ) {
+static void Use_Target_Give( gentity_t *ent, gentity_t *other, gentity_t *activator ) {
 	gentity_t	*t;
 	trace_t		trace;
 
@@ -45,7 +45,7 @@ void SP_target_give( gentity_t *ent ) {
 takes away all the activators powerups.
 Used to drop flight powerups into death puts.
 */
-void Use_target_remove_powerups( gentity_t *ent, gentity_t *other, gentity_t *activator ) {
+static void Use_target_remove_powerups( gentity_t *ent, gentity_t *other, gentity_t *activator ) {
 	if( !activator->client ) {
 		return;
 	}
@@ -76,7 +76,7 @@ void Think_Target_Delay( gentity_t *ent ) {
 	G_UseTargets( ent, ent->activator );
 }
 
-void Use_Target_Delay( gentity_t *ent, gentity_t *other, gentity_t *activator ) {
+static void Use_Target_Delay( gentity_t *ent, gentity_t *other, gentity_t *activator ) {
 	ent->nextthink = level.time + ( ent->wait + ent->random * crandom() ) * 1000;
 	ent->think = Think_Target_Delay;
 	ent->activator = activator;
@@ -102,7 +102,7 @@ void SP_target_delay( gentity_t *ent ) {
 
 The activator is given this many points.
 */
-void Use_Target_Score (gentity_t *ent, gentity_t *other, gentity_t *activator) {
+static void Use_Target_Score (gentity_t *ent, gentity_t *other, gentity_t *activator) {
 	if ( !activator )
 		return;
 	AddScore( activator, ent->r.currentOrigin, ent->count );
@@ -122,8 +122,9 @@ void SP_target_score( gentity_t *ent ) {
 //==========================================================
 
 /*QUAKED target_cvar (1 0 0) (-8 -8 -8) (8 8 8)
-	"cvar" : name of cvar to set
-	"cvarValue" : value to set cvar to
+When targetted sets a cvar to a value.
+"cvar" : name of cvar to set
+"cvarValue" : value to set cvar to
 */
 static void Use_Target_Cvar(gentity_t *ent, gentity_t *other, gentity_t *activator) {
 	if (!activator)
@@ -149,7 +150,7 @@ void SP_target_cvar(gentity_t *ent) {
 "message"	text to print
 If "private", only the activator gets the message.  If no checks, all clients get the message.
 */
-void Use_Target_Print (gentity_t *ent, gentity_t *other, gentity_t *activator) {
+static void Use_Target_Print (gentity_t *ent, gentity_t *other, gentity_t *activator) {
 	if ( activator && activator->client && ( ent->spawnflags & 4 ) ) {
 		trap_SendServerCommand( activator-g_entities, va("cp \"%s\"", ent->message ));
 		return;
@@ -188,7 +189,7 @@ Multiple identical looping sounds will just increase volume without any speed co
 "wait" : Seconds between auto triggerings, 0 = don't auto trigger
 "random"	wait variance, default is 0
 */
-void Use_Target_Speaker (gentity_t *ent, gentity_t *other, gentity_t *activator) {
+static void Use_Target_Speaker (gentity_t *ent, gentity_t *other, gentity_t *activator) {
 	if (ent->spawnflags & 3) {	// looping sound toggles
 		if (ent->s.loopSound)
 			ent->s.loopSound = 0;	// turn it off

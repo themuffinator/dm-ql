@@ -56,25 +56,80 @@
 #define CS_VOTE_STRING			9
 #define	CS_VOTE_YES				10
 #define	CS_VOTE_NO				11
-#define	CS_MAP_AUTHOR1			12
-#define	CS_MAP_AUTHOR2			13
+#define	CS_GAME_VERSION			12
+#define	CS_LEVEL_START_TIME		13		// so the timer only shows the current level
+#define	CS_INTERMISSION			14		// when 1, fraglimit/timelimit has been hit and intermission will start in a second or two
+#define	CS_ITEMS				15		// string of 0's and 1's that tell which items are present
 
-#define	CS_GAME_VERSION			20
-#define	CS_LEVEL_START_TIME		21		// so the timer only shows the current level
-#define	CS_INTERMISSION			22		// when 1, fraglimit/timelimit has been hit and intermission will start in a second or two
-#define CS_FLAGSTATUS			23		// string indicating flag status in CTF
-#define CS_SHADERSTATE			24
-#define CS_BOTINFO				25
-
-#define	CS_ITEMS				27		// string of 0's and 1's that tell which items are present
-
-#define	CS_MODELS				32
+#define	CS_MODELS				17
 #define	CS_SOUNDS				(CS_MODELS+MAX_MODELS)
 #define	CS_PLAYERS				(CS_SOUNDS+MAX_SOUNDS)
 #define CS_LOCATIONS			(CS_PLAYERS+MAX_CLIENTS)
 #define CS_PARTICLES			(CS_LOCATIONS+MAX_LOCATIONS) 
 
-#define CS_MAX					(CS_PARTICLES+MAX_LOCATIONS)
+#define CS_FLAGSTATUS			658
+#define CS_FIRSTPLACE			659
+#define CS_SECONDPLACE			660
+#define CS_ROUND_STATUS			661
+#define CS_ROUND_TIME			662
+#define CS_RED_PLAYERS_LEFT		663
+#define CS_BLUE_PLAYERS_LEFT	664
+#define CS_SHADERSTATE			665
+
+#define CS_TIMEOUT_BEGIN_TIME		669
+#define CS_TIMEOUT_END_TIME			670
+#define CS_RED_TEAM_TIMEOUTS_LEFT	671
+#define CS_BLUE_TEAM_TIMEOUTS_LEFT	672
+
+
+
+
+
+
+#define	CS_MAP_AUTHOR1			678
+#define	CS_MAP_AUTHOR2			679
+
+
+
+#define CS_PMOVE_SETTINGS 682
+#define CS_ARMOR_TIERED 683
+#define CS_WEAPON_SETTINGS2 684
+#define CS_CUSTOM_PLAYER_MODELS2 685
+#define CS_FIRST_PLACE_CLIENT_NUM2 686
+#define CS_SECOND_PLACE_CLIENT_NUM2 687
+#define CS_FIRST_PLACE_SCORE2 688
+#define CS_SECOND_PLACE_SCORE2 689
+
+
+#define CS_MOST_DAMAGE_DEALT2 691
+#define CS_MOST_ACCURATE2 692
+
+
+
+
+
+#define CS_BEST_ITEM_CONTROL2 697
+
+#define CS_MVP_OFFENSE 699
+#define CS_MVP_DEFENSE 700
+#define CS_MVP 701
+#define CS_DOMINATION_RED_POINTS 702
+#define CS_DOMINATION_BLUE_POINTS 703
+
+#define CS_ROUND_WINNERS 705
+#define CS_CUSTOM_SERVER_SETTINGS 706
+#define CS_MAP_VOTE_INFO 707
+#define CS_MAP_VOTE_COUNT 708
+#define CS_DISABLE_MAP_VOTE 709
+#define CS_READY_UP_TIME 710  // ready up time if one player readied
+
+
+#define CS_NUMBER_OF_RACE_CHECKPOINTS 713
+
+#define CS_BOTINFO				714		//???
+
+#define CS_MAX					(CS_BOTINFO+1)
+
 
 #if (CS_MAX) > MAX_CONFIGSTRINGS
 #error overflow: (CS_MAX) > MAX_CONFIGSTRINGS
