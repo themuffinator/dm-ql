@@ -31,7 +31,7 @@ line 27
 ;25:	const char	*var;
 ;26:
 ;27:	s = va("%i %i %i %i %i %i %i", 
-ADDRGP4 $55
+ADDRGP4 $56
 ARGP4
 ADDRLP4 8
 ADDRFP4 0
@@ -98,7 +98,7 @@ line 37
 ;35:		);
 ;36:
 ;37:	var = va( "session%i", client - level.clients );
-ADDRGP4 $56
+ADDRGP4 $57
 ARGP4
 ADDRFP4 0
 INDIRP4
@@ -133,7 +133,7 @@ CALLV
 pop
 line 40
 ;40:}
-LABELV $54
+LABELV $55
 endproc G_WriteClientSessionData 20 32
 export G_ReadClientSessionData
 proc G_ReadClientSessionData 1048 36
@@ -156,7 +156,7 @@ line 57
 ;55:	int sessionTeam;
 ;56:
 ;57:	var = va( "session%i", client - level.clients );
-ADDRGP4 $56
+ADDRGP4 $57
 ARGP4
 ADDRFP4 0
 INDIRP4
@@ -194,7 +194,7 @@ line 60
 ;60:	Q_sscanf( s, "%i %i %i %i %i %i %i",
 ADDRLP4 0
 ARGP4
-ADDRGP4 $55
+ADDRGP4 $56
 ARGP4
 ADDRLP4 1036
 ARGP4
@@ -275,7 +275,7 @@ ADDP4
 INDIRI4
 CVIU4 4
 CNSTU4 4
-LTU4 $58
+LTU4 $59
 line 75
 ;75:		client->sess.sessionTeam = TEAM_SPECTATOR;
 ADDRFP4 0
@@ -286,10 +286,10 @@ CNSTI4 3
 ASGNI4
 line 76
 ;76:	}
-LABELV $58
+LABELV $59
 line 77
 ;77:}
-LABELV $57
+LABELV $58
 endproc G_ReadClientSessionData 1048 36
 export G_ClearClientSessionData
 proc G_ClearClientSessionData 8 8
@@ -307,7 +307,7 @@ line 89
 ;87:	const char	*var;
 ;88:
 ;89:	var = va( "session%i", client - level.clients );
-ADDRGP4 $56
+ADDRGP4 $57
 ARGP4
 ADDRFP4 0
 INDIRP4
@@ -333,14 +333,14 @@ line 90
 ADDRLP4 0
 INDIRP4
 ARGP4
-ADDRGP4 $61
+ADDRGP4 $62
 ARGP4
 ADDRGP4 trap_Cvar_Set
 CALLV
 pop
 line 91
 ;91:}
-LABELV $60
+LABELV $61
 endproc G_ClearClientSessionData 8 8
 export G_InitSessionData
 proc G_InitSessionData 20 4
@@ -372,7 +372,7 @@ line 107
 ADDRGP4 g_gametype+12
 INDIRI4
 CNSTI4 3
-LTI4 $63
+LTI4 $64
 line 108
 ;108:		if ( team[0] == 's' || team[0] == 'S' ) {
 ADDRLP4 4
@@ -384,12 +384,12 @@ ASGNI4
 ADDRLP4 4
 INDIRI4
 CNSTI4 115
-EQI4 $68
+EQI4 $69
 ADDRLP4 4
 INDIRI4
 CNSTI4 83
-NEI4 $66
-LABELV $68
+NEI4 $67
+LABELV $69
 line 110
 ;109:			// a willing spectator, not a waiting-in-line
 ;110:			sess->sessionTeam = TEAM_SPECTATOR;
@@ -399,9 +399,9 @@ CNSTI4 3
 ASGNI4
 line 111
 ;111:		} else {
-ADDRGP4 $64
+ADDRGP4 $65
 JUMPV
-LABELV $66
+LABELV $67
 line 112
 ;112:			if ( g_autoJoin.integer & 2 ) {
 ADDRGP4 g_autoJoin+12
@@ -409,7 +409,7 @@ INDIRI4
 CNSTI4 2
 BANDI4
 CNSTI4 0
-EQI4 $69
+EQI4 $70
 line 113
 ;113:				sess->sessionTeam = PickTeam( -1 );
 CNSTI4 -1
@@ -425,16 +425,16 @@ INDIRI4
 ASGNI4
 line 114
 ;114:			} else {
-ADDRGP4 $64
+ADDRGP4 $65
 JUMPV
-LABELV $69
+LABELV $70
 line 116
 ;115:				// always spawn as spectator in team games
 ;116:				if ( isBot == qfalse ) {
 ADDRFP4 8
 INDIRI4
 CNSTI4 0
-NEI4 $72
+NEI4 $73
 line 117
 ;117:					sess->sessionTeam = TEAM_SPECTATOR;	
 ADDRLP4 0
@@ -443,9 +443,9 @@ CNSTI4 3
 ASGNI4
 line 118
 ;118:				} else  {
-ADDRGP4 $64
+ADDRGP4 $65
 JUMPV
-LABELV $72
+LABELV $73
 line 120
 ;119:					// bind player to specified team
 ;120:					if ( team[0] == 'r' || team[0] == 'R' ) {
@@ -458,12 +458,12 @@ ASGNI4
 ADDRLP4 8
 INDIRI4
 CNSTI4 114
-EQI4 $76
+EQI4 $77
 ADDRLP4 8
 INDIRI4
 CNSTI4 82
-NEI4 $74
-LABELV $76
+NEI4 $75
+LABELV $77
 line 121
 ;121:						sess->sessionTeam = TEAM_RED;
 ADDRLP4 0
@@ -472,9 +472,9 @@ CNSTI4 1
 ASGNI4
 line 122
 ;122:					} else if ( team[0] == 'b' || team[0] == 'B' ) {
-ADDRGP4 $64
+ADDRGP4 $65
 JUMPV
-LABELV $74
+LABELV $75
 ADDRLP4 12
 ADDRFP4 4
 INDIRP4
@@ -484,12 +484,12 @@ ASGNI4
 ADDRLP4 12
 INDIRI4
 CNSTI4 98
-EQI4 $79
+EQI4 $80
 ADDRLP4 12
 INDIRI4
 CNSTI4 66
-NEI4 $77
-LABELV $79
+NEI4 $78
+LABELV $80
 line 123
 ;123:						sess->sessionTeam = TEAM_BLUE;
 ADDRLP4 0
@@ -498,9 +498,9 @@ CNSTI4 2
 ASGNI4
 line 124
 ;124:					} else {
-ADDRGP4 $64
+ADDRGP4 $65
 JUMPV
-LABELV $77
+LABELV $78
 line 126
 ;125:						// or choose new
 ;126:						sess->sessionTeam = PickTeam( -1 );
@@ -525,9 +525,9 @@ line 130
 ;130:		}
 line 131
 ;131:	} else {
-ADDRGP4 $64
+ADDRGP4 $65
 JUMPV
-LABELV $63
+LABELV $64
 line 132
 ;132:		if ( team[0] == 's' || team[0] == 'S' ) {
 ADDRLP4 4
@@ -539,12 +539,12 @@ ASGNI4
 ADDRLP4 4
 INDIRI4
 CNSTI4 115
-EQI4 $82
+EQI4 $83
 ADDRLP4 4
 INDIRI4
 CNSTI4 83
-NEI4 $80
-LABELV $82
+NEI4 $81
+LABELV $83
 line 134
 ;133:			// a willing spectator, not a waiting-in-line
 ;134:			sess->sessionTeam = TEAM_SPECTATOR;
@@ -554,9 +554,9 @@ CNSTI4 3
 ASGNI4
 line 135
 ;135:		} else {
-ADDRGP4 $81
+ADDRGP4 $82
 JUMPV
-LABELV $80
+LABELV $81
 line 136
 ;136:			switch ( g_gametype.integer ) {
 ADDRLP4 8
@@ -566,33 +566,33 @@ ASGNI4
 ADDRLP4 8
 INDIRI4
 CNSTI4 0
-EQI4 $86
+EQI4 $87
 ADDRLP4 8
 INDIRI4
 CNSTI4 1
-EQI4 $98
+EQI4 $97
 ADDRLP4 8
 INDIRI4
 CNSTI4 2
-EQI4 $86
-ADDRGP4 $83
+EQI4 $87
+ADDRGP4 $84
 JUMPV
-LABELV $83
-LABELV $86
+LABELV $84
+LABELV $87
 line 140
 ;137:			default:
 ;138:			case GT_FFA:
-;139:			case GT_SINGLE_PLAYER:
+;139:			case GT_RACE:
 ;140:				if ( g_maxGameClients.integer > 0 && level.numNonSpectatorClients >= g_maxGameClients.integer ) {
 ADDRGP4 g_maxGameClients+12
 INDIRI4
 CNSTI4 0
-LEI4 $87
+LEI4 $88
 ADDRGP4 level+80
 INDIRI4
 ADDRGP4 g_maxGameClients+12
 INDIRI4
-LTI4 $87
+LTI4 $88
 line 141
 ;141:					sess->sessionTeam = TEAM_SPECTATOR;
 ADDRLP4 0
@@ -601,35 +601,31 @@ CNSTI4 3
 ASGNI4
 line 142
 ;142:				} else {
-ADDRGP4 $84
+ADDRGP4 $85
 JUMPV
-LABELV $87
+LABELV $88
 line 143
-;143:					if ( g_autoJoin.integer & 1 || isBot || g_gametype.integer == GT_SINGLE_PLAYER )
+;143:					if ( g_autoJoin.integer & 1 || isBot )
 ADDRGP4 g_autoJoin+12
 INDIRI4
 CNSTI4 1
 BANDI4
 CNSTI4 0
-NEI4 $97
+NEI4 $96
 ADDRFP4 8
 INDIRI4
 CNSTI4 0
-NEI4 $97
-ADDRGP4 g_gametype+12
-INDIRI4
-CNSTI4 2
-NEI4 $92
-LABELV $97
+EQI4 $93
+LABELV $96
 line 144
 ;144:						sess->sessionTeam = TEAM_FREE;
 ADDRLP4 0
 INDIRP4
 CNSTI4 0
 ASGNI4
-ADDRGP4 $84
+ADDRGP4 $85
 JUMPV
-LABELV $92
+LABELV $93
 line 146
 ;145:					else
 ;146:						sess->sessionTeam = TEAM_SPECTATOR;
@@ -641,17 +637,17 @@ line 147
 ;147:				}
 line 148
 ;148:				break;
-ADDRGP4 $84
+ADDRGP4 $85
 JUMPV
-LABELV $98
+LABELV $97
 line 151
-;149:			case GT_TOURNAMENT:
+;149:			case GT_DUEL:
 ;150:				// if the game is full, go into a waiting mode
 ;151:				if ( level.numNonSpectatorClients >= 2 ) {
 ADDRGP4 level+80
 INDIRI4
 CNSTI4 2
-LTI4 $99
+LTI4 $98
 line 152
 ;152:					sess->sessionTeam = TEAM_SPECTATOR;
 ADDRLP4 0
@@ -660,9 +656,9 @@ CNSTI4 3
 ASGNI4
 line 153
 ;153:				} else {
-ADDRGP4 $84
+ADDRGP4 $85
 JUMPV
-LABELV $99
+LABELV $98
 line 154
 ;154:					if ( g_autoJoin.integer & 1 || isBot )
 ADDRGP4 g_autoJoin+12
@@ -670,21 +666,21 @@ INDIRI4
 CNSTI4 1
 BANDI4
 CNSTI4 0
-NEI4 $105
+NEI4 $104
 ADDRFP4 8
 INDIRI4
 CNSTI4 0
-EQI4 $102
-LABELV $105
+EQI4 $101
+LABELV $104
 line 155
 ;155:						sess->sessionTeam = TEAM_FREE;
 ADDRLP4 0
 INDIRP4
 CNSTI4 0
 ASGNI4
-ADDRGP4 $84
+ADDRGP4 $85
 JUMPV
-LABELV $102
+LABELV $101
 line 157
 ;156:					else
 ;157:						sess->sessionTeam = TEAM_SPECTATOR;
@@ -696,14 +692,14 @@ line 158
 ;158:				}
 line 159
 ;159:				break;
-LABELV $84
+LABELV $85
 line 161
 ;160:			}
 ;161:		}
-LABELV $81
+LABELV $82
 line 162
 ;162:	}
-LABELV $64
+LABELV $65
 line 164
 ;163:
 ;164:	sess->spectatorState = SPECTATOR_FREE;
@@ -723,7 +719,7 @@ CNSTI4 0
 ASGNI4
 line 166
 ;166:}
-LABELV $62
+LABELV $63
 endproc G_InitSessionData 20 4
 export G_InitWorldSession
 proc G_InitWorldSession 1032 12
@@ -742,7 +738,7 @@ line 179
 ;177:	int			gt;
 ;178:
 ;179:	trap_Cvar_VariableStringBuffer( "session", s, sizeof(s) );
-ADDRGP4 $107
+ADDRGP4 $106
 ARGP4
 ADDRLP4 0
 ARGP4
@@ -772,13 +768,13 @@ ADDRLP4 0
 INDIRI1
 CVII4 1
 CNSTI4 0
-EQI4 $111
+EQI4 $110
 ADDRGP4 g_gametype+12
 INDIRI4
 ADDRLP4 1024
 INDIRI4
-EQI4 $108
-LABELV $111
+EQI4 $107
+LABELV $110
 line 185
 ;185:		level.newSession = qtrue;
 ADDRGP4 level+68
@@ -786,17 +782,17 @@ CNSTI4 1
 ASGNI4
 line 186
 ;186:		G_Printf( "Gametype changed, clearing session data.\n" );
-ADDRGP4 $113
+ADDRGP4 $112
 ARGP4
 ADDRGP4 G_Printf
 CALLV
 pop
 line 187
 ;187:	}
-LABELV $108
+LABELV $107
 line 188
 ;188:}
-LABELV $106
+LABELV $105
 endproc G_InitWorldSession 1032 12
 export G_WriteSessionData
 proc G_WriteSessionData 8 8
@@ -814,7 +810,7 @@ line 200
 ;198:	int		i;
 ;199:
 ;200:	trap_Cvar_Set( "session", va("%i", g_gametype.integer) );
-ADDRGP4 $115
+ADDRGP4 $114
 ARGP4
 ADDRGP4 g_gametype+12
 INDIRI4
@@ -823,7 +819,7 @@ ADDRLP4 4
 ADDRGP4 va
 CALLP4
 ASGNP4
-ADDRGP4 $107
+ADDRGP4 $106
 ARGP4
 ADDRLP4 4
 INDIRP4
@@ -837,9 +833,9 @@ line 202
 ADDRLP4 0
 CNSTI4 0
 ASGNI4
-ADDRGP4 $120
+ADDRGP4 $119
 JUMPV
-LABELV $117
+LABELV $116
 line 203
 ;203:		if ( level.clients[i].pers.connected != CON_DISCONNECTED ) {
 ADDRLP4 0
@@ -853,7 +849,7 @@ CNSTI4 468
 ADDP4
 INDIRI4
 CNSTI4 0
-EQI4 $122
+EQI4 $121
 line 204
 ;204:			G_WriteClientSessionData( &level.clients[i] );
 ADDRLP4 0
@@ -869,10 +865,10 @@ CALLV
 pop
 line 205
 ;205:		}
-LABELV $122
+LABELV $121
 line 206
 ;206:	}
-LABELV $118
+LABELV $117
 line 202
 ADDRLP4 0
 ADDRLP4 0
@@ -880,15 +876,15 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $120
+LABELV $119
 ADDRLP4 0
 INDIRI4
 ADDRGP4 level+24
 INDIRI4
-LTI4 $117
+LTI4 $116
 line 207
 ;207:}
-LABELV $114
+LABELV $113
 endproc G_WriteSessionData 8 8
 import svf_self_portal2
 import trap_SnapVector
@@ -1071,6 +1067,22 @@ import trap_RealTime
 import trap_Milliseconds
 import trap_Error
 import trap_Print
+import g_startingAmmo_hmg
+import g_startingAmmo_cg
+import g_startingAmmo_pl
+import g_startingAmmo_ng
+import g_startingAmmo_gh
+import g_startingAmmo_bfg
+import g_startingAmmo_pg
+import g_startingAmmo_rg
+import g_startingAmmo_lg
+import g_startingAmmo_rl
+import g_startingAmmo_gl
+import g_startingAmmo_sg
+import g_startingAmmo_mg
+import g_startingAmmo_g
+import g_startingWeapons
+import armor_tiered
 import g_rotation
 import pmove_msec
 import pmove_fixed
@@ -1090,8 +1102,6 @@ import g_unlagged
 import g_listEntity
 import g_allowVote
 import g_allowKill
-import g_podiumDrop
-import g_podiumDist
 import g_blood
 import g_motd
 import g_debugAlloc
@@ -1174,8 +1184,6 @@ import G_UnTimeShiftAllClients
 import G_TimeShiftAllClients
 import G_StoreHistory
 import G_ResetHistory
-import Svcmd_AbortPodium_f
-import SpawnModelsOnVictoryPads
 import UpdateTournamentInfo
 import Svcmd_GameMem_f
 import G_InitMemory
@@ -1279,15 +1287,10 @@ import SaveRegisteredItems
 import RegisterItem
 import ClearRegisteredItems
 import Touch_Item
-import ArmorIndex
-import Think_Weapon
 import FinishSpawningItem
 import G_SpawnItem
-import SetRespawn
 import LaunchItem
 import Drop_Item
-import PrecacheItem
-import UseHoldableItem
 import SpawnTime
 import RespawnItem
 import G_RunItem
@@ -1327,6 +1330,8 @@ import BG_FindItemForHoldable
 import BG_FindItemForPowerup
 import BG_FindItemForWeapon
 import BG_FindItem
+import bgWeapons
+import bgArmor
 import bg_numItems
 import bg_itemlist
 import Pmove
@@ -1480,12 +1485,12 @@ import srand
 import qsort
 lit
 align 1
-LABELV $115
+LABELV $114
 byte 1 37
 byte 1 105
 byte 1 0
 align 1
-LABELV $113
+LABELV $112
 byte 1 71
 byte 1 97
 byte 1 109
@@ -1529,7 +1534,7 @@ byte 1 46
 byte 1 10
 byte 1 0
 align 1
-LABELV $107
+LABELV $106
 byte 1 115
 byte 1 101
 byte 1 115
@@ -1539,10 +1544,10 @@ byte 1 111
 byte 1 110
 byte 1 0
 align 1
-LABELV $61
+LABELV $62
 byte 1 0
 align 1
-LABELV $56
+LABELV $57
 byte 1 115
 byte 1 101
 byte 1 115
@@ -1554,7 +1559,7 @@ byte 1 37
 byte 1 105
 byte 1 0
 align 1
-LABELV $55
+LABELV $56
 byte 1 37
 byte 1 105
 byte 1 32

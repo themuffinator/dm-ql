@@ -1086,6 +1086,8 @@ typedef struct {
 	qboolean		filterKeyUpEvent;
 	qboolean		score_catched;
 	int				score_key;
+
+	qboolean		armor_tiered;
 } cgs_t;
 
 //==============================================================================
@@ -1375,6 +1377,7 @@ void CG_InitConsoleCommands(void);
 void CG_ExecuteNewServerCommands(int latestSequence);
 void CG_ParseServerinfo(void);
 void CG_ParseSysteminfo(void);
+void CG_ParseArmorTiered(void);
 void CG_SetConfigValues(void);
 void CG_ShaderStateChanged(void);
 

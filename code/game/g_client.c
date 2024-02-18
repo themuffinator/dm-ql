@@ -919,6 +919,41 @@ void ClientBegin( int clientNum ) {
 }
 
 
+static void ClientStartingWeapons(gclient_t *client) {
+	int i, weaps = g_startingWeapons.integer << 1;
+
+	if (weaps & (1 << WP_NUM_WEAPONS)) {// || level.warmupTime < 0) {
+		weaps = level.mapWeapons;
+		weaps |= (1 << WP_GAUNTLET);
+		weaps |= (1 << WP_MACHINEGUN);
+	}
+
+	for (i = WP_NONE + 1; i < WP_NUM_WEAPONS; i++) {
+		if (weaps & (1 << i)) {
+			client->ps.stats[STAT_WEAPONS] |= (1 << i);
+			client->ps.ammo[i] = trap_Cvar_VariableIntegerValue(va("g_startingAmmo_%s", bgWeapons[i].shortName));
+		}
+	}
+
+	if (g_gametype.integer == GT_TEAM && client->ps.ammo[WP_MACHINEGUN] > 0) {
+		client->ps.ammo[WP_MACHINEGUN] /= 2;
+	}
+}
+
+
+static void ClientForceHighestWeaponUp(gclient_t *client) {
+	int i;
+
+	for (i = WP_NUM_WEAPONS - 1; i > 0; i--) {
+		if (client->ps.stats[STAT_WEAPONS] & (1 << i) && client->ps.ammo[i]) {
+			client->ps.weapon = i;
+			client->ps.weaponstate = WEAPON_READY;
+			break;
+		}
+	}
+}
+
+
 /*
 ===========
 ClientSpawn
@@ -1065,16 +1100,7 @@ void ClientSpawn(gentity_t *ent) {
 
 	client->ps.clientNum = index;
 
-	client->ps.stats[STAT_WEAPONS] = ( 1 << WP_MACHINEGUN );
-	if ( g_gametype.integer == GT_TEAM ) {
-		client->ps.ammo[WP_MACHINEGUN] = 50;
-	} else {
-		client->ps.ammo[WP_MACHINEGUN] = 100;
-	}
-
-	client->ps.stats[STAT_WEAPONS] |= ( 1 << WP_GAUNTLET );
-	client->ps.ammo[WP_GAUNTLET] = -1;
-	client->ps.ammo[WP_GRAPPLING_HOOK] = -1;
+	ClientStartingWeapons(client);
 
 	// health will count down towards max_health
 	ent->health = client->ps.stats[STAT_HEALTH] = client->ps.stats[STAT_MAX_HEALTH] + 25;
@@ -1092,9 +1118,8 @@ void ClientSpawn(gentity_t *ent) {
 	if ( !isSpectator )
 		G_KillBox( ent );
 
-	// force the base weapon up
-	client->ps.weapon = WP_MACHINEGUN;
-	client->ps.weaponstate = WEAPON_READY;
+	// force the highest weapon in the chain up
+	ClientForceHighestWeaponUp(client);
 
 	// don't allow full run speed for a bit
 	client->ps.pm_flags |= PMF_TIME_KNOCKBACK;

@@ -38,7 +38,7 @@ CALLV
 pop
 line 18
 ;18:}
-LABELV $54
+LABELV $55
 endproc SP_info_camp 4 8
 export SP_info_null
 proc SP_info_null 0 4
@@ -59,7 +59,7 @@ CALLV
 pop
 line 26
 ;26:}
-LABELV $55
+LABELV $56
 endproc SP_info_null 0 4
 export SP_info_notnull
 proc SP_info_notnull 4 8
@@ -90,7 +90,7 @@ CALLV
 pop
 line 35
 ;35:}
-LABELV $56
+LABELV $57
 endproc SP_info_notnull 4 8
 export SP_light
 proc SP_light 0 4
@@ -115,7 +115,7 @@ CALLV
 pop
 line 47
 ;47:}
-LABELV $57
+LABELV $58
 endproc SP_light 0 4
 export TeleportPlayer
 proc TeleportPlayer 24 16
@@ -147,7 +147,7 @@ CNSTI4 616
 ADDP4
 INDIRI4
 CNSTI4 3
-EQI4 $59
+EQI4 $60
 line 65
 ;65:		tent = G_TempEntity( player->client->ps.origin, EV_PLAYER_TELEPORT_OUT );
 ADDRFP4 0
@@ -210,7 +210,7 @@ INDIRI4
 ASGNI4
 line 70
 ;70:	}
-LABELV $59
+LABELV $60
 line 73
 ;71:
 ;72:	// unlink to make sure it can't possibly interfere with G_KillBox
@@ -262,7 +262,7 @@ ADDRFP4 8
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $61
+EQU4 $62
 line 80
 ;80:		AngleVectors( angles, player->client->ps.velocity, NULL, NULL );
 ADDRFP4 8
@@ -283,7 +283,7 @@ ARGP4
 ADDRGP4 AngleVectors
 CALLV
 pop
-LABELV $61
+LABELV $62
 line 82
 ;81:
 ;82:	if ( player->client->sess.sessionTeam == TEAM_SPECTATOR ) {
@@ -296,7 +296,7 @@ CNSTI4 616
 ADDP4
 INDIRI4
 CNSTI4 3
-NEI4 $63
+NEI4 $64
 line 83
 ;83:		VectorScale( player->client->ps.velocity, 1.25f, player->client->ps.velocity );
 ADDRLP4 8
@@ -367,9 +367,9 @@ MULF4
 ASGNF4
 line 84
 ;84:	} else {
-ADDRGP4 $64
+ADDRGP4 $65
 JUMPV
-LABELV $63
+LABELV $64
 line 85
 ;85:		VectorScale( player->client->ps.velocity, g_speed.value * 1.25f, player->client->ps.velocity );
 ADDRLP4 8
@@ -449,7 +449,7 @@ MULF4
 ASGNF4
 line 86
 ;86:	}
-LABELV $64
+LABELV $65
 line 88
 ;87:
 ;88:	player->client->ps.pm_time = 160; // hold time
@@ -510,7 +510,7 @@ ADDRFP4 8
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $68
+EQU4 $69
 line 96
 ;96:		SetClientViewAngle( player, angles );
 ADDRFP4 0
@@ -522,7 +522,7 @@ ARGP4
 ADDRGP4 SetClientViewAngle
 CALLV
 pop
-LABELV $68
+LABELV $69
 line 99
 ;97:
 ;98:	// unlagged
@@ -546,7 +546,7 @@ CNSTI4 616
 ADDP4
 INDIRI4
 CNSTI4 3
-EQI4 $70
+EQI4 $71
 line 103
 ;103:		G_KillBox( player );
 ADDRFP4 0
@@ -557,7 +557,7 @@ CALLV
 pop
 line 104
 ;104:	}
-LABELV $70
+LABELV $71
 line 107
 ;105:
 ;106:	// save results of pmove
@@ -613,7 +613,7 @@ CNSTI4 616
 ADDP4
 INDIRI4
 CNSTI4 3
-EQI4 $72
+EQI4 $73
 line 113
 ;113:		trap_LinkEntity( player );
 ADDRFP4 0
@@ -624,10 +624,10 @@ CALLV
 pop
 line 114
 ;114:	}
-LABELV $72
+LABELV $73
 line 115
 ;115:}
-LABELV $58
+LABELV $59
 endproc TeleportPlayer 24 16
 export SP_misc_teleporter_dest
 proc SP_misc_teleporter_dest 0 0
@@ -642,7 +642,7 @@ line 123
 ;123:void SP_misc_teleporter_dest( gentity_t *ent ) {
 line 124
 ;124:}
-LABELV $74
+LABELV $75
 endproc SP_misc_teleporter_dest 0 0
 export SP_misc_model
 proc SP_misc_model 0 4
@@ -676,7 +676,7 @@ pop
 line 145
 ;144:#endif
 ;145:}
-LABELV $75
+LABELV $76
 endproc SP_misc_model 0 4
 export locateCamera
 proc locateCamera 36 8
@@ -711,10 +711,10 @@ ADDRLP4 0
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $77
+NEU4 $78
 line 156
 ;156:		G_Printf( "Couldn't find target for misc_partal_surface\n" );
-ADDRGP4 $79
+ADDRGP4 $80
 ARGP4
 ADDRGP4 G_Printf
 CALLV
@@ -729,9 +729,9 @@ CALLV
 pop
 line 158
 ;158:		return;
-ADDRGP4 $76
+ADDRGP4 $77
 JUMPV
-LABELV $77
+LABELV $78
 line 160
 ;159:	}
 ;160:	ent->r.ownerNum = owner->s.number;
@@ -755,7 +755,7 @@ INDIRI4
 CNSTI4 1
 BANDI4
 CNSTI4 0
-EQI4 $80
+EQI4 $81
 line 164
 ;164:		ent->s.frame = 25;
 ADDRFP4 0
@@ -766,9 +766,9 @@ CNSTI4 25
 ASGNI4
 line 165
 ;165:	} else if ( owner->spawnflags & 2 ) {
-ADDRGP4 $81
+ADDRGP4 $82
 JUMPV
-LABELV $80
+LABELV $81
 ADDRLP4 0
 INDIRP4
 CNSTI4 528
@@ -777,7 +777,7 @@ INDIRI4
 CNSTI4 2
 BANDI4
 CNSTI4 0
-EQI4 $82
+EQI4 $83
 line 166
 ;166:		ent->s.frame = 75;
 ADDRFP4 0
@@ -788,8 +788,8 @@ CNSTI4 75
 ASGNI4
 line 167
 ;167:	}
+LABELV $83
 LABELV $82
-LABELV $81
 line 170
 ;168:
 ;169:	// swing camera ?
@@ -802,7 +802,7 @@ INDIRI4
 CNSTI4 4
 BANDI4
 CNSTI4 0
-EQI4 $84
+EQI4 $85
 line 172
 ;171:		// set to 0 for no rotation at all
 ;172:		ent->s.powerups = 0;
@@ -814,9 +814,9 @@ CNSTI4 0
 ASGNI4
 line 173
 ;173:	}
-ADDRGP4 $85
+ADDRGP4 $86
 JUMPV
-LABELV $84
+LABELV $85
 line 174
 ;174:	else {
 line 175
@@ -829,7 +829,7 @@ CNSTI4 1
 ASGNI4
 line 176
 ;176:	}
-LABELV $85
+LABELV $86
 line 179
 ;177:
 ;178:	// clientNum holds the rotate offset
@@ -881,7 +881,7 @@ ADDRLP4 16
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $86
+EQU4 $87
 line 186
 ;186:		VectorSubtract( target->s.origin, owner->s.origin, dir );
 ADDRLP4 4
@@ -932,9 +932,9 @@ CALLF4
 pop
 line 188
 ;188:	} else {
-ADDRGP4 $87
+ADDRGP4 $88
 JUMPV
-LABELV $86
+LABELV $87
 line 189
 ;189:		G_SetMovedir( owner->s.angles, dir );
 ADDRLP4 0
@@ -949,7 +949,7 @@ CALLV
 pop
 line 190
 ;190:	}
-LABELV $87
+LABELV $88
 line 192
 ;191:
 ;192:	ent->s.eventParm = DirToByte( dir );
@@ -968,7 +968,7 @@ INDIRI4
 ASGNI4
 line 193
 ;193:}
-LABELV $76
+LABELV $77
 endproc locateCamera 36 8
 export SP_misc_portal_surface
 proc SP_misc_portal_surface 4 4
@@ -1054,7 +1054,7 @@ ADDP4
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $91
+NEU4 $92
 line 208
 ;208:		VectorCopy( ent->s.origin, ent->s.origin2 );
 ADDRLP4 0
@@ -1073,9 +1073,9 @@ INDIRB
 ASGNB 12
 line 209
 ;209:	} else {
-ADDRGP4 $92
+ADDRGP4 $93
 JUMPV
-LABELV $91
+LABELV $92
 line 210
 ;210:		ent->think = locateCamera;
 ADDRFP4 0
@@ -1097,10 +1097,10 @@ ADDI4
 ASGNI4
 line 212
 ;212:	}
-LABELV $92
+LABELV $93
 line 213
 ;213:}
-LABELV $90
+LABELV $91
 endproc SP_misc_portal_surface 4 4
 export SP_misc_portal_camera
 proc SP_misc_portal_camera 4 12
@@ -1164,9 +1164,9 @@ pop
 line 226
 ;225:
 ;226:	G_SpawnFloat( "roll", "0", &roll );
-ADDRGP4 $95
-ARGP4
 ADDRGP4 $96
+ARGP4
+ADDRGP4 $97
 ARGP4
 ADDRLP4 0
 ARGP4
@@ -1188,7 +1188,7 @@ CVFI4 4
 ASGNI4
 line 229
 ;229:}
-LABELV $94
+LABELV $95
 endproc SP_misc_portal_camera 4 12
 export Use_Shooter
 proc Use_Shooter 76 12
@@ -1217,7 +1217,7 @@ ADDP4
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $98
+EQU4 $99
 line 246
 ;246:		VectorSubtract( ent->enemy->r.currentOrigin, ent->s.origin, dir );
 ADDRLP4 40
@@ -1285,9 +1285,9 @@ CALLF4
 pop
 line 248
 ;248:	} else {
-ADDRGP4 $99
+ADDRGP4 $100
 JUMPV
-LABELV $98
+LABELV $99
 line 249
 ;249:		VectorCopy( ent->movedir, dir );
 ADDRLP4 0
@@ -1299,7 +1299,7 @@ INDIRB
 ASGNB 12
 line 250
 ;250:	}
-LABELV $99
+LABELV $100
 line 253
 ;251:
 ;252:	// randomize a bit
@@ -1459,18 +1459,18 @@ ASGNI4
 ADDRLP4 56
 INDIRI4
 CNSTI4 4
-EQI4 $117
-ADDRLP4 56
-INDIRI4
-CNSTI4 5
 EQI4 $118
 ADDRLP4 56
 INDIRI4
-CNSTI4 8
+CNSTI4 5
 EQI4 $119
-ADDRGP4 $114
+ADDRLP4 56
+INDIRI4
+CNSTI4 8
+EQI4 $120
+ADDRGP4 $115
 JUMPV
-LABELV $117
+LABELV $118
 line 266
 ;265:	case WP_GRENADE_LAUNCHER:
 ;266:		fire_grenade( ent, ent->s.origin, dir );
@@ -1493,9 +1493,9 @@ CALLP4
 pop
 line 267
 ;267:		break;
-ADDRGP4 $115
+ADDRGP4 $116
 JUMPV
-LABELV $118
+LABELV $119
 line 269
 ;268:	case WP_ROCKET_LAUNCHER:
 ;269:		fire_rocket( ent, ent->s.origin, dir );
@@ -1518,9 +1518,9 @@ CALLP4
 pop
 line 270
 ;270:		break;
-ADDRGP4 $115
+ADDRGP4 $116
 JUMPV
-LABELV $119
+LABELV $120
 line 272
 ;271:	case WP_PLASMAGUN:
 ;272:		fire_plasma( ent, ent->s.origin, dir );
@@ -1543,8 +1543,8 @@ CALLP4
 pop
 line 273
 ;273:		break;
-LABELV $114
 LABELV $115
+LABELV $116
 line 276
 ;274:	}
 ;275:
@@ -1561,7 +1561,7 @@ CALLV
 pop
 line 277
 ;277:}
-LABELV $97
+LABELV $98
 endproc Use_Shooter 76 12
 proc InitShooter_Finish 8 4
 line 280
@@ -1609,7 +1609,7 @@ CNSTI4 0
 ASGNI4
 line 284
 ;284:}
-LABELV $120
+LABELV $121
 endproc InitShooter_Finish 8 4
 export InitShooter
 proc InitShooter 16 8
@@ -1678,7 +1678,7 @@ CNSTI4 808
 ADDP4
 INDIRF4
 CNSTF4 0
-NEF4 $122
+NEF4 $123
 line 295
 ;295:		ent->random = 1.0;
 ADDRFP4 0
@@ -1689,7 +1689,7 @@ CNSTF4 1065353216
 ASGNF4
 line 296
 ;296:	}
-LABELV $122
+LABELV $123
 line 297
 ;297:	ent->random = sin( M_PI * ent->random / 180 );
 ADDRLP4 8
@@ -1725,7 +1725,7 @@ ADDP4
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $124
+EQU4 $125
 line 300
 ;300:		ent->think = InitShooter_Finish;
 ADDRFP4 0
@@ -1747,7 +1747,7 @@ ADDI4
 ASGNI4
 line 302
 ;302:	}
-LABELV $124
+LABELV $125
 line 303
 ;303:	trap_LinkEntity( ent );
 ADDRFP4 0
@@ -1758,7 +1758,7 @@ CALLV
 pop
 line 304
 ;304:}
-LABELV $121
+LABELV $122
 endproc InitShooter 16 8
 export SP_shooter_rocket
 proc SP_shooter_rocket 0 8
@@ -1781,7 +1781,7 @@ CALLV
 pop
 line 312
 ;312:}
-LABELV $127
+LABELV $128
 endproc SP_shooter_rocket 0 8
 export SP_shooter_plasma
 proc SP_shooter_plasma 0 8
@@ -1804,7 +1804,7 @@ CALLV
 pop
 line 320
 ;320:}
-LABELV $128
+LABELV $129
 endproc SP_shooter_plasma 0 8
 export SP_shooter_grenade
 proc SP_shooter_grenade 0 8
@@ -1827,7 +1827,7 @@ CALLV
 pop
 line 328
 ;328:}
-LABELV $129
+LABELV $130
 endproc SP_shooter_grenade 0 8
 proc PortalDie 0 4
 line 331
@@ -1845,7 +1845,7 @@ pop
 line 334
 ;333:	//FIXME do something more interesting
 ;334:}
-LABELV $130
+LABELV $131
 endproc PortalDie 0 4
 export DropPortalDestination
 proc DropPortalDestination 36 8
@@ -1869,7 +1869,7 @@ INDIRP4
 ASGNP4
 line 343
 ;343:	ent->s.modelindex = G_ModelIndex( "models/powerups/teleporter/tele_exit.md3" );
-ADDRGP4 $132
+ADDRGP4 $133
 ARGP4
 ADDRLP4 20
 ADDRGP4 G_ModelIndex
@@ -1953,7 +1953,7 @@ ADDRLP4 0
 INDIRP4
 CNSTI4 524
 ADDP4
-ADDRGP4 $137
+ADDRGP4 $138
 ASGNP4
 line 352
 ;352:	ent->s.pos.trType = TR_STATIONARY;
@@ -2085,7 +2085,7 @@ line 370
 ;368:
 ;369:	// give the item back so they can drop the source now
 ;370:	player->client->ps.stats[STAT_HOLDABLE_ITEM] = BG_FindItem( "Portal" ) - bg_itemlist;
-ADDRGP4 $140
+ADDRGP4 $141
 ARGP4
 ADDRLP4 32
 ADDRGP4 BG_FindItem
@@ -2110,7 +2110,7 @@ DIVI4
 ASGNI4
 line 371
 ;371:}
-LABELV $131
+LABELV $132
 endproc DropPortalDestination 36 8
 proc PortalTouch 16 32
 line 374
@@ -2128,12 +2128,12 @@ CNSTI4 732
 ADDP4
 INDIRI4
 CNSTI4 0
-GTI4 $142
+GTI4 $143
 line 379
 ;379:		return;
-ADDRGP4 $141
+ADDRGP4 $142
 JUMPV
-LABELV $142
+LABELV $143
 line 381
 ;380:	}
 ;381:	if( !other->client ) {
@@ -2144,12 +2144,12 @@ ADDP4
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $144
+NEU4 $145
 line 382
 ;382:		return;
-ADDRGP4 $141
+ADDRGP4 $142
 JUMPV
-LABELV $144
+LABELV $145
 line 388
 ;383:	}
 ;384://	if( other->client->ps.persistant[PERS_TEAM] != self->spawnflags ) {
@@ -2166,7 +2166,7 @@ CNSTI4 348
 ADDP4
 INDIRI4
 CNSTI4 0
-EQI4 $146
+EQI4 $147
 line 389
 ;389:		Drop_Item( other, BG_FindItemForPowerup( PW_NEUTRALFLAG ), 0 );
 CNSTI4 9
@@ -2199,9 +2199,9 @@ CNSTI4 0
 ASGNI4
 line 391
 ;391:	}
-ADDRGP4 $147
+ADDRGP4 $148
 JUMPV
-LABELV $146
+LABELV $147
 line 392
 ;392:	else if ( other->client->ps.powerups[PW_REDFLAG] ) {		// only happens in standard CTF
 ADDRFP4 4
@@ -2213,7 +2213,7 @@ CNSTI4 340
 ADDP4
 INDIRI4
 CNSTI4 0
-EQI4 $148
+EQI4 $149
 line 393
 ;393:		Drop_Item( other, BG_FindItemForPowerup( PW_REDFLAG ), 0 );
 CNSTI4 7
@@ -2246,9 +2246,9 @@ CNSTI4 0
 ASGNI4
 line 395
 ;395:	}
-ADDRGP4 $149
+ADDRGP4 $150
 JUMPV
-LABELV $148
+LABELV $149
 line 396
 ;396:	else if ( other->client->ps.powerups[PW_BLUEFLAG] ) {	// only happens in standard CTF
 ADDRFP4 4
@@ -2260,7 +2260,7 @@ CNSTI4 344
 ADDP4
 INDIRI4
 CNSTI4 0
-EQI4 $150
+EQI4 $151
 line 397
 ;397:		Drop_Item( other, BG_FindItemForPowerup( PW_BLUEFLAG ), 0 );
 CNSTI4 8
@@ -2293,9 +2293,9 @@ CNSTI4 0
 ASGNI4
 line 399
 ;399:	}
+LABELV $151
 LABELV $150
-LABELV $149
-LABELV $147
+LABELV $148
 line 402
 ;400:
 ;401:	// find the destination
@@ -2303,9 +2303,9 @@ line 402
 ADDRLP4 0
 CNSTP4 0
 ASGNP4
-ADDRGP4 $153
+ADDRGP4 $154
 JUMPV
-LABELV $152
+LABELV $153
 line 403
 ;403:	while( (destination = G_Find(destination, FOFS(classname), "hi_portal destination")) != NULL ) {
 line 404
@@ -2320,23 +2320,23 @@ INDIRP4
 CNSTI4 760
 ADDP4
 INDIRI4
-NEI4 $155
+NEI4 $156
 line 405
 ;405:			break;
-ADDRGP4 $154
+ADDRGP4 $155
 JUMPV
-LABELV $155
+LABELV $156
 line 407
 ;406:		}
 ;407:	}
-LABELV $153
+LABELV $154
 line 403
 ADDRLP4 0
 INDIRP4
 ARGP4
 CNSTI4 524
 ARGI4
-ADDRGP4 $137
+ADDRGP4 $138
 ARGP4
 ADDRLP4 4
 ADDRGP4 G_Find
@@ -2350,8 +2350,8 @@ ADDRLP4 4
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $152
-LABELV $154
+NEU4 $153
+LABELV $155
 line 410
 ;408:
 ;409:	// if there is not one, die!
@@ -2360,7 +2360,7 @@ ADDRLP4 0
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $157
+NEU4 $158
 line 411
 ;411:		if( self->pos1[0] || self->pos1[1] || self->pos1[2] ) {
 ADDRLP4 8
@@ -2373,22 +2373,22 @@ CNSTI4 612
 ADDP4
 INDIRF4
 CNSTF4 0
-NEF4 $162
+NEF4 $163
 ADDRLP4 8
 INDIRP4
 CNSTI4 616
 ADDP4
 INDIRF4
 CNSTF4 0
-NEF4 $162
+NEF4 $163
 ADDRLP4 8
 INDIRP4
 CNSTI4 620
 ADDP4
 INDIRF4
 CNSTF4 0
-EQF4 $159
-LABELV $162
+EQF4 $160
+LABELV $163
 line 412
 ;412:			TeleportPlayer( other, self->pos1, self->s.angles );
 ADDRFP4 4
@@ -2413,7 +2413,7 @@ CALLV
 pop
 line 413
 ;413:		}
-LABELV $159
+LABELV $160
 line 414
 ;414:		G_Damage( other, other, other, NULL, NULL, 100000, DAMAGE_NO_PROTECTION, MOD_TELEFRAG );
 ADDRLP4 12
@@ -2444,9 +2444,9 @@ CALLV
 pop
 line 415
 ;415:		return;
-ADDRGP4 $141
+ADDRGP4 $142
 JUMPV
-LABELV $157
+LABELV $158
 line 418
 ;416:	}
 ;417:
@@ -2469,7 +2469,7 @@ CALLV
 pop
 line 419
 ;419:}
-LABELV $141
+LABELV $142
 endproc PortalTouch 16 32
 proc PortalEnable 0 0
 line 422
@@ -2505,7 +2505,7 @@ ADDI4
 ASGNI4
 line 426
 ;426:}
-LABELV $163
+LABELV $164
 endproc PortalEnable 0 0
 export DropPortalSource
 proc DropPortalSource 32 12
@@ -2530,7 +2530,7 @@ INDIRP4
 ASGNP4
 line 436
 ;436:	ent->s.modelindex = G_ModelIndex( "models/powerups/teleporter/tele_enter.md3" );
-ADDRGP4 $166
+ADDRGP4 $167
 ARGP4
 ADDRLP4 24
 ADDRGP4 G_ModelIndex
@@ -2614,7 +2614,7 @@ ADDRLP4 4
 INDIRP4
 CNSTI4 524
 ADDP4
-ADDRGP4 $171
+ADDRGP4 $172
 ASGNP4
 line 445
 ;445:	ent->s.pos.trType = TR_STATIONARY;
@@ -2722,9 +2722,9 @@ line 463
 ADDRLP4 0
 CNSTP4 0
 ASGNP4
-ADDRGP4 $174
+ADDRGP4 $175
 JUMPV
-LABELV $173
+LABELV $174
 line 464
 ;464:	while( (destination = G_Find(destination, FOFS(classname), "hi_portal destination")) != NULL ) {
 line 465
@@ -2739,7 +2739,7 @@ INDIRP4
 CNSTI4 760
 ADDP4
 INDIRI4
-NEI4 $176
+NEI4 $177
 line 466
 ;466:			VectorCopy( destination->s.pos.trBase, ent->pos1 );
 ADDRLP4 4
@@ -2754,20 +2754,20 @@ INDIRB
 ASGNB 12
 line 467
 ;467:			break;
-ADDRGP4 $175
+ADDRGP4 $176
 JUMPV
-LABELV $176
+LABELV $177
 line 469
 ;468:		}
 ;469:	}
-LABELV $174
+LABELV $175
 line 464
 ADDRLP4 0
 INDIRP4
 ARGP4
 CNSTI4 524
 ARGI4
-ADDRGP4 $137
+ADDRGP4 $138
 ARGP4
 ADDRLP4 28
 ADDRGP4 G_Find
@@ -2781,12 +2781,12 @@ ADDRLP4 28
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $173
-LABELV $175
+NEU4 $174
+LABELV $176
 line 471
 ;470:
 ;471:}
-LABELV $165
+LABELV $166
 endproc DropPortalSource 32 12
 import svf_self_portal2
 import trap_SnapVector
@@ -2969,6 +2969,22 @@ import trap_RealTime
 import trap_Milliseconds
 import trap_Error
 import trap_Print
+import g_startingAmmo_hmg
+import g_startingAmmo_cg
+import g_startingAmmo_pl
+import g_startingAmmo_ng
+import g_startingAmmo_gh
+import g_startingAmmo_bfg
+import g_startingAmmo_pg
+import g_startingAmmo_rg
+import g_startingAmmo_lg
+import g_startingAmmo_rl
+import g_startingAmmo_gl
+import g_startingAmmo_sg
+import g_startingAmmo_mg
+import g_startingAmmo_g
+import g_startingWeapons
+import armor_tiered
 import g_rotation
 import pmove_msec
 import pmove_fixed
@@ -2988,8 +3004,6 @@ import g_unlagged
 import g_listEntity
 import g_allowVote
 import g_allowKill
-import g_podiumDrop
-import g_podiumDist
 import g_blood
 import g_motd
 import g_debugAlloc
@@ -3072,8 +3086,6 @@ import G_UnTimeShiftAllClients
 import G_TimeShiftAllClients
 import G_StoreHistory
 import G_ResetHistory
-import Svcmd_AbortPodium_f
-import SpawnModelsOnVictoryPads
 import UpdateTournamentInfo
 import G_ClearClientSessionData
 import G_WriteClientSessionData
@@ -3180,15 +3192,10 @@ import SaveRegisteredItems
 import RegisterItem
 import ClearRegisteredItems
 import Touch_Item
-import ArmorIndex
-import Think_Weapon
 import FinishSpawningItem
 import G_SpawnItem
-import SetRespawn
 import LaunchItem
 import Drop_Item
-import PrecacheItem
-import UseHoldableItem
 import SpawnTime
 import RespawnItem
 import G_RunItem
@@ -3228,6 +3235,8 @@ import BG_FindItemForHoldable
 import BG_FindItemForPowerup
 import BG_FindItemForWeapon
 import BG_FindItem
+import bgWeapons
+import bgArmor
 import bg_numItems
 import bg_itemlist
 import Pmove
@@ -3381,7 +3390,7 @@ import srand
 import qsort
 lit
 align 1
-LABELV $171
+LABELV $172
 byte 1 104
 byte 1 105
 byte 1 95
@@ -3400,7 +3409,7 @@ byte 1 99
 byte 1 101
 byte 1 0
 align 1
-LABELV $166
+LABELV $167
 byte 1 109
 byte 1 111
 byte 1 100
@@ -3444,7 +3453,7 @@ byte 1 100
 byte 1 51
 byte 1 0
 align 1
-LABELV $140
+LABELV $141
 byte 1 80
 byte 1 111
 byte 1 114
@@ -3453,7 +3462,7 @@ byte 1 97
 byte 1 108
 byte 1 0
 align 1
-LABELV $137
+LABELV $138
 byte 1 104
 byte 1 105
 byte 1 95
@@ -3477,7 +3486,7 @@ byte 1 111
 byte 1 110
 byte 1 0
 align 1
-LABELV $132
+LABELV $133
 byte 1 109
 byte 1 111
 byte 1 100
@@ -3520,18 +3529,18 @@ byte 1 100
 byte 1 51
 byte 1 0
 align 1
-LABELV $96
+LABELV $97
 byte 1 48
 byte 1 0
 align 1
-LABELV $95
+LABELV $96
 byte 1 114
 byte 1 111
 byte 1 108
 byte 1 108
 byte 1 0
 align 1
-LABELV $79
+LABELV $80
 byte 1 67
 byte 1 111
 byte 1 117

@@ -65,7 +65,7 @@ line 45
 ADDRFP4 0
 INDIRI4
 CNSTI4 0
-EQI4 $42
+EQI4 $43
 line 46
 ;46:		VectorCopy(pm->ps->velocity, endVelocity);
 ADDRLP4 116
@@ -126,7 +126,7 @@ line 50
 ADDRGP4 pml+48
 INDIRI4
 CNSTI4 0
-EQI4 $49
+EQI4 $50
 line 52
 ;51:			// slide along the ground plane
 ;52:			PM_ClipVelocity(pm->ps->velocity, pml.groundTrace.plane.normal,
@@ -155,10 +155,10 @@ pop
 line 54
 ;53:				pm->ps->velocity, OVERCLIP);
 ;54:		}
-LABELV $49
+LABELV $50
 line 55
 ;55:	}
-LABELV $42
+LABELV $43
 line 57
 ;56:
 ;57:	time_left = pml.frametime;
@@ -173,7 +173,7 @@ line 60
 ADDRGP4 pml+48
 INDIRI4
 CNSTI4 0
-EQI4 $55
+EQI4 $56
 line 61
 ;61:		numplanes = 1;
 ADDRLP4 96
@@ -187,9 +187,9 @@ INDIRB
 ASGNB 12
 line 63
 ;63:	} else {
-ADDRGP4 $56
+ADDRGP4 $57
 JUMPV
-LABELV $55
+LABELV $56
 line 64
 ;64:		numplanes = 0;
 ADDRLP4 96
@@ -197,7 +197,7 @@ CNSTI4 0
 ASGNI4
 line 65
 ;65:	}
-LABELV $56
+LABELV $57
 line 68
 ;66:
 ;67:	// never turn against original velocity
@@ -232,9 +232,9 @@ line 71
 ADDRLP4 204
 CNSTI4 0
 ASGNI4
-ADDRGP4 $63
+ADDRGP4 $64
 JUMPV
-LABELV $60
+LABELV $61
 line 74
 ;72:
 ;73:		// calculate position we are trying to move to
@@ -363,7 +363,7 @@ line 79
 ADDRLP4 128
 INDIRI4
 CNSTI4 0
-EQI4 $66
+EQI4 $67
 line 81
 ;80:			// entity is completely trapped in another solid
 ;81:			pm->ps->velocity[2] = 0;	// don't build up falling damage, but allow sideways acceleration
@@ -378,9 +378,9 @@ line 82
 ;82:			return qtrue;
 CNSTI4 1
 RETI4
-ADDRGP4 $41
+ADDRGP4 $42
 JUMPV
-LABELV $66
+LABELV $67
 line 85
 ;83:		}
 ;84:
@@ -388,7 +388,7 @@ line 85
 ADDRLP4 128+8
 INDIRF4
 CNSTF4 0
-LEF4 $68
+LEF4 $69
 line 87
 ;86:			// actually covered some distance
 ;87:			VectorCopy(trace.endpos, pm->ps->origin);
@@ -402,19 +402,19 @@ INDIRB
 ASGNB 12
 line 88
 ;88:		}
-LABELV $68
+LABELV $69
 line 90
 ;89:
 ;90:		if (trace.fraction == 1) {
 ADDRLP4 128+8
 INDIRF4
 CNSTF4 1065353216
-NEF4 $72
+NEF4 $73
 line 91
 ;91:			break;		// moved the entire distance
-ADDRGP4 $62
+ADDRGP4 $63
 JUMPV
-LABELV $72
+LABELV $73
 line 95
 ;92:		}
 ;93:
@@ -445,7 +445,7 @@ line 99
 ADDRLP4 96
 INDIRI4
 CNSTI4 5
-LTI4 $77
+LTI4 $78
 line 101
 ;100:			// this shouldn't really happen
 ;101:			VectorClear(pm->ps->velocity);
@@ -474,9 +474,9 @@ line 102
 ;102:			return qtrue;
 CNSTI4 1
 RETI4
-ADDRGP4 $41
+ADDRGP4 $42
 JUMPV
-LABELV $77
+LABELV $78
 line 110
 ;103:		}
 ;104:
@@ -489,9 +489,9 @@ line 110
 ADDRLP4 80
 CNSTI4 0
 ASGNI4
-ADDRGP4 $82
+ADDRGP4 $83
 JUMPV
-LABELV $79
+LABELV $80
 line 111
 ;111:			if (DotProduct(trace.plane.normal, planes[i]) > 0.99) {
 ADDRLP4 128+24
@@ -527,7 +527,7 @@ INDIRF4
 MULF4
 ADDF4
 CNSTF4 1065185444
-LEF4 $83
+LEF4 $84
 line 112
 ;112:				VectorAdd(trace.plane.normal, pm->ps->velocity, pm->ps->velocity);
 ADDRLP4 260
@@ -586,13 +586,13 @@ ADDF4
 ASGNF4
 line 113
 ;113:				break;
-ADDRGP4 $81
+ADDRGP4 $82
 JUMPV
-LABELV $83
+LABELV $84
 line 115
 ;114:			}
 ;115:		}
-LABELV $80
+LABELV $81
 line 110
 ADDRLP4 80
 ADDRLP4 80
@@ -600,25 +600,25 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $82
+LABELV $83
 ADDRLP4 80
 INDIRI4
 ADDRLP4 96
 INDIRI4
-LTI4 $79
-LABELV $81
+LTI4 $80
+LABELV $82
 line 116
 ;116:		if (i < numplanes) {
 ADDRLP4 80
 INDIRI4
 ADDRLP4 96
 INDIRI4
-GEI4 $97
+GEI4 $98
 line 117
 ;117:			continue;
-ADDRGP4 $61
+ADDRGP4 $62
 JUMPV
-LABELV $97
+LABELV $98
 line 119
 ;118:		}
 ;119:		VectorCopy(trace.plane.normal, planes[numplanes]);
@@ -650,9 +650,9 @@ line 127
 ADDRLP4 80
 CNSTI4 0
 ASGNI4
-ADDRGP4 $103
+ADDRGP4 $104
 JUMPV
-LABELV $100
+LABELV $101
 line 128
 ;128:			into = DotProduct(pm->ps->velocity, planes[i]);
 ADDRLP4 256
@@ -708,12 +708,12 @@ line 129
 ADDRLP4 184
 INDIRF4
 CNSTF4 1036831949
-LTF4 $106
+LTF4 $107
 line 130
 ;130:				continue;		// move doesn't interact with the plane
-ADDRGP4 $101
+ADDRGP4 $102
 JUMPV
-LABELV $106
+LABELV $107
 line 134
 ;131:			}
 ;132:
@@ -724,7 +724,7 @@ INDIRF4
 NEGF4
 ADDRGP4 pml+108
 INDIRF4
-LEF4 $108
+LEF4 $109
 line 135
 ;135:				pml.impactSpeed = -into;
 ADDRGP4 pml+108
@@ -734,7 +734,7 @@ NEGF4
 ASGNF4
 line 136
 ;136:			}
-LABELV $108
+LABELV $109
 line 139
 ;137:
 ;138:			// slide along the plane
@@ -786,21 +786,21 @@ line 145
 ADDRLP4 76
 CNSTI4 0
 ASGNI4
-ADDRGP4 $115
+ADDRGP4 $116
 JUMPV
-LABELV $112
+LABELV $113
 line 146
 ;146:				if (j == i) {
 ADDRLP4 76
 INDIRI4
 ADDRLP4 80
 INDIRI4
-NEI4 $116
+NEI4 $117
 line 147
 ;147:					continue;
-ADDRGP4 $113
+ADDRGP4 $114
 JUMPV
-LABELV $116
+LABELV $117
 line 149
 ;148:				}
 ;149:				if (DotProduct(clipVelocity, planes[j]) >= 0.1) {
@@ -837,12 +837,12 @@ INDIRF4
 MULF4
 ADDF4
 CNSTF4 1036831949
-LTF4 $118
+LTF4 $119
 line 150
 ;150:					continue;		// move doesn't interact with the plane
-ADDRGP4 $113
+ADDRGP4 $114
 JUMPV
-LABELV $118
+LABELV $119
 line 154
 ;151:				}
 ;152:
@@ -919,12 +919,12 @@ INDIRF4
 MULF4
 ADDF4
 CNSTF4 0
-LTF4 $124
+LTF4 $125
 line 159
 ;159:					continue;
-ADDRGP4 $113
+ADDRGP4 $114
 JUMPV
-LABELV $124
+LABELV $125
 line 163
 ;160:				}
 ;161:
@@ -1094,27 +1094,27 @@ line 174
 ADDRLP4 0
 CNSTI4 0
 ASGNI4
-ADDRGP4 $147
+ADDRGP4 $148
 JUMPV
-LABELV $144
+LABELV $145
 line 175
 ;175:					if (k == i || k == j) {
 ADDRLP4 0
 INDIRI4
 ADDRLP4 80
 INDIRI4
-EQI4 $150
+EQI4 $151
 ADDRLP4 0
 INDIRI4
 ADDRLP4 76
 INDIRI4
-NEI4 $148
-LABELV $150
+NEI4 $149
+LABELV $151
 line 176
 ;176:						continue;
-ADDRGP4 $145
+ADDRGP4 $146
 JUMPV
-LABELV $148
+LABELV $149
 line 178
 ;177:					}
 ;178:					if (DotProduct(clipVelocity, planes[k]) >= 0.1) {
@@ -1151,12 +1151,12 @@ INDIRF4
 MULF4
 ADDF4
 CNSTF4 1036831949
-LTF4 $151
+LTF4 $152
 line 179
 ;179:						continue;		// move doesn't interact with the plane
-ADDRGP4 $145
+ADDRGP4 $146
 JUMPV
-LABELV $151
+LABELV $152
 line 183
 ;180:					}
 ;181:
@@ -1187,9 +1187,9 @@ line 184
 ;184:					return qtrue;
 CNSTI4 1
 RETI4
-ADDRGP4 $41
+ADDRGP4 $42
 JUMPV
-LABELV $145
+LABELV $146
 line 174
 ADDRLP4 0
 ADDRLP4 0
@@ -1197,16 +1197,16 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $147
+LABELV $148
 ADDRLP4 0
 INDIRI4
 ADDRLP4 96
 INDIRI4
-LTI4 $144
+LTI4 $145
 line 186
 ;185:				}
 ;186:			}
-LABELV $113
+LABELV $114
 line 145
 ADDRLP4 76
 ADDRLP4 76
@@ -1214,12 +1214,12 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $115
+LABELV $116
 ADDRLP4 76
 INDIRI4
 ADDRLP4 96
 INDIRI4
-LTI4 $112
+LTI4 $113
 line 189
 ;187:
 ;188:			// if we have fixed all interactions, try another move
@@ -1240,9 +1240,9 @@ INDIRB
 ASGNB 12
 line 191
 ;191:			break;
-ADDRGP4 $102
+ADDRGP4 $103
 JUMPV
-LABELV $101
+LABELV $102
 line 127
 ADDRLP4 80
 ADDRLP4 80
@@ -1250,17 +1250,17 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $103
+LABELV $104
 ADDRLP4 80
 INDIRI4
 ADDRLP4 96
 INDIRI4
-LTI4 $100
-LABELV $102
+LTI4 $101
+LABELV $103
 line 193
 ;192:		}
 ;193:	}
-LABELV $61
+LABELV $62
 line 71
 ADDRLP4 204
 ADDRLP4 204
@@ -1268,20 +1268,20 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $63
+LABELV $64
 ADDRLP4 204
 INDIRI4
 ADDRLP4 208
 INDIRI4
-LTI4 $60
-LABELV $62
+LTI4 $61
+LABELV $63
 line 195
 ;194:
 ;195:	if (gravity) {
 ADDRFP4 0
 INDIRI4
 CNSTI4 0
-EQI4 $157
+EQI4 $158
 line 196
 ;196:		VectorCopy(endVelocity, pm->ps->velocity);
 ADDRGP4 pm
@@ -1294,7 +1294,7 @@ INDIRB
 ASGNB 12
 line 197
 ;197:	}
-LABELV $157
+LABELV $158
 line 200
 ;198:
 ;199:	// don't change velocity if in a timer (FIXME: is this correct?)
@@ -1306,7 +1306,7 @@ CNSTI4 16
 ADDP4
 INDIRI4
 CNSTI4 0
-EQI4 $159
+EQI4 $160
 line 201
 ;201:		VectorCopy(primal_velocity, pm->ps->velocity);
 ADDRGP4 pm
@@ -1319,28 +1319,28 @@ INDIRB
 ASGNB 12
 line 202
 ;202:	}
-LABELV $159
+LABELV $160
 line 204
 ;203:
 ;204:	return (bumpcount != 0);
 ADDRLP4 204
 INDIRI4
 CNSTI4 0
-EQI4 $162
+EQI4 $163
 ADDRLP4 224
 CNSTI4 1
 ASGNI4
-ADDRGP4 $163
+ADDRGP4 $164
 JUMPV
-LABELV $162
+LABELV $163
 ADDRLP4 224
 CNSTI4 0
 ASGNI4
-LABELV $163
+LABELV $164
 ADDRLP4 224
 INDIRI4
 RETI4
-LABELV $41
+LABELV $42
 endproc PM_SlideMove 292 28
 export PM_StepSlideMove
 proc PM_StepSlideMove 132 28
@@ -1395,12 +1395,12 @@ ASGNI4
 ADDRLP4 108
 INDIRI4
 CNSTI4 0
-NEI4 $165
+NEI4 $166
 line 226
 ;226:		return;		// we got exactly where we wanted to go first try	
-ADDRGP4 $164
+ADDRGP4 $165
 JUMPV
-LABELV $165
+LABELV $166
 line 229
 ;227:	}
 ;228:
@@ -1480,11 +1480,11 @@ CNSTI4 40
 ADDP4
 INDIRF4
 CNSTF4 0
-LEF4 $170
+LEF4 $171
 ADDRLP4 0+8
 INDIRF4
 CNSTF4 1065353216
-EQF4 $180
+EQF4 $181
 ADDRLP4 0+24
 INDIRF4
 ADDRLP4 56
@@ -1503,15 +1503,15 @@ INDIRF4
 MULF4
 ADDF4
 CNSTF4 1060320051
-GEF4 $170
-LABELV $180
+GEF4 $171
+LABELV $181
 line 235
 ;235:		DotProduct(trace.plane.normal, up) < 0.7)) {
 line 236
 ;236:		return;
-ADDRGP4 $164
+ADDRGP4 $165
 JUMPV
-LABELV $170
+LABELV $171
 line 242
 ;237:	}
 ;238:
@@ -1580,7 +1580,7 @@ line 247
 ADDRLP4 0
 INDIRI4
 CNSTI4 0
-EQI4 $182
+EQI4 $183
 line 248
 ;248:		if (pm->debugLevel) {
 ADDRGP4 pm
@@ -1589,10 +1589,10 @@ CNSTI4 32
 ADDP4
 INDIRI4
 CNSTI4 0
-EQI4 $164
+EQI4 $165
 line 249
 ;249:			Com_Printf("%i:bend can't step\n", c_pmove);
-ADDRGP4 $186
+ADDRGP4 $187
 ARGP4
 ADDRGP4 c_pmove
 INDIRI4
@@ -1604,9 +1604,9 @@ line 250
 ;250:		}
 line 251
 ;251:		return;		// can't step up
-ADDRGP4 $164
+ADDRGP4 $165
 JUMPV
-LABELV $182
+LABELV $183
 line 254
 ;252:	}
 ;253:
@@ -1723,7 +1723,7 @@ line 265
 ADDRLP4 0
 INDIRI4
 CNSTI4 0
-NEI4 $192
+NEI4 $193
 line 266
 ;266:		VectorCopy(trace.endpos, pm->ps->origin);
 ADDRGP4 pm
@@ -1736,13 +1736,13 @@ INDIRB
 ASGNB 12
 line 267
 ;267:	}
-LABELV $192
+LABELV $193
 line 268
 ;268:	if (trace.fraction < 1.0) {
 ADDRLP4 0+8
 INDIRF4
 CNSTF4 1065353216
-GEF4 $195
+GEF4 $196
 line 269
 ;269:		PM_ClipVelocity(pm->ps->velocity, trace.plane.normal, pm->ps->velocity, OVERCLIP);
 ADDRLP4 128
@@ -1769,7 +1769,7 @@ CALLV
 pop
 line 270
 ;270:	}
-LABELV $195
+LABELV $196
 line 284
 ;271:
 ;272:#if 0
@@ -1806,7 +1806,7 @@ line 289
 ADDRLP4 128
 INDIRF4
 CNSTF4 1073741824
-LEF4 $200
+LEF4 $201
 ADDRGP4 pm
 INDIRP4
 INDIRP4
@@ -1814,13 +1814,13 @@ CNSTI4 4
 ADDP4
 INDIRI4
 CNSTI4 3
-EQI4 $200
+EQI4 $201
 line 290
 ;290:			if (delta < 7) {
 ADDRLP4 128
 INDIRF4
 CNSTF4 1088421888
-GEF4 $202
+GEF4 $203
 line 291
 ;291:				PM_AddEvent(EV_STEP_4);
 CNSTI4 6
@@ -1830,13 +1830,13 @@ CALLV
 pop
 line 292
 ;292:			} else if (delta < 11) {
-ADDRGP4 $203
+ADDRGP4 $204
 JUMPV
-LABELV $202
+LABELV $203
 ADDRLP4 128
 INDIRF4
 CNSTF4 1093664768
-GEF4 $204
+GEF4 $205
 line 293
 ;293:				PM_AddEvent(EV_STEP_8);
 CNSTI4 7
@@ -1846,13 +1846,13 @@ CALLV
 pop
 line 294
 ;294:			} else if (delta < 15) {
-ADDRGP4 $205
+ADDRGP4 $206
 JUMPV
-LABELV $204
+LABELV $205
 ADDRLP4 128
 INDIRF4
 CNSTF4 1097859072
-GEF4 $206
+GEF4 $207
 line 295
 ;295:				PM_AddEvent(EV_STEP_12);
 CNSTI4 8
@@ -1862,9 +1862,9 @@ CALLV
 pop
 line 296
 ;296:			} else {
-ADDRGP4 $207
+ADDRGP4 $208
 JUMPV
-LABELV $206
+LABELV $207
 line 297
 ;297:				PM_AddEvent(EV_STEP_16);
 CNSTI4 9
@@ -1874,12 +1874,12 @@ CALLV
 pop
 line 298
 ;298:			}
-LABELV $207
-LABELV $205
-LABELV $203
+LABELV $208
+LABELV $206
+LABELV $204
 line 299
 ;299:		}
-LABELV $200
+LABELV $201
 line 300
 ;300:		if (pm->debugLevel) {
 ADDRGP4 pm
@@ -1888,10 +1888,10 @@ CNSTI4 32
 ADDP4
 INDIRI4
 CNSTI4 0
-EQI4 $208
+EQI4 $209
 line 301
 ;301:			Com_Printf("%i:stepped\n", c_pmove);
-ADDRGP4 $210
+ADDRGP4 $211
 ARGP4
 ADDRGP4 c_pmove
 INDIRI4
@@ -1901,12 +1901,12 @@ CALLV
 pop
 line 302
 ;302:		}
-LABELV $208
+LABELV $209
 line 303
 ;303:	}
 line 304
 ;304:}
-LABELV $164
+LABELV $165
 endproc PM_StepSlideMove 132 28
 import PM_AddEvent
 import PM_AddTouchEnt
@@ -1948,6 +1948,8 @@ import BG_FindItemForHoldable
 import BG_FindItemForPowerup
 import BG_FindItemForWeapon
 import BG_FindItem
+import bgWeapons
+import bgArmor
 import bg_numItems
 import bg_itemlist
 import Pmove
@@ -2101,7 +2103,7 @@ import srand
 import qsort
 lit
 align 1
-LABELV $210
+LABELV $211
 byte 1 37
 byte 1 105
 byte 1 58
@@ -2115,7 +2117,7 @@ byte 1 100
 byte 1 10
 byte 1 0
 align 1
-LABELV $186
+LABELV $187
 byte 1 37
 byte 1 105
 byte 1 58

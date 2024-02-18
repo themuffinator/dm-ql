@@ -1653,6 +1653,8 @@ void CG_Init(int serverMessageNum, int serverCommandSequence, int clientNum) {
 	CG_ParseServerinfo();
 	CG_ParseSysteminfo();
 
+	CG_ParseArmorTiered();
+
 	// load the new map
 	CG_LoadingString("collision map");
 

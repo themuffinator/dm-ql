@@ -251,7 +251,8 @@ typedef enum {
 	STAT_HOLDABLE_ITEM,
 	STAT_PERSISTANT_POWERUP,
 	STAT_WEAPONS,					// 16 bit fields
-	STAT_ARMOR,				
+	STAT_ARMOR,
+	STAT_ARMOR_TIER,
 	STAT_DEAD_YAW,					// look this direction when dead (FIXME: get rid of?)
 	STAT_CLIENTS_READY,				// bit mask of clients wishing to exit the intermission (FIXME: configstring?)
 	STAT_MAX_HEALTH					// health / armor limit, changable by handicap
@@ -697,6 +698,27 @@ typedef struct gitem_s {
 // included in both the game dll and the client
 extern	gitem_t	bg_itemlist[];
 extern	int		bg_numItems;
+
+typedef enum {
+	ARMOR_SHARD,
+	ARMOR_GREEN,
+	ARMOR_YELLOW,
+	ARMOR_RED,
+	ARMOR_NUM
+} armor_t;
+
+typedef struct gitem_armor_s {
+	int		armor;
+	int		base_count;
+	int		max_count;
+	float	protection;
+} gitem_armor_t;
+extern	gitem_armor_t	bgArmor[ARMOR_NUM];
+
+typedef struct gitem_weapons_s {
+	const char *shortName;
+} gitem_weapons_t;
+extern	gitem_weapons_t	bgWeapons[WP_NUM_WEAPONS];
 
 gitem_t	*BG_FindItem( const char *pickupName );
 gitem_t	*BG_FindItemForWeapon( weapon_t weapon );

@@ -1759,6 +1759,20 @@ void CheckCvars(void) {
 
 
 /*
+===========
+SetTieredArmor
+============
+*/
+static int armor_tiered_mod_count = -1;
+static void SetTieredArmor(void) {
+	if (armor_tiered_mod_count != armor_tiered.modificationCount) {
+		trap_SetConfigstring(CS_ARMOR_TIERED, va("\\armor_tiered\\%i", armor_tiered.integer));
+		armor_tiered_mod_count = armor_tiered.modificationCount;
+	}
+}
+
+
+/*
 =============
 G_RunThink
 
@@ -1914,6 +1928,8 @@ static void G_RunFrame(int levelTime) {
 
 	// for tracking changes
 	CheckCvars();
+
+	SetTieredArmor();
 
 	if (g_listEntity.integer) {
 		for (i = 0; i < MAX_GENTITIES; i++) {

@@ -662,6 +662,7 @@ int CheckArmor (gentity_t *ent, int damage, int dflags)
 	gclient_t	*client;
 	int			save;
 	int			count;
+	float		protection;
 
 	if (!damage)
 		return 0;
@@ -676,7 +677,9 @@ int CheckArmor (gentity_t *ent, int damage, int dflags)
 
 	// armor
 	count = client->ps.stats[STAT_ARMOR];
-	save = ceil( damage * ARMOR_PROTECTION );
+	protection = armor_tiered.integer ? bgArmor[client->ps.stats[STAT_ARMOR_TIER]].protection : ARMOR_PROTECTION;
+
+	save = ceil(damage * protection);
 	if (save >= count)
 		save = count;
 
@@ -684,6 +687,9 @@ int CheckArmor (gentity_t *ent, int damage, int dflags)
 		return 0;
 
 	client->ps.stats[STAT_ARMOR] -= save;
+
+	if (client->ps.stats[STAT_ARMOR_TIER] && client->ps.stats[STAT_ARMOR] <= 0)
+		client->ps.stats[STAT_ARMOR_TIER] = ARMOR_SHARD;
 
 	return save;
 }

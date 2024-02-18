@@ -5,6 +5,31 @@
 #include "q_shared.h"
 #include "bg_public.h"
 
+gitem_armor_t bgArmor[ARMOR_NUM] = {
+	{ ARMOR_SHARD,	2,		200,	.50 },
+	{ ARMOR_GREEN,	50,		50,		.50 },
+	{ ARMOR_YELLOW, 100,	100,	.66 },
+	{ ARMOR_RED,	150,	150,	.75 }
+};
+
+gitem_weapons_t bgWeapons[WP_NUM_WEAPONS] = {
+	{ NULL },
+	{ "g" },
+	{ "mg" },
+	{ "sg" },
+	{ "gl" },
+	{ "rl" },
+	{ "lg" },
+	{ "rg" },
+	{ "pg" },
+	{ "bfg" },
+	{ "gh" },
+	{ "ng" },
+	{ "pl" },
+	{ "cg" },
+	{ "hmg" }
+};
+
 /*QUAKED item_***** ( 0 0 0 ) (-16 -16 -16) (16 16 16) suspended
 DO NOT USE THIS CLASS, IT JUST HOLDS GENERAL INFORMATION.
 The suspended flag will allow items to hang in the air, otherwise they are dropped to the next surface.

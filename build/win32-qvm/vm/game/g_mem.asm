@@ -26,10 +26,10 @@ line 19
 ADDRGP4 g_debugAlloc+12
 INDIRI4
 CNSTI4 0
-EQI4 $55
+EQI4 $56
 line 20
 ;20:		G_Printf( "G_Alloc of %i bytes (%i left)\n", size, POOLSIZE - allocPoint - ( ( size + 31 ) & ~31 ) );
-ADDRGP4 $58
+ADDRGP4 $59
 ARGP4
 ADDRLP4 4
 ADDRFP4 0
@@ -55,7 +55,7 @@ CALLV
 pop
 line 21
 ;21:	}
-LABELV $55
+LABELV $56
 line 23
 ;22:
 ;23:	if ( allocPoint + size > POOLSIZE ) {
@@ -65,10 +65,10 @@ ADDRFP4 0
 INDIRI4
 ADDI4
 CNSTI4 786432
-LEI4 $59
+LEI4 $60
 line 24
 ;24:		G_Error( "G_Alloc: failed on allocation of %i bytes", size );
-ADDRGP4 $61
+ADDRGP4 $62
 ARGP4
 ADDRFP4 0
 INDIRI4
@@ -80,9 +80,9 @@ line 25
 ;25:		return NULL;
 CNSTP4 0
 RETP4
-ADDRGP4 $54
+ADDRGP4 $55
 JUMPV
-LABELV $59
+LABELV $60
 line 28
 ;26:	}
 ;27:
@@ -118,7 +118,7 @@ line 32
 ADDRLP4 0
 INDIRP4
 RETP4
-LABELV $54
+LABELV $55
 endproc G_Alloc 8 12
 export G_InitMemory
 proc G_InitMemory 0 0
@@ -133,7 +133,7 @@ CNSTI4 0
 ASGNI4
 line 37
 ;37:}
-LABELV $62
+LABELV $63
 endproc G_InitMemory 0 0
 export Svcmd_GameMem_f
 proc Svcmd_GameMem_f 0 12
@@ -142,7 +142,7 @@ line 39
 ;39:void Svcmd_GameMem_f( void ) {
 line 40
 ;40:	G_Printf( "Game memory status: %i out of %i bytes allocated\n", allocPoint, POOLSIZE );
-ADDRGP4 $64
+ADDRGP4 $65
 ARGP4
 ADDRGP4 allocPoint
 INDIRI4
@@ -154,7 +154,7 @@ CALLV
 pop
 line 41
 ;41:}
-LABELV $63
+LABELV $64
 endproc Svcmd_GameMem_f 0 12
 bss
 align 4
@@ -344,6 +344,22 @@ import trap_RealTime
 import trap_Milliseconds
 import trap_Error
 import trap_Print
+import g_startingAmmo_hmg
+import g_startingAmmo_cg
+import g_startingAmmo_pl
+import g_startingAmmo_ng
+import g_startingAmmo_gh
+import g_startingAmmo_bfg
+import g_startingAmmo_pg
+import g_startingAmmo_rg
+import g_startingAmmo_lg
+import g_startingAmmo_rl
+import g_startingAmmo_gl
+import g_startingAmmo_sg
+import g_startingAmmo_mg
+import g_startingAmmo_g
+import g_startingWeapons
+import armor_tiered
 import g_rotation
 import pmove_msec
 import pmove_fixed
@@ -363,8 +379,6 @@ import g_unlagged
 import g_listEntity
 import g_allowVote
 import g_allowKill
-import g_podiumDrop
-import g_podiumDist
 import g_blood
 import g_motd
 import g_debugAlloc
@@ -447,8 +461,6 @@ import G_UnTimeShiftAllClients
 import G_TimeShiftAllClients
 import G_StoreHistory
 import G_ResetHistory
-import Svcmd_AbortPodium_f
-import SpawnModelsOnVictoryPads
 import UpdateTournamentInfo
 import G_ClearClientSessionData
 import G_WriteClientSessionData
@@ -555,15 +567,10 @@ import SaveRegisteredItems
 import RegisterItem
 import ClearRegisteredItems
 import Touch_Item
-import ArmorIndex
-import Think_Weapon
 import FinishSpawningItem
 import G_SpawnItem
-import SetRespawn
 import LaunchItem
 import Drop_Item
-import PrecacheItem
-import UseHoldableItem
 import SpawnTime
 import RespawnItem
 import G_RunItem
@@ -603,6 +610,8 @@ import BG_FindItemForHoldable
 import BG_FindItemForPowerup
 import BG_FindItemForWeapon
 import BG_FindItem
+import bgWeapons
+import bgArmor
 import bg_numItems
 import bg_itemlist
 import Pmove
@@ -756,7 +765,7 @@ import srand
 import qsort
 lit
 align 1
-LABELV $64
+LABELV $65
 byte 1 71
 byte 1 97
 byte 1 109
@@ -808,7 +817,7 @@ byte 1 100
 byte 1 10
 byte 1 0
 align 1
-LABELV $61
+LABELV $62
 byte 1 71
 byte 1 95
 byte 1 65
@@ -852,7 +861,7 @@ byte 1 101
 byte 1 115
 byte 1 0
 align 1
-LABELV $58
+LABELV $59
 byte 1 71
 byte 1 95
 byte 1 65

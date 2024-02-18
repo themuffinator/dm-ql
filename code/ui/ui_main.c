@@ -108,7 +108,7 @@ static void UI_BuildServerDisplayList(qboolean force);
 static void UI_BuildServerStatus(qboolean force);
 static void UI_BuildFindPlayerList(qboolean force);
 static int QDECL UI_ServersQsortCompare(const void *arg1, const void *arg2);
-static int UI_MapCountByGameType(qboolean singlePlayer);
+static int UI_MapCountByGameType(void);
 static int UI_HeadCountByTeam(void);
 static void UI_ParseGameInfo(const char *teamFile);
 static void UI_ParseTeamInfo(const char *teamFile);
@@ -2237,7 +2237,7 @@ static qboolean UI_ClanName_HandleKey(int flags, float *special, int key) {
 
 static qboolean UI_GameType_HandleKey(int flags, float *special, int key, qboolean resetMap) {
 	if (key == K_MOUSE1 || key == K_MOUSE2 || key == K_ENTER || key == K_KP_ENTER) {
-		int oldCount = UI_MapCountByGameType(qtrue);
+		int oldCount = UI_MapCountByGameType();
 
 		// hard coded mess here
 		if (key == K_MOUSE2) {
@@ -2265,7 +2265,7 @@ static qboolean UI_GameType_HandleKey(int flags, float *special, int key, qboole
 		trap_Cvar_Set("ui_gameType", va("%d", ui_gameType.integer));
 		UI_SetCapFragLimits(qtrue);
 		UI_LoadBestScores(uiInfo.mapList[ui_currentMap.integer].mapLoadName, uiInfo.gameTypes[ui_gameType.integer].gtEnum);
-		if (resetMap && oldCount != UI_MapCountByGameType(qtrue)) {
+		if (resetMap && oldCount != UI_MapCountByGameType()) {
 			trap_Cvar_Set("ui_currentMap", "0");
 			Menu_SetFeederSelection(NULL, FEEDER_MAPS, 0, NULL);
 		}
@@ -2292,7 +2292,7 @@ static qboolean UI_NetGameType_HandleKey(int flags, float *special, int key) {
 		trap_Cvar_Set("ui_netGameType", va("%d", ui_netGameType.integer));
 		trap_Cvar_Set("ui_actualnetGameType", va("%d", uiInfo.gameTypes[ui_netGameType.integer].gtEnum));
 		trap_Cvar_Set("ui_currentNetMap", "0");
-		UI_MapCountByGameType(qfalse);
+		UI_MapCountByGameType();
 		Menu_SetFeederSelection(NULL, FEEDER_ALLMAPS, 0, NULL);
 		return qtrue;
 	}
@@ -2862,12 +2862,12 @@ static void UI_StartSkirmish(qboolean next) {
 	if (next) {
 		int actual;
 		int index = trap_Cvar_VariableValue("ui_mapIndex");
-		UI_MapCountByGameType(qtrue);
+		UI_MapCountByGameType();
 		UI_SelectedMap(index, &actual);
 		if (UI_SetNextMap(actual, index)) {
 		} else {
 			UI_GameType_HandleKey(0, 0, K_MOUSE1, qfalse);
-			UI_MapCountByGameType(qtrue);
+			UI_MapCountByGameType();
 			Menu_SetFeederSelection(NULL, FEEDER_MAPS, 0, "skirmish");
 		}
 	}
@@ -3125,7 +3125,7 @@ static void UI_RunMenuScript(char **args) {
 			}
 		} else if (Q_stricmp(name, "updateSPMenu") == 0) {
 			UI_SetCapFragLimits(qtrue);
-			UI_MapCountByGameType(qtrue);
+			UI_MapCountByGameType();
 			ui_mapIndex.integer = UI_GetIndexFromSelection(ui_currentMap.integer);
 			trap_Cvar_Set("ui_mapIndex", va("%d", ui_mapIndex.integer));
 			Menu_SetFeederSelection(NULL, FEEDER_MAPS, ui_mapIndex.integer, "skirmish");
@@ -3170,7 +3170,7 @@ static void UI_RunMenuScript(char **args) {
 			}
 		} else if (Q_stricmp(name, "loadArenas") == 0) {
 			UI_LoadArenas();
-			UI_MapCountByGameType(qfalse);
+			UI_MapCountByGameType();
 			Menu_SetFeederSelection(NULL, FEEDER_ALLMAPS, 0, "createserver");
 		} else if (Q_stricmp(name, "saveControls") == 0) {
 			Controls_SetConfig(qtrue);

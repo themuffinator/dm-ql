@@ -343,7 +343,7 @@ static int Pickup_Health(gentity_t *ent, gentity_t *other) {
 
 //======================================================================
 
-int Pickup_Armor(gentity_t *ent, gentity_t *other) {
+static int Pickup_StandardArmor(gentity_t *ent, gentity_t *other) {
 	int		upperBound;
 
 	other->client->ps.stats[STAT_ARMOR] += ent->item->quantity;
@@ -359,6 +359,45 @@ int Pickup_Armor(gentity_t *ent, gentity_t *other) {
 	}
 
 	return SpawnTime(ent, qfalse); // return RESPAWN_ARMOR;
+}
+
+static int Pickup_TieredArmor(gentity_t *ent, gentity_t *other) {
+	playerState_t *ps = &other->client->ps;
+	gitem_armor_t *oldInfo, *newInfo;
+	int				oldTotal;
+
+	oldTotal = ps->stats[STAT_ARMOR];
+	oldInfo = &bgArmor[ps->stats[STAT_ARMOR_TIER]];
+
+	newInfo = &bgArmor[ent->item->giTag];
+
+	// if no armor, reset type
+	if (!oldTotal && oldInfo->armor)
+		ps->stats[STAT_ARMOR_TIER] = 0;
+
+	// shards: just add it and cap to max
+	if (ent->item->giTag == ARMOR_SHARD) {
+		gitem_armor_t *shard = &bgArmor[ARMOR_SHARD];
+		if (!oldTotal)
+			ps->stats[STAT_ARMOR] = shard->base_count;
+		else
+			ps->stats[STAT_ARMOR] += shard->base_count;
+
+		if (ps->stats[STAT_ARMOR] > shard->max_count)
+			ps->stats[STAT_ARMOR] = shard->max_count;
+	} else {
+		ps->stats[STAT_ARMOR_TIER] = newInfo->armor;
+
+		ps->stats[STAT_ARMOR] = newInfo->base_count;
+		if (ps->stats[STAT_ARMOR] > newInfo->max_count)
+			ps->stats[STAT_ARMOR] = newInfo->max_count;
+	}
+
+#ifdef MATCHSTATS
+	Stats_PickupArmor(ent, other);
+#endif
+
+	return SpawnTime(ent, qfalse);
 }
 
 //======================================================================
@@ -473,7 +512,7 @@ void Touch_Item(gentity_t *ent, gentity_t *other, trace_t *trace) {
 		respawn = Pickup_Ammo(ent, other);
 		break;
 	case IT_ARMOR:
-		respawn = Pickup_Armor(ent, other);
+		respawn = armor_tiered.integer ? Pickup_TieredArmor(ent, other) : Pickup_StandardArmor(ent, other);
 		break;
 	case IT_HEALTH:
 		respawn = Pickup_Health(ent, other);
@@ -811,6 +850,7 @@ void G_CheckTeamItems(void) {
 	}
 }
 
+
 /*
 ==============
 ClearRegisteredItems
@@ -838,6 +878,10 @@ The item will be added to the precache list
 void RegisterItem(gitem_t *item) {
 	if (!item) {
 		G_Error("RegisterItem: NULL");
+	}
+
+	if (item->giType == IT_WEAPON) {
+		level.mapWeapons |= (1<<item->giTag);
 	}
 	itemRegistered[item - bg_itemlist] = qtrue;
 }

@@ -28,7 +28,7 @@ INDIRP4
 ASGNP4
 line 15
 ;15:}
-LABELV $88
+LABELV $89
 endproc dllEntry 0 0
 export PASSFLOAT
 proc PASSFLOAT 4 0
@@ -47,7 +47,7 @@ line 20
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $89
+LABELV $90
 endproc PASSFLOAT 4 0
 export trap_Print
 proc trap_Print 0 8
@@ -68,7 +68,7 @@ CALLI4
 pop
 line 25
 ;25:}
-LABELV $90
+LABELV $91
 endproc trap_Print 0 8
 export trap_Error
 proc trap_Error 0 8
@@ -88,7 +88,7 @@ CALLI4
 pop
 line 29
 ;29:}
-LABELV $91
+LABELV $92
 endproc trap_Error 0 8
 export trap_Milliseconds
 proc trap_Milliseconds 4 4
@@ -107,7 +107,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $92
+LABELV $93
 endproc trap_Milliseconds 4 4
 export trap_Cvar_Register
 proc trap_Cvar_Register 0 20
@@ -137,7 +137,7 @@ CALLI4
 pop
 line 37
 ;37:}
-LABELV $93
+LABELV $94
 endproc trap_Cvar_Register 0 20
 export trap_Cvar_Update
 proc trap_Cvar_Update 0 8
@@ -157,7 +157,7 @@ CALLI4
 pop
 line 41
 ;41:}
-LABELV $94
+LABELV $95
 endproc trap_Cvar_Update 0 8
 export trap_Cvar_Set
 proc trap_Cvar_Set 0 12
@@ -180,7 +180,7 @@ CALLI4
 pop
 line 45
 ;45:}
-LABELV $95
+LABELV $96
 endproc trap_Cvar_Set 0 12
 export trap_Cvar_VariableValue
 proc trap_Cvar_VariableValue 8 8
@@ -209,7 +209,7 @@ line 50
 ADDRLP4 0
 INDIRF4
 RETF4
-LABELV $96
+LABELV $97
 endproc trap_Cvar_VariableValue 8 8
 export trap_Cvar_VariableStringBuffer
 proc trap_Cvar_VariableStringBuffer 0 16
@@ -236,7 +236,7 @@ CALLI4
 pop
 line 55
 ;55:}
-LABELV $97
+LABELV $98
 endproc trap_Cvar_VariableStringBuffer 0 16
 export trap_Cvar_SetValue
 proc trap_Cvar_SetValue 4 12
@@ -266,7 +266,7 @@ CALLI4
 pop
 line 59
 ;59:}
-LABELV $98
+LABELV $99
 endproc trap_Cvar_SetValue 4 12
 export trap_Cvar_Reset
 proc trap_Cvar_Reset 0 8
@@ -286,7 +286,7 @@ CALLI4
 pop
 line 63
 ;63:}
-LABELV $99
+LABELV $100
 endproc trap_Cvar_Reset 0 8
 export trap_Cvar_Create
 proc trap_Cvar_Create 0 16
@@ -312,7 +312,7 @@ CALLI4
 pop
 line 67
 ;67:}
-LABELV $100
+LABELV $101
 endproc trap_Cvar_Create 0 16
 export trap_Cvar_InfoStringBuffer
 proc trap_Cvar_InfoStringBuffer 0 16
@@ -338,7 +338,7 @@ CALLI4
 pop
 line 71
 ;71:}
-LABELV $101
+LABELV $102
 endproc trap_Cvar_InfoStringBuffer 0 16
 export trap_Argc
 proc trap_Argc 4 4
@@ -357,7 +357,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $102
+LABELV $103
 endproc trap_Argc 4 4
 export trap_Argv
 proc trap_Argv 0 16
@@ -384,7 +384,7 @@ CALLI4
 pop
 line 79
 ;79:}
-LABELV $103
+LABELV $104
 endproc trap_Argv 0 16
 export trap_Cmd_ExecuteText
 proc trap_Cmd_ExecuteText 0 12
@@ -407,7 +407,7 @@ CALLI4
 pop
 line 83
 ;83:}
-LABELV $104
+LABELV $105
 endproc trap_Cmd_ExecuteText 0 12
 export trap_FS_FOpenFile
 proc trap_FS_FOpenFile 4 16
@@ -435,7 +435,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $105
+LABELV $106
 endproc trap_FS_FOpenFile 4 16
 export trap_FS_Read
 proc trap_FS_Read 0 16
@@ -462,7 +462,7 @@ CALLI4
 pop
 line 91
 ;91:}
-LABELV $106
+LABELV $107
 endproc trap_FS_Read 0 16
 export trap_FS_Write
 proc trap_FS_Write 0 16
@@ -488,7 +488,7 @@ CALLI4
 pop
 line 95
 ;95:}
-LABELV $107
+LABELV $108
 endproc trap_FS_Write 0 16
 export trap_FS_FCloseFile
 proc trap_FS_FCloseFile 0 8
@@ -508,7 +508,7 @@ CALLI4
 pop
 line 99
 ;99:}
-LABELV $108
+LABELV $109
 endproc trap_FS_FCloseFile 0 8
 export trap_FS_GetFileList
 proc trap_FS_GetFileList 4 20
@@ -539,7 +539,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $109
+LABELV $110
 endproc trap_FS_GetFileList 4 20
 export trap_FS_Seek
 proc trap_FS_Seek 4 16
@@ -568,7 +568,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $110
+LABELV $111
 endproc trap_FS_Seek 4 16
 export trap_R_RegisterModel
 proc trap_R_RegisterModel 4 8
@@ -591,7 +591,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $111
+LABELV $112
 endproc trap_R_RegisterModel 4 8
 export trap_R_RegisterSkin
 proc trap_R_RegisterSkin 4 8
@@ -614,7 +614,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $112
+LABELV $113
 endproc trap_R_RegisterSkin 4 8
 export trap_R_RegisterFont
 proc trap_R_RegisterFont 0 16
@@ -641,7 +641,7 @@ CALLI4
 pop
 line 119
 ;119:}
-LABELV $113
+LABELV $114
 endproc trap_R_RegisterFont 0 16
 export trap_R_RegisterShaderNoMip
 proc trap_R_RegisterShaderNoMip 4 8
@@ -663,7 +663,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $114
+LABELV $115
 endproc trap_R_RegisterShaderNoMip 4 8
 export trap_R_ClearScene
 proc trap_R_ClearScene 0 4
@@ -681,7 +681,7 @@ CALLI4
 pop
 line 127
 ;127:}
-LABELV $115
+LABELV $116
 endproc trap_R_ClearScene 0 4
 export trap_R_AddRefEntityToScene
 proc trap_R_AddRefEntityToScene 0 8
@@ -701,7 +701,7 @@ CALLI4
 pop
 line 131
 ;131:}
-LABELV $116
+LABELV $117
 endproc trap_R_AddRefEntityToScene 0 8
 export trap_R_AddPolyToScene
 proc trap_R_AddPolyToScene 0 16
@@ -727,7 +727,7 @@ CALLI4
 pop
 line 135
 ;135:}
-LABELV $117
+LABELV $118
 endproc trap_R_AddPolyToScene 0 16
 export trap_R_AddLightToScene
 proc trap_R_AddLightToScene 16 24
@@ -787,7 +787,7 @@ CALLI4
 pop
 line 139
 ;139:}
-LABELV $118
+LABELV $119
 endproc trap_R_AddLightToScene 16 24
 export trap_R_RenderScene
 proc trap_R_RenderScene 0 8
@@ -807,7 +807,7 @@ CALLI4
 pop
 line 143
 ;143:}
-LABELV $119
+LABELV $120
 endproc trap_R_RenderScene 0 8
 export trap_R_SetColor
 proc trap_R_SetColor 0 8
@@ -827,7 +827,7 @@ CALLI4
 pop
 line 147
 ;147:}
-LABELV $120
+LABELV $121
 endproc trap_R_SetColor 0 8
 export trap_R_DrawStretchPic
 proc trap_R_DrawStretchPic 32 40
@@ -927,7 +927,7 @@ CALLI4
 pop
 line 151
 ;151:}
-LABELV $121
+LABELV $122
 endproc trap_R_DrawStretchPic 32 40
 export trap_R_ModelBounds
 proc trap_R_ModelBounds 0 16
@@ -953,7 +953,7 @@ CALLI4
 pop
 line 155
 ;155:}
-LABELV $122
+LABELV $123
 endproc trap_R_ModelBounds 0 16
 export trap_UpdateScreen
 proc trap_UpdateScreen 0 4
@@ -970,7 +970,7 @@ CALLI4
 pop
 line 159
 ;159:}
-LABELV $123
+LABELV $124
 endproc trap_UpdateScreen 0 4
 export trap_CM_LerpTag
 proc trap_CM_LerpTag 8 28
@@ -1014,7 +1014,7 @@ ASGNI4
 ADDRLP4 4
 INDIRI4
 RETI4
-LABELV $124
+LABELV $125
 endproc trap_CM_LerpTag 8 28
 export trap_S_StartLocalSound
 proc trap_S_StartLocalSound 0 12
@@ -1038,7 +1038,7 @@ CALLI4
 pop
 line 167
 ;167:}
-LABELV $125
+LABELV $126
 endproc trap_S_StartLocalSound 0 12
 export trap_S_RegisterSound
 proc trap_S_RegisterSound 4 12
@@ -1063,7 +1063,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $126
+LABELV $127
 endproc trap_S_RegisterSound 4 12
 export trap_Key_KeynumToStringBuf
 proc trap_Key_KeynumToStringBuf 0 16
@@ -1090,7 +1090,7 @@ CALLI4
 pop
 line 175
 ;175:}
-LABELV $127
+LABELV $128
 endproc trap_Key_KeynumToStringBuf 0 16
 export trap_Key_GetBindingBuf
 proc trap_Key_GetBindingBuf 0 16
@@ -1116,7 +1116,7 @@ CALLI4
 pop
 line 179
 ;179:}
-LABELV $128
+LABELV $129
 endproc trap_Key_GetBindingBuf 0 16
 export trap_Key_SetBinding
 proc trap_Key_SetBinding 0 12
@@ -1139,7 +1139,7 @@ CALLI4
 pop
 line 183
 ;183:}
-LABELV $129
+LABELV $130
 endproc trap_Key_SetBinding 0 12
 export trap_Key_IsDown
 proc trap_Key_IsDown 4 8
@@ -1161,7 +1161,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $130
+LABELV $131
 endproc trap_Key_IsDown 4 8
 export trap_Key_GetOverstrikeMode
 proc trap_Key_GetOverstrikeMode 4 4
@@ -1181,7 +1181,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $131
+LABELV $132
 endproc trap_Key_GetOverstrikeMode 4 4
 export trap_Key_SetOverstrikeMode
 proc trap_Key_SetOverstrikeMode 0 8
@@ -1202,7 +1202,7 @@ CALLI4
 pop
 line 195
 ;195:}
-LABELV $132
+LABELV $133
 endproc trap_Key_SetOverstrikeMode 0 8
 export trap_Key_ClearStates
 proc trap_Key_ClearStates 0 4
@@ -1219,7 +1219,7 @@ CALLI4
 pop
 line 199
 ;199:}
-LABELV $133
+LABELV $134
 endproc trap_Key_ClearStates 0 4
 export trap_Key_GetCatcher
 proc trap_Key_GetCatcher 4 4
@@ -1238,7 +1238,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $134
+LABELV $135
 endproc trap_Key_GetCatcher 4 4
 export trap_Key_SetCatcher
 proc trap_Key_SetCatcher 0 8
@@ -1259,7 +1259,7 @@ CALLI4
 pop
 line 207
 ;207:}
-LABELV $135
+LABELV $136
 endproc trap_Key_SetCatcher 0 8
 export trap_GetClipboardData
 proc trap_GetClipboardData 0 12
@@ -1282,7 +1282,7 @@ CALLI4
 pop
 line 211
 ;211:}
-LABELV $136
+LABELV $137
 endproc trap_GetClipboardData 0 12
 export trap_GetClientState
 proc trap_GetClientState 0 8
@@ -1302,7 +1302,7 @@ CALLI4
 pop
 line 215
 ;215:}
-LABELV $137
+LABELV $138
 endproc trap_GetClientState 0 8
 export trap_GetGlconfig
 proc trap_GetGlconfig 0 8
@@ -1322,7 +1322,7 @@ CALLI4
 pop
 line 219
 ;219:}
-LABELV $138
+LABELV $139
 endproc trap_GetGlconfig 0 8
 export trap_GetConfigString
 proc trap_GetConfigString 4 16
@@ -1350,7 +1350,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $139
+LABELV $140
 endproc trap_GetConfigString 4 16
 export trap_LAN_GetServerCount
 proc trap_LAN_GetServerCount 4 8
@@ -1373,7 +1373,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $140
+LABELV $141
 endproc trap_LAN_GetServerCount 4 8
 export trap_LAN_GetServerAddressString
 proc trap_LAN_GetServerAddressString 0 20
@@ -1403,7 +1403,7 @@ CALLI4
 pop
 line 231
 ;231:}
-LABELV $141
+LABELV $142
 endproc trap_LAN_GetServerAddressString 0 20
 export trap_LAN_GetServerInfo
 proc trap_LAN_GetServerInfo 0 20
@@ -1432,7 +1432,7 @@ CALLI4
 pop
 line 235
 ;235:}
-LABELV $142
+LABELV $143
 endproc trap_LAN_GetServerInfo 0 20
 export trap_LAN_GetServerPing
 proc trap_LAN_GetServerPing 4 12
@@ -1457,7 +1457,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $143
+LABELV $144
 endproc trap_LAN_GetServerPing 4 12
 export trap_LAN_GetPingQueueCount
 proc trap_LAN_GetPingQueueCount 4 4
@@ -1477,7 +1477,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $144
+LABELV $145
 endproc trap_LAN_GetPingQueueCount 4 4
 export trap_LAN_ServerStatus
 proc trap_LAN_ServerStatus 4 16
@@ -1506,7 +1506,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $145
+LABELV $146
 endproc trap_LAN_ServerStatus 4 16
 export trap_LAN_SaveCachedServers
 proc trap_LAN_SaveCachedServers 0 4
@@ -1524,7 +1524,7 @@ CALLI4
 pop
 line 251
 ;251:}
-LABELV $146
+LABELV $147
 endproc trap_LAN_SaveCachedServers 0 4
 export trap_LAN_LoadCachedServers
 proc trap_LAN_LoadCachedServers 0 4
@@ -1541,7 +1541,7 @@ CALLI4
 pop
 line 255
 ;255:}
-LABELV $147
+LABELV $148
 endproc trap_LAN_LoadCachedServers 0 4
 export trap_LAN_ResetPings
 proc trap_LAN_ResetPings 0 8
@@ -1561,7 +1561,7 @@ CALLI4
 pop
 line 259
 ;259:}
-LABELV $148
+LABELV $149
 endproc trap_LAN_ResetPings 0 8
 export trap_LAN_ClearPing
 proc trap_LAN_ClearPing 0 8
@@ -1581,7 +1581,7 @@ CALLI4
 pop
 line 263
 ;263:}
-LABELV $149
+LABELV $150
 endproc trap_LAN_ClearPing 0 8
 export trap_LAN_GetPing
 proc trap_LAN_GetPing 0 20
@@ -1610,7 +1610,7 @@ CALLI4
 pop
 line 267
 ;267:}
-LABELV $150
+LABELV $151
 endproc trap_LAN_GetPing 0 20
 export trap_LAN_GetPingInfo
 proc trap_LAN_GetPingInfo 0 16
@@ -1636,7 +1636,7 @@ CALLI4
 pop
 line 271
 ;271:}
-LABELV $151
+LABELV $152
 endproc trap_LAN_GetPingInfo 0 16
 export trap_LAN_MarkServerVisible
 proc trap_LAN_MarkServerVisible 0 16
@@ -1662,7 +1662,7 @@ CALLI4
 pop
 line 275
 ;275:}
-LABELV $152
+LABELV $153
 endproc trap_LAN_MarkServerVisible 0 16
 export trap_LAN_ServerIsVisible
 proc trap_LAN_ServerIsVisible 4 12
@@ -1687,7 +1687,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $153
+LABELV $154
 endproc trap_LAN_ServerIsVisible 4 12
 export trap_LAN_UpdateVisiblePings
 proc trap_LAN_UpdateVisiblePings 4 8
@@ -1710,7 +1710,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $154
+LABELV $155
 endproc trap_LAN_UpdateVisiblePings 4 8
 export trap_LAN_AddServer
 proc trap_LAN_AddServer 4 16
@@ -1739,7 +1739,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $155
+LABELV $156
 endproc trap_LAN_AddServer 4 16
 export trap_LAN_RemoveServer
 proc trap_LAN_RemoveServer 0 12
@@ -1763,7 +1763,7 @@ CALLI4
 pop
 line 291
 ;291:}
-LABELV $156
+LABELV $157
 endproc trap_LAN_RemoveServer 0 12
 export trap_LAN_CompareServers
 proc trap_LAN_CompareServers 4 24
@@ -1797,7 +1797,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $157
+LABELV $158
 endproc trap_LAN_CompareServers 4 24
 export trap_MemoryRemaining
 proc trap_MemoryRemaining 4 4
@@ -1817,7 +1817,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $158
+LABELV $159
 endproc trap_MemoryRemaining 4 4
 export trap_GetCDKey
 proc trap_GetCDKey 0 12
@@ -1841,7 +1841,7 @@ CALLI4
 pop
 line 303
 ;303:}
-LABELV $159
+LABELV $160
 endproc trap_GetCDKey 0 12
 export trap_SetCDKey
 proc trap_SetCDKey 0 8
@@ -1861,7 +1861,7 @@ CALLI4
 pop
 line 307
 ;307:}
-LABELV $160
+LABELV $161
 endproc trap_SetCDKey 0 8
 export trap_PC_AddGlobalDefine
 proc trap_PC_AddGlobalDefine 4 8
@@ -1883,7 +1883,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $161
+LABELV $162
 endproc trap_PC_AddGlobalDefine 4 8
 export trap_PC_LoadSource
 proc trap_PC_LoadSource 4 8
@@ -1906,7 +1906,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $162
+LABELV $163
 endproc trap_PC_LoadSource 4 8
 export trap_PC_FreeSource
 proc trap_PC_FreeSource 4 8
@@ -1929,7 +1929,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $163
+LABELV $164
 endproc trap_PC_FreeSource 4 8
 export trap_PC_ReadToken
 proc trap_PC_ReadToken 4 12
@@ -1955,7 +1955,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $164
+LABELV $165
 endproc trap_PC_ReadToken 4 12
 export trap_PC_SourceFileAndLine
 proc trap_PC_SourceFileAndLine 4 16
@@ -1984,7 +1984,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $165
+LABELV $166
 endproc trap_PC_SourceFileAndLine 4 16
 export trap_S_StopBackgroundTrack
 proc trap_S_StopBackgroundTrack 0 4
@@ -2002,7 +2002,7 @@ CALLI4
 pop
 line 331
 ;331:}
-LABELV $166
+LABELV $167
 endproc trap_S_StopBackgroundTrack 0 4
 export trap_S_StartBackgroundTrack
 proc trap_S_StartBackgroundTrack 0 12
@@ -2025,7 +2025,7 @@ CALLI4
 pop
 line 335
 ;335:}
-LABELV $167
+LABELV $168
 endproc trap_S_StartBackgroundTrack 0 12
 export trap_RealTime
 proc trap_RealTime 4 8
@@ -2047,7 +2047,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $168
+LABELV $169
 endproc trap_RealTime 4 8
 export trap_CIN_PlayCinematic
 proc trap_CIN_PlayCinematic 4 28
@@ -2086,7 +2086,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $169
+LABELV $170
 endproc trap_CIN_PlayCinematic 4 28
 export trap_CIN_StopCinematic
 proc trap_CIN_StopCinematic 4 8
@@ -2111,7 +2111,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $170
+LABELV $171
 endproc trap_CIN_StopCinematic 4 8
 export trap_CIN_RunCinematic
 proc trap_CIN_RunCinematic 4 8
@@ -2136,7 +2136,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $171
+LABELV $172
 endproc trap_CIN_RunCinematic 4 8
 export trap_CIN_DrawCinematic
 proc trap_CIN_DrawCinematic 0 8
@@ -2159,7 +2159,7 @@ CALLI4
 pop
 line 362
 ;362:}
-LABELV $172
+LABELV $173
 endproc trap_CIN_DrawCinematic 0 8
 export trap_CIN_SetExtents
 proc trap_CIN_SetExtents 0 24
@@ -2193,7 +2193,7 @@ CALLI4
 pop
 line 368
 ;368:}
-LABELV $173
+LABELV $174
 endproc trap_CIN_SetExtents 0 24
 export trap_R_RemapShader
 proc trap_R_RemapShader 0 16
@@ -2220,7 +2220,7 @@ CALLI4
 pop
 line 373
 ;373:}
-LABELV $174
+LABELV $175
 endproc trap_R_RemapShader 0 16
 export trap_VerifyCDKey
 proc trap_VerifyCDKey 4 12
@@ -2245,7 +2245,7 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 RETI4
-LABELV $175
+LABELV $176
 endproc trap_VerifyCDKey 4 12
 export trap_SetPbClStatus
 proc trap_SetPbClStatus 0 8
@@ -2266,7 +2266,7 @@ CALLI4
 pop
 line 381
 ;381:}
-LABELV $176
+LABELV $177
 endproc trap_SetPbClStatus 0 8
 import UI_RankStatusMenu
 import RankStatus_Cache
@@ -2654,6 +2654,8 @@ import BG_FindItemForHoldable
 import BG_FindItemForPowerup
 import BG_FindItemForWeapon
 import BG_FindItem
+import bgWeapons
+import bgArmor
 import bg_numItems
 import bg_itemlist
 import Pmove

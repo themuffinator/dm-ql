@@ -60,9 +60,9 @@ ADDRLP4 8
 ADDRGP4 level+32
 INDIRI4
 ASGNI4
-ADDRGP4 $59
+ADDRGP4 $60
 JUMPV
-LABELV $56
+LABELV $57
 line 24
 ;24:		VectorCopy( ent->r.mins, client->history[i].mins );
 ADDRLP4 0
@@ -136,7 +136,7 @@ INDIRI4
 ASGNI4
 line 28
 ;28:	}
-LABELV $57
+LABELV $58
 line 23
 ADDRLP4 0
 ADDRLP4 0
@@ -151,14 +151,14 @@ ADDRLP4 12
 INDIRI4
 SUBI4
 ASGNI4
-LABELV $59
+LABELV $60
 ADDRLP4 0
 INDIRI4
 CNSTI4 0
-GEI4 $56
+GEI4 $57
 line 29
 ;29:}
-LABELV $54
+LABELV $55
 endproc G_ResetHistory 16 0
 export G_StoreHistory
 proc G_StoreHistory 12 0
@@ -210,7 +210,7 @@ CNSTI4 1612
 ADDP4
 INDIRI4
 CNSTI4 18
-LTI4 $62
+LTI4 $63
 line 47
 ;47:		client->historyHead = 0;
 ADDRLP4 0
@@ -221,7 +221,7 @@ CNSTI4 0
 ASGNI4
 line 48
 ;48:	}
-LABELV $62
+LABELV $63
 line 50
 ;49:
 ;50:	head = client->historyHead;
@@ -307,7 +307,7 @@ INDIRI4
 ASGNI4
 line 57
 ;57:}
-LABELV $61
+LABELV $62
 endproc G_StoreHistory 12 0
 proc TimeShiftLerp 12 0
 line 68
@@ -408,7 +408,7 @@ ADDF4
 ASGNF4
 line 72
 ;72:}
-LABELV $65
+LABELV $66
 endproc TimeShiftLerp 12 0
 export G_TimeShiftClient
 proc G_TimeShiftClient 40 16
@@ -454,7 +454,7 @@ ADDRLP4 0
 ADDRLP4 12
 INDIRI4
 ASGNI4
-LABELV $67
+LABELV $68
 line 90
 ;90:	do {
 line 91
@@ -473,12 +473,12 @@ ADDP4
 INDIRI4
 ADDRFP4 4
 INDIRI4
-GTI4 $70
+GTI4 $71
 line 92
 ;92:			break;
-ADDRGP4 $69
+ADDRGP4 $70
 JUMPV
-LABELV $70
+LABELV $71
 line 94
 ;93:
 ;94:		k = j;
@@ -499,7 +499,7 @@ line 96
 ADDRLP4 0
 INDIRI4
 CNSTI4 0
-GEI4 $72
+GEI4 $73
 line 97
 ;97:			j = NUM_CLIENT_HISTORY - 1;
 ADDRLP4 0
@@ -507,10 +507,10 @@ CNSTI4 17
 ASGNI4
 line 98
 ;98:		}
-LABELV $72
+LABELV $73
 line 99
 ;99:	}
-LABELV $68
+LABELV $69
 line 100
 ;100:	while ( j != client->historyHead );
 ADDRLP4 0
@@ -520,8 +520,8 @@ INDIRP4
 CNSTI4 1612
 ADDP4
 INDIRI4
-NEI4 $67
-LABELV $69
+NEI4 $68
+LABELV $70
 line 103
 ;101:
 ;102:	// if we got past the first iteration above, we've sandwiched (or wrapped)
@@ -530,7 +530,7 @@ ADDRLP4 0
 INDIRI4
 ADDRLP4 8
 INDIRI4
-EQI4 $74
+EQI4 $75
 line 105
 ;104:		// make sure it doesn't get re-saved
 ;105:		if ( client->saved.leveltime != level.time ) {
@@ -541,7 +541,7 @@ ADDP4
 INDIRI4
 ADDRGP4 level+32
 INDIRI4
-EQI4 $76
+EQI4 $77
 line 107
 ;106:			// save the current origin and bounding box
 ;107:			VectorCopy( ent->r.mins, client->saved.mins );
@@ -590,7 +590,7 @@ INDIRI4
 ASGNI4
 line 111
 ;111:		}
-LABELV $76
+LABELV $77
 line 115
 ;112:
 ;113:		// if we haven't wrapped back to the head, we've sandwiched, so
@@ -603,7 +603,7 @@ INDIRP4
 CNSTI4 1612
 ADDP4
 INDIRI4
-EQI4 $80
+EQI4 $81
 line 116
 ;116:			float	frac = (float)(time - client->history[j].leveltime) /
 ADDRLP4 16
@@ -776,9 +776,9 @@ CALLV
 pop
 line 129
 ;129:		} else {
-ADDRGP4 $81
+ADDRGP4 $82
 JUMPV
-LABELV $80
+LABELV $81
 line 131
 ;130:			// we wrapped, so grab the earliest
 ;131:			VectorCopy( client->history[k].currentOrigin, ent->r.currentOrigin );
@@ -847,13 +847,13 @@ CALLV
 pop
 line 137
 ;137:		}
-LABELV $81
+LABELV $82
 line 138
 ;138:	}
-LABELV $74
+LABELV $75
 line 139
 ;139:}
-LABELV $66
+LABELV $67
 endproc G_TimeShiftClient 40 16
 export G_TimeShiftAllClients
 proc G_TimeShiftAllClients 12 16
@@ -883,9 +883,9 @@ line 156
 ADDRLP4 4
 CNSTI4 0
 ASGNI4
-ADDRGP4 $86
+ADDRGP4 $87
 JUMPV
-LABELV $83
+LABELV $84
 line 157
 ;157:	{
 line 158
@@ -896,12 +896,12 @@ CVPU4 4
 ADDRFP4 4
 INDIRP4
 CVPU4 4
-NEU4 $88
+NEU4 $89
 line 159
 ;159:			continue;
-ADDRGP4 $84
+ADDRGP4 $85
 JUMPV
-LABELV $88
+LABELV $89
 line 161
 ;160:
 ;161:		if ( !ent->r.linked )
@@ -911,12 +911,12 @@ CNSTI4 416
 ADDP4
 INDIRI4
 CNSTI4 0
-NEI4 $90
+NEI4 $91
 line 162
 ;162:			continue;
-ADDRGP4 $84
+ADDRGP4 $85
 JUMPV
-LABELV $90
+LABELV $91
 line 164
 ;163:
 ;164:		if ( ent->client && ent->inuse && ent->client->sess.sessionTeam < TEAM_SPECTATOR ) 
@@ -927,14 +927,14 @@ ADDP4
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $92
+EQU4 $93
 ADDRLP4 0
 INDIRP4
 CNSTI4 520
 ADDP4
 INDIRI4
 CNSTI4 0
-EQI4 $92
+EQI4 $93
 ADDRLP4 0
 INDIRP4
 CNSTI4 516
@@ -944,7 +944,7 @@ CNSTI4 616
 ADDP4
 INDIRI4
 CNSTI4 3
-GEI4 $92
+GEI4 $93
 line 165
 ;165:			G_TimeShiftClient( ent, ltime, qfalse, skip );
 ADDRLP4 0
@@ -961,10 +961,10 @@ ARGP4
 ADDRGP4 G_TimeShiftClient
 CALLV
 pop
-LABELV $92
+LABELV $93
 line 166
 ;166:	}
-LABELV $84
+LABELV $85
 line 156
 ADDRLP4 4
 ADDRLP4 4
@@ -975,18 +975,18 @@ ASGNI4
 ADDRLP4 0
 ADDRLP4 0
 INDIRP4
-CNSTI4 824
+CNSTI4 832
 ADDP4
 ASGNP4
-LABELV $86
+LABELV $87
 ADDRLP4 4
 INDIRI4
 ADDRGP4 level+24
 INDIRI4
-LTI4 $83
+LTI4 $84
 line 167
 ;167:}
-LABELV $82
+LABELV $83
 endproc G_TimeShiftAllClients 12 16
 export G_DoTimeShiftFor
 proc G_DoTimeShiftFor 8 8
@@ -1016,7 +1016,7 @@ CNSTI4 520
 ADDP4
 INDIRI4
 CNSTI4 0
-EQI4 $98
+EQI4 $99
 ADDRLP4 4
 INDIRP4
 CNSTI4 516
@@ -1024,7 +1024,7 @@ ADDP4
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $98
+EQU4 $99
 ADDRLP4 4
 INDIRP4
 CNSTI4 424
@@ -1033,13 +1033,13 @@ INDIRI4
 CNSTI4 8
 BANDI4
 CNSTI4 0
-EQI4 $95
-LABELV $98
+EQI4 $96
+LABELV $99
 line 182
 ;182:		return;
-ADDRGP4 $94
+ADDRGP4 $95
 JUMPV
-LABELV $95
+LABELV $96
 line 186
 ;183:	}
 ;184:
@@ -1048,7 +1048,7 @@ line 186
 ADDRGP4 g_unlagged+12
 INDIRI4
 CNSTI4 0
-EQI4 $99
+EQI4 $100
 line 188
 ;187:		// full lag compensation
 ;188:		time = ent->client->lastCmdTime;
@@ -1064,9 +1064,9 @@ INDIRI4
 ASGNI4
 line 189
 ;189:	} else {
-ADDRGP4 $100
+ADDRGP4 $101
 JUMPV
-LABELV $99
+LABELV $100
 line 191
 ;190:		// server frame lag compensation
 ;191:		time = level.previousTime + ent->client->frameOffset;
@@ -1085,7 +1085,7 @@ ADDI4
 ASGNI4
 line 192
 ;192:	}
-LABELV $100
+LABELV $101
 line 194
 ;193:
 ;194:	G_TimeShiftAllClients( time, ent );
@@ -1100,7 +1100,7 @@ CALLV
 pop
 line 195
 ;195:}
-LABELV $94
+LABELV $95
 endproc G_DoTimeShiftFor 8 8
 export G_UnTimeShiftClient
 proc G_UnTimeShiftClient 12 4
@@ -1128,7 +1128,7 @@ ADDP4
 INDIRI4
 ADDRGP4 level+32
 INDIRI4
-NEI4 $104
+NEI4 $105
 line 209
 ;208:		// move it back
 ;209:		VectorCopy( ent->client->saved.mins, ent->r.mins );
@@ -1210,10 +1210,10 @@ CALLV
 pop
 line 216
 ;216:	}
-LABELV $104
+LABELV $105
 line 217
 ;217:}
-LABELV $103
+LABELV $104
 endproc G_UnTimeShiftClient 12 4
 export G_UnTimeShiftAllClients
 proc G_UnTimeShiftAllClients 16 4
@@ -1244,9 +1244,9 @@ line 235
 ADDRLP4 4
 CNSTI4 0
 ASGNI4
-ADDRGP4 $111
+ADDRGP4 $112
 JUMPV
-LABELV $108
+LABELV $109
 line 236
 ;236:	{
 line 237
@@ -1257,12 +1257,12 @@ CVPU4 4
 ADDRFP4 0
 INDIRP4
 CVPU4 4
-NEU4 $113
+NEU4 $114
 line 238
 ;238:			continue;
-ADDRGP4 $109
+ADDRGP4 $110
 JUMPV
-LABELV $113
+LABELV $114
 line 240
 ;239:
 ;240:		linked = ent->r.linked;
@@ -1283,14 +1283,14 @@ ADDP4
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $115
+EQU4 $116
 ADDRLP4 0
 INDIRP4
 CNSTI4 520
 ADDP4
 INDIRI4
 CNSTI4 0
-EQI4 $115
+EQI4 $116
 ADDRLP4 0
 INDIRP4
 CNSTI4 516
@@ -1300,7 +1300,7 @@ CNSTI4 616
 ADDP4
 INDIRI4
 CNSTI4 3
-GEI4 $115
+GEI4 $116
 line 243
 ;243:		{
 line 244
@@ -1316,7 +1316,7 @@ line 245
 ADDRLP4 8
 INDIRI4
 CNSTI4 0
-NEI4 $117
+NEI4 $118
 line 246
 ;246:			{
 line 247
@@ -1329,13 +1329,13 @@ CALLV
 pop
 line 248
 ;248:			}
-LABELV $117
+LABELV $118
 line 249
 ;249:		}
-LABELV $115
+LABELV $116
 line 250
 ;250:	}
-LABELV $109
+LABELV $110
 line 235
 ADDRLP4 4
 ADDRLP4 4
@@ -1346,18 +1346,18 @@ ASGNI4
 ADDRLP4 0
 ADDRLP4 0
 INDIRP4
-CNSTI4 824
+CNSTI4 832
 ADDP4
 ASGNP4
-LABELV $111
+LABELV $112
 ADDRLP4 4
 INDIRI4
 ADDRGP4 level+24
 INDIRI4
-LTI4 $108
+LTI4 $109
 line 251
 ;251:}
-LABELV $107
+LABELV $108
 endproc G_UnTimeShiftAllClients 16 4
 export G_UndoTimeShiftFor
 proc G_UndoTimeShiftFor 4 4
@@ -1386,7 +1386,7 @@ CNSTI4 520
 ADDP4
 INDIRI4
 CNSTI4 0
-EQI4 $123
+EQI4 $124
 ADDRLP4 0
 INDIRP4
 CNSTI4 516
@@ -1394,7 +1394,7 @@ ADDP4
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $123
+EQU4 $124
 ADDRLP4 0
 INDIRP4
 CNSTI4 424
@@ -1403,13 +1403,13 @@ INDIRI4
 CNSTI4 8
 BANDI4
 CNSTI4 0
-EQI4 $120
-LABELV $123
+EQI4 $121
+LABELV $124
 line 265
 ;265:		return;
-ADDRGP4 $119
+ADDRGP4 $120
 JUMPV
-LABELV $120
+LABELV $121
 line 268
 ;266:	}
 ;267:
@@ -1422,7 +1422,7 @@ CALLV
 pop
 line 269
 ;269:}
-LABELV $119
+LABELV $120
 endproc G_UndoTimeShiftFor 4 4
 proc G_PredictPlayerClipVelocity 12 0
 line 282
@@ -1492,7 +1492,7 @@ line 289
 ADDRLP4 0
 INDIRF4
 CNSTF4 0
-GEF4 $125
+GEF4 $126
 line 290
 ;290:		backoff *= OVERCLIP;
 ADDRLP4 0
@@ -1503,9 +1503,9 @@ MULF4
 ASGNF4
 line 291
 ;291:	} else {
-ADDRGP4 $126
+ADDRGP4 $127
 JUMPV
-LABELV $125
+LABELV $126
 line 292
 ;292:		backoff /= OVERCLIP;
 ADDRLP4 0
@@ -1516,7 +1516,7 @@ MULF4
 ASGNF4
 line 293
 ;293:	}
-LABELV $126
+LABELV $127
 line 296
 ;294:
 ;295:	// slide along
@@ -1577,7 +1577,7 @@ ADDF4
 ASGNF4
 line 297
 ;297:}
-LABELV $124
+LABELV $125
 endproc G_PredictPlayerClipVelocity 12 0
 export G_PredictPlayerSlideMove
 proc G_PredictPlayerSlideMove 288 28
@@ -1665,9 +1665,9 @@ line 337
 ADDRLP4 228
 CNSTI4 0
 ASGNI4
-ADDRGP4 $131
+ADDRGP4 $132
 JUMPV
-LABELV $128
+LABELV $129
 line 340
 ;338:
 ;339:		// calculate position we are trying to move to
@@ -1745,7 +1745,7 @@ line 345
 ADDRLP4 152
 INDIRI4
 CNSTI4 0
-EQI4 $138
+EQI4 $139
 line 347
 ;346:			// entity is completely trapped in another solid
 ;347:			VectorClear( velocity );
@@ -1771,9 +1771,9 @@ line 349
 ;349:			return qtrue;
 CNSTI4 1
 RETI4
-ADDRGP4 $127
+ADDRGP4 $128
 JUMPV
-LABELV $138
+LABELV $139
 line 352
 ;350:		}
 ;351:
@@ -1781,7 +1781,7 @@ line 352
 ADDRLP4 152+8
 INDIRF4
 CNSTF4 0
-LEF4 $142
+LEF4 $143
 line 354
 ;353:			// actually covered some distance
 ;354:			VectorCopy( trace.endpos, origin );
@@ -1791,19 +1791,19 @@ INDIRB
 ASGNB 12
 line 355
 ;355:		}
-LABELV $142
+LABELV $143
 line 357
 ;356:
 ;357:		if (trace.fraction == 1) {
 ADDRLP4 152+8
 INDIRF4
 CNSTF4 1065353216
-NEF4 $146
+NEF4 $147
 line 358
 ;358:			break;		// moved the entire distance
-ADDRGP4 $130
+ADDRGP4 $131
 JUMPV
-LABELV $146
+LABELV $147
 line 361
 ;359:		}
 ;360:
@@ -1824,7 +1824,7 @@ line 363
 ADDRLP4 108
 INDIRI4
 CNSTI4 5
-LTI4 $150
+LTI4 $151
 line 365
 ;364:			// this shouldn't really happen
 ;365:			VectorClear( velocity );
@@ -1850,9 +1850,9 @@ line 367
 ;367:			return qtrue;
 CNSTI4 1
 RETI4
-ADDRGP4 $127
+ADDRGP4 $128
 JUMPV
-LABELV $150
+LABELV $151
 line 375
 ;368:		}
 ;369:
@@ -1865,9 +1865,9 @@ line 375
 ADDRLP4 92
 CNSTI4 0
 ASGNI4
-ADDRGP4 $157
+ADDRGP4 $158
 JUMPV
-LABELV $154
+LABELV $155
 line 376
 ;376:			if ( DotProduct( trace.plane.normal, planes[i] ) > 0.99 ) {
 ADDRLP4 152+24
@@ -1903,7 +1903,7 @@ INDIRF4
 MULF4
 ADDF4
 CNSTF4 1065185444
-LEF4 $158
+LEF4 $159
 line 377
 ;377:				VectorAdd( trace.plane.normal, velocity, velocity );
 ADDRLP4 76
@@ -1929,13 +1929,13 @@ ADDF4
 ASGNF4
 line 378
 ;378:				break;
-ADDRGP4 $156
+ADDRGP4 $157
 JUMPV
-LABELV $158
+LABELV $159
 line 380
 ;379:			}
 ;380:		}
-LABELV $155
+LABELV $156
 line 375
 ADDRLP4 92
 ADDRLP4 92
@@ -1943,13 +1943,13 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $157
+LABELV $158
 ADDRLP4 92
 INDIRI4
 ADDRLP4 108
 INDIRI4
-LTI4 $154
-LABELV $156
+LTI4 $155
+LABELV $157
 line 382
 ;381:
 ;382:		if ( i < numplanes ) {
@@ -1957,12 +1957,12 @@ ADDRLP4 92
 INDIRI4
 ADDRLP4 108
 INDIRI4
-GEI4 $176
+GEI4 $177
 line 383
 ;383:			continue;
-ADDRGP4 $129
+ADDRGP4 $130
 JUMPV
-LABELV $176
+LABELV $177
 line 386
 ;384:		}
 ;385:
@@ -1995,9 +1995,9 @@ line 394
 ADDRLP4 92
 CNSTI4 0
 ASGNI4
-ADDRGP4 $182
+ADDRGP4 $183
 JUMPV
-LABELV $179
+LABELV $180
 line 395
 ;395:			into = DotProduct( velocity, planes[i] );
 ADDRLP4 208
@@ -2039,12 +2039,12 @@ line 396
 ADDRLP4 208
 INDIRF4
 CNSTF4 1036831949
-LTF4 $187
+LTF4 $188
 line 397
 ;397:				continue;		// move doesn't interact with the plane
-ADDRGP4 $180
+ADDRGP4 $181
 JUMPV
-LABELV $187
+LABELV $188
 line 401
 ;398:			}
 ;399:
@@ -2089,21 +2089,21 @@ line 407
 ADDRLP4 88
 CNSTI4 0
 ASGNI4
-ADDRGP4 $192
+ADDRGP4 $193
 JUMPV
-LABELV $189
+LABELV $190
 line 408
 ;408:				if ( j == i ) {
 ADDRLP4 88
 INDIRI4
 ADDRLP4 92
 INDIRI4
-NEI4 $193
+NEI4 $194
 line 409
 ;409:					continue;
-ADDRGP4 $190
+ADDRGP4 $191
 JUMPV
-LABELV $193
+LABELV $194
 line 412
 ;410:				}
 ;411:
@@ -2141,12 +2141,12 @@ INDIRF4
 MULF4
 ADDF4
 CNSTF4 1036831949
-LTF4 $195
+LTF4 $196
 line 413
 ;413:					continue;		// move doesn't interact with the plane
-ADDRGP4 $190
+ADDRGP4 $191
 JUMPV
-LABELV $195
+LABELV $196
 line 417
 ;414:				}
 ;415:
@@ -2219,12 +2219,12 @@ INDIRF4
 MULF4
 ADDF4
 CNSTF4 0
-LTF4 $201
+LTF4 $202
 line 422
 ;422:					continue;
-ADDRGP4 $190
+ADDRGP4 $191
 JUMPV
-LABELV $201
+LABELV $202
 line 426
 ;423:				}
 ;424:
@@ -2380,27 +2380,27 @@ line 437
 ADDRLP4 0
 CNSTI4 0
 ASGNI4
-ADDRGP4 $226
+ADDRGP4 $227
 JUMPV
-LABELV $223
+LABELV $224
 line 438
 ;438:					if ( k == i || k == j ) {
 ADDRLP4 0
 INDIRI4
 ADDRLP4 92
 INDIRI4
-EQI4 $229
+EQI4 $230
 ADDRLP4 0
 INDIRI4
 ADDRLP4 88
 INDIRI4
-NEI4 $227
-LABELV $229
+NEI4 $228
+LABELV $230
 line 439
 ;439:						continue;
-ADDRGP4 $224
+ADDRGP4 $225
 JUMPV
-LABELV $227
+LABELV $228
 line 442
 ;440:					}
 ;441:
@@ -2438,12 +2438,12 @@ INDIRF4
 MULF4
 ADDF4
 CNSTF4 1036831949
-LTF4 $230
+LTF4 $231
 line 443
 ;443:						continue;		// move doesn't interact with the plane
-ADDRGP4 $224
+ADDRGP4 $225
 JUMPV
-LABELV $230
+LABELV $231
 line 447
 ;444:					}
 ;445:
@@ -2471,9 +2471,9 @@ line 449
 ;449:					return qtrue;
 CNSTI4 1
 RETI4
-ADDRGP4 $127
+ADDRGP4 $128
 JUMPV
-LABELV $224
+LABELV $225
 line 437
 ADDRLP4 0
 ADDRLP4 0
@@ -2481,16 +2481,16 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $226
+LABELV $227
 ADDRLP4 0
 INDIRI4
 ADDRLP4 108
 INDIRI4
-LTI4 $223
+LTI4 $224
 line 451
 ;450:				}
 ;451:			}
-LABELV $190
+LABELV $191
 line 407
 ADDRLP4 88
 ADDRLP4 88
@@ -2498,12 +2498,12 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $192
+LABELV $193
 ADDRLP4 88
 INDIRI4
 ADDRLP4 108
 INDIRI4
-LTI4 $189
+LTI4 $190
 line 454
 ;452:
 ;453:			// if we have fixed all interactions, try another move
@@ -2520,9 +2520,9 @@ INDIRB
 ASGNB 12
 line 456
 ;456:			break;
-ADDRGP4 $181
+ADDRGP4 $182
 JUMPV
-LABELV $180
+LABELV $181
 line 394
 ADDRLP4 92
 ADDRLP4 92
@@ -2530,17 +2530,17 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $182
+LABELV $183
 ADDRLP4 92
 INDIRI4
 ADDRLP4 108
 INDIRI4
-LTI4 $179
-LABELV $181
+LTI4 $180
+LABELV $182
 line 458
 ;457:		}
 ;458:	}
-LABELV $129
+LABELV $130
 line 337
 ADDRLP4 228
 ADDRLP4 228
@@ -2548,13 +2548,13 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $131
+LABELV $132
 ADDRLP4 228
 INDIRI4
 ADDRLP4 232
 INDIRI4
-LTI4 $128
-LABELV $130
+LTI4 $129
+LABELV $131
 line 460
 ;459:
 ;460:	VectorCopy( endVelocity, velocity );
@@ -2577,21 +2577,21 @@ line 463
 ADDRLP4 228
 INDIRI4
 CNSTI4 0
-EQI4 $239
+EQI4 $240
 ADDRLP4 248
 CNSTI4 1
 ASGNI4
-ADDRGP4 $240
+ADDRGP4 $241
 JUMPV
-LABELV $239
+LABELV $240
 ADDRLP4 248
 CNSTI4 0
 ASGNI4
-LABELV $240
+LABELV $241
 ADDRLP4 248
 INDIRI4
 RETI4
-LABELV $127
+LABELV $128
 endproc G_PredictPlayerSlideMove 288 28
 export G_PredictPlayerStepSlideMove
 proc G_PredictPlayerStepSlideMove 124 28
@@ -2647,13 +2647,13 @@ ASGNI4
 ADDRLP4 108
 INDIRI4
 CNSTI4 0
-NEI4 $242
+NEI4 $243
 line 486
 ;485:		// not clipped, so forget stepping
 ;486:		return;
-ADDRGP4 $241
+ADDRGP4 $242
 JUMPV
-LABELV $242
+LABELV $243
 line 492
 ;487:	}
 ;488:
@@ -2716,12 +2716,12 @@ line 498
 ADDRLP4 0
 INDIRI4
 CNSTI4 0
-EQI4 $245
+EQI4 $246
 line 499
 ;499:		return;		// can't step up
-ADDRGP4 $241
+ADDRGP4 $242
 JUMPV
-LABELV $245
+LABELV $246
 line 502
 ;500:	}
 ;501:
@@ -2828,7 +2828,7 @@ line 514
 ADDRLP4 0
 INDIRI4
 CNSTI4 0
-NEI4 $252
+NEI4 $253
 line 515
 ;515:		VectorCopy( trace.endpos, ent->s.pos.trBase );
 ADDRFP4 0
@@ -2840,13 +2840,13 @@ INDIRB
 ASGNB 12
 line 516
 ;516:	}
-LABELV $252
+LABELV $253
 line 517
 ;517:	if ( trace.fraction < 1.0 ) {
 ADDRLP4 0+8
 INDIRF4
 CNSTF4 1065353216
-GEF4 $255
+GEF4 $256
 line 518
 ;518:		G_PredictPlayerClipVelocity( ent->s.pos.trDelta, trace.plane.normal, ent->s.pos.trDelta );
 ADDRLP4 120
@@ -2870,10 +2870,10 @@ CALLV
 pop
 line 519
 ;519:	}
-LABELV $255
+LABELV $256
 line 520
 ;520:}
-LABELV $241
+LABELV $242
 endproc G_PredictPlayerStepSlideMove 124 28
 export G_PredictPlayerMove
 proc G_PredictPlayerMove 0 8
@@ -2903,7 +2903,7 @@ CALLV
 pop
 line 534
 ;534:}
-LABELV $259
+LABELV $260
 endproc G_PredictPlayerMove 0 8
 import svf_self_portal2
 import trap_SnapVector
@@ -3086,6 +3086,22 @@ import trap_RealTime
 import trap_Milliseconds
 import trap_Error
 import trap_Print
+import g_startingAmmo_hmg
+import g_startingAmmo_cg
+import g_startingAmmo_pl
+import g_startingAmmo_ng
+import g_startingAmmo_gh
+import g_startingAmmo_bfg
+import g_startingAmmo_pg
+import g_startingAmmo_rg
+import g_startingAmmo_lg
+import g_startingAmmo_rl
+import g_startingAmmo_gl
+import g_startingAmmo_sg
+import g_startingAmmo_mg
+import g_startingAmmo_g
+import g_startingWeapons
+import armor_tiered
 import g_rotation
 import pmove_msec
 import pmove_fixed
@@ -3105,8 +3121,6 @@ import g_unlagged
 import g_listEntity
 import g_allowVote
 import g_allowKill
-import g_podiumDrop
-import g_podiumDist
 import g_blood
 import g_motd
 import g_debugAlloc
@@ -3181,8 +3195,6 @@ import G_CheckBotSpawn
 import G_GetBotInfoByName
 import G_GetBotInfoByNumber
 import G_InitBots
-import Svcmd_AbortPodium_f
-import SpawnModelsOnVictoryPads
 import UpdateTournamentInfo
 import G_ClearClientSessionData
 import G_WriteClientSessionData
@@ -3292,15 +3304,10 @@ import SaveRegisteredItems
 import RegisterItem
 import ClearRegisteredItems
 import Touch_Item
-import ArmorIndex
-import Think_Weapon
 import FinishSpawningItem
 import G_SpawnItem
-import SetRespawn
 import LaunchItem
 import Drop_Item
-import PrecacheItem
-import UseHoldableItem
 import SpawnTime
 import RespawnItem
 import G_RunItem
@@ -3340,6 +3347,8 @@ import BG_FindItemForHoldable
 import BG_FindItemForPowerup
 import BG_FindItemForWeapon
 import BG_FindItem
+import bgWeapons
+import bgArmor
 import bg_numItems
 import bg_itemlist
 import Pmove

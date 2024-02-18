@@ -130,6 +130,18 @@ void CG_ParseSysteminfo(void) {
 
 
 /*
+================
+CG_ParseArmorTiered
+================
+*/
+void CG_ParseArmorTiered(void) {
+	const char *info = CG_ConfigString(CS_ARMOR_TIERED);
+	cgs.armor_tiered = !!atoi(Info_ValueForKey(info, "armor_tiered"));
+	trap_Cvar_Set("cg_armorTiered", va("%i", cgs.armor_tiered));
+}
+
+
+/*
 ==================
 CG_ParseWarmup
 ==================
@@ -310,6 +322,8 @@ static void CG_ConfigStringModified(void) {
 		}
 	} else if (num == CS_SHADERSTATE) {
 		CG_ShaderStateChanged();
+	} else if (num == CS_ARMOR_TIERED) {
+		CG_ParseArmorTiered();
 	}
 
 }
