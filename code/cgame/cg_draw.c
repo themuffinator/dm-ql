@@ -1359,43 +1359,6 @@ static void CG_DrawVote(void) {
 }
 
 
-/*
-=================
-CG_DrawTeamVote
-=================
-*/
-static void CG_DrawTeamVote(void) {
-	char *s;
-	int		sec, cs_offset;
-
-	if (cgs.clientinfo[cg.clientNum].team == TEAM_RED)
-		cs_offset = 0;
-	else if (cgs.clientinfo[cg.clientNum].team == TEAM_BLUE)
-		cs_offset = 1;
-	else
-		return;
-
-	if (!cgs.teamVoteTime[cs_offset]) {
-		return;
-	}
-
-	// play a talk beep whenever it is modified
-	if (cgs.teamVoteModified[cs_offset]) {
-		cgs.teamVoteModified[cs_offset] = qfalse;
-		trap_S_StartLocalSound(cgs.media.talkSound, CHAN_LOCAL_SOUND);
-	}
-
-	sec = (VOTE_TIME - (cg.time - cgs.teamVoteTime[cs_offset])) / 1000;
-	if (sec < 0) {
-		sec = 0;
-	}
-	s = va("TEAMVOTE(%i):%s yes:%i no:%i", sec, cgs.teamVoteString[cs_offset],
-		cgs.teamVoteYes[cs_offset], cgs.teamVoteNo[cs_offset]);
-
-	CG_DrawString(cgs.screenXmin - 0, 90, s, colorWhite, SMALLCHAR_WIDTH, SMALLCHAR_HEIGHT, 0, DS_PROPORTIONAL); // DS_SHADOW?
-}
-
-
 static qboolean CG_DrawScoreboard(void) {
 	static qboolean firstTime = qtrue;
 	float fade, *fadeColor;
@@ -1706,7 +1669,6 @@ static void CG_Draw2D(stereoFrame_t stereoFrame) {
 	}
 
 	CG_DrawVote();
-	CG_DrawTeamVote();
 
 	CG_DrawLagometer();
 

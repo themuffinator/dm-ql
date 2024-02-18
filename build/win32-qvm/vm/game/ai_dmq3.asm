@@ -13011,7 +13011,7 @@ line 2022
 line 2024
 ;2023:	//NOTE: we shouldn't be looking at the game code...
 ;2024:	if (level.intermissiontime) return qtrue;
-ADDRGP4 level+7604
+ADDRGP4 level+5516
 INDIRI4
 CNSTI4 0
 EQI4 $1004
@@ -17233,16 +17233,16 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRI4
-CNSTI4 1640
+CNSTI4 1632
 MULI4
-ADDRGP4 g_clients+624
+ADDRGP4 g_clients+616
 ADDP4
 INDIRI4
 ADDRFP4 4
 INDIRI4
-CNSTI4 1640
+CNSTI4 1632
 MULI4
-ADDRGP4 g_clients+624
+ADDRGP4 g_clients+616
 ADDP4
 INDIRI4
 NEI4 $1382

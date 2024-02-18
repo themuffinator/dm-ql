@@ -1027,12 +1027,6 @@ typedef struct {
 	qboolean		voteModified;			// beep whenever changed
 	char			voteString[MAX_STRING_TOKENS];
 
-	int				teamVoteTime[2];
-	int				teamVoteYes[2];
-	int				teamVoteNo[2];
-	qboolean		teamVoteModified[2];	// beep whenever changed
-	char			teamVoteString[2][MAX_STRING_TOKENS];
-
 	int				levelStartTime;
 
 	int				scores1, scores2;		// from configstrings

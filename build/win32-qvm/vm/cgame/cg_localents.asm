@@ -398,7 +398,7 @@ CNSTI4 0
 ARGI4
 CNSTI4 0
 ARGI4
-ADDRGP4 cgs+148744+328
+ADDRGP4 cgs+146664+328
 INDIRI4
 ARGI4
 ADDRLP4 36
@@ -498,7 +498,7 @@ ADDRLP4 8
 ADDRGP4 rand
 CALLI4
 ASGNI4
-ADDRGP4 cgs+148744+412
+ADDRGP4 cgs+146664+412
 INDIRI4
 ARGI4
 ADDRLP4 12
@@ -576,7 +576,7 @@ ADDRLP4 8
 ADDRGP4 rand
 CALLI4
 ASGNI4
-ADDRGP4 cgs+148744+420
+ADDRGP4 cgs+146664+420
 INDIRI4
 ARGI4
 ADDRLP4 12
@@ -696,7 +696,7 @@ NEI4 $114
 line 170
 ;170:				s = cgs.media.gibBounce1Sound;
 ADDRLP4 8
-ADDRGP4 cgs+148744+876
+ADDRGP4 cgs+146664+876
 INDIRI4
 ASGNI4
 line 171
@@ -711,7 +711,7 @@ NEI4 $118
 line 172
 ;172:				s = cgs.media.gibBounce2Sound;
 ADDRLP4 8
-ADDRGP4 cgs+148744+880
+ADDRGP4 cgs+146664+880
 INDIRI4
 ASGNI4
 line 173
@@ -722,7 +722,7 @@ LABELV $118
 line 174
 ;174:				s = cgs.media.gibBounce3Sound;
 ADDRLP4 8
-ADDRGP4 cgs+148744+884
+ADDRGP4 cgs+146664+884
 INDIRI4
 ASGNI4
 line 175
@@ -3838,7 +3838,7 @@ NEI4 $422
 line 626
 ;625:			//			trap_S_StartSound (re->origin, ENTITYNUM_WORLD, CHAN_AUTO, cgs.media.kamikazeExplodeSound );
 ;626:			trap_S_StartLocalSound(cgs.media.kamikazeExplodeSound, CHAN_AUTO);
-ADDRGP4 cgs+148744+816
+ADDRGP4 cgs+146664+816
 INDIRI4
 ARGI4
 CNSTI4 0
@@ -3880,7 +3880,7 @@ pop
 line 631
 ;631:		shockwave.hModel = cgs.media.kamikazeShockWave;
 ADDRLP4 4+8
-ADDRGP4 cgs+148744+528
+ADDRGP4 cgs+146664+528
 INDIRI4
 ASGNI4
 line 632
@@ -4502,7 +4502,7 @@ NEI4 $503
 line 670
 ;669:				//				trap_S_StartSound (re->origin, ENTITYNUM_WORLD, CHAN_AUTO, cgs.media.kamikazeImplodeSound );
 ;670:				trap_S_StartLocalSound(cgs.media.kamikazeImplodeSound, CHAN_AUTO);
-ADDRGP4 cgs+148744+820
+ADDRGP4 cgs+146664+820
 INDIRI4
 ARGI4
 CNSTI4 0
@@ -4823,7 +4823,7 @@ pop
 line 697
 ;697:		shockwave.hModel = cgs.media.kamikazeShockWave;
 ADDRLP4 4+8
-ADDRGP4 cgs+148744+528
+ADDRGP4 cgs+146664+528
 INDIRI4
 ASGNI4
 line 698
@@ -6111,7 +6111,7 @@ ADDP4
 INDIRI4
 CNSTI4 2
 LSHI4
-ADDRGP4 cgs+148744+340
+ADDRGP4 cgs+146664+340
 ADDP4
 INDIRI4
 ASGNI4

@@ -10,6 +10,7 @@ set uidir=..\..\..\..\code\ui
 
 set tooldir=%~dp0tools\
 set pk3=%~dp0pak0.pk3
+set outdir=C:\DarkMatter\dmql
 
 set cc1=%tooldir%q3lcc -DQ3_VM -DCGAME  -S -Wf-g -I%cgamedir% -I%gamedir% %1
 set cc2=%tooldir%q3lcc -DQ3_VM -DQAGAME -S -Wf-g -I%gamedir% %1
@@ -225,12 +226,16 @@ copy vm\ui\ui.jts vm
 copy vm\game\qagame.jts vm
 copy vm\cgame\cgame.jts vm
 
-%tooldir%7za.exe a -tzip -mx=9 -mpass=8 -mfb=255 -- %pk3% vm\*.*
+%tooldir%7za.exe a -tzip -o%outdir% -mx=9 -mpass=8 -mfb=255 -- %pk3% vm\*.*
 rem rmdir /S /Q vm
 
 cd ..\..\assets
 @if errorlevel 1 goto quit
-%tooldir%7za.exe a -tzip -mx=9 -mpass=8 -mfb=255 -r -- %pk3% *.*
+%tooldir%7za.exe a -tzip -o%outdir% -mx=9 -mpass=8 -mfb=255 -r -- %pk3% *.*
 
 :quit
 pause
+
+cd..
+move /Y C:\dm-q2\build\win32-qvm\pak0.pk3 %outdir%
+C:\DarkMatter\DarkMatter.client.x64.exe +set fs_game dmql +set sv_pure 0 +set fs_q3_load 2 +set fs_ql_load 1 +set bot_enable 0 +set g_gametype 0 +devmap campgrounds

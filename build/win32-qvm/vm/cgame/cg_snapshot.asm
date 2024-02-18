@@ -710,7 +710,7 @@ ADDRGP4 cg_nopredict+12
 INDIRI4
 CNSTI4 0
 NEI4 $138
-ADDRGP4 cgs+150000
+ADDRGP4 cgs+147920
 INDIRI4
 CNSTI4 0
 EQI4 $130
@@ -855,7 +855,7 @@ line 198
 ;196:		//cent->nextState = *es;
 ;197:
 ;198:		if (cgs.ospEnc && (esNum = cent->nextState.number) <= MAX_CLIENTS - 1) {
-ADDRGP4 cgs+150004
+ADDRGP4 cgs+147924
 INDIRI4
 CNSTI4 0
 EQI4 $148

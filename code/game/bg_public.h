@@ -57,11 +57,6 @@
 #define	CS_VOTE_YES				10
 #define	CS_VOTE_NO				11
 
-#define CS_TEAMVOTE_TIME		12
-#define CS_TEAMVOTE_STRING		14
-#define	CS_TEAMVOTE_YES			16
-#define	CS_TEAMVOTE_NO			18
-
 #define	CS_GAME_VERSION			20
 #define	CS_LEVEL_START_TIME		21		// so the timer only shows the current level
 #define	CS_INTERMISSION			22		// when 1, fraglimit/timelimit has been hit and intermission will start in a second or two
@@ -246,9 +241,8 @@ typedef enum {
 #define	EF_AWARD_DEFEND		0x00010000		// draw a defend sprite
 #define	EF_AWARD_ASSIST		0x00020000		// draw a assist sprite
 #define EF_AWARD_DENIED		0x00040000		// denied
-#define EF_TEAMVOTED		0x00080000		// already cast a team vote
 
-#define EF_PERSISTANT ( EF_CONNECTION | EF_VOTED | EF_TEAMVOTED )
+#define EF_PERSISTANT ( EF_CONNECTION | EF_VOTED )
 #define EF_AWARDS ( EF_AWARD_IMPRESSIVE | EF_AWARD_EXCELLENT | EF_AWARD_GAUNTLET | EF_AWARD_ASSIST | EF_AWARD_DEFEND | EF_AWARD_CAP )
 
 #define EF_NOPREDICT ( EF_AWARDS | EF_PERSISTANT | EF_TALK )

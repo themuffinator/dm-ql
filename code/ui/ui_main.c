@@ -3307,9 +3307,7 @@ static void UI_RunMenuScript(char **args) {
 				trap_Cmd_ExecuteText(EXEC_APPEND, va("callvote g_gametype %i\n", uiInfo.gameTypes[ui_netGameType.integer].gtEnum));
 			}
 		} else if (Q_stricmp(name, "voteLeader") == 0) {
-			if (uiInfo.teamIndex >= 0 && uiInfo.teamIndex < uiInfo.myTeamCount) {
-				trap_Cmd_ExecuteText(EXEC_APPEND, va("callteamvote leader %s\n", uiInfo.teamNames[uiInfo.teamIndex]));
-			}
+
 		} else if (Q_stricmp(name, "addBot") == 0) {
 			if (trap_Cvar_VariableValue("g_gametype") >= GT_TEAM) {
 				trap_Cmd_ExecuteText(EXEC_APPEND, va("addbot %s %i %s\n", uiInfo.characterList[uiInfo.botIndex].name, uiInfo.skillIndex + 1, (uiInfo.redBlue == 0) ? "Red" : "Blue"));

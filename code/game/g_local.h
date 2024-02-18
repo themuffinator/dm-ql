@@ -232,10 +232,8 @@ typedef struct {
 	int			enterTime;			// level.time the client entered the game
 	playerTeamState_t teamState;	// status in teamplay games
 	int			voteCount;			// to prevent people from constantly calling votes
-	int			teamVoteCount;		// to prevent people from constantly calling votes
 	qboolean	teamInfo;			// send team overlay updates?
 	int			voted;
-	int			teamVoted;
 
 	qboolean	inGame;
 } clientPersistant_t;
@@ -389,13 +387,6 @@ typedef struct {
 	int			voteYes;
 	int			voteNo;
 	int			numVotingClients;		// set by CalculateRanks
-
-	// team voting state
-	char		teamVoteString[2][MAX_STRING_CHARS];
-	int			teamVoteTime[2];		// level.time vote was called
-	int			teamVoteYes[2];
-	int			teamVoteNo[2];
-	int			numteamVotingClients[TEAM_NUM_TEAMS];// set by CalculateRanks
 
 	// spawn variables
 	qboolean	spawning;				// the G_Spawn*() functions are valid

@@ -297,13 +297,13 @@ line 94
 line 96
 ;95:
 ;96:	if (cgs.filterKeyUpEvent) {
-ADDRGP4 cgs+150012
+ADDRGP4 cgs+147932
 INDIRI4
 CNSTI4 0
 EQI4 $120
 line 97
 ;97:		cgs.filterKeyUpEvent = qfalse;
-ADDRGP4 cgs+150012
+ADDRGP4 cgs+147932
 CNSTI4 0
 ASGNI4
 line 98
@@ -712,14 +712,14 @@ line 197
 ;197:	if (cg.time < cgs.acceptOrderTime) {
 ADDRGP4 cg+107604
 INDIRI4
-ADDRGP4 cgs+148732
+ADDRGP4 cgs+146652
 INDIRI4
 GEI4 $153
 line 198
 ;198:		trap_SendClientCommand(va("teamtask %d\n", cgs.acceptTask));
 ADDRGP4 $157
 ARGP4
-ADDRGP4 cgs+148736
+ADDRGP4 cgs+146656
 INDIRI4
 ARGI4
 ADDRLP4 0
@@ -734,7 +734,7 @@ CALLV
 pop
 line 199
 ;199:		cgs.acceptOrderTime = 0;
-ADDRGP4 cgs+148732
+ADDRGP4 cgs+146652
 CNSTI4 0
 ASGNI4
 line 200
@@ -759,12 +759,12 @@ line 205
 ;205:	if (cg.time < cgs.acceptOrderTime) {
 ADDRGP4 cg+107604
 INDIRI4
-ADDRGP4 cgs+148732
+ADDRGP4 cgs+146652
 INDIRI4
 GEI4 $162
 line 206
 ;206:		cgs.acceptOrderTime = 0;
-ADDRGP4 cgs+148732
+ADDRGP4 cgs+146652
 CNSTI4 0
 ASGNI4
 line 207
@@ -1385,42 +1385,28 @@ ADDRGP4 trap_AddCommand
 CALLV
 pop
 line 357
-;357:	trap_AddCommand("callteamvote");
+;357:	trap_AddCommand("stats");
 ADDRGP4 $242
 ARGP4
 ADDRGP4 trap_AddCommand
 CALLV
 pop
 line 358
-;358:	trap_AddCommand("teamvote");
+;358:	trap_AddCommand("teamtask");
 ADDRGP4 $243
 ARGP4
 ADDRGP4 trap_AddCommand
 CALLV
 pop
 line 359
-;359:	trap_AddCommand("stats");
+;359:	trap_AddCommand("loaddefered");	// spelled wrong, but not changing for demo
 ADDRGP4 $244
 ARGP4
 ADDRGP4 trap_AddCommand
 CALLV
 pop
 line 360
-;360:	trap_AddCommand("teamtask");
-ADDRGP4 $245
-ARGP4
-ADDRGP4 trap_AddCommand
-CALLV
-pop
-line 361
-;361:	trap_AddCommand("loaddefered");	// spelled wrong, but not changing for demo
-ADDRGP4 $246
-ARGP4
-ADDRGP4 trap_AddCommand
-CALLV
-pop
-line 362
-;362:}
+;360:}
 LABELV $222
 endproc CG_InitConsoleCommands 4 4
 import menuScoreboard
@@ -2014,7 +2000,7 @@ import srand
 import qsort
 lit
 align 1
-LABELV $246
+LABELV $244
 byte 1 108
 byte 1 111
 byte 1 97
@@ -2028,7 +2014,7 @@ byte 1 101
 byte 1 100
 byte 1 0
 align 1
-LABELV $245
+LABELV $243
 byte 1 116
 byte 1 101
 byte 1 97
@@ -2039,38 +2025,12 @@ byte 1 115
 byte 1 107
 byte 1 0
 align 1
-LABELV $244
-byte 1 115
-byte 1 116
-byte 1 97
-byte 1 116
-byte 1 115
-byte 1 0
-align 1
-LABELV $243
-byte 1 116
-byte 1 101
-byte 1 97
-byte 1 109
-byte 1 118
-byte 1 111
-byte 1 116
-byte 1 101
-byte 1 0
-align 1
 LABELV $242
-byte 1 99
-byte 1 97
-byte 1 108
-byte 1 108
+byte 1 115
 byte 1 116
-byte 1 101
 byte 1 97
-byte 1 109
-byte 1 118
-byte 1 111
 byte 1 116
-byte 1 101
+byte 1 115
 byte 1 0
 align 1
 LABELV $241
