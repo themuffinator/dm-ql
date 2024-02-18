@@ -64,9 +64,6 @@ G_CVAR( g_debugAlloc, "g_debugAlloc", "0", 0, 0, qfalse, qfalse )
 G_CVAR( g_motd, "g_motd", "", 0, 0, qfalse, qfalse )
 G_CVAR( g_blood, "com_blood", "1", 0, 0, qfalse, qfalse )
 
-G_CVAR( g_podiumDist, "g_podiumDist", "80", 0, 0, qfalse, qfalse )
-G_CVAR( g_podiumDrop, "g_podiumDrop", "70", 0, 0, qfalse, qfalse )
-
 G_CVAR( g_allowKill, "g_allowKill", "1000", CVAR_ARCHIVE, 0, qfalse, qfalse )
 G_CVAR( g_allowVote, "g_allowVote", "1", CVAR_ARCHIVE, 0, qfalse, qfalse )
 G_CVAR( g_listEntity, "g_listEntity", "0", 0, 0, qfalse, qfalse )

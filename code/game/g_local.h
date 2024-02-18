@@ -40,8 +40,6 @@ typedef enum {
 	MOVER_2TO1
 } moverState_t;
 
-#define SP_PODIUM_MODEL		"models/mapobjects/podium/podium4.md3"
-
 //============================================================================
 
 typedef struct gentity_s gentity_t;
@@ -672,8 +670,6 @@ void G_ClearClientSessionData( gclient_t *client );
 // g_arenas.c
 //
 void UpdateTournamentInfo( void );
-void SpawnModelsOnVictoryPads( void );
-void Svcmd_AbortPodium_f( void );
 
 //
 // g_unlagged.c

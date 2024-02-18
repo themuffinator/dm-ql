@@ -111,10 +111,10 @@ typedef struct {
 void SP_info_player_start(gentity_t *ent);
 void SP_info_player_deathmatch(gentity_t *ent);
 void SP_info_player_intermission(gentity_t *ent);
-void SP_info_firstplace(gentity_t *ent);
-void SP_info_secondplace(gentity_t *ent);
-void SP_info_thirdplace(gentity_t *ent);
-void SP_info_podium(gentity_t *ent);
+static void SP_info_firstplace(gentity_t *ent) {};
+static void SP_info_secondplace(gentity_t *ent) {};
+static void SP_info_thirdplace(gentity_t *ent) {};
+static void SP_info_podium(gentity_t *ent) {};
 
 void SP_func_plat(gentity_t *ent);
 void SP_func_static(gentity_t *ent);
@@ -172,7 +172,7 @@ void SP_team_blueobelisk(gentity_t *ent);
 void SP_team_redobelisk(gentity_t *ent);
 void SP_team_neutralobelisk(gentity_t *ent);
 
-void SP_item_botroam(gentity_t *ent) {};
+static void SP_item_botroam(gentity_t *ent) {};
 
 spawn_t	spawns[] = {
 	// info entities don't do anything at all, but provide positional
@@ -183,6 +183,10 @@ spawn_t	spawns[] = {
 	{"info_null", SP_info_null},
 	{"info_notnull", SP_info_notnull},		// use target_position instead
 	{"info_camp", SP_info_camp},
+	{"info_firstplace", SP_info_firstplace},
+	{"info_secondplace", SP_info_secondplace},
+	{"info_thirdplace", SP_info_thirdplace},
+	{"info_podium", SP_info_podium},
 
 	{"func_plat", SP_func_plat},
 	{"func_button", SP_func_button},
