@@ -4534,7 +4534,7 @@ CNSTI4 0
 EQI4 $878
 LABELV $886
 line 646
-;646:		cgs.media.redCubeModel = trap_R_RegisterModel("models/powerups/orb/r_orb.md3");
+;646:		cgs.media.redSkullModel = trap_R_RegisterModel("models/powerups/orb/r_orb.md3");
 ADDRGP4 $889
 ARGP4
 ADDRLP4 392
@@ -4546,7 +4546,7 @@ ADDRLP4 392
 INDIRI4
 ASGNI4
 line 647
-;647:		cgs.media.blueCubeModel = trap_R_RegisterModel("models/powerups/orb/b_orb.md3");
+;647:		cgs.media.blueSkullModel = trap_R_RegisterModel("models/powerups/orb/b_orb.md3");
 ADDRGP4 $892
 ARGP4
 ADDRLP4 396
@@ -4558,7 +4558,7 @@ ADDRLP4 396
 INDIRI4
 ASGNI4
 line 648
-;648:		cgs.media.redCubeIcon = trap_R_RegisterShader("icons/skull_red");
+;648:		cgs.media.redSkullIcon = trap_R_RegisterShader("icons/skull_red");
 ADDRGP4 $895
 ARGP4
 ADDRLP4 400
@@ -4570,7 +4570,7 @@ ADDRLP4 400
 INDIRI4
 ASGNI4
 line 649
-;649:		cgs.media.blueCubeIcon = trap_R_RegisterShader("icons/skull_blue");
+;649:		cgs.media.blueSkullIcon = trap_R_RegisterShader("icons/skull_blue");
 ADDRGP4 $898
 ARGP4
 ADDRLP4 404

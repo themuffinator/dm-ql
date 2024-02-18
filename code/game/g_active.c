@@ -918,20 +918,21 @@ void ClientThink_real(gentity_t *ent) {
 
 	// check for respawning
 	if (client->ps.stats[STAT_HEALTH] <= 0) {
-		// wait for the attack button to be pressed
-		if (level.time > client->respawnTime) {
-			// forcerespawn is to prevent users from waiting out powerups
-			if (g_forcerespawn.integer > 0 &&
-				(level.time - client->respawnTime) > g_forcerespawn.integer * 1000) {
-				respawn(ent);
-				return;
-			}
+		int	min_delay = client->deathTime;
+		min_delay += client->killCmdTime && (g_allowKill.integer > g_respawn_delay_min.integer) ? g_allowKill.integer : g_respawn_delay_min.integer;
 
+		// the minimum time must be reached before respawning is allowed
+		if (level.time > min_delay) {
 			// pressing attack or use is the normal respawn method
-			if (ucmd->buttons & (BUTTON_ATTACK | BUTTON_USE_HOLDABLE)) {
+			// max limit forces respawn
+			qboolean force_respawn = g_respawn_delay_max.integer > 0 && (level.time > client->deathTime + g_respawn_delay_max.integer);
+
+			if ((ucmd->buttons & (BUTTON_ATTACK | BUTTON_USE_HOLDABLE)) || force_respawn) {
+				client->killCmdTime = 0;
 				respawn(ent);
 			}
 		}
+
 		return;
 	}
 

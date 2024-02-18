@@ -1186,7 +1186,7 @@ JUMPV
 LABELV $164
 line 236
 ;235:		case MOD_PLASMA:
-;236:		case MOD_PLASMA_SPLASH: return "Plasmagun";
+;236:		case MOD_PLASMA_SPLASH: return "Plasma Gun";
 ADDRGP4 $165
 RETP4
 ADDRGP4 $151
@@ -1365,7 +1365,7 @@ ADDRGP4 $187
 JUMPV
 LABELV $195
 line 265
-;265:		case 5: return "Plasmagun";
+;265:		case 5: return "Plasma Gun";
 ADDRGP4 $165
 RETP4
 ADDRGP4 $187
@@ -1652,42 +1652,42 @@ INDIRP4
 ASGNP4
 ADDRLP4 148
 INDIRP4
-CNSTI4 5092
+CNSTI4 5120
 ADDP4
 INDIRI4
 CNSTI4 0
 NEI4 $230
 ADDRLP4 148
 INDIRP4
-CNSTI4 5096
+CNSTI4 5124
 ADDP4
 INDIRI4
 CNSTI4 0
 NEI4 $230
 ADDRLP4 148
 INDIRP4
-CNSTI4 5100
+CNSTI4 5128
 ADDP4
 INDIRI4
 CNSTI4 0
 NEI4 $230
 ADDRLP4 148
 INDIRP4
-CNSTI4 5104
+CNSTI4 5132
 ADDP4
 INDIRI4
 CNSTI4 0
 NEI4 $230
 ADDRLP4 148
 INDIRP4
-CNSTI4 5108
+CNSTI4 5136
 ADDP4
 INDIRI4
 CNSTI4 0
 NEI4 $230
 ADDRLP4 148
 INDIRP4
-CNSTI4 5112
+CNSTI4 5116
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -8776,8 +8776,8 @@ import BotFindWayPoint
 import BotCreateWayPoint
 import BotAlternateRoute
 import BotGetAlternateRouteGoal
-import BotEnemyCubeCarrierVisible
-import BotTeamCubeCarrierVisible
+import BotEnemySkullCarrierVisible
+import BotTeamSkullCarrierVisible
 import BotHarvesterRetreatGoals
 import BotHarvesterSeekGoals
 import BotGoHarvest
@@ -8785,7 +8785,7 @@ import BotObeliskRetreatGoals
 import BotObeliskSeekGoals
 import Bot1FCTFRetreatGoals
 import Bot1FCTFSeekGoals
-import BotHarvesterCarryingCubes
+import BotHarvesterCarryingSkulls
 import Bot1FCTFCarryingFlag
 import BotCTFRetreatGoals
 import BotCTFSeekGoals
@@ -9166,6 +9166,7 @@ import g_predictPVS
 import g_unlagged
 import g_listEntity
 import g_allowVote
+import g_allowKill
 import g_podiumDrop
 import g_podiumDist
 import g_blood
@@ -9174,10 +9175,11 @@ import g_debugAlloc
 import g_debugDamage
 import g_debugMove
 import g_inactivity
-import g_forcerespawn
+import g_respawn_delay_max
+import g_respawn_delay_min
 import g_weaponTeamRespawn
 import g_weaponRespawn
-import g_quadfactor
+import g_quadDamageFactor
 import g_knockback
 import g_gravity
 import g_speed
@@ -9324,7 +9326,7 @@ import fire_grenade
 import fire_plasma
 import fire_blaster
 import G_RunMissile
-import TossClientCubes
+import TossClientSkulls
 import TossClientPersistantPowerups
 import TossClientItems
 import body_die
@@ -10202,7 +10204,8 @@ byte 1 97
 byte 1 115
 byte 1 109
 byte 1 97
-byte 1 103
+byte 1 32
+byte 1 71
 byte 1 117
 byte 1 110
 byte 1 0

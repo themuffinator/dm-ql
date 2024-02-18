@@ -1759,7 +1759,7 @@ line 371
 ADDRLP4 0
 ADDRLP4 8
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -1816,7 +1816,7 @@ line 381
 ADDRLP4 0
 ADDRLP4 4
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -1998,7 +1998,7 @@ INDIRP4
 CVPU4 4
 SUBU4
 CVUI4 4
-CNSTI4 1632
+CNSTI4 1636
 DIVI4
 CNSTI4 824
 MULI4
@@ -2758,6 +2758,7 @@ import g_predictPVS
 import g_unlagged
 import g_listEntity
 import g_allowVote
+import g_allowKill
 import g_podiumDrop
 import g_podiumDist
 import g_blood
@@ -2766,10 +2767,11 @@ import g_debugAlloc
 import g_debugDamage
 import g_debugMove
 import g_inactivity
-import g_forcerespawn
+import g_respawn_delay_max
+import g_respawn_delay_min
 import g_weaponTeamRespawn
 import g_weaponRespawn
-import g_quadfactor
+import g_quadDamageFactor
 import g_knockback
 import g_gravity
 import g_speed
@@ -2913,7 +2915,7 @@ import fire_grenade
 import fire_plasma
 import fire_blaster
 import G_RunMissile
-import TossClientCubes
+import TossClientSkulls
 import TossClientPersistantPowerups
 import TossClientItems
 import body_die

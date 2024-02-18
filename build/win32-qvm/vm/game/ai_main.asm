@@ -1222,12 +1222,12 @@ INDIRI4
 CNSTI4 8
 NEI4 $155
 line 288
-;288:		if (BotHarvesterCarryingCubes(bs)) {
+;288:		if (BotHarvesterCarryingSkulls(bs)) {
 ADDRFP4 0
 INDIRP4
 ARGP4
 ADDRLP4 552
-ADDRGP4 BotHarvesterCarryingCubes
+ADDRGP4 BotHarvesterCarryingSkulls
 CALLI4
 ASGNI4
 ADDRLP4 552
@@ -1235,7 +1235,7 @@ INDIRI4
 CNSTI4 0
 EQI4 $157
 line 289
-;289:			if (BotTeam(bs) == TEAM_RED) Com_sprintf(flagstatus, sizeof(flagstatus), S_COLOR_RED"%2d", bs->inventory[INVENTORY_REDCUBE]);
+;289:			if (BotTeam(bs) == TEAM_RED) Com_sprintf(flagstatus, sizeof(flagstatus), S_COLOR_RED"%2d", bs->inventory[INVENTORY_RED_SKULL]);
 ADDRFP4 0
 INDIRP4
 ARGP4
@@ -1255,7 +1255,7 @@ ADDRGP4 $161
 ARGP4
 ADDRFP4 0
 INDIRP4
-CNSTI4 5144
+CNSTI4 5168
 ADDP4
 INDIRI4
 ARGI4
@@ -1266,7 +1266,7 @@ ADDRGP4 $160
 JUMPV
 LABELV $159
 line 290
-;290:			else Com_sprintf(flagstatus, sizeof(flagstatus), S_COLOR_BLUE"%2d", bs->inventory[INVENTORY_BLUECUBE]);
+;290:			else Com_sprintf(flagstatus, sizeof(flagstatus), S_COLOR_BLUE"%2d", bs->inventory[INVENTORY_BLUE_SKULL]);
 ADDRLP4 256
 ARGP4
 CNSTI4 32
@@ -1275,7 +1275,7 @@ ADDRGP4 $162
 ARGP4
 ADDRFP4 0
 INDIRP4
-CNSTI4 5148
+CNSTI4 5172
 ADDP4
 INDIRI4
 ARGI4
@@ -2197,12 +2197,12 @@ INDIRI4
 CNSTI4 8
 NEI4 $236
 line 432
-;432:		if (BotHarvesterCarryingCubes(bs)) {
+;432:		if (BotHarvesterCarryingSkulls(bs)) {
 ADDRFP4 0
 INDIRP4
 ARGP4
 ADDRLP4 868
-ADDRGP4 BotHarvesterCarryingCubes
+ADDRGP4 BotHarvesterCarryingSkulls
 CALLI4
 ASGNI4
 ADDRLP4 868
@@ -2210,7 +2210,7 @@ INDIRI4
 CNSTI4 0
 EQI4 $238
 line 433
-;433:			if (BotTeam(bs) == TEAM_RED) Com_sprintf(carrying, sizeof(carrying), "%2d", bs->inventory[INVENTORY_REDCUBE]);
+;433:			if (BotTeam(bs) == TEAM_RED) Com_sprintf(carrying, sizeof(carrying), "%2d", bs->inventory[INVENTORY_RED_SKULL]);
 ADDRFP4 0
 INDIRP4
 ARGP4
@@ -2230,7 +2230,7 @@ ADDRGP4 $242
 ARGP4
 ADDRFP4 0
 INDIRP4
-CNSTI4 5144
+CNSTI4 5168
 ADDP4
 INDIRI4
 ARGI4
@@ -2241,7 +2241,7 @@ ADDRGP4 $241
 JUMPV
 LABELV $240
 line 434
-;434:			else Com_sprintf(carrying, sizeof(carrying), "%2d", bs->inventory[INVENTORY_BLUECUBE]);
+;434:			else Com_sprintf(carrying, sizeof(carrying), "%2d", bs->inventory[INVENTORY_BLUE_SKULL]);
 ADDRLP4 512
 ARGP4
 CNSTI4 32
@@ -2250,7 +2250,7 @@ ADDRGP4 $242
 ARGP4
 ADDRFP4 0
 INDIRP4
-CNSTI4 5148
+CNSTI4 5172
 ADDP4
 INDIRI4
 ARGI4
@@ -11168,8 +11168,8 @@ import BotFindWayPoint
 import BotCreateWayPoint
 import BotAlternateRoute
 import BotGetAlternateRouteGoal
-import BotEnemyCubeCarrierVisible
-import BotTeamCubeCarrierVisible
+import BotEnemySkullCarrierVisible
+import BotTeamSkullCarrierVisible
 import BotHarvesterRetreatGoals
 import BotHarvesterSeekGoals
 import BotGoHarvest
@@ -11177,7 +11177,7 @@ import BotObeliskRetreatGoals
 import BotObeliskSeekGoals
 import Bot1FCTFRetreatGoals
 import Bot1FCTFSeekGoals
-import BotHarvesterCarryingCubes
+import BotHarvesterCarryingSkulls
 import Bot1FCTFCarryingFlag
 import BotCTFRetreatGoals
 import BotCTFSeekGoals
@@ -11551,6 +11551,7 @@ import g_predictPVS
 import g_unlagged
 import g_listEntity
 import g_allowVote
+import g_allowKill
 import g_podiumDrop
 import g_podiumDist
 import g_blood
@@ -11559,10 +11560,11 @@ import g_debugAlloc
 import g_debugDamage
 import g_debugMove
 import g_inactivity
-import g_forcerespawn
+import g_respawn_delay_max
+import g_respawn_delay_min
 import g_weaponTeamRespawn
 import g_weaponRespawn
-import g_quadfactor
+import g_quadDamageFactor
 import g_knockback
 import g_gravity
 import g_speed
@@ -11701,7 +11703,7 @@ import fire_grenade
 import fire_plasma
 import fire_blaster
 import G_RunMissile
-import TossClientCubes
+import TossClientSkulls
 import TossClientPersistantPowerups
 import TossClientItems
 import body_die

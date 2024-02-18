@@ -289,7 +289,8 @@ struct gclient_s {
 	int			lasthurt_mod;		// type of damage the client did
 
 	// timers
-	int			respawnTime;		// can respawn when time > this, force after g_forcerespwan
+	int			deathTime;			// used for min/max respawn delays
+	int			killCmdTime;		// used for kill command time penalties
 	int			inactivityTime;		// kick players when time > this
 	qboolean	inactivityWarning;	// qtrue if the five seoond warning has been given
 	int			rewardTime;			// clear the EF_AWARD_IMPRESSIVE, etc when time > this

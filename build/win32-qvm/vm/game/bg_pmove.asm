@@ -9003,7 +9003,7 @@ ADDRGP4 $636
 JUMPV
 LABELV $635
 line 1671
-;1671:		if (bg_itemlist[pm->ps->stats[STAT_PERSISTANT_POWERUP]].giTag == PW_AMMOREGEN) {
+;1671:		if (bg_itemlist[pm->ps->stats[STAT_PERSISTANT_POWERUP]].giTag == PW_ARMORREGEN) {
 ADDRGP4 pm
 INDIRP4
 INDIRP4

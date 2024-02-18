@@ -1885,40 +1885,30 @@ void CG_MissileHitWall(weapon_t weapon, int clientNum, vec3_t origin, vec3_t dir
 
 	switch (weapon) {
 	default:
-	case WP_NAILGUN:
-		if (soundType == IMPACTSOUND_FLESH) {
-			sfx = cgs.media.sfx_nghitflesh;
-		} else if (soundType == IMPACTSOUND_METAL) {
-			sfx = cgs.media.sfx_nghitmetal;
-		} else {
-			sfx = cgs.media.sfx_nghit;
-		}
-		mark = cgs.media.holeMarkShader;
-		radius = 12;
-		break;
 
-	case WP_LIGHTNING:
-		// no explosion at LG impact, it is added with the beam
+	case WP_MACHINEGUN:
+		mod = cgs.media.bulletFlashModel;
+		shader = cgs.media.bulletExplosionShader;
+		mark = cgs.media.bulletMarkShader;
+
 		r = rand() & 3;
-		if (r < 2) {
-			sfx = cgs.media.sfx_lghit2;
-		} else if (r == 2) {
-			sfx = cgs.media.sfx_lghit1;
+		if (r == 0) {
+			sfx = cgs.media.sfx_ric1;
+		} else if (r == 1) {
+			sfx = cgs.media.sfx_ric2;
 		} else {
-			sfx = cgs.media.sfx_lghit3;
+			sfx = cgs.media.sfx_ric3;
 		}
-		mark = cgs.media.holeMarkShader;
-		radius = 12;
+
+		radius = 8;
 		break;
 
-	case WP_PROX_LAUNCHER:
-		mod = cgs.media.dishFlashModel;
-		shader = cgs.media.grenadeExplosionShader;
-		sfx = cgs.media.sfx_proxexp;
-		mark = cgs.media.burnMarkShader;
-		radius = 64;
-		light = 300;
-		isSprite = qtrue;
+	case WP_SHOTGUN:
+		mod = cgs.media.bulletFlashModel;
+		shader = cgs.media.bulletExplosionShader;
+		mark = cgs.media.bulletMarkShader;
+		sfx = 0;
+		radius = 4;
 		break;
 
 	case WP_GRENADE_LAUNCHER:
@@ -1930,6 +1920,7 @@ void CG_MissileHitWall(weapon_t weapon, int clientNum, vec3_t origin, vec3_t dir
 		light = GL_EXPLOSION_RADIUS;
 		isSprite = qtrue;
 		break;
+
 	case WP_ROCKET_LAUNCHER:
 		mod = cgs.media.dishFlashModel;
 		shader = cgs.media.rocketExplosionShader;
@@ -1950,6 +1941,21 @@ void CG_MissileHitWall(weapon_t weapon, int clientNum, vec3_t origin, vec3_t dir
 			CG_ParticleExplosion("explode1", sprOrg, sprVel, 1400, 20, 30);
 		}
 		break;
+
+	case WP_LIGHTNING:
+		// no explosion at LG impact, it is added with the beam
+		r = rand() & 3;
+		if (r < 2) {
+			sfx = cgs.media.sfx_lghit2;
+		} else if (r == 2) {
+			sfx = cgs.media.sfx_lghit1;
+		} else {
+			sfx = cgs.media.sfx_lghit3;
+		}
+		mark = cgs.media.holeMarkShader;
+		radius = 12;
+		break;
+
 	case WP_RAILGUN:
 		mod = cgs.media.ringFlashModel;
 		shader = cgs.media.railExplosionShader;
@@ -1957,6 +1963,7 @@ void CG_MissileHitWall(weapon_t weapon, int clientNum, vec3_t origin, vec3_t dir
 		mark = cgs.media.energyMarkShader;
 		radius = 24;
 		break;
+
 	case WP_PLASMAGUN:
 		mod = cgs.media.ringFlashModel;
 		shader = cgs.media.plasmaExplosionShader;
@@ -1964,6 +1971,7 @@ void CG_MissileHitWall(weapon_t weapon, int clientNum, vec3_t origin, vec3_t dir
 		mark = cgs.media.energyMarkShader;
 		radius = 16;
 		break;
+
 	case WP_BFG:
 		mod = cgs.media.dishFlashModel;
 		shader = cgs.media.bfgExplosionShader;
@@ -1976,12 +1984,27 @@ void CG_MissileHitWall(weapon_t weapon, int clientNum, vec3_t origin, vec3_t dir
 		lightColor[2] = 0.2f;
 		isSprite = qtrue;
 		break;
-	case WP_SHOTGUN:
-		mod = cgs.media.bulletFlashModel;
-		shader = cgs.media.bulletExplosionShader;
-		mark = cgs.media.bulletMarkShader;
-		sfx = 0;
-		radius = 4;
+
+	case WP_NAILGUN:
+		if (soundType == IMPACTSOUND_FLESH) {
+			sfx = cgs.media.sfx_nghitflesh;
+		} else if (soundType == IMPACTSOUND_METAL) {
+			sfx = cgs.media.sfx_nghitmetal;
+		} else {
+			sfx = cgs.media.sfx_nghit;
+		}
+		mark = cgs.media.holeMarkShader;
+		radius = 12;
+		break;
+
+	case WP_PROX_LAUNCHER:
+		mod = cgs.media.dishFlashModel;
+		shader = cgs.media.grenadeExplosionShader;
+		sfx = cgs.media.sfx_proxexp;
+		mark = cgs.media.burnMarkShader;
+		radius = 64;
+		light = 300;
+		isSprite = qtrue;
 		break;
 
 	case WP_CHAINGUN:
@@ -2006,24 +2029,6 @@ void CG_MissileHitWall(weapon_t weapon, int clientNum, vec3_t origin, vec3_t dir
 
 		radius = 8;
 		break;
-
-	case WP_MACHINEGUN:
-		mod = cgs.media.bulletFlashModel;
-		shader = cgs.media.bulletExplosionShader;
-		mark = cgs.media.bulletMarkShader;
-
-		r = rand() & 3;
-		if (r == 0) {
-			sfx = cgs.media.sfx_ric1;
-		} else if (r == 1) {
-			sfx = cgs.media.sfx_ric2;
-		} else {
-			sfx = cgs.media.sfx_ric3;
-		}
-
-		radius = 8;
-		break;
-	}
 
 	case WP_HMG:
 		mod = cgs.media.bulletFlashModel;

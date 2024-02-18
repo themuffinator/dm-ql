@@ -12892,7 +12892,7 @@ INDIRI4
 CNSTI4 2
 NEI4 $1077
 line 2039
-;2039:		ent.hModel = cgs.media.redCubeModel;
+;2039:		ent.hModel = cgs.media.redSkullModel;
 ADDRLP4 12+8
 ADDRGP4 cgs+146664+20
 INDIRI4
@@ -12903,7 +12903,7 @@ ADDRGP4 $1078
 JUMPV
 LABELV $1077
 line 2041
-;2041:		ent.hModel = cgs.media.blueCubeModel;
+;2041:		ent.hModel = cgs.media.blueSkullModel;
 ADDRLP4 12+8
 ADDRGP4 cgs+146664+24
 INDIRI4
@@ -16992,7 +16992,7 @@ line 2714
 ;2714:	}
 LABELV $1655
 line 2715
-;2715:	if (cent->currentState.powerups & (1 << PW_AMMOREGEN)) {
+;2715:	if (cent->currentState.powerups & (1 << PW_ARMORREGEN)) {
 ADDRFP4 0
 INDIRP4
 CNSTI4 188

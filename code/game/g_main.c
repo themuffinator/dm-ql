@@ -1564,7 +1564,7 @@ static void CheckTournament( void ) {
 			return;
 		}
 	} else if ( g_gametype.integer != GT_SINGLE_PLAYER && level.warmupTime != 0 ) {
-		int		counts[TEAM_NUM_TEAMS];
+		int			counts[TEAM_NUM_TEAMS];
 		qboolean	notEnough = qfalse;
 
 		if ( g_gametype.integer >= GT_TEAM ) {

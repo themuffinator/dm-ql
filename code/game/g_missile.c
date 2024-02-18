@@ -148,7 +148,7 @@ static void ProximityMine_Activate( gentity_t *ent ) {
 	float		r;
 
 	ent->think = ProximityMine_Explode;
-	ent->nextthink = level.time + g_proxMineTimeout.integer;
+	ent->nextthink = level.time + (g_proxMineTimeout.integer * 1000);
 
 	ent->takedamage = qtrue;
 	ent->health = 1;

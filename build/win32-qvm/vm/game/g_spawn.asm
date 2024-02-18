@@ -2211,7 +2211,51 @@ CALLV
 pop
 line 558
 ;557:
-;558:	trap_SetConfigstring( CS_MOTD, g_motd.string );		// message of the day
+;558:	G_SpawnString("author", "", &s);
+ADDRGP4 $293
+ARGP4
+ADDRGP4 $284
+ARGP4
+ADDRLP4 0
+ARGP4
+ADDRGP4 G_SpawnString
+CALLI4
+pop
+line 559
+;559:	trap_SetConfigstring(CS_MAP_AUTHOR1, s);
+CNSTI4 12
+ARGI4
+ADDRLP4 0
+INDIRP4
+ARGP4
+ADDRGP4 trap_SetConfigstring
+CALLV
+pop
+line 561
+;560:
+;561:	G_SpawnString("author2", "", &s);
+ADDRGP4 $294
+ARGP4
+ADDRGP4 $284
+ARGP4
+ADDRLP4 0
+ARGP4
+ADDRGP4 G_SpawnString
+CALLI4
+pop
+line 562
+;562:	trap_SetConfigstring(CS_MAP_AUTHOR2, s);
+CNSTI4 13
+ARGI4
+ADDRLP4 0
+INDIRP4
+ARGP4
+ADDRGP4 trap_SetConfigstring
+CALLV
+pop
+line 564
+;563:
+;564:	trap_SetConfigstring( CS_MOTD, g_motd.string );		// message of the day
 CNSTI4 4
 ARGI4
 ADDRGP4 g_motd+16
@@ -2219,56 +2263,12 @@ ARGP4
 ADDRGP4 trap_SetConfigstring
 CALLV
 pop
-line 560
-;559:
-;560:	G_SpawnString( "gravity", "800", &s );
-ADDRGP4 $294
-ARGP4
-ADDRGP4 $295
-ARGP4
-ADDRLP4 0
-ARGP4
-ADDRGP4 G_SpawnString
-CALLI4
-pop
-line 561
-;561:	trap_Cvar_Set( "g_gravity", s );
-ADDRGP4 $296
-ARGP4
-ADDRLP4 0
-INDIRP4
-ARGP4
-ADDRGP4 trap_Cvar_Set
-CALLV
-pop
-line 563
-;562:
-;563:	G_SpawnString( "enableDust", "0", &s );
-ADDRGP4 $297
-ARGP4
-ADDRGP4 $217
-ARGP4
-ADDRLP4 0
-ARGP4
-ADDRGP4 G_SpawnString
-CALLI4
-pop
-line 564
-;564:	trap_Cvar_Set( "g_enableDust", s );
-ADDRGP4 $298
-ARGP4
-ADDRLP4 0
-INDIRP4
-ARGP4
-ADDRGP4 trap_Cvar_Set
-CALLV
-pop
 line 566
 ;565:
-;566:	G_SpawnString( "enableBreath", "0", &s );
-ADDRGP4 $299
+;566:	G_SpawnString( "gravity", "800", &s );
+ADDRGP4 $296
 ARGP4
-ADDRGP4 $217
+ADDRGP4 $297
 ARGP4
 ADDRLP4 0
 ARGP4
@@ -2276,8 +2276,8 @@ ADDRGP4 G_SpawnString
 CALLI4
 pop
 line 567
-;567:	trap_Cvar_Set( "g_enableBreath", s );
-ADDRGP4 $300
+;567:	trap_Cvar_Set( "g_gravity", s );
+ADDRGP4 $298
 ARGP4
 ADDRLP4 0
 INDIRP4
@@ -2287,52 +2287,96 @@ CALLV
 pop
 line 569
 ;568:
-;569:	g_entities[ENTITYNUM_WORLD].s.number = ENTITYNUM_WORLD;
+;569:	G_SpawnString( "enableDust", "0", &s );
+ADDRGP4 $299
+ARGP4
+ADDRGP4 $217
+ARGP4
+ADDRLP4 0
+ARGP4
+ADDRGP4 G_SpawnString
+CALLI4
+pop
+line 570
+;570:	trap_Cvar_Set( "g_enableDust", s );
+ADDRGP4 $300
+ARGP4
+ADDRLP4 0
+INDIRP4
+ARGP4
+ADDRGP4 trap_Cvar_Set
+CALLV
+pop
+line 572
+;571:
+;572:	G_SpawnString( "enableBreath", "0", &s );
+ADDRGP4 $301
+ARGP4
+ADDRGP4 $217
+ARGP4
+ADDRLP4 0
+ARGP4
+ADDRGP4 G_SpawnString
+CALLI4
+pop
+line 573
+;573:	trap_Cvar_Set( "g_enableBreath", s );
+ADDRGP4 $302
+ARGP4
+ADDRLP4 0
+INDIRP4
+ARGP4
+ADDRGP4 trap_Cvar_Set
+CALLV
+pop
+line 575
+;574:
+;575:	g_entities[ENTITYNUM_WORLD].s.number = ENTITYNUM_WORLD;
 ADDRGP4 g_entities+842128
 CNSTI4 1022
 ASGNI4
-line 570
-;570:	g_entities[ENTITYNUM_WORLD].r.ownerNum = ENTITYNUM_NONE;
+line 576
+;576:	g_entities[ENTITYNUM_WORLD].r.ownerNum = ENTITYNUM_NONE;
 ADDRGP4 g_entities+842128+208+304
 CNSTI4 1023
 ASGNI4
-line 571
-;571:	g_entities[ENTITYNUM_WORLD].classname = "worldspawn";
+line 577
+;577:	g_entities[ENTITYNUM_WORLD].classname = "worldspawn";
 ADDRGP4 g_entities+842128+524
 ADDRGP4 $287
 ASGNP4
-line 573
-;572:
-;573:	g_entities[ENTITYNUM_NONE].s.number = ENTITYNUM_NONE;
+line 579
+;578:
+;579:	g_entities[ENTITYNUM_NONE].s.number = ENTITYNUM_NONE;
 ADDRGP4 g_entities+842952
 CNSTI4 1023
 ASGNI4
-line 574
-;574:	g_entities[ENTITYNUM_NONE].r.ownerNum = ENTITYNUM_NONE;
+line 580
+;580:	g_entities[ENTITYNUM_NONE].r.ownerNum = ENTITYNUM_NONE;
 ADDRGP4 g_entities+842952+208+304
 CNSTI4 1023
 ASGNI4
-line 575
-;575:	g_entities[ENTITYNUM_NONE].classname = "nothing";
+line 581
+;581:	g_entities[ENTITYNUM_NONE].classname = "nothing";
 ADDRGP4 g_entities+842952+524
-ADDRGP4 $313
+ADDRGP4 $315
 ASGNP4
-line 578
-;576:
-;577:	// see if we want a warmup time
-;578:	if ( /*g_restarted.integer ||*/ g_gametype.integer == GT_SINGLE_PLAYER ) {
+line 584
+;582:
+;583:	// see if we want a warmup time
+;584:	if ( /*g_restarted.integer ||*/ g_gametype.integer == GT_SINGLE_PLAYER ) {
 ADDRGP4 g_gametype+12
 INDIRI4
 CNSTI4 2
-NEI4 $314
-line 580
-;579:		//trap_Cvar_Set( "g_restarted", "0" );
-;580:		level.warmupTime = 0;
+NEI4 $316
+line 586
+;585:		//trap_Cvar_Set( "g_restarted", "0" );
+;586:		level.warmupTime = 0;
 ADDRGP4 level+16
 CNSTI4 0
 ASGNI4
-line 581
-;581:		trap_SetConfigstring( CS_WARMUP, "" );
+line 587
+;587:		trap_SetConfigstring( CS_WARMUP, "" );
 CNSTI4 5
 ARGI4
 ADDRGP4 $284
@@ -2340,25 +2384,25 @@ ARGP4
 ADDRGP4 trap_SetConfigstring
 CALLV
 pop
-line 582
-;582:	} else {
-ADDRGP4 $315
+line 588
+;588:	} else {
+ADDRGP4 $317
 JUMPV
-LABELV $314
-line 584
-;583:		// assume that g_doWarmup is always 1
-;584:		level.warmupTime = -1;
+LABELV $316
+line 590
+;589:		// assume that g_doWarmup is always 1
+;590:		level.warmupTime = -1;
 ADDRGP4 level+16
 CNSTI4 -1
 ASGNI4
-line 585
-;585:		if ( g_warmup.integer > 0 ) {
+line 591
+;591:		if ( g_warmup.integer > 0 ) {
 ADDRGP4 g_warmup+12
 INDIRI4
 CNSTI4 0
-LEI4 $319
-line 586
-;586:			trap_SetConfigstring( CS_WARMUP, va( "%i", level.warmupTime ) );
+LEI4 $321
+line 592
+;592:			trap_SetConfigstring( CS_WARMUP, va( "%i", level.warmupTime ) );
 ADDRGP4 $290
 ARGP4
 ADDRGP4 level+16
@@ -2376,13 +2420,13 @@ ARGP4
 ADDRGP4 trap_SetConfigstring
 CALLV
 pop
-line 587
-;587:		} else {
-ADDRGP4 $320
+line 593
+;593:		} else {
+ADDRGP4 $322
 JUMPV
-LABELV $319
-line 588
-;588:			trap_SetConfigstring( CS_WARMUP, "" );
+LABELV $321
+line 594
+;594:			trap_SetConfigstring( CS_WARMUP, "" );
 CNSTI4 5
 ARGI4
 ADDRGP4 $284
@@ -2390,53 +2434,53 @@ ARGP4
 ADDRGP4 trap_SetConfigstring
 CALLV
 pop
-line 589
-;589:		}
-LABELV $320
-line 590
-;590:		G_LogPrintf( "Warmup:\n" );
-ADDRGP4 $323
+line 595
+;595:		}
+LABELV $322
+line 596
+;596:		G_LogPrintf( "Warmup:\n" );
+ADDRGP4 $325
 ARGP4
 ADDRGP4 G_LogPrintf
 CALLV
 pop
-line 591
-;591:	}
-LABELV $315
-line 592
-;592:}
+line 597
+;597:	}
+LABELV $317
+line 598
+;598:}
 LABELV $283
 endproc SP_worldspawn 16 12
 export G_SpawnEntitiesFromString
 proc G_SpawnEntitiesFromString 8 4
-line 602
-;593:
-;594:
-;595:/*
-;596:==============
-;597:G_SpawnEntitiesFromString
-;598:
-;599:Parses textual entity definitions out of an entstring and spawns gentities.
-;600:==============
-;601:*/
-;602:void G_SpawnEntitiesFromString( void ) {
-line 604
-;603:	// allow calls to G_Spawn*()
-;604:	level.spawning = qtrue;
+line 608
+;599:
+;600:
+;601:/*
+;602:==============
+;603:G_SpawnEntitiesFromString
+;604:
+;605:Parses textual entity definitions out of an entstring and spawns gentities.
+;606:==============
+;607:*/
+;608:void G_SpawnEntitiesFromString( void ) {
+line 610
+;609:	// allow calls to G_Spawn*()
+;610:	level.spawning = qtrue;
 ADDRGP4 level+892
 CNSTI4 1
 ASGNI4
-line 605
-;605:	level.numSpawnVars = 0;
+line 611
+;611:	level.numSpawnVars = 0;
 ADDRGP4 level+896
 CNSTI4 0
 ASGNI4
-line 610
-;606:
-;607:	// the worldspawn is not an actual entity, but it still
-;608:	// has a "spawn" function to perform any global setup
-;609:	// needed by a level (setting configstrings or cvars, etc)
-;610:	if ( !G_ParseSpawnVars() ) {
+line 616
+;612:
+;613:	// the worldspawn is not an actual entity, but it still
+;614:	// has a "spawn" function to perform any global setup
+;615:	// needed by a level (setting configstrings or cvars, etc)
+;616:	if ( !G_ParseSpawnVars() ) {
 ADDRLP4 0
 ADDRGP4 G_ParseSpawnVars
 CALLI4
@@ -2444,38 +2488,38 @@ ASGNI4
 ADDRLP4 0
 INDIRI4
 CNSTI4 0
-NEI4 $327
-line 611
-;611:		G_Error( "SpawnEntities: no entities" );
-ADDRGP4 $329
+NEI4 $329
+line 617
+;617:		G_Error( "SpawnEntities: no entities" );
+ADDRGP4 $331
 ARGP4
 ADDRGP4 G_Error
 CALLV
 pop
-line 612
-;612:	}
-LABELV $327
-line 613
-;613:	SP_worldspawn();
+line 618
+;618:	}
+LABELV $329
+line 619
+;619:	SP_worldspawn();
 ADDRGP4 SP_worldspawn
 CALLV
 pop
-ADDRGP4 $331
+ADDRGP4 $333
 JUMPV
-LABELV $330
-line 616
-;614:
-;615:	// parse ents
-;616:	while( G_ParseSpawnVars() ) {
-line 617
-;617:		G_SpawnGEntityFromSpawnVars();
+LABELV $332
+line 622
+;620:
+;621:	// parse ents
+;622:	while( G_ParseSpawnVars() ) {
+line 623
+;623:		G_SpawnGEntityFromSpawnVars();
 ADDRGP4 G_SpawnGEntityFromSpawnVars
 CALLV
 pop
-line 618
-;618:	}	
-LABELV $331
-line 616
+line 624
+;624:	}	
+LABELV $333
+line 622
 ADDRLP4 4
 ADDRGP4 G_ParseSpawnVars
 CALLI4
@@ -2483,16 +2527,16 @@ ASGNI4
 ADDRLP4 4
 INDIRI4
 CNSTI4 0
-NEI4 $330
-line 620
-;619:
-;620:	level.spawning = qfalse;			// any future calls to G_Spawn*() will be errors
+NEI4 $332
+line 626
+;625:
+;626:	level.spawning = qfalse;			// any future calls to G_Spawn*() will be errors
 ADDRGP4 level+892
 CNSTI4 0
 ASGNI4
-line 621
-;621:}
-LABELV $324
+line 627
+;627:}
+LABELV $326
 endproc G_SpawnEntitiesFromString 8 4
 import SP_team_neutralobelisk
 import SP_team_redobelisk
@@ -2747,6 +2791,7 @@ import g_predictPVS
 import g_unlagged
 import g_listEntity
 import g_allowVote
+import g_allowKill
 import g_podiumDrop
 import g_podiumDist
 import g_blood
@@ -2755,10 +2800,11 @@ import g_debugAlloc
 import g_debugDamage
 import g_debugMove
 import g_inactivity
-import g_forcerespawn
+import g_respawn_delay_max
+import g_respawn_delay_min
 import g_weaponTeamRespawn
 import g_weaponRespawn
-import g_quadfactor
+import g_quadDamageFactor
 import g_knockback
 import g_gravity
 import g_speed
@@ -2905,7 +2951,7 @@ import fire_grenade
 import fire_plasma
 import fire_blaster
 import G_RunMissile
-import TossClientCubes
+import TossClientSkulls
 import TossClientPersistantPowerups
 import TossClientItems
 import body_die
@@ -3136,7 +3182,7 @@ import srand
 import qsort
 lit
 align 1
-LABELV $329
+LABELV $331
 byte 1 83
 byte 1 112
 byte 1 97
@@ -3165,7 +3211,7 @@ byte 1 101
 byte 1 115
 byte 1 0
 align 1
-LABELV $323
+LABELV $325
 byte 1 87
 byte 1 97
 byte 1 114
@@ -3176,7 +3222,7 @@ byte 1 58
 byte 1 10
 byte 1 0
 align 1
-LABELV $313
+LABELV $315
 byte 1 110
 byte 1 111
 byte 1 116
@@ -3184,6 +3230,38 @@ byte 1 104
 byte 1 105
 byte 1 110
 byte 1 103
+byte 1 0
+align 1
+LABELV $302
+byte 1 103
+byte 1 95
+byte 1 101
+byte 1 110
+byte 1 97
+byte 1 98
+byte 1 108
+byte 1 101
+byte 1 66
+byte 1 114
+byte 1 101
+byte 1 97
+byte 1 116
+byte 1 104
+byte 1 0
+align 1
+LABELV $301
+byte 1 101
+byte 1 110
+byte 1 97
+byte 1 98
+byte 1 108
+byte 1 101
+byte 1 66
+byte 1 114
+byte 1 101
+byte 1 97
+byte 1 116
+byte 1 104
 byte 1 0
 align 1
 LABELV $300
@@ -3195,12 +3273,10 @@ byte 1 97
 byte 1 98
 byte 1 108
 byte 1 101
-byte 1 66
-byte 1 114
-byte 1 101
-byte 1 97
+byte 1 68
+byte 1 117
+byte 1 115
 byte 1 116
-byte 1 104
 byte 1 0
 align 1
 LABELV $299
@@ -3210,45 +3286,15 @@ byte 1 97
 byte 1 98
 byte 1 108
 byte 1 101
-byte 1 66
-byte 1 114
-byte 1 101
-byte 1 97
+byte 1 68
+byte 1 117
+byte 1 115
 byte 1 116
-byte 1 104
 byte 1 0
 align 1
 LABELV $298
 byte 1 103
 byte 1 95
-byte 1 101
-byte 1 110
-byte 1 97
-byte 1 98
-byte 1 108
-byte 1 101
-byte 1 68
-byte 1 117
-byte 1 115
-byte 1 116
-byte 1 0
-align 1
-LABELV $297
-byte 1 101
-byte 1 110
-byte 1 97
-byte 1 98
-byte 1 108
-byte 1 101
-byte 1 68
-byte 1 117
-byte 1 115
-byte 1 116
-byte 1 0
-align 1
-LABELV $296
-byte 1 103
-byte 1 95
 byte 1 103
 byte 1 114
 byte 1 97
@@ -3258,13 +3304,13 @@ byte 1 116
 byte 1 121
 byte 1 0
 align 1
-LABELV $295
+LABELV $297
 byte 1 56
 byte 1 48
 byte 1 48
 byte 1 0
 align 1
-LABELV $294
+LABELV $296
 byte 1 103
 byte 1 114
 byte 1 97
@@ -3272,6 +3318,25 @@ byte 1 118
 byte 1 105
 byte 1 116
 byte 1 121
+byte 1 0
+align 1
+LABELV $294
+byte 1 97
+byte 1 117
+byte 1 116
+byte 1 104
+byte 1 111
+byte 1 114
+byte 1 50
+byte 1 0
+align 1
+LABELV $293
+byte 1 97
+byte 1 117
+byte 1 116
+byte 1 104
+byte 1 111
+byte 1 114
 byte 1 0
 align 1
 LABELV $292

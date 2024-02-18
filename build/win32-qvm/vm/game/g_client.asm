@@ -2337,7 +2337,7 @@ line 477
 ;477:		if ( level.clients[i].pers.connected == CON_DISCONNECTED ) {
 ADDRLP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -2357,7 +2357,7 @@ line 480
 ;480:		if ( level.clients[i].sess.sessionTeam == team ) {
 ADDRLP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -2449,7 +2449,7 @@ line 504
 ;504:		if ( level.clients[i].pers.connected != CON_CONNECTED ) {
 ADDRLP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -2469,7 +2469,7 @@ line 507
 ;507:		if ( level.clients[i].sess.sessionTeam == team ) {
 ADDRLP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -2543,7 +2543,7 @@ line 527
 ;527:		if ( level.clients[i].pers.connected == CON_DISCONNECTED ) {
 ADDRLP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -2563,7 +2563,7 @@ line 530
 ;530:		if ( level.clients[i].sess.sessionTeam == team ) {
 ADDRLP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -2578,7 +2578,7 @@ line 531
 ;531:			if ( level.clients[i].sess.teamLeader )
 ADDRLP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -3656,7 +3656,7 @@ CNSTI4 516
 ADDP4
 ADDRFP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -3675,7 +3675,7 @@ line 739
 ;739:		if ( level.clients[ clientNum ].pers.connected != CON_DISCONNECTED )
 ADDRFP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -3967,7 +3967,7 @@ CNSTI4 516
 ADDP4
 ADDRFP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -3991,7 +3991,7 @@ INDIRP4
 ARGP4
 CNSTI4 0
 ARGI4
-CNSTI4 1632
+CNSTI4 1636
 ARGI4
 ADDRGP4 memset
 CALLP4
@@ -4312,7 +4312,7 @@ line 863
 ADDRLP4 0
 ADDRFP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -5009,7 +5009,7 @@ line 999
 ;999:	client->saved.leveltime = 0;
 ADDRLP4 4
 INDIRP4
-CNSTI4 1604
+CNSTI4 1608
 ADDP4
 CNSTI4 0
 ASGNI4
@@ -5118,7 +5118,7 @@ INDIRP4
 ARGP4
 CNSTI4 0
 ARGI4
-CNSTI4 1632
+CNSTI4 1636
 ARGI4
 ADDRGP4 memset
 CALLP4
@@ -5261,7 +5261,7 @@ line 1032
 ;1032:	client->airOutTime = level.time + 12000;
 ADDRLP4 4
 INDIRP4
-CNSTI4 748
+CNSTI4 752
 ADDP4
 ADDRGP4 level+32
 INDIRI4
@@ -5373,7 +5373,7 @@ CNSTI4 516
 ADDP4
 ADDRLP4 104
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -5674,7 +5674,7 @@ INDIRP4
 CVPU4 4
 SUBU4
 CVUI4 4
-CNSTI4 1632
+CNSTI4 1636
 DIVI4
 ARGI4
 ADDRFP4 0
@@ -5761,7 +5761,7 @@ CNSTI4 100
 ASGNI4
 line 1103
 ;1102:
-;1103:	client->respawnTime = level.time;
+;1103:	client->deathTime = level.time;
 ADDRLP4 4
 INDIRP4
 CNSTI4 732
@@ -5773,7 +5773,7 @@ line 1104
 ;1104:	client->inactivityTime = level.time + g_inactivity.integer * 1000;
 ADDRLP4 4
 INDIRP4
-CNSTI4 736
+CNSTI4 740
 ADDP4
 ADDRGP4 level+32
 INDIRI4
@@ -6099,7 +6099,7 @@ INDIRP4
 ASGNP4
 ADDRLP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRLP4 20
 INDIRP4
@@ -6111,7 +6111,7 @@ CNSTI4 3
 NEI4 $439
 ADDRLP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRLP4 20
 INDIRP4
@@ -6123,7 +6123,7 @@ CNSTI4 2
 NEI4 $439
 ADDRLP4 0
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRLP4 20
 INDIRP4
@@ -6254,11 +6254,11 @@ INDIRI4
 CNSTI4 8
 NEI4 $443
 line 1193
-;1193:			TossClientCubes( ent );
+;1193:			TossClientSkulls( ent );
 ADDRLP4 4
 INDIRP4
 ARGP4
-ADDRGP4 TossClientCubes
+ADDRGP4 TossClientSkulls
 CALLV
 pop
 line 1194
@@ -6319,7 +6319,7 @@ line 1205
 ADDRLP4 20
 ADDRGP4 level+88
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRGP4 level
 INDIRP4
@@ -6675,6 +6675,7 @@ import g_predictPVS
 import g_unlagged
 import g_listEntity
 import g_allowVote
+import g_allowKill
 import g_podiumDrop
 import g_podiumDist
 import g_blood
@@ -6683,10 +6684,11 @@ import g_debugAlloc
 import g_debugDamage
 import g_debugMove
 import g_inactivity
-import g_forcerespawn
+import g_respawn_delay_max
+import g_respawn_delay_min
 import g_weaponTeamRespawn
 import g_weaponRespawn
-import g_quadfactor
+import g_quadDamageFactor
 import g_knockback
 import g_gravity
 import g_speed
@@ -6818,7 +6820,7 @@ import fire_grenade
 import fire_plasma
 import fire_blaster
 import G_RunMissile
-import TossClientCubes
+import TossClientSkulls
 import TossClientPersistantPowerups
 import TossClientItems
 import body_die

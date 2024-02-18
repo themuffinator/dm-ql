@@ -1681,7 +1681,7 @@ CNSTI4 0
 LTI4 $302
 ADDRLP4 0
 INDIRI4
-CNSTI4 6
+CNSTI4 9
 LEI4 $300
 LABELV $302
 line 344
@@ -3944,7 +3944,7 @@ ADDRGP4 $533
 JUMPV
 LABELV $546
 line 753
-;752:			case PW_AMMOREGEN:
+;752:			case PW_ARMORREGEN:
 ;753:				trap_S_StartSound(NULL, es->number, CHAN_AUTO, cgs.media.ammoregenSound);
 CNSTP4 0
 ARGP4

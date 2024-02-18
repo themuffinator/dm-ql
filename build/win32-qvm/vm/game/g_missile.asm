@@ -911,7 +911,7 @@ ADDP4
 ADDRGP4 ProximityMine_Explode
 ASGNP4
 line 151
-;151:	ent->nextthink = level.time + g_proxMineTimeout.integer;
+;151:	ent->nextthink = level.time + (g_proxMineTimeout.integer * 1000);
 ADDRFP4 0
 INDIRP4
 CNSTI4 688
@@ -920,6 +920,8 @@ ADDRGP4 level+32
 INDIRI4
 ADDRGP4 g_proxMineTimeout+12
 INDIRI4
+CNSTI4 1000
+MULI4
 ADDI4
 ASGNI4
 line 153
@@ -1155,7 +1157,7 @@ INDIRP4
 CNSTI4 516
 ADDP4
 INDIRP4
-CNSTI4 840
+CNSTI4 844
 ADDP4
 INDIRI4
 ADDRGP4 level+32
@@ -1205,7 +1207,7 @@ INDIRP4
 CNSTI4 516
 ADDP4
 INDIRP4
-CNSTI4 840
+CNSTI4 844
 ADDP4
 CNSTI4 0
 ASGNI4
@@ -1517,7 +1519,7 @@ INDIRP4
 CNSTI4 516
 ADDP4
 INDIRP4
-CNSTI4 840
+CNSTI4 844
 ADDP4
 INDIRI4
 ADDRGP4 level+32
@@ -1676,7 +1678,7 @@ INDIRP4
 CNSTI4 516
 ADDP4
 INDIRP4
-CNSTI4 840
+CNSTI4 844
 ADDP4
 INDIRI4
 ADDRGP4 level+32
@@ -3182,7 +3184,7 @@ INDIRP4
 CNSTI4 516
 ADDP4
 INDIRP4
-CNSTI4 760
+CNSTI4 764
 ADDP4
 INDIRP4
 CVPU4 4
@@ -3200,7 +3202,7 @@ INDIRP4
 CNSTI4 516
 ADDP4
 INDIRP4
-CNSTI4 760
+CNSTI4 764
 ADDP4
 CNSTP4 0
 ASGNP4
@@ -5148,7 +5150,7 @@ INDIRP4
 CNSTI4 516
 ADDP4
 INDIRP4
-CNSTI4 760
+CNSTI4 764
 ADDP4
 ADDRLP4 0
 INDIRP4
@@ -6199,6 +6201,7 @@ import g_predictPVS
 import g_unlagged
 import g_listEntity
 import g_allowVote
+import g_allowKill
 import g_podiumDrop
 import g_podiumDist
 import g_blood
@@ -6207,10 +6210,11 @@ import g_debugAlloc
 import g_debugDamage
 import g_debugMove
 import g_inactivity
-import g_forcerespawn
+import g_respawn_delay_max
+import g_respawn_delay_min
 import g_weaponTeamRespawn
 import g_weaponRespawn
-import g_quadfactor
+import g_quadDamageFactor
 import g_knockback
 import g_gravity
 import g_speed
@@ -6349,7 +6353,7 @@ import trigger_teleporter_touch
 import Touch_DoorTrigger
 import G_RunMover
 import fire_blaster
-import TossClientCubes
+import TossClientSkulls
 import TossClientPersistantPowerups
 import TossClientItems
 import body_die

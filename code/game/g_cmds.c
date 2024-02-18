@@ -458,6 +458,16 @@ void Cmd_Kill_f( gentity_t *ent ) {
 	if (ent->health <= 0) {
 		return;
 	}
+	if (g_allowKill.integer <= 0) {
+		trap_SendServerCommand(ent - g_entities,
+			"print \"Kill is not enabled on this server.\n\"");
+		return;
+	}
+	if (ent->client->killCmdTime + g_allowKill.integer > level.time) {
+		return;
+	}
+
+	ent->client->killCmdTime = level.time;
 	ent->flags &= ~FL_GODMODE;
 	ent->client->ps.stats[STAT_HEALTH] = ent->health = -999;
 	player_die (ent, ent, ent, 100000, MOD_SUICIDE);

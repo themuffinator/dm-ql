@@ -736,7 +736,7 @@ JUMPV
 LABELV $89
 line 174
 ;173:	// if the bot is carrying a flag or cubes
-;174:	if (BotCTFCarryingFlag(bs) || Bot1FCTFCarryingFlag(bs) || BotHarvesterCarryingCubes(bs)) {
+;174:	if (BotCTFCarryingFlag(bs) || Bot1FCTFCarryingFlag(bs) || BotHarvesterCarryingSkulls(bs)) {
 ADDRFP4 0
 INDIRP4
 ARGP4
@@ -763,7 +763,7 @@ ADDRFP4 0
 INDIRP4
 ARGP4
 ADDRLP4 16
-ADDRGP4 BotHarvesterCarryingCubes
+ADDRGP4 BotHarvesterCarryingSkulls
 CALLI4
 ASGNI4
 ADDRLP4 16
@@ -7313,12 +7313,12 @@ LABELV $519
 line 923
 ;921:			}
 ;922:			//if not carrying any cubes
-;923:			if (!BotHarvesterCarryingCubes(bs)) {
+;923:			if (!BotHarvesterCarryingSkulls(bs)) {
 ADDRFP4 0
 INDIRP4
 ARGP4
 ADDRLP4 640
-ADDRGP4 BotHarvesterCarryingCubes
+ADDRGP4 BotHarvesterCarryingSkulls
 CALLI4
 ASGNI4
 ADDRLP4 640
@@ -9008,7 +9008,7 @@ ADDP4
 INDIRI4
 ADDRLP4 0
 INDIRP4
-CNSTI4 5068
+CNSTI4 5080
 ADDP4
 INDIRI4
 LEI4 $608
@@ -9606,7 +9606,7 @@ CNSTI4 0
 LEI4 $637
 ADDRLP4 0
 INDIRP4
-CNSTI4 5028
+CNSTI4 5032
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -9633,7 +9633,7 @@ CNSTI4 0
 LEI4 $639
 ADDRLP4 4
 INDIRP4
-CNSTI4 5024
+CNSTI4 5028
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -9660,7 +9660,7 @@ CNSTI4 0
 LEI4 $641
 ADDRLP4 8
 INDIRP4
-CNSTI4 5036
+CNSTI4 5040
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -9687,7 +9687,7 @@ CNSTI4 0
 LEI4 $643
 ADDRLP4 12
 INDIRP4
-CNSTI4 5040
+CNSTI4 5044
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -9714,7 +9714,7 @@ CNSTI4 0
 LEI4 $645
 ADDRLP4 16
 INDIRP4
-CNSTI4 5064
+CNSTI4 5068
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -9741,7 +9741,7 @@ CNSTI4 0
 LEI4 $647
 ADDRLP4 20
 INDIRP4
-CNSTI4 5056
+CNSTI4 5060
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -9768,7 +9768,7 @@ CNSTI4 0
 LEI4 $649
 ADDRLP4 24
 INDIRP4
-CNSTI4 5060
+CNSTI4 5064
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -9795,7 +9795,7 @@ CNSTI4 0
 LEI4 $651
 ADDRLP4 28
 INDIRP4
-CNSTI4 5032
+CNSTI4 5036
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -9822,7 +9822,7 @@ CNSTI4 0
 LEI4 $653
 ADDRLP4 32
 INDIRP4
-CNSTI4 5048
+CNSTI4 5052
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -9849,7 +9849,7 @@ CNSTI4 0
 LEI4 $655
 ADDRLP4 36
 INDIRP4
-CNSTI4 5044
+CNSTI4 5048
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -9876,7 +9876,7 @@ CNSTI4 0
 LEI4 $657
 ADDRLP4 40
 INDIRP4
-CNSTI4 5052
+CNSTI4 5056
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -10468,7 +10468,7 @@ CNSTI4 0
 LEI4 $713
 ADDRLP4 336
 INDIRP4
-CNSTI4 5036
+CNSTI4 5040
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -10499,7 +10499,7 @@ CNSTI4 0
 LEI4 $715
 ADDRLP4 340
 INDIRP4
-CNSTI4 5044
+CNSTI4 5048
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -10530,7 +10530,7 @@ CNSTI4 0
 LEI4 $717
 ADDRLP4 344
 INDIRP4
-CNSTI4 5052
+CNSTI4 5056
 ADDP4
 INDIRI4
 CNSTI4 0
@@ -13835,12 +13835,12 @@ INDIRI4
 CNSTI4 8
 NEI4 $950
 line 1836
-;1836:			if (BotHarvesterCarryingCubes(bs))
+;1836:			if (BotHarvesterCarryingSkulls(bs))
 ADDRFP4 0
 INDIRP4
 ARGP4
 ADDRLP4 180
-ADDRGP4 BotHarvesterCarryingCubes
+ADDRGP4 BotHarvesterCarryingSkulls
 CALLI4
 ASGNI4
 ADDRLP4 180
@@ -14765,7 +14765,7 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRLP4 232
 INDIRP4
@@ -14778,7 +14778,7 @@ INDIRP4
 CNSTI4 6540
 ADDP4
 INDIRI4
-CNSTI4 1632
+CNSTI4 1636
 MULI4
 ADDRLP4 232
 INDIRP4
@@ -15208,7 +15208,7 @@ ADDP4
 INDIRI4
 ADDRLP4 260
 INDIRP4
-CNSTI4 5068
+CNSTI4 5080
 ADDP4
 INDIRI4
 LEI4 $1044
@@ -17494,12 +17494,12 @@ INDIRI4
 CNSTI4 8
 NEI4 $1220
 line 2352
-;2352:			if (BotHarvesterCarryingCubes(bs))
+;2352:			if (BotHarvesterCarryingSkulls(bs))
 ADDRFP4 0
 INDIRP4
 ARGP4
 ADDRLP4 344
-ADDRGP4 BotHarvesterCarryingCubes
+ADDRGP4 BotHarvesterCarryingSkulls
 CALLI4
 ASGNI4
 ADDRLP4 344
@@ -18952,8 +18952,8 @@ import BotFindWayPoint
 import BotCreateWayPoint
 import BotAlternateRoute
 import BotGetAlternateRouteGoal
-import BotEnemyCubeCarrierVisible
-import BotTeamCubeCarrierVisible
+import BotEnemySkullCarrierVisible
+import BotTeamSkullCarrierVisible
 import BotHarvesterRetreatGoals
 import BotHarvesterSeekGoals
 import BotGoHarvest
@@ -18961,7 +18961,7 @@ import BotObeliskRetreatGoals
 import BotObeliskSeekGoals
 import Bot1FCTFRetreatGoals
 import Bot1FCTFSeekGoals
-import BotHarvesterCarryingCubes
+import BotHarvesterCarryingSkulls
 import Bot1FCTFCarryingFlag
 import BotCTFRetreatGoals
 import BotCTFSeekGoals
@@ -19342,6 +19342,7 @@ import g_predictPVS
 import g_unlagged
 import g_listEntity
 import g_allowVote
+import g_allowKill
 import g_podiumDrop
 import g_podiumDist
 import g_blood
@@ -19350,10 +19351,11 @@ import g_debugAlloc
 import g_debugDamage
 import g_debugMove
 import g_inactivity
-import g_forcerespawn
+import g_respawn_delay_max
+import g_respawn_delay_min
 import g_weaponTeamRespawn
 import g_weaponRespawn
-import g_quadfactor
+import g_quadDamageFactor
 import g_knockback
 import g_gravity
 import g_speed
@@ -19500,7 +19502,7 @@ import fire_grenade
 import fire_plasma
 import fire_blaster
 import G_RunMissile
-import TossClientCubes
+import TossClientSkulls
 import TossClientPersistantPowerups
 import TossClientItems
 import body_die

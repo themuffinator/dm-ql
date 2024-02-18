@@ -2269,7 +2269,7 @@ ADDRGP4 trap_R_SetColor
 CALLV
 pop
 line 267
-;267:			CG_DrawPic(rect->x, rect->y, rect->w, rect->h, cgs.media.blueCubeIcon);
+;267:			CG_DrawPic(rect->x, rect->y, rect->w, rect->h, cgs.media.blueSkullIcon);
 ADDRLP4 16
 ADDRFP4 0
 INDIRP4
@@ -2802,7 +2802,7 @@ ADDRGP4 trap_R_SetColor
 CALLV
 pop
 line 317
-;317:			CG_DrawPic(rect->x, rect->y, rect->w, rect->h, cgs.media.redCubeIcon);
+;317:			CG_DrawPic(rect->x, rect->y, rect->w, rect->h, cgs.media.redSkullIcon);
 ADDRLP4 16
 ADDRFP4 0
 INDIRP4
@@ -3364,7 +3364,7 @@ INDIRI4
 CNSTI4 2
 NEI4 $369
 line 378
-;378:				handle = cgs.media.redCubeModel;
+;378:				handle = cgs.media.redSkullModel;
 ADDRLP4 44
 ADDRGP4 cgs+146664+20
 INDIRI4
@@ -3375,7 +3375,7 @@ ADDRGP4 $370
 JUMPV
 LABELV $369
 line 380
-;380:				handle = cgs.media.blueCubeModel;
+;380:				handle = cgs.media.blueSkullModel;
 ADDRLP4 44
 ADDRGP4 cgs+146664+24
 INDIRI4
@@ -3430,7 +3430,7 @@ INDIRI4
 CNSTI4 2
 NEI4 $376
 line 385
-;385:				handle = cgs.media.redCubeIcon;
+;385:				handle = cgs.media.redSkullIcon;
 ADDRLP4 44
 ADDRGP4 cgs+146664+28
 INDIRI4
@@ -3441,7 +3441,7 @@ ADDRGP4 $377
 JUMPV
 LABELV $376
 line 387
-;387:				handle = cgs.media.blueCubeIcon;
+;387:				handle = cgs.media.blueSkullIcon;
 ADDRLP4 44
 ADDRGP4 cgs+146664+32
 INDIRI4
