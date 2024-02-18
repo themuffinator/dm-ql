@@ -924,14 +924,13 @@ static void ClientStartingWeapons(gclient_t *client) {
 
 	if (weaps & (1 << WP_NUM_WEAPONS)) {// || level.warmupTime < 0) {
 		weaps = level.mapWeapons;
-		weaps |= (1 << WP_GAUNTLET);
-		weaps |= (1 << WP_MACHINEGUN);
+		weaps |= (1 << WP_GAUNTLET) | (1 << WP_MACHINEGUN);
 	}
 
 	for (i = WP_NONE + 1; i < WP_NUM_WEAPONS; i++) {
 		if (weaps & (1 << i)) {
 			client->ps.stats[STAT_WEAPONS] |= (1 << i);
-			client->ps.ammo[i] = trap_Cvar_VariableIntegerValue(va("g_startingAmmo_%s", bgWeapons[i].shortName));
+			Add_Ammo(&g_entities[client->ps.clientNum], i, trap_Cvar_VariableIntegerValue(va("g_startingAmmo_%s", bgWeapons[i].shortName)));
 		}
 	}
 

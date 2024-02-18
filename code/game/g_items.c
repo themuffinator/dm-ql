@@ -237,7 +237,7 @@ int Pickup_Holdable(gentity_t *ent, gentity_t *other) {
 //======================================================================
 
 
-static void Add_Ammo(gentity_t *ent, weapon_t weapon, int count) {
+void Add_Ammo(gentity_t *ent, weapon_t weapon, int count) {
 	if (weapon == WP_NONE) {
 		// it is an ammo pack
 		int i;
