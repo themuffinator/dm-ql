@@ -117,6 +117,12 @@ static void CG_Obituary(entityState_t *ent) {
 	case MOD_LAVA:
 		message = "does a back flip into the lava";
 		break;
+	case MOD_SWITCHTEAM:
+		message = "switched teams";
+		break;
+	case MOD_THAW:
+		message = "was auto-thawed";
+		break;
 	case MOD_TARGET_LASER:
 		message = "saw the light";
 		break;
@@ -149,6 +155,14 @@ static void CG_Obituary(entityState_t *ent) {
 				message = "blew itself up";
 			else
 				message = "blew himself up";
+			break;
+		case MOD_LIGHTNING_DISCHARGE:
+			if (gender == GENDER_FEMALE)
+				message = "discharged herself";
+			else if (gender == GENDER_NEUTER)
+				message = "discharged itself";
+			else
+				message = "discharged himself";
 			break;
 		case MOD_PLASMA_SPLASH:
 			if (gender == GENDER_FEMALE)
@@ -196,13 +210,15 @@ static void CG_Obituary(entityState_t *ent) {
 	// check for kill messages from the current clientNum
 	if (attacker == cg.snap->ps.clientNum) {
 		char *s;
+		char *mode = cgs.gametype == GT_FREEZE ? (mod == MOD_THAW ? "thawed" : "froze") : "fragged";
 
 		if (cgs.gametype < GT_TEAM) {
-			s = va("You fragged %s\n%s place with %i", targetName,
+			s = va("You %s %s\n%s place with %i", mode, targetName,
 				CG_PlaceString(cg.snap->ps.persistant[PERS_RANK] + 1),
 				cg.snap->ps.persistant[PERS_SCORE]);
 		} else {
-			s = va("You fragged %s", targetName);
+			//TODO: add "your teammate." if on same team
+			s = va("You %s %s", mode, targetName);
 		}
 
 		CG_CenterPrint(s, SCREEN_HEIGHT * 0.30, BIGCHAR_WIDTH);
@@ -242,6 +258,10 @@ static void CG_Obituary(entityState_t *ent) {
 		case MOD_MACHINEGUN:
 			message = "was machinegunned by";
 			break;
+		case MOD_HMG:
+			message = "was ripped up by";
+			message2 = "'s HMG";
+			break;
 		case MOD_SHOTGUN:
 			message = "was gunned down by";
 			break;
@@ -275,6 +295,9 @@ static void CG_Obituary(entityState_t *ent) {
 		case MOD_LIGHTNING:
 			message = "was electrocuted by";
 			break;
+		case MOD_LIGHTNING_DISCHARGE:
+			message = "was discharged by";
+			break;
 		case MOD_BFG:
 		case MOD_BFG_SPLASH:
 			message = "was blasted by";
@@ -301,6 +324,9 @@ static void CG_Obituary(entityState_t *ent) {
 		case MOD_TELEFRAG:
 			message = "tried to invade";
 			message2 = "'s personal space";
+			break;
+		case MOD_THAW:
+			message = "was thawed by";
 			break;
 		default:
 			message = "was killed by";
