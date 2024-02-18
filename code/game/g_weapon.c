@@ -110,7 +110,7 @@ qboolean CheckGauntletAttack(gentity_t *ent) {
 		s_quadFactor *= 2;
 	}
 
-	damage = 50 * s_quadFactor;
+	damage = g_damage_g.integer * s_quadFactor;
 	G_Damage(traceEnt, ent, ent, forward, tr.endpos, damage, 0, MOD_GAUNTLET);
 
 	return qtrue;
@@ -288,7 +288,7 @@ static qboolean ShotgunPellet(const vec3_t start, const vec3_t end, gentity_t *e
 		}
 
 		if (traceEnt->takedamage) {
-			damage = DEFAULT_SHOTGUN_DAMAGE * s_quadFactor;
+			damage = g_damage_sg.integer * s_quadFactor;
 			if (traceEnt->client && traceEnt->client->invulnerabilityTime > level.time) {
 				if (G_InvulnerabilityEffect(traceEnt, forward, tr.endpos, impactpoint, bouncedir)) {
 					G_BounceProjectile(tr_start, impactpoint, bouncedir, tr_end);
@@ -445,7 +445,7 @@ void weapon_railgun_fire(gentity_t *ent) {
 	int			passent;
 	gentity_t *unlinkedEntities[MAX_RAIL_HITS];
 
-	damage = 100 * s_quadFactor;
+	damage = g_damage_rg.integer * s_quadFactor;
 
 	VectorMA(muzzle_origin, 8192.0, forward, end);
 
@@ -604,7 +604,7 @@ void Weapon_LightningFire(gentity_t *ent) {
 	gentity_t *traceEnt, *tent;
 	int			damage, i, passent;
 
-	damage = 8 * s_quadFactor;
+	damage = g_damage_lg.integer * s_quadFactor;
 
 	passent = ent->s.number;
 
@@ -783,11 +783,7 @@ void FireWeapon(gentity_t *ent) {
 		Weapon_Gauntlet(ent);
 		break;
 	case WP_MACHINEGUN:
-		if (g_gametype.integer != GT_TEAM) {
-			Bullet_Fire(ent, MACHINEGUN_SPREAD, MACHINEGUN_DAMAGE);
-		} else {
-			Bullet_Fire(ent, MACHINEGUN_SPREAD, MACHINEGUN_TEAM_DAMAGE);
-		}
+		Bullet_Fire(ent, MACHINEGUN_SPREAD, g_damage_mg.integer);
 		break;
 	case WP_SHOTGUN:
 		weapon_supershotgun_fire(ent);
@@ -820,10 +816,10 @@ void FireWeapon(gentity_t *ent) {
 		weapon_proxlauncher_fire(ent);
 		break;
 	case WP_CHAINGUN:
-		Bullet_Fire(ent, CHAINGUN_SPREAD, MACHINEGUN_DAMAGE);
+		Bullet_Fire(ent, CHAINGUN_SPREAD, g_damage_cg.integer);
 		break;
 	case WP_HMG:
-		Bullet_Fire(ent, MACHINEGUN_SPREAD, MACHINEGUN_DAMAGE);
+		Bullet_Fire(ent, MACHINEGUN_SPREAD, g_damage_hmg.integer);
 		break;
 	default:
 		// FIXME		G_Error( "Bad ent->s.weapon" );

@@ -292,7 +292,13 @@ char	*modNames[] = {
 	"MOD_PROXIMITY_MINE",
 	"MOD_KAMIKAZE",
 	"MOD_JUICED",
-	"MOD_GRAPPLE"
+	"MOD_GRAPPLE",
+
+	//"MOD_SWITCHTEAM",
+	//"MOD_THAW",
+	//"MOD_LIGHTNING_DISCHARGE",
+	"MOD_HMG",
+	//"MOD_RAILGUN_HEADSHOT"
 };
 
 
@@ -880,9 +886,56 @@ void G_Damage( gentity_t *targ, gentity_t *inflictor, gentity_t *attacker,
 	// figure momentum add, even if the damage won't be taken
 	if ( knockback && targ->client ) {
 		vec3_t	kvel;
-		float	mass;
+		float	mass = 200.0f;
+		float	kval = g_knockback.value;
 
-		mass = 200;
+		switch (mod) {
+		case MOD_GAUNTLET:
+			kval *= g_knockback_g.value;
+			break;
+		case MOD_MACHINEGUN:
+			kval *= g_knockback_mg.value;
+			break;
+		case MOD_SHOTGUN:
+			kval *= g_knockback_sg.value;
+			break;
+		case MOD_GRENADE:
+		case MOD_GRENADE_SPLASH:
+			kval *= g_knockback_gl.value;
+			break;
+		case MOD_ROCKET:
+		case MOD_ROCKET_SPLASH:
+			kval *= attacker == targ ? g_knockback_rl_self.value : g_knockback_rl.value;
+			break;
+		case MOD_LIGHTNING:
+			kval *= g_knockback_lg.value;
+			break;
+		case MOD_RAILGUN:
+			kval *= g_knockback_rg.value;
+			break;
+		case MOD_PLASMA:
+		case MOD_PLASMA_SPLASH:
+			kval *= attacker == targ ? g_knockback_pg_self.value : g_knockback_pg.value;
+			break;
+		case MOD_BFG:
+		case MOD_BFG_SPLASH:
+			kval *= g_knockback_bfg.value;
+			break;
+		case MOD_NAIL:
+			kval *= g_knockback_ng.value;
+			break;
+		case MOD_PROXIMITY_MINE:
+			kval *= g_knockback_pl.value;
+			break;
+		case MOD_CHAINGUN:
+			kval *= g_knockback_cg.value;
+			break;
+		case MOD_HMG:
+			kval *= g_knockback_hmg.value;
+			break;
+		}
+
+		kval *= (float)knockback;
 
 		VectorScale (dir, g_knockback.value * (float)knockback / mass, kvel);
 		VectorAdd (targ->client->ps.velocity, kvel, targ->client->ps.velocity);
@@ -1181,7 +1234,7 @@ qboolean G_RadiusDamage ( vec3_t origin, gentity_t *attacker, float damage, floa
 			VectorSubtract (ent->r.currentOrigin, origin, dir);
 			// push the center of mass higher than the origin so players
 			// get knocked into the air more
-			dir[2] += 24;
+			dir[2] += ent == attacker ? g_knockback_z_self.value : g_knockback_z.value;
 			G_Damage (ent, NULL, attacker, dir, origin, (int)points, DAMAGE_RADIUS, mod);
 		}
 	}
