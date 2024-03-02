@@ -279,7 +279,7 @@ void BotReportStatus(bot_state_t *bs) {
 			if (BotTeam(bs) == TEAM_RED) strcpy(flagstatus, S_COLOR_RED"F ");
 			else strcpy(flagstatus, S_COLOR_BLUE"F ");
 		}
-	} else if (gametype == GT_1FCTF) {
+	} else if (gametype == GT_ONEFLAG) {
 		if (Bot1FCTFCarryingFlag(bs)) {
 			if (BotTeam(bs) == TEAM_RED) strcpy(flagstatus, S_COLOR_RED"F ");
 			else strcpy(flagstatus, S_COLOR_BLUE"F ");
@@ -424,7 +424,7 @@ void BotSetInfoConfigString(bot_state_t *bs) {
 		if (BotCTFCarryingFlag(bs)) {
 			strcpy(carrying, "F ");
 		}
-	} else if (gametype == GT_1FCTF) {
+	} else if (gametype == GT_ONEFLAG) {
 		if (Bot1FCTFCarryingFlag(bs)) {
 			strcpy(carrying, "F ");
 		}

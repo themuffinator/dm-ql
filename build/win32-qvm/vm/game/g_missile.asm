@@ -3460,28 +3460,31 @@ ADDRFP4 0
 INDIRP4
 ASGNP4
 line 507
-;507:	bolt->damage = 20;
+;507:	bolt->damage = g_damage_pg.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 740
 ADDP4
-CNSTI4 20
+ADDRGP4 g_damage_pg+12
+INDIRI4
 ASGNI4
 line 508
-;508:	bolt->splashDamage = 15;
+;508:	bolt->splashDamage = g_splashdamage_pg.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 744
 ADDP4
-CNSTI4 15
+ADDRGP4 g_splashdamage_pg+12
+INDIRI4
 ASGNI4
 line 509
-;509:	bolt->splashRadius = 20;
+;509:	bolt->splashRadius = g_splashradius_pg.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 748
 ADDP4
-CNSTI4 20
+ADDRGP4 g_splashradius_pg+12
+INDIRI4
 ASGNI4
 line 510
 ;510:	bolt->methodOfDeath = MOD_PLASMA;
@@ -3609,7 +3612,7 @@ CVFI4 4
 CVIF4 4
 ASGNF4
 line 524
-;524:	VectorScale( dir, 2000, bolt->s.pos.trDelta );
+;524:	VectorScale( dir, g_velocity_pg.value, bolt->s.pos.trDelta );
 ADDRLP4 0
 INDIRP4
 CNSTI4 36
@@ -3617,7 +3620,8 @@ ADDP4
 ADDRFP4 8
 INDIRP4
 INDIRF4
-CNSTF4 1157234688
+ADDRGP4 g_velocity_pg+8
+INDIRF4
 MULF4
 ASGNF4
 ADDRLP4 0
@@ -3629,7 +3633,8 @@ INDIRP4
 CNSTI4 4
 ADDP4
 INDIRF4
-CNSTF4 1157234688
+ADDRGP4 g_velocity_pg+8
+INDIRF4
 MULF4
 ASGNF4
 ADDRLP4 0
@@ -3641,7 +3646,8 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRF4
-CNSTF4 1157234688
+ADDRGP4 g_velocity_pg+8
+INDIRF4
 MULF4
 ASGNF4
 line 525
@@ -3742,7 +3748,7 @@ ADDRLP4 0
 INDIRP4
 CNSTI4 524
 ADDP4
-ADDRGP4 $205
+ADDRGP4 $211
 ASGNP4
 line 547
 ;547:	bolt->nextthink = level.time + 2500;
@@ -3815,28 +3821,31 @@ ADDRFP4 0
 INDIRP4
 ASGNP4
 line 555
-;555:	bolt->damage = 100;
+;555:	bolt->damage = g_damage_gl.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 740
 ADDP4
-CNSTI4 100
+ADDRGP4 g_damage_gl+12
+INDIRI4
 ASGNI4
 line 556
-;556:	bolt->splashDamage = 100;
+;556:	bolt->splashDamage = g_splashdamage_gl.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 744
 ADDP4
-CNSTI4 100
+ADDRGP4 g_splashdamage_gl+12
+INDIRI4
 ASGNI4
 line 557
-;557:	bolt->splashRadius = 150;
+;557:	bolt->splashRadius = g_splashradius_gl.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 748
 ADDP4
-CNSTI4 150
+ADDRGP4 g_splashradius_gl+12
+INDIRI4
 ASGNI4
 line 558
 ;558:	bolt->methodOfDeath = MOD_GRENADE;
@@ -3881,7 +3890,7 @@ INDIRI4
 CNSTI4 2
 BANDI4
 CNSTI4 0
-EQI4 $207
+EQI4 $216
 line 564
 ;564:		bolt->s.powerups |= (1 << PW_QUAD);
 ADDRLP4 8
@@ -3898,7 +3907,7 @@ INDIRI4
 CNSTI4 2
 BORI4
 ASGNI4
-LABELV $207
+LABELV $216
 line 567
 ;565:
 ;566:	// missile owner
@@ -3955,7 +3964,7 @@ INDIRP4
 INDIRB
 ASGNB 12
 line 574
-;574:	VectorScale( dir, 700, bolt->s.pos.trDelta );
+;574:	VectorScale( dir, g_velocity_gl.value, bolt->s.pos.trDelta );
 ADDRLP4 0
 INDIRP4
 CNSTI4 36
@@ -3963,7 +3972,8 @@ ADDP4
 ADDRFP4 8
 INDIRP4
 INDIRF4
-CNSTF4 1143930880
+ADDRGP4 g_velocity_gl+8
+INDIRF4
 MULF4
 ASGNF4
 ADDRLP4 0
@@ -3975,7 +3985,8 @@ INDIRP4
 CNSTI4 4
 ADDP4
 INDIRF4
-CNSTF4 1143930880
+ADDRGP4 g_velocity_gl+8
+INDIRF4
 MULF4
 ASGNF4
 ADDRLP4 0
@@ -3987,7 +3998,8 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRF4
-CNSTF4 1143930880
+ADDRGP4 g_velocity_gl+8
+INDIRF4
 MULF4
 ASGNF4
 line 575
@@ -4045,7 +4057,7 @@ line 579
 ADDRLP4 0
 INDIRP4
 RETP4
-LABELV $204
+LABELV $210
 endproc fire_grenade 24 4
 export fire_bfg
 proc fire_bfg 24 4
@@ -4088,7 +4100,7 @@ ADDRLP4 0
 INDIRP4
 CNSTI4 524
 ADDP4
-ADDRGP4 $211
+ADDRGP4 $223
 ASGNP4
 line 597
 ;597:	bolt->nextthink = level.time + 10000;
@@ -4153,28 +4165,31 @@ ADDRFP4 0
 INDIRP4
 ASGNP4
 line 604
-;604:	bolt->damage = 100;
+;604:	bolt->damage = g_damage_bfg.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 740
 ADDP4
-CNSTI4 100
+ADDRGP4 g_damage_bfg+12
+INDIRI4
 ASGNI4
 line 605
-;605:	bolt->splashDamage = 100;
+;605:	bolt->splashDamage = g_splashdamage_bfg.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 744
 ADDP4
-CNSTI4 100
+ADDRGP4 g_splashdamage_bfg+12
+INDIRI4
 ASGNI4
 line 606
-;606:	bolt->splashRadius = 120;
+;606:	bolt->splashRadius = g_splashradius_bfg.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 748
 ADDP4
-CNSTI4 120
+ADDRGP4 g_splashradius_bfg+12
+INDIRI4
 ASGNI4
 line 607
 ;607:	bolt->methodOfDeath = MOD_BFG;
@@ -4219,7 +4234,7 @@ INDIRI4
 CNSTI4 2
 BANDI4
 CNSTI4 0
-EQI4 $213
+EQI4 $228
 line 613
 ;613:		bolt->s.powerups |= (1 << PW_QUAD);
 ADDRLP4 8
@@ -4236,7 +4251,7 @@ INDIRI4
 CNSTI4 2
 BORI4
 ASGNI4
-LABELV $213
+LABELV $228
 line 616
 ;614:
 ;615:	// missile owner
@@ -4331,7 +4346,7 @@ CVFI4 4
 CVIF4 4
 ASGNF4
 line 624
-;624:	VectorScale( dir, 2000, bolt->s.pos.trDelta );
+;624:	VectorScale( dir, g_velocity_bfg.value, bolt->s.pos.trDelta );
 ADDRLP4 0
 INDIRP4
 CNSTI4 36
@@ -4339,7 +4354,8 @@ ADDP4
 ADDRFP4 8
 INDIRP4
 INDIRF4
-CNSTF4 1157234688
+ADDRGP4 g_velocity_bfg+8
+INDIRF4
 MULF4
 ASGNF4
 ADDRLP4 0
@@ -4351,7 +4367,8 @@ INDIRP4
 CNSTI4 4
 ADDP4
 INDIRF4
-CNSTF4 1157234688
+ADDRGP4 g_velocity_bfg+8
+INDIRF4
 MULF4
 ASGNF4
 ADDRLP4 0
@@ -4363,7 +4380,8 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRF4
-CNSTF4 1157234688
+ADDRGP4 g_velocity_bfg+8
+INDIRF4
 MULF4
 ASGNF4
 line 625
@@ -4420,7 +4438,7 @@ line 628
 ADDRLP4 0
 INDIRP4
 RETP4
-LABELV $210
+LABELV $222
 endproc fire_bfg 24 4
 export fire_rocket
 proc fire_rocket 24 4
@@ -4463,7 +4481,7 @@ ADDRLP4 0
 INDIRP4
 CNSTI4 524
 ADDP4
-ADDRGP4 $217
+ADDRGP4 $235
 ASGNP4
 line 646
 ;646:	bolt->nextthink = level.time + 15000;
@@ -4528,28 +4546,31 @@ ADDRFP4 0
 INDIRP4
 ASGNP4
 line 653
-;653:	bolt->damage = 100;
+;653:	bolt->damage = g_damage_rl.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 740
 ADDP4
-CNSTI4 100
+ADDRGP4 g_damage_rl+12
+INDIRI4
 ASGNI4
 line 654
-;654:	bolt->splashDamage = 100;
+;654:	bolt->splashDamage = g_splashdamage_rl.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 744
 ADDP4
-CNSTI4 100
+ADDRGP4 g_splashdamage_rl+12
+INDIRI4
 ASGNI4
 line 655
-;655:	bolt->splashRadius = 120;
+;655:	bolt->splashRadius = g_splashradius_rl.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 748
 ADDP4
-CNSTI4 120
+ADDRGP4 g_splashradius_rl+12
+INDIRI4
 ASGNI4
 line 656
 ;656:	bolt->methodOfDeath = MOD_ROCKET;
@@ -4594,7 +4615,7 @@ INDIRI4
 CNSTI4 2
 BANDI4
 CNSTI4 0
-EQI4 $219
+EQI4 $240
 line 662
 ;662:		bolt->s.powerups |= (1 << PW_QUAD);
 ADDRLP4 8
@@ -4611,7 +4632,7 @@ INDIRI4
 CNSTI4 2
 BORI4
 ASGNI4
-LABELV $219
+LABELV $240
 line 665
 ;663:
 ;664:	// missile owner
@@ -4706,7 +4727,7 @@ CVFI4 4
 CVIF4 4
 ASGNF4
 line 673
-;673:	VectorScale( dir, 900, bolt->s.pos.trDelta );
+;673:	VectorScale( dir, g_velocity_rl.value, bolt->s.pos.trDelta );
 ADDRLP4 0
 INDIRP4
 CNSTI4 36
@@ -4714,7 +4735,8 @@ ADDP4
 ADDRFP4 8
 INDIRP4
 INDIRF4
-CNSTF4 1147207680
+ADDRGP4 g_velocity_rl+8
+INDIRF4
 MULF4
 ASGNF4
 ADDRLP4 0
@@ -4726,7 +4748,8 @@ INDIRP4
 CNSTI4 4
 ADDP4
 INDIRF4
-CNSTF4 1147207680
+ADDRGP4 g_velocity_rl+8
+INDIRF4
 MULF4
 ASGNF4
 ADDRLP4 0
@@ -4738,7 +4761,8 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRF4
-CNSTF4 1147207680
+ADDRGP4 g_velocity_rl+8
+INDIRF4
 MULF4
 ASGNF4
 line 674
@@ -4795,7 +4819,7 @@ line 677
 ADDRLP4 0
 INDIRP4
 RETP4
-LABELV $216
+LABELV $234
 endproc fire_rocket 24 4
 export fire_grapple
 proc fire_grapple 24 4
@@ -4961,7 +4985,7 @@ ADDP4
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $224
+EQU4 $248
 line 712
 ;712:		hooktime = self->client->pers.cmd.serverTime + MISSILE_PRESTEP_TIME;
 ADDRLP4 4
@@ -4978,9 +5002,9 @@ ADDI4
 ASGNI4
 line 713
 ;713:	} else {
-ADDRGP4 $225
+ADDRGP4 $249
 JUMPV
-LABELV $224
+LABELV $248
 line 714
 ;714:		hooktime = level.time - MISSILE_PRESTEP_TIME; // // move a bit on the very first frame
 ADDRLP4 4
@@ -4991,7 +5015,7 @@ SUBI4
 ASGNI4
 line 715
 ;715:	}
-LABELV $225
+LABELV $249
 line 717
 ;716:
 ;717:	hook->s.pos.trType = TR_LINEAR;
@@ -5059,7 +5083,7 @@ CVFI4 4
 CVIF4 4
 ASGNF4
 line 721
-;721:	VectorScale( dir, 800, hook->s.pos.trDelta );
+;721:	VectorScale( dir, g_velocity_gh.value, hook->s.pos.trDelta );
 ADDRLP4 0
 INDIRP4
 CNSTI4 36
@@ -5067,7 +5091,8 @@ ADDP4
 ADDRFP4 8
 INDIRP4
 INDIRF4
-CNSTF4 1145569280
+ADDRGP4 g_velocity_gh+8
+INDIRF4
 MULF4
 ASGNF4
 ADDRLP4 0
@@ -5079,7 +5104,8 @@ INDIRP4
 CNSTI4 4
 ADDP4
 INDIRF4
-CNSTF4 1145569280
+ADDRGP4 g_velocity_gh+8
+INDIRF4
 MULF4
 ASGNF4
 ADDRLP4 0
@@ -5091,7 +5117,8 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRF4
-CNSTF4 1145569280
+ADDRGP4 g_velocity_gh+8
+INDIRF4
 MULF4
 ASGNF4
 line 722
@@ -5161,7 +5188,7 @@ line 727
 ADDRLP4 0
 INDIRP4
 RETP4
-LABELV $222
+LABELV $246
 endproc fire_grapple 24 4
 export fire_nail
 proc fire_nail 108 4
@@ -5198,7 +5225,7 @@ ADDRLP4 0
 INDIRP4
 CNSTI4 524
 ADDP4
-ADDRGP4 $228
+ADDRGP4 $255
 ASGNP4
 line 746
 ;746:	bolt->nextthink = level.time + 10000;
@@ -5263,12 +5290,13 @@ ADDRFP4 0
 INDIRP4
 ASGNP4
 line 753
-;753:	bolt->damage = 20;
+;753:	bolt->damage = g_damage_ng.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 740
 ADDP4
-CNSTI4 20
+ADDRGP4 g_damage_ng+12
+INDIRI4
 ASGNI4
 line 754
 ;754:	bolt->methodOfDeath = MOD_NAIL;
@@ -5683,7 +5711,7 @@ line 777
 ADDRLP4 0
 INDIRP4
 RETP4
-LABELV $227
+LABELV $254
 endproc fire_nail 108 4
 export fire_prox
 proc fire_prox 20 4
@@ -5724,7 +5752,7 @@ ADDRLP4 0
 INDIRP4
 CNSTI4 524
 ADDP4
-ADDRGP4 $248
+ADDRGP4 $276
 ASGNP4
 line 793
 ;793:	bolt->nextthink = level.time + 3000;
@@ -5797,28 +5825,31 @@ ADDRFP4 0
 INDIRP4
 ASGNP4
 line 801
-;801:	bolt->damage = 0;
+;801:	bolt->damage = g_damage_pl.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 740
 ADDP4
-CNSTI4 0
+ADDRGP4 g_damage_pl+12
+INDIRI4
 ASGNI4
 line 802
-;802:	bolt->splashDamage = 100;
+;802:	bolt->splashDamage = g_splashdamage_pl.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 744
 ADDP4
-CNSTI4 100
+ADDRGP4 g_splashdamage_pl+12
+INDIRI4
 ASGNI4
 line 803
-;803:	bolt->splashRadius = 150;
+;803:	bolt->splashRadius = g_splashradius_pl.integer;
 ADDRLP4 0
 INDIRP4
 CNSTI4 748
 ADDP4
-CNSTI4 150
+ADDRGP4 g_splashradius_pl+12
+INDIRI4
 ASGNI4
 line 804
 ;804:	bolt->methodOfDeath = MOD_PROXIMITY_MINE;
@@ -5910,7 +5941,7 @@ INDIRP4
 INDIRB
 ASGNB 12
 line 818
-;818:	VectorScale( dir, 700, bolt->s.pos.trDelta );
+;818:	VectorScale( dir, g_velocity_pl.value, bolt->s.pos.trDelta );
 ADDRLP4 0
 INDIRP4
 CNSTI4 36
@@ -5918,7 +5949,8 @@ ADDP4
 ADDRFP4 8
 INDIRP4
 INDIRF4
-CNSTF4 1143930880
+ADDRGP4 g_velocity_pl+8
+INDIRF4
 MULF4
 ASGNF4
 ADDRLP4 0
@@ -5930,7 +5962,8 @@ INDIRP4
 CNSTI4 4
 ADDP4
 INDIRF4
-CNSTF4 1143930880
+ADDRGP4 g_velocity_pl+8
+INDIRF4
 MULF4
 ASGNF4
 ADDRLP4 0
@@ -5942,7 +5975,8 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRF4
-CNSTF4 1143930880
+ADDRGP4 g_velocity_pl+8
+INDIRF4
 MULF4
 ASGNF4
 line 819
@@ -6000,7 +6034,7 @@ line 823
 ADDRLP4 0
 INDIRP4
 RETP4
-LABELV $247
+LABELV $275
 endproc fire_prox 20 4
 import svf_self_portal2
 import trap_SnapVector
@@ -6183,6 +6217,57 @@ import trap_RealTime
 import trap_Milliseconds
 import trap_Error
 import trap_Print
+import g_training
+import g_knockback_z_self
+import g_knockback_z
+import g_knockback_hmg
+import g_knockback_cg
+import g_knockback_pl
+import g_knockback_ng
+import g_knockback_gh
+import g_knockback_bfg
+import g_knockback_pg_self
+import g_knockback_pg
+import g_knockback_rg
+import g_knockback_lg
+import g_knockback_rl_self
+import g_knockback_rl
+import g_knockback_gl
+import g_knockback_sg
+import g_knockback_mg
+import g_knockback_g
+import g_velocity_rl
+import g_velocity_pl
+import g_velocity_pg
+import g_velocity_gh
+import g_velocity_gl
+import g_velocity_bfg
+import g_splashdamage_rl
+import g_splashdamage_pl
+import g_splashdamage_pg
+import g_splashdamage_gl
+import g_splashdamage_bfg
+import g_splashradius_rl
+import g_splashradius_pl
+import g_splashradius_pg
+import g_splashradius_gl
+import g_splashradius_bfg
+import g_damage_hmg
+import g_damage_cg
+import g_damage_pl
+import g_damage_ng
+import g_damage_gh
+import g_damage_bfg
+import g_damage_pg
+import g_damage_rg
+import g_damage_lg
+import g_damage_rl
+import g_damage_gl
+import g_damage_sg
+import g_damage_mg
+import g_damage_g
+import g_ammoPack
+import g_ammoRespawn
 import g_startingAmmo_hmg
 import g_startingAmmo_cg
 import g_startingAmmo_pl
@@ -6216,6 +6301,10 @@ import g_obeliskHealth
 import g_predictPVS
 import g_unlagged
 import g_listEntity
+import g_voteDelay
+import g_voteLimit
+import g_allowVoteMidGame
+import g_allowSpecVote
 import g_allowVote
 import g_allowKill
 import g_blood
@@ -6400,6 +6489,7 @@ import G_ModelIndex
 import SaveRegisteredItems
 import RegisterItem
 import ClearRegisteredItems
+import Add_Ammo
 import Touch_Item
 import FinishSpawningItem
 import G_SpawnItem
@@ -6599,7 +6689,7 @@ import srand
 import qsort
 lit
 align 1
-LABELV $248
+LABELV $276
 byte 1 112
 byte 1 114
 byte 1 111
@@ -6611,14 +6701,14 @@ byte 1 110
 byte 1 101
 byte 1 0
 align 1
-LABELV $228
+LABELV $255
 byte 1 110
 byte 1 97
 byte 1 105
 byte 1 108
 byte 1 0
 align 1
-LABELV $217
+LABELV $235
 byte 1 114
 byte 1 111
 byte 1 99
@@ -6627,13 +6717,13 @@ byte 1 101
 byte 1 116
 byte 1 0
 align 1
-LABELV $211
+LABELV $223
 byte 1 98
 byte 1 102
 byte 1 103
 byte 1 0
 align 1
-LABELV $205
+LABELV $211
 byte 1 103
 byte 1 114
 byte 1 101

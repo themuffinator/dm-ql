@@ -3,15 +3,30 @@
 // cg_main.c -- initialization and primary entry point for cgame
 
 #include "cg_local.h"
-#include "../ui/ui_shared.h"
 // display context for new ui stuff
 displayContextDef_t cgDC;
+
+rectDef_t mRect = { 0 };
 
 int forceModelModificationCount = -1;
 int enemyModelModificationCount = -1;
 int	enemyColorsModificationCount = -1;
 int teamModelModificationCount = -1;
 int	teamColorsModificationCount = -1;
+
+const char *gametypeString[GT_MAX_GAME_TYPE] = {
+	"Free For All",
+	"Duel",
+	"Race",
+	"Team Deathmatch",
+	"Capture the Flag",
+	"One Flag",
+	"Overload",
+	"Harvester",
+	"Freeze Tag",
+	"Domination",
+	"Attack and Defend",
+	"Red Rover" };
 
 void CG_Init(int serverMessageNum, int serverCommandSequence, int clientNum);
 void CG_Shutdown(void);
@@ -384,14 +399,14 @@ static void CG_RegisterSounds(void) {
 			cgs.media.yourTeamTookEnemyFlagSound = trap_S_RegisterSound("sound/teamplay/voc_team_flag.wav", qtrue);
 		}
 
-		if (cgs.gametype == GT_1FCTF || cg_buildScript.integer) {
+		if (cgs.gametype == GT_ONEFLAG || cg_buildScript.integer) {
 			// FIXME: get a replacement for this sound ?
 			cgs.media.neutralFlagReturnedSound = trap_S_RegisterSound("sound/teamplay/flagreturn_opponent.wav", qtrue);
 			cgs.media.yourTeamTookTheFlagSound = trap_S_RegisterSound("sound/teamplay/voc_team_1flag.wav", qtrue);
 			cgs.media.enemyTookTheFlagSound = trap_S_RegisterSound("sound/teamplay/voc_enemy_1flag.wav", qtrue);
 		}
 
-		if (cgs.gametype == GT_1FCTF || cgs.gametype == GT_CTF || cg_buildScript.integer) {
+		if (cgs.gametype == GT_ONEFLAG || cgs.gametype == GT_CTF || cg_buildScript.integer) {
 			cgs.media.youHaveFlagSound = trap_S_RegisterSound("sound/teamplay/voc_you_flag.wav", qtrue);
 			cgs.media.holyShitSound = trap_S_RegisterSound("sound/feedback/voc_holyshit.wav", qtrue);
 		}
@@ -642,14 +657,14 @@ static void CG_RegisterGraphics(void) {
 	cgs.media.regenShader = trap_R_RegisterShader("powerups/regen");
 	cgs.media.hastePuffShader = trap_R_RegisterShader("hasteSmokePuff");
 
-	if (cgs.gametype == GT_CTF || cgs.gametype == GT_1FCTF || cgs.gametype == GT_HARVESTER || cg_buildScript.integer) {
+	if (cgs.gametype == GT_CTF || cgs.gametype == GT_ONEFLAG || cgs.gametype == GT_HARVESTER || cg_buildScript.integer) {
 		cgs.media.redSkullModel = trap_R_RegisterModel("models/powerups/orb/r_orb.md3");
 		cgs.media.blueSkullModel = trap_R_RegisterModel("models/powerups/orb/b_orb.md3");
 		cgs.media.redSkullIcon = trap_R_RegisterShader("icons/skull_red");
 		cgs.media.blueSkullIcon = trap_R_RegisterShader("icons/skull_blue");
 	}
 
-	if (cgs.gametype == GT_CTF || cgs.gametype == GT_1FCTF || cgs.gametype == GT_HARVESTER || cg_buildScript.integer) {
+	if (cgs.gametype == GT_CTF || cgs.gametype == GT_ONEFLAG || cgs.gametype == GT_HARVESTER || cg_buildScript.integer) {
 		cgs.media.redFlagModel = trap_R_RegisterModel("models/flags/r_flag.md3");
 		cgs.media.blueFlagModel = trap_R_RegisterModel("models/flags/b_flag.md3");
 		cgs.media.redFlagShader[0] = trap_R_RegisterShaderNoMip("icons/iconf_red1");
@@ -671,7 +686,7 @@ static void CG_RegisterGraphics(void) {
 		cgs.media.neutralFlagBaseModel = trap_R_RegisterModel("models/mapobjects/flagbase/ntrl_base.md3");
 	}
 
-	if (cgs.gametype == GT_1FCTF || cg_buildScript.integer) {
+	if (cgs.gametype == GT_ONEFLAG || cg_buildScript.integer) {
 		cgs.media.neutralFlagModel = trap_R_RegisterModel("models/flags/n_flag.md3");
 		cgs.media.flagShader[0] = trap_R_RegisterShaderNoMip("icons/iconf_neutral1");
 		cgs.media.flagShader[1] = trap_R_RegisterShaderNoMip("icons/iconf_red2");
@@ -1204,7 +1219,7 @@ void CG_LoadMenus(const char *menuFile) {
 
 
 
-static qboolean CG_OwnerDrawHandleKey(int ownerDraw, int flags, float *special, int key) {
+static qboolean CG_OwnerDrawHandleKey(int ownerDraw, int flags, int flags2, float *special, int key) {
 	return qfalse;
 }
 
@@ -1398,31 +1413,31 @@ static float CG_Cvar_Get(const char *cvar) {
 	return atof(buff);
 }
 
-void CG_Text_PaintWithCursor(float x, float y, float scale, vec4_t color, const char *text, int cursorPos, char cursor, int limit, int style) {
-	CG_Text_Paint(x, y, scale, color, text, 0, limit, style);
+void CG_Text_PaintWithCursor(float x, float y, float scale, const vec4_t color, const char *text, int cursorPos, char cursor, int limit, int style, int fontIndex, int widescreen) { //, rectDef_t menuRect) {
+	CG_Text_Paint(x, y, scale, color, text, 0, limit, style, fontIndex, widescreen); //, menuRect);
 }
 
-static int CG_OwnerDrawWidth(int ownerDraw, float scale) {
+static float CG_OwnerDrawWidth(int ownerDraw, float scale, int fontIndex, int widescreen) { //, rectDef_t menuRect) {
 	switch (ownerDraw) {
 	case CG_GAME_TYPE:
-		return CG_Text_Width(CG_GameTypeString(), scale, 0);
+		return CG_Text_Width(gametypeString[cgs.gametype], scale, 0, fontIndex, widescreen); //, menuRect);
 	case CG_GAME_STATUS:
-		return CG_Text_Width(CG_GetGameStatusText(), scale, 0);
+		return CG_Text_Width(CG_GetGameStatusText(), scale, 0, fontIndex, widescreen); //, menuRect);
 		break;
 	case CG_KILLER:
-		return CG_Text_Width(CG_GetKillerText(), scale, 0);
+		return CG_Text_Width(CG_GetKillerText(), scale, 0, fontIndex, widescreen); //, menuRect);
 		break;
 	case CG_RED_NAME:
-		return CG_Text_Width(cg_redTeamName.string, scale, 0);
+		return CG_Text_Width(cg_redTeamName.string, scale, 0, fontIndex, widescreen); //, menuRect);
 		break;
 	case CG_BLUE_NAME:
-		return CG_Text_Width(cg_blueTeamName.string, scale, 0);
+		return CG_Text_Width(cg_blueTeamName.string, scale, 0, fontIndex, widescreen); //, menuRect);
 		break;
 	}
 	return 0;
 }
 
-static int CG_PlayCinematic(const char *name, float x, float y, float w, float h) {
+static int CG_PlayCinematic(const char *name, float x, float y, float w, float h, int widescreen) { //, rectDef_t menuRect) {
 	return trap_CIN_PlayCinematic(name, x, y, w, h, CIN_loop);
 }
 
@@ -1430,7 +1445,7 @@ static void CG_StopCinematic(int handle) {
 	trap_CIN_StopCinematic(handle);
 }
 
-static void CG_DrawCinematic(int handle, float x, float y, float w, float h) {
+static void CG_DrawCinematic(int handle, float x, float y, float w, float h, int widescreen) { //, rectDef_t menuRect) {
 	trap_CIN_SetExtents(handle, x, y, w, h);
 	trap_CIN_DrawCinematic(handle);
 }
@@ -1445,14 +1460,14 @@ CG_LoadHudMenu();
 
 =================
 */
-void CG_LoadHudMenu(void) {
+static void CG_LoadHudMenu(void) {
 	char buff[1024];
 	const char *hudSet;
 
 	cgDC.registerShaderNoMip = &trap_R_RegisterShaderNoMip;
 	cgDC.setColor = &trap_R_SetColor;
 	cgDC.drawHandlePic = &CG_DrawPic;
-	cgDC.drawStretchPic = &trap_R_DrawStretchPic;
+	cgDC.drawStretchPic = &CG_DrawStretchPic;
 	cgDC.drawText = &CG_Text_Paint;
 	cgDC.textWidth = &CG_Text_Width;
 	cgDC.textHeight = &CG_Text_Height;
@@ -1512,12 +1527,11 @@ void CG_LoadHudMenu(void) {
 	CG_LoadMenus(hudSet);
 }
 
-void CG_AssetCache(void) {
-	//if (Assets.textFont == NULL) {
-	//  trap_R_RegisterFont("fonts/arial.ttf", 72, &Assets.textFont);
-	//}
-	//Assets.background = trap_R_RegisterShaderNoMip( ASSET_BACKGROUND );
-	//Com_Printf("Menu Size: %i bytes\n", sizeof(Menus));
+static void CG_AssetCache(void) {
+	if (!&cgDC.Assets.textFont) {
+		trap_R_RegisterFont("fonts/arial.ttf", 72, &cgDC.Assets.textFont);
+	}
+
 	cgDC.Assets.gradientBar = trap_R_RegisterShaderNoMip(ASSET_GRADIENTBAR);
 	cgDC.Assets.fxBasePic = trap_R_RegisterShaderNoMip(ART_FX_BASE);
 	cgDC.Assets.fxPic[0] = trap_R_RegisterShaderNoMip(ART_FX_RED);
@@ -1609,21 +1623,21 @@ void CG_Init(int serverMessageNum, int serverCommandSequence, int clientNum) {
 	cgs.screenXBias = 0.0;
 	cgs.screenYBias = 0.0;
 
-	if (cgs.glconfig.vidWidth * 480 > cgs.glconfig.vidHeight * 640) {
+	if (cgs.glconfig.vidWidth * SCREEN_HEIGHT > cgs.glconfig.vidHeight * SCREEN_WIDTH) {
 		// wide screen, scale by height
-		cgs.screenXScale = cgs.screenYScale = cgs.glconfig.vidHeight * (1.0 / 480.0);
-		cgs.screenXBias = 0.5 * (cgs.glconfig.vidWidth - (cgs.glconfig.vidHeight * (640.0 / 480.0)));
+		cgs.screenXScale = cgs.screenYScale = cgs.glconfig.vidHeight * (1.0 / (float)SCREEN_HEIGHT);
+		cgs.screenXBias = 0.5 * (cgs.glconfig.vidWidth - (cgs.glconfig.vidHeight * ((float)SCREEN_WIDTH / (float)SCREEN_HEIGHT)));
 	} else {
 		// no wide screen, scale by width
-		cgs.screenXScale = cgs.screenYScale = cgs.glconfig.vidWidth * (1.0 / 640.0);
-		cgs.screenYBias = 0.5 * (cgs.glconfig.vidHeight - (cgs.glconfig.vidWidth * (480.0 / 640.0)));
+		cgs.screenXScale = cgs.screenYScale = cgs.glconfig.vidWidth * (1.0 / (float)SCREEN_WIDTH);
+		cgs.screenYBias = 0.5 * (cgs.glconfig.vidHeight - (cgs.glconfig.vidWidth * ((float)SCREEN_HEIGHT / (float)SCREEN_WIDTH)));
 	}
 
 	cgs.screenXmin = 0.0 - (cgs.screenXBias / cgs.screenXScale);
-	cgs.screenXmax = 640.0 + (cgs.screenXBias / cgs.screenXScale);
+	cgs.screenXmax = (float)SCREEN_WIDTH + (cgs.screenXBias / cgs.screenXScale);
 
 	cgs.screenYmin = 0.0 - (cgs.screenYBias / cgs.screenYScale);
-	cgs.screenYmax = 480.0 + (cgs.screenYBias / cgs.screenYScale);
+	cgs.screenYmax = (float)SCREEN_HEIGHT + (cgs.screenYBias / cgs.screenYScale);
 
 	cgs.cursorScaleR = 1.0 / cgs.screenXScale;
 	if (cgs.cursorScaleR < 0.5) {
@@ -1658,7 +1672,7 @@ void CG_Init(int serverMessageNum, int serverCommandSequence, int clientNum) {
 	// load the new map
 	CG_LoadingString("collision map");
 
-	trap_CM_LoadMap(cgs.mapname);
+	trap_CM_LoadMap("campgrounds");	// cgs.mapname);
 
 	String_Init();
 

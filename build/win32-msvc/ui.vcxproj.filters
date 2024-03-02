@@ -53,8 +53,5 @@
     <ClCompile Include="..\..\code\ui\ui_syscalls.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\code\ui\ui_util.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

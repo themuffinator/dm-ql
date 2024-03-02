@@ -145,7 +145,7 @@ typedef enum {
 	GT_TEAM,
 	GT_CA,
 	GT_CTF,
-	GT_1FCTF,
+	GT_ONEFLAG,
 	GT_OBELISK,
 	GT_HARVESTER,
 	GT_FREEZE,

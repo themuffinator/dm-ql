@@ -1566,13 +1566,13 @@ void CG_DrawWeaponSelect(void) {
 	}
 
 	if (weaponSelect < 3) {
-		x = 320 - count * 20;
+		x = HALFSCR_WIDTH - count * 20;
 		y = cgs.screenYmax + 1 - 100; // - STATUSBAR_HEIGHT - 40
 		dx = 40;
 		dy = 0;
 	} else {
 		x = cgs.screenXmin + 6;
-		y = 240 - count * 20;
+		y = HALFSCR_HEIGHT - count * 20;
 		dx = 0;
 		dy = 40;
 	}
@@ -1585,16 +1585,16 @@ void CG_DrawWeaponSelect(void) {
 		CG_RegisterWeapon(i);
 
 		// draw weapon icon
-		CG_DrawPic(x, y, 32, 32, cg_weapons[i].weaponIcon);
+		CG_DrawPic(x, y, 32, 32, cg_weapons[i].weaponIcon, WIDESCREEN_STRETCH); //, mRect);
 
 		// draw selection marker
 		if (i == cg.weaponSelect) {
-			CG_DrawPic(x - 4, y - 4, 32 + 8, 32 + 8, cgs.media.selectShader);
+			CG_DrawPic(x - 4, y - 4, 32 + 8, 32 + 8, cgs.media.selectShader, WIDESCREEN_STRETCH); //, mRect);
 		}
 
 		// no ammo cross on top
 		if (!cg.snap->ps.ammo[i]) {
-			CG_DrawPic(x, y, 32, 32, cgs.media.noammoShader);
+			CG_DrawPic(x, y, 32, 32, cgs.media.noammoShader, WIDESCREEN_STRETCH); //, mRect);
 		} else if (weaponSelect > 1 && cg.snap->ps.ammo[i] > 0) {
 			// ammo counter
 			BG_sprintf(buf, "%i", cg.snap->ps.ammo[i]);
@@ -1615,7 +1615,7 @@ void CG_DrawWeaponSelect(void) {
 	if (cg_weapons[cg.weaponSelect].item && weaponSelect == 1) {
 		name = cg_weapons[cg.weaponSelect].item->pickup_name;
 		if (name) {
-			CG_DrawString(320, y - 22, name, color, BIGCHAR_WIDTH, BIGCHAR_HEIGHT, 0, DS_SHADOW | DS_PROPORTIONAL | DS_CENTER | DS_FORCE_COLOR);
+			CG_DrawString(HALFSCR_WIDTH, y - 22, name, color, BIGCHAR_WIDTH, BIGCHAR_HEIGHT, 0, DS_SHADOW | DS_PROPORTIONAL | DS_CENTER | DS_FORCE_COLOR);
 		}
 	}
 

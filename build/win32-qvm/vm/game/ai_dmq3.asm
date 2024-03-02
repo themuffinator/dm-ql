@@ -877,7 +877,7 @@ line 292
 ;291:*/
 ;292:int Bot1FCTFCarryingFlag(bot_state_t *bs) {
 line 293
-;293:	if (gametype != GT_1FCTF) return qfalse;
+;293:	if (gametype != GT_ONEFLAG) return qfalse;
 ADDRGP4 gametype
 INDIRI4
 CNSTI4 6
@@ -1144,7 +1144,7 @@ ADDRGP4 BotEntityInfo
 CALLV
 pop
 line 343
-;343:			if ( ( (gametype == GT_CTF || gametype == GT_1FCTF) && EntityCarriesFlag(&entinfo))
+;343:			if ( ( (gametype == GT_CTF || gametype == GT_ONEFLAG) && EntityCarriesFlag(&entinfo))
 ADDRLP4 152
 ADDRGP4 gametype
 INDIRI4
@@ -7186,7 +7186,7 @@ ADDRGP4 BotCTFRetreatGoals
 CALLV
 pop
 line 1289
-;1289:		} else if (gametype == GT_1FCTF) {
+;1289:		} else if (gametype == GT_ONEFLAG) {
 ADDRGP4 $490
 JUMPV
 LABELV $491
@@ -7261,7 +7261,7 @@ ADDRGP4 BotCTFSeekGoals
 CALLV
 pop
 line 1301
-;1301:		} else if (gametype == GT_1FCTF) {
+;1301:		} else if (gametype == GT_ONEFLAG) {
 ADDRGP4 $500
 JUMPV
 LABELV $499
@@ -8456,7 +8456,7 @@ CNSTI4 1027
 ASGNI4
 line 1495
 ;1494:	//
-;1495:	if (gametype == GT_CTF || gametype == GT_1FCTF) {
+;1495:	if (gametype == GT_CTF || gametype == GT_ONEFLAG) {
 ADDRLP4 4
 ADDRGP4 gametype
 INDIRI4
@@ -9316,7 +9316,7 @@ CNSTI4 0
 NEI4 $666
 LABELV $669
 line 1617
-;1617:							(gametype != GT_1FCTF || bs->neutralflagstatus == 0) ) {
+;1617:							(gametype != GT_ONEFLAG || bs->neutralflagstatus == 0) ) {
 line 1621
 ;1618:							// tell the leader we want to be on offence
 ;1619:							//BotAI_BotInitialChat(bs, "wantoffence", NULL);
@@ -9459,7 +9459,7 @@ CNSTI4 0
 NEI4 $679
 LABELV $682
 line 1640
-;1640:							(gametype != GT_1FCTF || bs->neutralflagstatus == 0) ) {
+;1640:							(gametype != GT_ONEFLAG || bs->neutralflagstatus == 0) ) {
 line 1644
 ;1641:							// tell the leader we want to be on defense
 ;1642:							//BotAI_BotInitialChat(bs, "wantdefence", NULL);
@@ -11196,7 +11196,7 @@ line 1784
 ;1784:	}
 LABELV $797
 line 1785
-;1785:	else if (gametype == GT_1FCTF) {
+;1785:	else if (gametype == GT_ONEFLAG) {
 ADDRGP4 gametype
 INDIRI4
 CNSTI4 6
@@ -12112,7 +12112,7 @@ line 1894
 ;1894:	}
 LABELV $900
 line 1895
-;1895:	else if (gametype == GT_1FCTF) {
+;1895:	else if (gametype == GT_ONEFLAG) {
 ADDRGP4 gametype
 INDIRI4
 CNSTI4 6
@@ -13043,7 +13043,7 @@ line 2023
 line 2025
 ;2024:	//NOTE: we shouldn't be looking at the game code...
 ;2025:	if (level.intermissiontime) return qtrue;
-ADDRGP4 level+5516
+ADDRGP4 level+5520
 INDIRI4
 CNSTI4 0
 EQI4 $1008
@@ -13952,7 +13952,7 @@ RETI4
 ADDRGP4 $1082
 JUMPV
 line 2202
-;2202:	} else if (gametype == GT_1FCTF) {
+;2202:	} else if (gametype == GT_ONEFLAG) {
 LABELV $1083
 ADDRGP4 gametype
 INDIRI4
@@ -14251,7 +14251,7 @@ RETI4
 ADDRGP4 $1113
 JUMPV
 line 2254
-;2254:	} else if (gametype == GT_1FCTF) {
+;2254:	} else if (gametype == GT_ONEFLAG) {
 LABELV $1114
 ADDRGP4 gametype
 INDIRI4
@@ -32284,7 +32284,7 @@ LABELV $2770
 LABELV $2764
 line 4736
 ;4735:			//
-;4736:			if (gametype == GT_1FCTF) {
+;4736:			if (gametype == GT_ONEFLAG) {
 ADDRGP4 gametype
 INDIRI4
 CNSTI4 6
@@ -32669,7 +32669,7 @@ line 4797
 ;4797:						break; //see BotMatch_CTF
 line 4799
 ;4798:				}
-;4799:			} else if (gametype == GT_1FCTF) {
+;4799:			} else if (gametype == GT_ONEFLAG) {
 ADDRGP4 $2761
 JUMPV
 LABELV $2793
@@ -33836,7 +33836,7 @@ line 5043
 ;5042:										ALTROUTEGOAL_VIEWPORTALS);
 ;5043:		}
 line 5044
-;5044:	} else if (gametype == GT_1FCTF) {
+;5044:	} else if (gametype == GT_ONEFLAG) {
 ADDRGP4 $2869
 JUMPV
 LABELV $2868
@@ -35563,7 +35563,7 @@ ADDRGP4 BotAI_Print
 CALLV
 pop
 line 5299
-;5299:	} else if (gametype == GT_1FCTF) {
+;5299:	} else if (gametype == GT_ONEFLAG) {
 ADDRGP4 $2997
 JUMPV
 LABELV $2996
@@ -35588,7 +35588,7 @@ INDIRI4
 CNSTI4 0
 GEI4 $3008
 line 5301
-;5301:			BotAI_Print(PRT_WARNING, "One Flag CTF without Neutral Flag\n");
+;5301:			BotAI_Print(PRT_WARNING, "One Flag without Neutral Flag\n");
 CNSTI4 2
 ARGI4
 ADDRGP4 $3010
@@ -35614,7 +35614,7 @@ INDIRI4
 CNSTI4 0
 GEI4 $3011
 line 5303
-;5303:			BotAI_Print(PRT_WARNING, "One Flag CTF without Red Flag\n");
+;5303:			BotAI_Print(PRT_WARNING, "One Flag without Red Flag\n");
 CNSTI4 2
 ARGI4
 ADDRGP4 $3013
@@ -35640,7 +35640,7 @@ INDIRI4
 CNSTI4 0
 GEI4 $3007
 line 5305
-;5305:			BotAI_Print(PRT_WARNING, "One Flag CTF without Blue Flag\n");
+;5305:			BotAI_Print(PRT_WARNING, "One Flag without Blue Flag\n");
 CNSTI4 2
 ARGI4
 ADDRGP4 $3016
@@ -36431,6 +36431,57 @@ import trap_RealTime
 import trap_Milliseconds
 import trap_Error
 import trap_Print
+import g_training
+import g_knockback_z_self
+import g_knockback_z
+import g_knockback_hmg
+import g_knockback_cg
+import g_knockback_pl
+import g_knockback_ng
+import g_knockback_gh
+import g_knockback_bfg
+import g_knockback_pg_self
+import g_knockback_pg
+import g_knockback_rg
+import g_knockback_lg
+import g_knockback_rl_self
+import g_knockback_rl
+import g_knockback_gl
+import g_knockback_sg
+import g_knockback_mg
+import g_knockback_g
+import g_velocity_rl
+import g_velocity_pl
+import g_velocity_pg
+import g_velocity_gh
+import g_velocity_gl
+import g_velocity_bfg
+import g_splashdamage_rl
+import g_splashdamage_pl
+import g_splashdamage_pg
+import g_splashdamage_gl
+import g_splashdamage_bfg
+import g_splashradius_rl
+import g_splashradius_pl
+import g_splashradius_pg
+import g_splashradius_gl
+import g_splashradius_bfg
+import g_damage_hmg
+import g_damage_cg
+import g_damage_pl
+import g_damage_ng
+import g_damage_gh
+import g_damage_bfg
+import g_damage_pg
+import g_damage_rg
+import g_damage_lg
+import g_damage_rl
+import g_damage_gl
+import g_damage_sg
+import g_damage_mg
+import g_damage_g
+import g_ammoPack
+import g_ammoRespawn
 import g_startingAmmo_hmg
 import g_startingAmmo_cg
 import g_startingAmmo_pl
@@ -36464,6 +36515,10 @@ import g_obeliskHealth
 import g_predictPVS
 import g_unlagged
 import g_listEntity
+import g_voteDelay
+import g_voteLimit
+import g_allowVoteMidGame
+import g_allowSpecVote
 import g_allowVote
 import g_allowKill
 import g_blood
@@ -36656,6 +36711,7 @@ import G_ModelIndex
 import SaveRegisteredItems
 import RegisterItem
 import ClearRegisteredItems
+import Add_Ammo
 import Touch_Item
 import FinishSpawningItem
 import G_SpawnItem
@@ -37083,10 +37139,6 @@ byte 1 108
 byte 1 97
 byte 1 103
 byte 1 32
-byte 1 67
-byte 1 84
-byte 1 70
-byte 1 32
 byte 1 119
 byte 1 105
 byte 1 116
@@ -37117,10 +37169,6 @@ byte 1 108
 byte 1 97
 byte 1 103
 byte 1 32
-byte 1 67
-byte 1 84
-byte 1 70
-byte 1 32
 byte 1 119
 byte 1 105
 byte 1 116
@@ -37149,10 +37197,6 @@ byte 1 70
 byte 1 108
 byte 1 97
 byte 1 103
-byte 1 32
-byte 1 67
-byte 1 84
-byte 1 70
 byte 1 32
 byte 1 119
 byte 1 105

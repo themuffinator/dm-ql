@@ -334,7 +334,7 @@ CNSTP4 0
 ASGNP4
 line 106
 ;105:
-;106:	if (gametype == GT_CTF || gametype == GT_1FCTF) {
+;106:	if (gametype == GT_CTF || gametype == GT_ONEFLAG) {
 ADDRLP4 1304
 ADDRGP4 gametype
 INDIRI4
@@ -12455,7 +12455,7 @@ LABELV $823
 line 1804
 ;1801:		}
 ;1802:
-;1803:		case GT_1FCTF:
+;1803:		case GT_ONEFLAG:
 ;1804:		{
 line 1805
 ;1805:			if (bs->numteammates != numteammates || bs->flagstatuschanged || bs->forceorders) {
@@ -13299,6 +13299,57 @@ import trap_RealTime
 import trap_Milliseconds
 import trap_Error
 import trap_Print
+import g_training
+import g_knockback_z_self
+import g_knockback_z
+import g_knockback_hmg
+import g_knockback_cg
+import g_knockback_pl
+import g_knockback_ng
+import g_knockback_gh
+import g_knockback_bfg
+import g_knockback_pg_self
+import g_knockback_pg
+import g_knockback_rg
+import g_knockback_lg
+import g_knockback_rl_self
+import g_knockback_rl
+import g_knockback_gl
+import g_knockback_sg
+import g_knockback_mg
+import g_knockback_g
+import g_velocity_rl
+import g_velocity_pl
+import g_velocity_pg
+import g_velocity_gh
+import g_velocity_gl
+import g_velocity_bfg
+import g_splashdamage_rl
+import g_splashdamage_pl
+import g_splashdamage_pg
+import g_splashdamage_gl
+import g_splashdamage_bfg
+import g_splashradius_rl
+import g_splashradius_pl
+import g_splashradius_pg
+import g_splashradius_gl
+import g_splashradius_bfg
+import g_damage_hmg
+import g_damage_cg
+import g_damage_pl
+import g_damage_ng
+import g_damage_gh
+import g_damage_bfg
+import g_damage_pg
+import g_damage_rg
+import g_damage_lg
+import g_damage_rl
+import g_damage_gl
+import g_damage_sg
+import g_damage_mg
+import g_damage_g
+import g_ammoPack
+import g_ammoRespawn
 import g_startingAmmo_hmg
 import g_startingAmmo_cg
 import g_startingAmmo_pl
@@ -13332,6 +13383,10 @@ import g_obeliskHealth
 import g_predictPVS
 import g_unlagged
 import g_listEntity
+import g_voteDelay
+import g_voteLimit
+import g_allowVoteMidGame
+import g_allowSpecVote
 import g_allowVote
 import g_allowKill
 import g_blood
@@ -13524,6 +13579,7 @@ import G_ModelIndex
 import SaveRegisteredItems
 import RegisterItem
 import ClearRegisteredItems
+import Add_Ammo
 import Touch_Item
 import FinishSpawningItem
 import G_SpawnItem

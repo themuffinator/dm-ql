@@ -290,7 +290,7 @@ Bot1FCTFCarryingFlag
 ==================
 */
 int Bot1FCTFCarryingFlag(bot_state_t *bs) {
-	if (gametype != GT_1FCTF) return qfalse;
+	if (gametype != GT_ONEFLAG) return qfalse;
 
 	if (bs->inventory[INVENTORY_NEUTRALFLAG] > 0) return qtrue;
 	return qfalse;
@@ -340,7 +340,7 @@ void BotSetTeamStatus(bot_state_t *bs) {
 			break;
 		case LTG_TEAMACCOMPANY:
 			BotEntityInfo(bs->teammate, &entinfo);
-			if ( ( (gametype == GT_CTF || gametype == GT_1FCTF) && EntityCarriesFlag(&entinfo))
+			if ( ( (gametype == GT_CTF || gametype == GT_ONEFLAG) && EntityCarriesFlag(&entinfo))
 				|| ( gametype == GT_HARVESTER && EntityCarriesSkulls(&entinfo)) ) {
 				teamtask = TEAMTASK_ESCORT;
 			}
@@ -1286,7 +1286,7 @@ void BotTeamGoals(bot_state_t *bs, int retreat) {
 	if ( retreat ) {
 		if (gametype == GT_CTF) {
 			BotCTFRetreatGoals(bs);
-		} else if (gametype == GT_1FCTF) {
+		} else if (gametype == GT_ONEFLAG) {
 			Bot1FCTFRetreatGoals(bs);
 		} else if (gametype == GT_OBELISK) {
 			BotObeliskRetreatGoals(bs);
@@ -1298,7 +1298,7 @@ void BotTeamGoals(bot_state_t *bs, int retreat) {
 		if (gametype == GT_CTF) {
 			//decide what to do in CTF mode
 			BotCTFSeekGoals(bs);
-		} else if (gametype == GT_1FCTF) {
+		} else if (gametype == GT_ONEFLAG) {
 			Bot1FCTFSeekGoals(bs);
 		} else if (gametype == GT_OBELISK) {
 			BotObeliskSeekGoals(bs);
@@ -1492,7 +1492,7 @@ int BotSynonymContext(bot_state_t *bs) {
 
 	context = CONTEXT_NORMAL|CONTEXT_NEARBYITEM|CONTEXT_NAMES;
 	//
-	if (gametype == GT_CTF || gametype == GT_1FCTF) {
+	if (gametype == GT_CTF || gametype == GT_ONEFLAG) {
 		if (BotTeam(bs) == TEAM_RED) context |= CONTEXT_CTFREDTEAM;
 		else context |= CONTEXT_CTFBLUETEAM;
 	} else if (gametype == GT_OBELISK) {
@@ -1614,7 +1614,7 @@ void BotCheckItemPickup(bot_state_t *bs, int *oldinventory) {
 						 bs->ltgtype != LTG_HARVEST ) {
 						//
 						if ((gametype != GT_CTF || (bs->redflagstatus == 0 && bs->blueflagstatus == 0)) &&
-							(gametype != GT_1FCTF || bs->neutralflagstatus == 0) ) {
+							(gametype != GT_ONEFLAG || bs->neutralflagstatus == 0) ) {
 							// tell the leader we want to be on offence
 							//BotAI_BotInitialChat(bs, "wantoffence", NULL);
 							//trap_BotEnterChat(bs->cs, leader, CHAT_TELL);
@@ -1637,7 +1637,7 @@ void BotCheckItemPickup(bot_state_t *bs, int *oldinventory) {
 					if ( bs->ltgtype != LTG_DEFENDKEYAREA ) {
 						//
 						if ((gametype != GT_CTF || (bs->redflagstatus == 0 && bs->blueflagstatus == 0)) &&
-							(gametype != GT_1FCTF || bs->neutralflagstatus == 0) ) {
+							(gametype != GT_ONEFLAG || bs->neutralflagstatus == 0) ) {
 							// tell the leader we want to be on defense
 							//BotAI_BotInitialChat(bs, "wantdefence", NULL);
 							//trap_BotEnterChat(bs->cs, leader, CHAT_TELL);
@@ -1782,7 +1782,7 @@ void BotUseKamikaze(bot_state_t *bs) {
 			}
 		}
 	}
-	else if (gametype == GT_1FCTF) {
+	else if (gametype == GT_ONEFLAG) {
 		//never use kamikaze if the team flag carrier is visible
 		if (Bot1FCTFCarryingFlag(bs))
 			return;
@@ -1892,7 +1892,7 @@ void BotUseInvulnerability(bot_state_t *bs) {
 			}
 		}
 	}
-	else if (gametype == GT_1FCTF) {
+	else if (gametype == GT_ONEFLAG) {
 		//never use kamikaze if the team flag carrier is visible
 		if (Bot1FCTFCarryingFlag(bs))
 			return;
@@ -2199,7 +2199,7 @@ int BotWantsToRetreat(bot_state_t *bs) {
 		//always retreat when carrying a CTF flag
 		if (BotCTFCarryingFlag(bs))
 			return qtrue;
-	} else if (gametype == GT_1FCTF) {
+	} else if (gametype == GT_ONEFLAG) {
 		//if carrying the flag then always retreat
 		if (Bot1FCTFCarryingFlag(bs))
 			return qtrue;
@@ -2251,7 +2251,7 @@ int BotWantsToChase(bot_state_t *bs) {
 		BotEntityInfo(bs->enemy, &entinfo);
 		if (EntityCarriesFlag(&entinfo))
 			return qtrue;
-	} else if (gametype == GT_1FCTF) {
+	} else if (gametype == GT_ONEFLAG) {
 		//never chase if carrying the flag
 		if (Bot1FCTFCarryingFlag(bs))
 			return qfalse;
@@ -4733,7 +4733,7 @@ void BotCheckEvents(bot_state_t *bs, entityState_t *state) {
 				bs->enemysuicide = qtrue;
 			}
 			//
-			if (gametype == GT_1FCTF) {
+			if (gametype == GT_ONEFLAG) {
 				//
 				BotEntityInfo(target, &entinfo);
 				if ( entinfo.powerups & ( 1 << PW_NEUTRALFLAG ) ) {
@@ -4796,7 +4796,7 @@ void BotCheckEvents(bot_state_t *bs, entityState_t *state) {
 						bs->flagstatuschanged = qtrue;
 						break; //see BotMatch_CTF
 				}
-			} else if (gametype == GT_1FCTF) {
+			} else if (gametype == GT_ONEFLAG) {
 				switch(state->eventParm) {
 					case GTS_RED_CAPTURE:
 						bs->neutralflagstatus = 0;
@@ -5041,7 +5041,7 @@ void BotSetupAlternativeRouteGoals(void) {
 										ALTROUTEGOAL_CLUSTERPORTALS|
 										ALTROUTEGOAL_VIEWPORTALS);
 		}
-	} else if (gametype == GT_1FCTF) {
+	} else if (gametype == GT_ONEFLAG) {
 		//
 		red_numaltroutegoals = trap_AAS_AlternativeRouteGoals(
 									ctf_neutralflag.origin, ctf_neutralflag.areanum,
@@ -5296,13 +5296,13 @@ void BotSetupDeathmatchAI(void) {
 			BotAI_Print(PRT_WARNING, "CTF without Red Flag\n");
 		if (trap_BotGetLevelItemGoal(-1, "Blue Flag", &ctf_blueflag) < 0)
 			BotAI_Print(PRT_WARNING, "CTF without Blue Flag\n");
-	} else if (gametype == GT_1FCTF) {
+	} else if (gametype == GT_ONEFLAG) {
 		if (trap_BotGetLevelItemGoal(-1, "Neutral Flag", &ctf_neutralflag) < 0)
-			BotAI_Print(PRT_WARNING, "One Flag CTF without Neutral Flag\n");
+			BotAI_Print(PRT_WARNING, "One Flag without Neutral Flag\n");
 		if (trap_BotGetLevelItemGoal(-1, "Red Flag", &ctf_redflag) < 0)
-			BotAI_Print(PRT_WARNING, "One Flag CTF without Red Flag\n");
+			BotAI_Print(PRT_WARNING, "One Flag without Red Flag\n");
 		if (trap_BotGetLevelItemGoal(-1, "Blue Flag", &ctf_blueflag) < 0)
-			BotAI_Print(PRT_WARNING, "One Flag CTF without Blue Flag\n");
+			BotAI_Print(PRT_WARNING, "One Flag without Blue Flag\n");
 	} else if (gametype == GT_OBELISK) {
 		if (trap_BotGetLevelItemGoal(-1, "Red Obelisk", &redobelisk) < 0)
 			BotAI_Print(PRT_WARNING, "Obelisk without red obelisk\n");

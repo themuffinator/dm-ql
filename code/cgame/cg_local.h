@@ -4,11 +4,14 @@
 #include "tr_types.h"
 #include "../game/bg_public.h"
 #include "cg_public.h"
+#include "../ui/ui_shared.h"
 
 // The entire cgame module is unloaded and reloaded on each level change,
 // so there is NO persistant data between levels on the client side.
 // If you absolutely need something stored, it can either be kept
 // by the server in the server stored userinfos, or stashed in a cvar.
+
+extern rectDef_t mRect;
 
 #define	POWERUP_BLINKS		5
 
@@ -56,8 +59,6 @@
 #define	GIANT_WIDTH			32
 #define	GIANT_HEIGHT		48
 
-#define	NUM_CROSSHAIRS		10
-
 #define TEAM_OVERLAY_MAXNAME_WIDTH	12
 #define TEAM_OVERLAY_MAXLOCATION_WIDTH	16
 
@@ -104,6 +105,8 @@ typedef enum {
 	IMPACTSOUND_METAL,
 	IMPACTSOUND_FLESH
 } impactSound_t;
+
+extern const char *gametypeString[GT_MAX_GAME_TYPE];
 
 //=================================================
 
@@ -665,6 +668,7 @@ typedef struct {
 	qboolean		skipDFshaders;
 } cg_t;
 
+#define	NUM_CROSSHAIRS 30
 
 // all of the model, shader, and sound references that are
 // loaded at gamestate time are stored in cgMedia_t
@@ -1149,9 +1153,10 @@ void CG_DrawActiveFrame(int serverTime, stereoFrame_t stereoView, qboolean demoP
 // cg_drawtools.c
 //
 void CG_AdjustFrom640(float *x, float *y, float *w, float *h);
-void CG_FillRect(float x, float y, float width, float height, const float *color);
+void CG_FillRect(float x, float y, float w, float h, const vec4_t color, int widescreen); //, rectDef_t menuRect);
 void CG_FillScreen(const float *color);
-void CG_DrawPic(float x, float y, float width, float height, qhandle_t hShader);
+void CG_DrawPic(float x, float y, float w, float h, qhandle_t asset, int widescreen); //, rectDef_t menuRect);
+void CG_DrawStretchPic(float x, float y, float w, float h, float s1, float t1, float s2, float t2, qhandle_t hShader, int widescreen); //, rectDef_t menuRect);
 
 void CG_DrawStringExt(int x, int y, const char *string, const float *setColor,
 	qboolean forceColor, qboolean shadow, int charWidth, int charHeight, int maxChars);
@@ -1167,9 +1172,9 @@ void CG_ColorForHealth(vec4_t hcolor);
 void CG_GetColorForHealth(int health, int armor, vec4_t hcolor);
 
 void UI_DrawProportionalString(int x, int y, const char *str, int style, vec4_t color);
-void CG_DrawRect(float x, float y, float width, float height, float size, const float *color);
-void CG_DrawSides(float x, float y, float w, float h, float size);
-void CG_DrawTopBottom(float x, float y, float w, float h, float size);
+void CG_DrawRect(float x, float y, float w, float h, float size, const vec4_t color, int widescreen); //, rectDef_t menuRect);
+void CG_DrawSides(float x, float y, float w, float h, float size, int widescreen); //, rectDef_t menuRect);
+void CG_DrawTopBottom(float x, float y, float w, float h, float size, int widescreen); //, rectDef_t menuRect);
 
 #define USE_NEW_FONT_RENDERER
 
@@ -1204,20 +1209,20 @@ void CG_DrawHead(float x, float y, float w, float h, int clientNum, vec3_t headA
 void CG_DrawActive(stereoFrame_t stereoView);
 void CG_DrawFlagModel(float x, float y, float w, float h, int team, qboolean force2D);
 void CG_DrawTeamBackground(int x, int y, int w, int h, float alpha, int team);
-void CG_OwnerDraw(float x, float y, float w, float h, float text_x, float text_y, int ownerDraw, int ownerDrawFlags, int align, float special, float scale, vec4_t color, qhandle_t shader, int textStyle);
-void CG_Text_Paint(float x, float y, float scale, vec4_t color, const char *text, float adjust, int limit, int style);
-int CG_Text_Width(const char *text, float scale, int limit);
-int CG_Text_Height(const char *text, float scale, int limit);
+
+void CG_OwnerDraw(float x, float y, float w, float h, float text_x, float text_y, int ownerDraw, int ownerDrawFlags, int ownerDrawFlags2, int align, float special, float scale, const vec4_t color, qhandle_t shader, int textStyle, int fontIndex, int menuWidescreen, int itemWidescreen); //, rectDef_t menuRect);
+void CG_Text_Paint(float x, float y, float scale, const vec4_t color, const char *text, float adjust, int limit, int style, int fontIndex, int widescreen); //, rectDef_t menuRect);
+float CG_Text_Width(const char *text, float scale, int limit, int fontIndex, int widescreen); //, rectDef_t menuRect);
+float CG_Text_Height(const char *text, float scale, int limit, int fontIndex, int widescreen); //, rectDef_t menuRect);
+
 float CG_GetValue(int ownerDraw);
-qboolean CG_OwnerDrawVisible(int flags);
+qboolean CG_OwnerDrawVisible(int flags, int flags2);
 void CG_RunMenuScript(char **args);
-void CG_ShowResponseHead(void);
 void CG_GetTeamColor(vec4_t *color);
 const char *CG_GetGameStatusText(void);
 const char *CG_GetKillerText(void);
 void CG_Draw3DModel(float x, float y, float w, float h, qhandle_t model, qhandle_t skin, vec3_t origin, vec3_t angles);
 void CG_Text_PaintChar(float x, float y, float width, float height, float scale, float s, float t, float s2, float t2, qhandle_t hShader);
-const char *CG_GameTypeString(void);
 qboolean CG_YourTeamHasFlag(void);
 qboolean CG_OtherTeamHasFlag(void);
 qhandle_t CG_StatusHandle(int task);

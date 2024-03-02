@@ -286,13 +286,16 @@ typedef	int	fixed16_t;
 #define NUMVERTEXNORMALS	162
 extern	vec3_t	bytedirs[NUMVERTEXNORMALS];
 
-// all drawing is done to a 640*480 virtual screen size
+// all drawing is done to a SCREEN_WIDTH*SCREEN_HEIGHT virtual screen size
 // and will be automatically scaled to the real resolution
 #define	SCREEN_WIDTH		640
 #define	SCREEN_HEIGHT		480
 
-#define TINYCHAR_WIDTH		(SMALLCHAR_WIDTH)
-#define TINYCHAR_HEIGHT		(SMALLCHAR_HEIGHT/2)
+#define	HALFSCR_WIDTH		SCREEN_WIDTH/2
+#define	HALFSCR_HEIGHT		SCREEN_HEIGHT/2
+
+#define TINYCHAR_WIDTH		8
+#define TINYCHAR_HEIGHT		8
 
 #define SMALLCHAR_WIDTH		8
 #define SMALLCHAR_HEIGHT	16
@@ -1141,8 +1144,8 @@ typedef enum {
 typedef enum _flag_status {
 	FLAG_ATBASE = 0,
 	FLAG_TAKEN,			// CTF
-	FLAG_TAKEN_RED,		// One Flag CTF
-	FLAG_TAKEN_BLUE,	// One Flag CTF
+	FLAG_TAKEN_RED,		// One Flag
+	FLAG_TAKEN_BLUE,	// One Flag
 	FLAG_DROPPED
 } flagStatus_t;
 

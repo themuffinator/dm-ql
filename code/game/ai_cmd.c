@@ -807,7 +807,7 @@ void BotMatch_GetFlag(bot_state_t *bs, bot_match_t *match) {
 	if (gametype == GT_CTF) {
 		if (!ctf_redflag.areanum || !ctf_blueflag.areanum)
 			return;
-	} else if (gametype == GT_1FCTF) {
+	} else if (gametype == GT_ONEFLAG) {
 		if (!ctf_neutralflag.areanum || !ctf_redflag.areanum || !ctf_blueflag.areanum)
 			return;
 	} else {
@@ -854,7 +854,7 @@ void BotMatch_AttackEnemyBase(bot_state_t *bs, bot_match_t *match) {
 
 	if (gametype == GT_CTF) {
 		BotMatch_GetFlag(bs, match);
-	} else if (gametype == GT_1FCTF || gametype == GT_OBELISK || gametype == GT_HARVESTER) {
+	} else if (gametype == GT_ONEFLAG || gametype == GT_OBELISK || gametype == GT_HARVESTER) {
 		if (!redobelisk.areanum || !blueobelisk.areanum)
 			return;
 	} else {
@@ -941,7 +941,7 @@ void BotMatch_RushBase(bot_state_t *bs, bot_match_t *match) {
 	if (gametype == GT_CTF) {
 		if (!ctf_redflag.areanum || !ctf_blueflag.areanum)
 			return;
-	} else if (gametype == GT_1FCTF || gametype == GT_HARVESTER) {
+	} else if (gametype == GT_ONEFLAG || gametype == GT_HARVESTER) {
 		if (!redobelisk.areanum || !blueobelisk.areanum)
 			return;
 	} else {
@@ -1027,7 +1027,7 @@ void BotMatch_ReturnFlag(bot_state_t *bs, bot_match_t *match) {
 	int client;
 
 	//if not in CTF mode
-	if ( gametype != GT_CTF && gametype != GT_1FCTF )
+	if ( gametype != GT_CTF && gametype != GT_ONEFLAG )
 		return;
 	//if not addressed to this bot
 	if (!BotAddressedToBot(bs, match))
@@ -1516,7 +1516,7 @@ void BotMatch_WhereAreYou(bot_state_t *bs, bot_match_t *match) {
 		}
 	}
 	if (bestitem != -1) {
-		if (gametype == GT_CTF || gametype == GT_1FCTF) {
+		if (gametype == GT_CTF || gametype == GT_ONEFLAG) {
 			redtt = trap_AAS_AreaTravelTimeToGoalArea(bs->areanum, bs->origin, ctf_redflag.areanum, TFL_DEFAULT);
 			bluett = trap_AAS_AreaTravelTimeToGoalArea(bs->areanum, bs->origin, ctf_blueflag.areanum, TFL_DEFAULT);
 			if (redtt < (redtt + bluett) * 0.4) {
@@ -1696,7 +1696,7 @@ void BotMatch_CTF(bot_state_t *bs, bot_match_t *match) {
 			else bs->blueflagstatus = 0;
 			bs->flagstatuschanged = 1;
 		}
-	} else if (gametype == GT_1FCTF) {
+	} else if (gametype == GT_ONEFLAG) {
 		if (match->subtype & ST_1FCTFGOTFLAG) {
 			trap_BotMatchVariable(match, NETNAME, netname, sizeof(netname));
 			bs->flagcarrier = ClientFromName(netname);

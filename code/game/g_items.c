@@ -96,6 +96,12 @@ int Pickup_Powerup(gentity_t *ent, gentity_t *other) {
 
 	other->client->ps.powerups[ent->item->giTag] += quantity * 1000;
 
+	//TODO: for Quad Hog
+	// if (g_quadHog.integer && ent->item->giTag == PW_QUAD)
+		//G_BroadcastServerCommand(-1, va("%s" S_COLOR_WHITE " is the " S_COLOR_CYAN "Quad Hog" S_COLOR_WHITE "!", other->client->pers.netname));
+	// else
+		G_BroadcastServerCommand(-1, va("%s" S_COLOR_YELLOW " got the %s!" S_COLOR_WHITE, other->client->pers.netname, ent->item->pickup_name));
+
 	// give any nearby players a "denied" anti-reward
 	for (i = 0; i < level.maxclients; i++) {
 		vec3_t		delta;
@@ -470,6 +476,10 @@ void RespawnItem(gentity_t *ent) {
 		}
 		te->s.eventParm = G_SoundIndex("sound/items/poweruprespawn.wav");
 		te->r.svFlags |= SVF_BROADCAST;
+
+		//TODO: for Quad Hog
+		// if (g_quadHog.integer && ent->item->giTag == PW_QUAD)
+			//G_BroadcastServerCommand(-1, S_COLOR_CYAN "Quad" S_COLOR_WHITE " respawned!");
 	}
 
 	if (ent->item->giType == IT_HOLDABLE && ent->item->giTag == HI_KAMIKAZE) {
@@ -671,7 +681,7 @@ gentity_t *LaunchItem(gitem_t *item, vec3_t origin, vec3_t velocity) {
 	VectorCopy(velocity, dropped->s.pos.trDelta);
 
 	dropped->s.eFlags |= EF_BOUNCE_HALF;
-	if ((g_gametype.integer == GT_CTF || g_gametype.integer == GT_1FCTF) && item->giType == IT_TEAM) { // Special case for CTF flags
+	if ((g_gametype.integer == GT_CTF || g_gametype.integer == GT_ONEFLAG) && item->giType == IT_TEAM) { // Special case for CTF flags
 		dropped->think = Team_DroppedFlagThink;
 		dropped->nextthink = level.time + 30000;
 		Team_CheckDroppedItem(dropped);
@@ -808,7 +818,7 @@ void G_CheckTeamItems(void) {
 		if (!item || !itemRegistered[item - bg_itemlist]) {
 			G_Printf(S_COLOR_YELLOW "WARNING: No team_CTF_blueflag in map\n");
 		}
-	} else if (g_gametype.integer == GT_1FCTF) {
+	} else if (g_gametype.integer == GT_ONEFLAG) {
 		gitem_t *item;
 
 		// check for all three flags

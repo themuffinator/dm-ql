@@ -14,7 +14,7 @@ line 25
 ;9:	int				last_capture_team;
 ;10:	flagStatus_t	redStatus;	// CTF
 ;11:	flagStatus_t	blueStatus;	// CTF
-;12:	flagStatus_t	flagStatus;	// One Flag CTF
+;12:	flagStatus_t	flagStatus;	// One Flag
 ;13:	int				redTakenTime;
 ;14:	int				blueTakenTime;
 ;15:	int				redObeliskAttackedTime;
@@ -92,7 +92,7 @@ ADDRGP4 $57
 JUMPV
 LABELV $62
 line 36
-;35:	case GT_1FCTF:
+;35:	case GT_ONEFLAG:
 ;36:		teamgame.flagStatus = -1; // Invalid to force update
 ADDRGP4 teamgame+16
 CNSTI4 -1
@@ -955,7 +955,7 @@ JUMPV
 LABELV $167
 line 196
 ;194:
-;195:	case TEAM_FREE:	// One Flag CTF
+;195:	case TEAM_FREE:	// One Flag
 ;196:		if ( teamgame.flagStatus != status ) {
 ADDRGP4 teamgame+16
 INDIRI4
@@ -1022,7 +1022,7 @@ ADDRLP4 12+2
 CNSTI1 0
 ASGNI1
 line 213
-;213:		} else {	// GT_1FCTF
+;213:		} else {	// GT_ONEFLAG
 ADDRGP4 $175
 JUMPV
 LABELV $174
@@ -1428,7 +1428,7 @@ line 296
 LABELV $211
 line 298
 ;297:
-;298:	if (g_gametype.integer == GT_1FCTF) {
+;298:	if (g_gametype.integer == GT_ONEFLAG) {
 ADDRGP4 g_gametype+12
 INDIRI4
 CNSTI4 6
@@ -3407,7 +3407,7 @@ ADDRGP4 Team_ResetFlag
 CALLP4
 pop
 line 548
-;548:	} else if( g_gametype.integer == GT_1FCTF ) {
+;548:	} else if( g_gametype.integer == GT_ONEFLAG ) {
 ADDRGP4 $330
 JUMPV
 LABELV $329
@@ -4104,7 +4104,7 @@ ASGNP4
 line 696
 ;694:	int			enemy_flag;
 ;695:
-;696:	if( g_gametype.integer == GT_1FCTF ) {
+;696:	if( g_gametype.integer == GT_ONEFLAG ) {
 ADDRGP4 g_gametype+12
 INDIRI4
 CNSTI4 6
@@ -4287,7 +4287,7 @@ JUMPV
 LABELV $405
 line 723
 ;722:
-;723:	if( g_gametype.integer == GT_1FCTF ) {
+;723:	if( g_gametype.integer == GT_ONEFLAG ) {
 ADDRGP4 g_gametype+12
 INDIRI4
 CNSTI4 6
@@ -4935,7 +4935,7 @@ INDIRP4
 ASGNP4
 line 798
 ;797:
-;798:	if( g_gametype.integer == GT_1FCTF ) {
+;798:	if( g_gametype.integer == GT_ONEFLAG ) {
 ADDRGP4 g_gametype+12
 INDIRI4
 CNSTI4 6
@@ -5320,7 +5320,7 @@ LABELV $454
 line 860
 ;858:	}
 ;859:
-;860:	if ( g_gametype.integer == GT_1FCTF ) {
+;860:	if ( g_gametype.integer == GT_ONEFLAG ) {
 ADDRGP4 g_gametype+12
 INDIRI4
 CNSTI4 6
@@ -5496,7 +5496,7 @@ line 896
 ;895:
 ;896:	for (eloc = level.locationHead; eloc; eloc = eloc->nextTrain) {
 ADDRLP4 0
-ADDRGP4 level+5560
+ADDRGP4 level+5564
 INDIRP4
 ASGNP4
 ADDRGP4 $473
@@ -5887,7 +5887,7 @@ ADDRLP4 4
 INDIRI4
 CNSTI4 2
 LSHI4
-ADDRGP4 level+5604
+ADDRGP4 level+5608
 ADDP4
 INDIRP4
 ASGNP4
@@ -6021,7 +6021,7 @@ ASGNI4
 LABELV $501
 ADDRLP4 4
 INDIRI4
-ADDRGP4 level+9700
+ADDRGP4 level+9704
 INDIRI4
 LTI4 $498
 LABELV $500
@@ -8553,7 +8553,7 @@ line 1402
 ;1401:*/
 ;1402:void SP_team_neutralobelisk( gentity_t *ent ) {
 line 1403
-;1403:	if ( g_gametype.integer != GT_1FCTF && g_gametype.integer != GT_HARVESTER ) {
+;1403:	if ( g_gametype.integer != GT_ONEFLAG && g_gametype.integer != GT_HARVESTER ) {
 ADDRGP4 g_gametype+12
 INDIRI4
 CNSTI4 6
@@ -9049,6 +9049,57 @@ import trap_RealTime
 import trap_Milliseconds
 import trap_Error
 import trap_Print
+import g_training
+import g_knockback_z_self
+import g_knockback_z
+import g_knockback_hmg
+import g_knockback_cg
+import g_knockback_pl
+import g_knockback_ng
+import g_knockback_gh
+import g_knockback_bfg
+import g_knockback_pg_self
+import g_knockback_pg
+import g_knockback_rg
+import g_knockback_lg
+import g_knockback_rl_self
+import g_knockback_rl
+import g_knockback_gl
+import g_knockback_sg
+import g_knockback_mg
+import g_knockback_g
+import g_velocity_rl
+import g_velocity_pl
+import g_velocity_pg
+import g_velocity_gh
+import g_velocity_gl
+import g_velocity_bfg
+import g_splashdamage_rl
+import g_splashdamage_pl
+import g_splashdamage_pg
+import g_splashdamage_gl
+import g_splashdamage_bfg
+import g_splashradius_rl
+import g_splashradius_pl
+import g_splashradius_pg
+import g_splashradius_gl
+import g_splashradius_bfg
+import g_damage_hmg
+import g_damage_cg
+import g_damage_pl
+import g_damage_ng
+import g_damage_gh
+import g_damage_bfg
+import g_damage_pg
+import g_damage_rg
+import g_damage_lg
+import g_damage_rl
+import g_damage_gl
+import g_damage_sg
+import g_damage_mg
+import g_damage_g
+import g_ammoPack
+import g_ammoRespawn
 import g_startingAmmo_hmg
 import g_startingAmmo_cg
 import g_startingAmmo_pl
@@ -9082,6 +9133,10 @@ import g_obeliskHealth
 import g_predictPVS
 import g_unlagged
 import g_listEntity
+import g_voteDelay
+import g_voteLimit
+import g_allowVoteMidGame
+import g_allowSpecVote
 import g_allowVote
 import g_allowKill
 import g_blood
@@ -9253,6 +9308,7 @@ import G_ModelIndex
 import SaveRegisteredItems
 import RegisterItem
 import ClearRegisteredItems
+import Add_Ammo
 import Touch_Item
 import FinishSpawningItem
 import G_SpawnItem

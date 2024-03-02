@@ -25,7 +25,7 @@ static void CG_DrawLoadingIcons(void) {
 	for (n = 0; n < loadingPlayerIconCount; n++) {
 		x = 16 + n * 78;
 		y = 324 - 40;
-		CG_DrawPic(x, y, 64, 64, loadingPlayerIcons[n]);
+		CG_DrawPic(x, y, 64, 64, loadingPlayerIcons[n], WIDESCREEN_STRETCH); //, mRect);
 	}
 
 	for (n = 0; n < loadingItemIconCount; n++) {
@@ -34,7 +34,7 @@ static void CG_DrawLoadingIcons(void) {
 			y += 40;
 		}
 		x = 16 + n % 13 * 48;
-		CG_DrawPic(x, y, 32, 32, loadingItemIcons[n]);
+		CG_DrawPic(x, y, 32, 32, loadingItemIcons[n], WIDESCREEN_STRETCH); //, mRect);
 	}
 }
 
@@ -163,10 +163,10 @@ void CG_DrawInformation(void) {
 	// the first 150 rows are reserved for the client connection
 	// screen to write into
 	if (cg.infoScreenText[0]) {
-		UI_DrawProportionalString(320, 128 - 32, va("Loading... %s", cg.infoScreenText),
+		UI_DrawProportionalString(HALFSCR_WIDTH, 128 - 32, va("Loading... %s", cg.infoScreenText),
 			UI_CENTER | UI_SMALLFONT | UI_DROPSHADOW, colorWhite);
 	} else {
-		UI_DrawProportionalString(320, 128 - 32, "Awaiting snapshot...",
+		UI_DrawProportionalString(HALFSCR_WIDTH, 128 - 32, "Awaiting snapshot...",
 			UI_CENTER | UI_SMALLFONT | UI_DROPSHADOW, colorWhite);
 	}
 
@@ -181,7 +181,7 @@ void CG_DrawInformation(void) {
 		// server hostname
 		Q_strncpyz(buf, Info_ValueForKey(info, "sv_hostname"), sizeof(buf));
 		Q_CleanStr(buf);
-		UI_DrawProportionalString(320, y, buf,
+		UI_DrawProportionalString(HALFSCR_WIDTH, y, buf,
 			UI_CENTER | UI_SMALLFONT | UI_DROPSHADOW, colorWhite);
 		y += PROP_HEIGHT;
 
@@ -205,14 +205,14 @@ void CG_DrawInformation(void) {
 
 		if (buf[0]) {
 			ptr = Q_stradd(ptr, " Server");
-			UI_DrawProportionalString(320, y, buf, UI_CENTER | UI_SMALLFONT | UI_DROPSHADOW, colorWhite);
+			UI_DrawProportionalString(HALFSCR_WIDTH, y, buf, UI_CENTER | UI_SMALLFONT | UI_DROPSHADOW, colorWhite);
 			y += PROP_HEIGHT;
 		}
 
 		// server-specific message of the day
 		s = CG_ConfigString(CS_MOTD);
 		if (s[0]) {
-			UI_DrawProportionalString(320, y, s,
+			UI_DrawProportionalString(HALFSCR_WIDTH, y, s,
 				UI_CENTER | UI_SMALLFONT | UI_DROPSHADOW, colorWhite);
 			y += PROP_HEIGHT;
 		}
@@ -224,7 +224,7 @@ void CG_DrawInformation(void) {
 	// map-specific message (long map name)
 	s = CG_ConfigString(CS_MESSAGE);
 	if (s[0]) {
-		UI_DrawProportionalString(320, y, s,
+		UI_DrawProportionalString(HALFSCR_WIDTH, y, s,
 			UI_CENTER | UI_SMALLFONT | UI_DROPSHADOW, colorWhite);
 		y += PROP_HEIGHT;
 	}
@@ -232,7 +232,7 @@ void CG_DrawInformation(void) {
 	// cheats warning
 	s = Info_ValueForKey(sysInfo, "sv_cheats");
 	if (s[0] == '1') {
-		UI_DrawProportionalString(320, y, "CHEATS ARE ENABLED",
+		UI_DrawProportionalString(HALFSCR_WIDTH, y, "CHEATS ARE ENABLED",
 			UI_CENTER | UI_SMALLFONT | UI_DROPSHADOW, colorWhite);
 		y += PROP_HEIGHT;
 	}
@@ -257,8 +257,8 @@ void CG_DrawInformation(void) {
 	case GT_CTF:
 		s = "Capture the Flag";
 		break;
-	case GT_1FCTF:
-		s = "One Flag CTF";
+	case GT_ONEFLAG:
+		s = "One Flag";
 		break;
 	case GT_OBELISK:
 		s = "Overload";
@@ -283,13 +283,13 @@ void CG_DrawInformation(void) {
 		s = buf;
 		break;
 	}
-	UI_DrawProportionalString(320, y, s,
+	UI_DrawProportionalString(HALFSCR_WIDTH, y, s,
 		UI_CENTER | UI_SMALLFONT | UI_DROPSHADOW, colorWhite);
 	y += PROP_HEIGHT;
 
 	value = atoi(Info_ValueForKey(info, "timelimit"));
 	if (value) {
-		UI_DrawProportionalString(320, y, va("timelimit %i", value),
+		UI_DrawProportionalString(HALFSCR_WIDTH, y, va("timelimit %i", value),
 			UI_CENTER | UI_SMALLFONT | UI_DROPSHADOW, colorWhite);
 		y += PROP_HEIGHT;
 	}
@@ -297,7 +297,7 @@ void CG_DrawInformation(void) {
 	if (cgs.gametype < GT_CTF) {
 		value = atoi(Info_ValueForKey(info, "fraglimit"));
 		if (value) {
-			UI_DrawProportionalString(320, y, va("fraglimit %i", value),
+			UI_DrawProportionalString(HALFSCR_WIDTH, y, va("fraglimit %i", value),
 				UI_CENTER | UI_SMALLFONT | UI_DROPSHADOW, colorWhite);
 			y += PROP_HEIGHT;
 		}
@@ -306,7 +306,7 @@ void CG_DrawInformation(void) {
 	if (cgs.gametype >= GT_CTF) {
 		value = atoi(Info_ValueForKey(info, "capturelimit"));
 		if (value) {
-			UI_DrawProportionalString(320, y, va("capturelimit %i", value),
+			UI_DrawProportionalString(HALFSCR_WIDTH, y, va("capturelimit %i", value),
 				UI_CENTER | UI_SMALLFONT | UI_DROPSHADOW, colorWhite);
 			y += PROP_HEIGHT;
 		}

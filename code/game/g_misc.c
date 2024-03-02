@@ -385,7 +385,7 @@ static void PortalTouch( gentity_t *self, gentity_t *other, trace_t *trace) {
 //		return;
 //	}
 
-	if ( other->client->ps.powerups[PW_NEUTRALFLAG] ) {		// only happens in One Flag CTF
+	if ( other->client->ps.powerups[PW_NEUTRALFLAG] ) {		// only happens in One Flag
 		Drop_Item( other, BG_FindItemForPowerup( PW_NEUTRALFLAG ), 0 );
 		other->client->ps.powerups[PW_NEUTRALFLAG] = 0;
 	}

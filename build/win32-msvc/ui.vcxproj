@@ -141,7 +141,6 @@
     <ClCompile Include="..\..\code\ui\ui_players.c" />
     <ClCompile Include="..\..\code\ui\ui_shared.c" />
     <ClCompile Include="..\..\code\ui\ui_syscalls.c" />
-    <ClCompile Include="..\..\code\ui\ui_util.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

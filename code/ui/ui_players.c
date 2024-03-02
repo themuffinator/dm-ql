@@ -726,7 +726,7 @@ void UI_DrawPlayer( float x, float y, float w, float h, playerInfo_t *pi, int ti
 	refdef.width = w;
 	refdef.height = h;
 
-	refdef.fov_x = (int)((float)refdef.width / 640.0f * 90.0f);
+	refdef.fov_x = (int)((float)refdef.width / (float)SCREEN_WIDTH * 90.0f);
 	xx = refdef.width / tan( refdef.fov_x / 360 * M_PI );
 	refdef.fov_y = atan2( refdef.height, xx );
 	refdef.fov_y *= ( 360 / (float)M_PI );

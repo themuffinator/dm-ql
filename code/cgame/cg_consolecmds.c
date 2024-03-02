@@ -4,7 +4,6 @@
 // executed by a key binding
 
 #include "cg_local.h"
-#include "../ui/ui_shared.h"
 extern menuDef_t *menuScoreboard;
 
 /*

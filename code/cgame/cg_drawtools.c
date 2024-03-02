@@ -23,14 +23,14 @@ void CG_AdjustFrom640(float *x, float *y, float *w, float *h) {
 ================
 CG_FillRect
 
-Coordinates are 640*480 virtual values
+Coordinates are SCREEN_WIDTH*SCREEN_HEIGHT virtual values
 =================
 */
-void CG_FillRect(float x, float y, float width, float height, const float *color) {
+void CG_FillRect(float x, float y, float w, float h, const vec4_t color, int widescreen) { //, rectDef_t menuRect) {
 	trap_R_SetColor(color);
 
-	CG_AdjustFrom640(&x, &y, &width, &height);
-	trap_R_DrawStretchPic(x, y, width, height, 0, 0, 0, 0, cgs.media.whiteShader);
+	CG_AdjustFrom640(&x, &y, &w, &h);
+	trap_R_DrawStretchPic(x, y, w, h, 0, 0, 0, 0, cgs.media.whiteShader);
 
 	trap_R_SetColor(NULL);
 }
@@ -55,7 +55,7 @@ CG_DrawSides
 Coords are virtual 640x480
 ================
 */
-void CG_DrawSides(float x, float y, float w, float h, float size) {
+void CG_DrawSides(float x, float y, float w, float h, float size, int widescreen) { //, rectDef_t menuRect) {
 	CG_AdjustFrom640(&x, &y, &w, &h);
 	size *= cgs.screenXScale;
 	trap_R_DrawStretchPic(x, y, size, h, 0, 0, 0, 0, cgs.media.whiteShader);
@@ -63,7 +63,7 @@ void CG_DrawSides(float x, float y, float w, float h, float size) {
 }
 
 
-void CG_DrawTopBottom(float x, float y, float w, float h, float size) {
+void CG_DrawTopBottom(float x, float y, float w, float h, float size, int widescreen) { //, rectDef_t menuRect) {
 	CG_AdjustFrom640(&x, &y, &w, &h);
 	size *= cgs.screenYScale;
 	trap_R_DrawStretchPic(x, y, w, size, 0, 0, 0, 0, cgs.media.whiteShader);
@@ -75,14 +75,14 @@ void CG_DrawTopBottom(float x, float y, float w, float h, float size) {
 ================
 UI_DrawRect
 
-Coordinates are 640*480 virtual values
+Coordinates are SCREEN_WIDTH*SCREEN_HEIGHT virtual values
 =================
 */
-void CG_DrawRect(float x, float y, float width, float height, float size, const float *color) {
+void CG_DrawRect(float x, float y, float w, float h, float size, const vec4_t color, int widescreen) { //, rectDef_t menuRect) {
 	trap_R_SetColor(color);
 
-	CG_DrawTopBottom(x, y, width, height, size);
-	CG_DrawSides(x, y, width, height, size);
+	CG_DrawTopBottom(x, y, w, h, size, widescreen); //, menuRect);
+	CG_DrawSides(x, y, w, h, size, widescreen); //, menuRect);
 
 	trap_R_SetColor(NULL);
 }
@@ -92,12 +92,24 @@ void CG_DrawRect(float x, float y, float width, float height, float size, const 
 ================
 CG_DrawPic
 
-Coordinates are 640*480 virtual values
+Coordinates are SCREEN_WIDTH*SCREEN_HEIGHT virtual values
 =================
 */
-void CG_DrawPic(float x, float y, float width, float height, qhandle_t hShader) {
-	CG_AdjustFrom640(&x, &y, &width, &height);
-	trap_R_DrawStretchPic(x, y, width, height, 0, 0, 1, 1, hShader);
+void CG_DrawPic(float x, float y, float w, float h, qhandle_t asset, int widescreen) { //, rectDef_t menuRect) {
+	CG_AdjustFrom640(&x, &y, &w, &h);
+	trap_R_DrawStretchPic(x, y, w, h, 0, 0, 1, 1, asset);
+}
+
+
+/*
+================
+CG_DrawStretchPic
+
+=================
+*/
+void CG_DrawStretchPic(float x, float y, float w, float h, float s1, float t1, float s2, float t2, qhandle_t hShader, int widescreen) { //, rectDef_t menuRect) {
+	CG_AdjustFrom640(&x, &y, &w, &h);
+	trap_R_DrawStretchPic(x, y, w, h, 0, 0, 1, 1, hShader);
 }
 
 
@@ -105,7 +117,7 @@ void CG_DrawPic(float x, float y, float width, float height, qhandle_t hShader) 
 ===============
 CG_DrawChar
 
-Coordinates and size in 640*480 virtual screen size
+Coordinates and size in SCREEN_WIDTH*SCREEN_HEIGHT virtual screen size
 ===============
 */
 static void CG_DrawChar(int x, int y, int width, int height, int ch) {
@@ -147,7 +159,7 @@ CG_DrawStringExt
 Draws a multi-colored string with a drop shadow, optionally forcing
 to a fixed color.
 
-Coordinates are at 640 by 480 virtual resolution
+Coordinates are at SCREEN_WIDTH by SCREEN_HEIGHT virtual resolution
 ==================
 */
 void CG_DrawStringExt(int x, int y, const char *string, const float *setColor,

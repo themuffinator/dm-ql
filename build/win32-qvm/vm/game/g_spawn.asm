@@ -13,7 +13,7 @@ line 9
 ;7:	int		i;
 ;8:
 ;9:	if (!level.spawning) {
-ADDRGP4 level+892
+ADDRGP4 level+896
 INDIRI4
 CNSTI4 0
 NEI4 $56
@@ -46,7 +46,7 @@ ADDRLP4 0
 INDIRI4
 CNSTI4 3
 LSHI4
-ADDRGP4 level+900
+ADDRGP4 level+904
 ADDP4
 INDIRP4
 ARGP4
@@ -66,7 +66,7 @@ ADDRLP4 0
 INDIRI4
 CNSTI4 3
 LSHI4
-ADDRGP4 level+900+4
+ADDRGP4 level+904+4
 ADDP4
 INDIRP4
 ASGNP4
@@ -91,7 +91,7 @@ ASGNI4
 LABELV $62
 ADDRLP4 0
 INDIRI4
-ADDRGP4 level+896
+ADDRGP4 level+900
 INDIRI4
 LTI4 $59
 line 21
@@ -1464,7 +1464,7 @@ ADDRLP4 24
 INDIRI4
 CNSTI4 3
 LSHI4
-ADDRGP4 level+900
+ADDRGP4 level+904
 ADDP4
 INDIRP4
 ARGP4
@@ -1472,7 +1472,7 @@ ADDRLP4 24
 INDIRI4
 CNSTI4 3
 LSHI4
-ADDRGP4 level+900+4
+ADDRGP4 level+904+4
 ADDP4
 INDIRP4
 ARGP4
@@ -1495,7 +1495,7 @@ ASGNI4
 LABELV $224
 ADDRLP4 0
 INDIRI4
-ADDRGP4 level+896
+ADDRGP4 level+900
 INDIRI4
 LTI4 $221
 line 407
@@ -1855,7 +1855,7 @@ INDIRI4
 ASGNI4
 line 473
 ;473:	if (level.numSpawnVarChars + l + 1 > MAX_SPAWN_VARS_CHARS) {
-ADDRGP4 level+1412
+ADDRGP4 level+1416
 INDIRI4
 ADDRLP4 0
 INDIRI4
@@ -1878,9 +1878,9 @@ line 477
 ;476:
 ;477:	dest = level.spawnVarChars + level.numSpawnVarChars;
 ADDRLP4 4
-ADDRGP4 level+1412
-INDIRI4
 ADDRGP4 level+1416
+INDIRI4
+ADDRGP4 level+1420
 ADDP4
 ASGNP4
 line 478
@@ -1903,7 +1903,7 @@ line 480
 ;479:
 ;480:	level.numSpawnVarChars += l + 1;
 ADDRLP4 12
-ADDRGP4 level+1412
+ADDRGP4 level+1416
 ASGNP4
 ADDRLP4 12
 INDIRP4
@@ -1945,12 +1945,12 @@ line 499
 ;497:	char		com_token[MAX_TOKEN_CHARS];
 ;498:
 ;499:	level.numSpawnVars = 0;
-ADDRGP4 level+896
+ADDRGP4 level+900
 CNSTI4 0
 ASGNI4
 line 500
 ;500:	level.numSpawnVarChars = 0;
-ADDRGP4 level+1412
+ADDRGP4 level+1416
 CNSTI4 0
 ASGNI4
 line 503
@@ -2088,7 +2088,7 @@ line 529
 LABELV $290
 line 530
 ;530:		if (level.numSpawnVars == MAX_SPAWN_VARS) {
-ADDRGP4 level+896
+ADDRGP4 level+900
 INDIRI4
 CNSTI4 64
 NEI4 $293
@@ -2110,11 +2110,11 @@ ADDRLP4 2060
 ADDRGP4 G_AddSpawnVarToken
 CALLP4
 ASGNP4
-ADDRGP4 level+896
+ADDRGP4 level+900
 INDIRI4
 CNSTI4 3
 LSHI4
-ADDRGP4 level+900
+ADDRGP4 level+904
 ADDP4
 ADDRLP4 2060
 INDIRP4
@@ -2127,11 +2127,11 @@ ADDRLP4 2064
 ADDRGP4 G_AddSpawnVarToken
 CALLP4
 ASGNP4
-ADDRGP4 level+896
+ADDRGP4 level+900
 INDIRI4
 CNSTI4 3
 LSHI4
-ADDRGP4 level+900+4
+ADDRGP4 level+904+4
 ADDP4
 ADDRLP4 2064
 INDIRP4
@@ -2139,7 +2139,7 @@ ASGNP4
 line 535
 ;535:		level.numSpawnVars++;
 ADDRLP4 2068
-ADDRGP4 level+896
+ADDRGP4 level+900
 ASGNP4
 ADDRLP4 2068
 INDIRP4
@@ -2520,12 +2520,12 @@ line 613
 line 615
 ;614:	// allow calls to G_Spawn*()
 ;615:	level.spawning = qtrue;
-ADDRGP4 level+892
+ADDRGP4 level+896
 CNSTI4 1
 ASGNI4
 line 616
 ;616:	level.numSpawnVars = 0;
-ADDRGP4 level+896
+ADDRGP4 level+900
 CNSTI4 0
 ASGNI4
 line 621
@@ -2584,7 +2584,7 @@ NEI4 $348
 line 631
 ;630:
 ;631:	level.spawning = qfalse;			// any future calls to G_Spawn*() will be errors
-ADDRGP4 level+892
+ADDRGP4 level+896
 CNSTI4 0
 ASGNI4
 line 632
@@ -2822,6 +2822,57 @@ import trap_RealTime
 import trap_Milliseconds
 import trap_Error
 import trap_Print
+import g_training
+import g_knockback_z_self
+import g_knockback_z
+import g_knockback_hmg
+import g_knockback_cg
+import g_knockback_pl
+import g_knockback_ng
+import g_knockback_gh
+import g_knockback_bfg
+import g_knockback_pg_self
+import g_knockback_pg
+import g_knockback_rg
+import g_knockback_lg
+import g_knockback_rl_self
+import g_knockback_rl
+import g_knockback_gl
+import g_knockback_sg
+import g_knockback_mg
+import g_knockback_g
+import g_velocity_rl
+import g_velocity_pl
+import g_velocity_pg
+import g_velocity_gh
+import g_velocity_gl
+import g_velocity_bfg
+import g_splashdamage_rl
+import g_splashdamage_pl
+import g_splashdamage_pg
+import g_splashdamage_gl
+import g_splashdamage_bfg
+import g_splashradius_rl
+import g_splashradius_pl
+import g_splashradius_pg
+import g_splashradius_gl
+import g_splashradius_bfg
+import g_damage_hmg
+import g_damage_cg
+import g_damage_pl
+import g_damage_ng
+import g_damage_gh
+import g_damage_bfg
+import g_damage_pg
+import g_damage_rg
+import g_damage_lg
+import g_damage_rl
+import g_damage_gl
+import g_damage_sg
+import g_damage_mg
+import g_damage_g
+import g_ammoPack
+import g_ammoRespawn
 import g_startingAmmo_hmg
 import g_startingAmmo_cg
 import g_startingAmmo_pl
@@ -2855,6 +2906,10 @@ import g_obeliskHealth
 import g_predictPVS
 import g_unlagged
 import g_listEntity
+import g_voteDelay
+import g_voteLimit
+import g_allowVoteMidGame
+import g_allowSpecVote
 import g_allowVote
 import g_allowKill
 import g_blood
@@ -3047,6 +3102,7 @@ import G_ModelIndex
 import SaveRegisteredItems
 import RegisterItem
 import ClearRegisteredItems
+import Add_Ammo
 import Touch_Item
 import FinishSpawningItem
 import G_SpawnItem

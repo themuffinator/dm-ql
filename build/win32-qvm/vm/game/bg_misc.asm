@@ -22,20 +22,50 @@ export bgWeapons
 align 4
 LABELV bgWeapons
 byte 4 0
+byte 4 -1
+byte 4 -1
 address $41
+byte 4 -1
+byte 4 -1
 address $42
+byte 4 150
+byte 4 50
 address $43
+byte 4 25
+byte 4 5
 address $44
+byte 4 25
+byte 4 5
 address $45
+byte 4 25
+byte 4 5
 address $46
+byte 4 150
+byte 4 50
 address $47
+byte 4 25
+byte 4 5
 address $48
+byte 4 150
+byte 4 50
 address $49
+byte 4 25
+byte 4 5
 address $50
+byte 4 -1
+byte 4 -1
 address $51
+byte 4 50
+byte 4 5
 address $52
+byte 4 25
+byte 4 5
 address $53
+byte 4 150
+byte 4 50
 address $54
+byte 4 150
+byte 4 50
 export bg_itemlist
 align 4
 LABELV bg_itemlist
@@ -845,21 +875,21 @@ line 1063
 ;13:};
 ;14:
 ;15:gitem_weapons_t bgWeapons[WP_NUM_WEAPONS] = {
-;16:	{ NULL },
-;17:	{ "g" },
-;18:	{ "mg" },
-;19:	{ "sg" },
-;20:	{ "gl" },
-;21:	{ "rl" },
-;22:	{ "lg" },
-;23:	{ "rg" },
-;24:	{ "pg" },
-;25:	{ "bfg" },
-;26:	{ "gh" },
-;27:	{ "ng" },
-;28:	{ "pl" },
-;29:	{ "cg" },
-;30:	{ "hmg" }
+;16:	{ NULL, -1, -1 },
+;17:	{ "g", -1, -1 },
+;18:	{ "mg", 150, 50 },
+;19:	{ "sg", 25, 5 },
+;20:	{ "gl", 25, 5 },
+;21:	{ "rl", 25, 5 },
+;22:	{ "lg", 150, 50 },
+;23:	{ "rg", 25, 5 },
+;24:	{ "pg", 150, 50 },
+;25:	{ "bfg", 25, 5 },
+;26:	{ "gh", -1, -1 },
+;27:	{ "ng", 50, 5 },
+;28:	{ "pl", 25, 5 },
+;29:	{ "cg", 150, 50 },
+;30:	{ "hmg", 150, 50 }
 ;31:};
 ;32:
 ;33:/*QUAKED item_***** ( 0 0 0 ) (-16 -16 -16) (16 16 16) suspended
@@ -1671,7 +1701,7 @@ line 1063
 ;839:	},
 ;840:
 ;841:	/*QUAKED team_CTF_neutralflag (0 0 1) (-16 -16 -16) (16 16 16)
-;842:Only in One Flag CTF games
+;842:Only in One Flag games
 ;843:*/
 ;844:	{
 ;845:		"team_CTF_neutralflag",
@@ -2811,7 +2841,7 @@ LABELV $425
 line 1244
 ;1242:
 ;1243:	case IT_TEAM: // team items, such as flags
-;1244:		if (gametype == GT_1FCTF) {
+;1244:		if (gametype == GT_ONEFLAG) {
 ADDRFP4 0
 INDIRI4
 CNSTI4 6

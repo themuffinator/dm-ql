@@ -170,7 +170,7 @@ void UI_LoadArenas(void) {
 				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_CTF);
 			}
 			if (strstr(type, "oneflag")) {
-				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_1FCTF);
+				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_ONEFLAG);
 			}
 			if (strstr(type, "ob")) {
 				uiInfo.mapList[uiInfo.mapCount].typeBits |= (1 << GT_OBELISK);

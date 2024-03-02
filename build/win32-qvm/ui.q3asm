@@ -4,7 +4,6 @@ ui_atoms
 ui_gameinfo
 ui_players
 ui_shared
-ui_util
 bg_misc
 bg_lib
 q_math

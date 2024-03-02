@@ -381,7 +381,7 @@ void UI_DrawNamedPic( float x, float y, float width, float height, const char *p
 	trap_R_DrawStretchPic( x, y, width, height, 0, 0, 1, 1, hShader );
 }
 
-void UI_DrawHandlePic( float x, float y, float w, float h, qhandle_t hShader ) {
+void UI_DrawHandlePic( float x, float y, float w, float h, qhandle_t hShader, int widescreen ) {
 	float	s0;
 	float	s1;
 	float	t0;
@@ -411,18 +411,22 @@ void UI_DrawHandlePic( float x, float y, float w, float h, qhandle_t hShader ) {
 	trap_R_DrawStretchPic( x, y, w, h, s0, t0, s1, t1, hShader );
 }
 
+void UI_DrawStretchPic(float x, float y, float w, float h, float s1, float t1, float s2, float t2, qhandle_t hShader, int widescreen) { //, rectDef_t menuRect) {
+	trap_R_DrawStretchPic( x, y, w, h, s1, t1, s2, t2, hShader );
+}
+
 /*
 ================
 UI_FillRect
 
-Coordinates are 640*480 virtual values
+Coordinates are SCREEN_WIDTH*SCREEN_HEIGHT virtual values
 =================
 */
-void UI_FillRect( float x, float y, float width, float height, const float *color ) {
+void UI_FillRect(float x, float y, float w, float h, const vec4_t color, int widescreen) { //, rectDef_t menuRect) {
 	trap_R_SetColor( color );
 
-	UI_AdjustFrom640( &x, &y, &width, &height );
-	trap_R_DrawStretchPic( x, y, width, height, 0, 0, 0, 0, uiInfo.uiDC.whiteShader );
+	UI_AdjustFrom640( &x, &y, &w, &h );
+	trap_R_DrawStretchPic( x, y, w, h, 0, 0, 0, 0, uiInfo.uiDC.whiteShader );
 
 	trap_R_SetColor( NULL );
 }
@@ -442,14 +446,14 @@ void UI_DrawTopBottom(float x, float y, float w, float h) {
 ================
 UI_DrawRect
 
-Coordinates are 640*480 virtual values
+Coordinates are SCREEN_WIDTH*SCREEN_HEIGHT virtual values
 =================
 */
 void UI_DrawRect( float x, float y, float width, float height, const float *color ) {
 	trap_R_SetColor( color );
 
-  UI_DrawTopBottom(x, y, width, height);
-  UI_DrawSides(x, y, width, height);
+	UI_DrawTopBottom(x, y, width, height);
+	UI_DrawSides(x, y, width, height);
 
 	trap_R_SetColor( NULL );
 }
@@ -460,13 +464,6 @@ void UI_SetColor( const float *rgba ) {
 
 void UI_UpdateScreen( void ) {
 	trap_UpdateScreen();
-}
-
-
-void UI_DrawTextBox (int x, int y, int width, int lines)
-{
-	UI_FillRect( x + BIGCHAR_WIDTH/2, y + BIGCHAR_HEIGHT/2, ( width + 1 ) * BIGCHAR_WIDTH, ( lines + 1 ) * BIGCHAR_HEIGHT, colorBlack );
-	UI_DrawRect( x + BIGCHAR_WIDTH/2, y + BIGCHAR_HEIGHT/2, ( width + 1 ) * BIGCHAR_WIDTH, ( lines + 1 ) * BIGCHAR_HEIGHT, colorWhite );
 }
 
 qboolean UI_CursorInRect (int x, int y, int width, int height)

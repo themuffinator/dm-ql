@@ -839,7 +839,7 @@ Only in CTF games
 	},
 
 	/*QUAKED team_CTF_neutralflag (0 0 1) (-16 -16 -16) (16 16 16)
-Only in One Flag CTF games
+Only in One Flag games
 */
 	{
 		"team_CTF_neutralflag",
@@ -1241,7 +1241,7 @@ qboolean BG_CanItemBeGrabbed(int gametype, const entityState_t *ent, const playe
 		return qtrue;
 
 	case IT_TEAM: // team items, such as flags
-		if (gametype == GT_1FCTF) {
+		if (gametype == GT_ONEFLAG) {
 			// neutral flag can always be picked up
 			if (item->giTag == PW_NEUTRALFLAG) {
 				return qtrue;

@@ -30,7 +30,7 @@ ADDRGP4 cg+107604
 INDIRI4
 CNSTI4 300
 SUBI4
-GEI4 $74
+GEI4 $82
 line 19
 ;19:		cent->previousEvent = 0;
 ADDRFP4 0
@@ -41,7 +41,7 @@ CNSTI4 0
 ASGNI4
 line 20
 ;20:	}
-LABELV $74
+LABELV $82
 line 22
 ;21:
 ;22:	cent->trailTime = cg.snap->serverTime;
@@ -96,7 +96,7 @@ CNSTI4 4
 ADDP4
 INDIRI4
 CNSTI4 1
-NEI4 $78
+NEI4 $86
 line 27
 ;27:		CG_ResetPlayerEntity(cent);
 ADDRFP4 0
@@ -107,10 +107,10 @@ CALLV
 pop
 line 28
 ;28:	}
-LABELV $78
+LABELV $86
 line 29
 ;29:}
-LABELV $73
+LABELV $81
 endproc CG_ResetEntity 8 4
 proc CG_TransitionEntity 4 4
 line 38
@@ -155,7 +155,7 @@ CNSTI4 416
 ADDP4
 INDIRI4
 CNSTI4 0
-NEI4 $81
+NEI4 $89
 line 44
 ;44:		CG_ResetEntity(cent);
 ADDRFP4 0
@@ -166,7 +166,7 @@ CALLV
 pop
 line 45
 ;45:	}
-LABELV $81
+LABELV $89
 line 48
 ;46:
 ;47:	// clear the next state.  if will be set by the next CG_SetNextSnap
@@ -189,7 +189,7 @@ CALLV
 pop
 line 52
 ;52:}
-LABELV $80
+LABELV $88
 endproc CG_TransitionEntity 4 4
 export CG_SetInitialSnapshot
 proc CG_SetInitialSnapshot 16 12
@@ -278,9 +278,9 @@ line 84
 ADDRLP4 4
 CNSTI4 0
 ASGNI4
-ADDRGP4 $88
+ADDRGP4 $96
 JUMPV
-LABELV $85
+LABELV $93
 line 85
 ;85:		state = &cg.snap->entities[i];
 ADDRLP4 8
@@ -357,7 +357,7 @@ CALLV
 pop
 line 97
 ;97:	}
-LABELV $86
+LABELV $94
 line 84
 ADDRLP4 4
 ADDRLP4 4
@@ -365,7 +365,7 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $88
+LABELV $96
 ADDRLP4 4
 INDIRI4
 ADDRGP4 cg+36
@@ -373,10 +373,10 @@ INDIRP4
 CNSTI4 512
 ADDP4
 INDIRI4
-LTI4 $85
+LTI4 $93
 line 98
 ;98:}
-LABELV $83
+LABELV $91
 endproc CG_SetInitialSnapshot 16 12
 proc CG_TransitionSnapshot 20 12
 line 108
@@ -400,34 +400,34 @@ ADDRGP4 cg+36
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $92
+NEU4 $100
 line 114
 ;114:		CG_Error("CG_TransitionSnapshot: NULL cg.snap");
-ADDRGP4 $95
+ADDRGP4 $103
 ARGP4
 ADDRGP4 CG_Error
 CALLV
 pop
 line 115
 ;115:	}
-LABELV $92
+LABELV $100
 line 116
 ;116:	if (!cg.nextSnap) {
 ADDRGP4 cg+40
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $96
+NEU4 $104
 line 117
 ;117:		CG_Error("CG_TransitionSnapshot: NULL cg.nextSnap");
-ADDRGP4 $99
+ADDRGP4 $107
 ARGP4
 ADDRGP4 CG_Error
 CALLV
 pop
 line 118
 ;118:	}
-LABELV $96
+LABELV $104
 line 121
 ;119:
 ;120:	// execute any server string commands before transitioning entities
@@ -449,12 +449,12 @@ ADDRGP4 cg+36
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $101
+NEU4 $109
 line 125
 ;125:		return;
-ADDRGP4 $91
+ADDRGP4 $99
 JUMPV
-LABELV $101
+LABELV $109
 line 129
 ;126:	}
 ;127:
@@ -463,9 +463,9 @@ line 129
 ADDRLP4 0
 CNSTI4 0
 ASGNI4
-ADDRGP4 $107
+ADDRGP4 $115
 JUMPV
-LABELV $104
+LABELV $112
 line 130
 ;130:		cent = &cg_entities[cg.snap->entities[i].number];
 ADDRLP4 4
@@ -494,7 +494,7 @@ CNSTI4 0
 ASGNI4
 line 132
 ;132:	}
-LABELV $105
+LABELV $113
 line 129
 ADDRLP4 0
 ADDRLP4 0
@@ -502,7 +502,7 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $107
+LABELV $115
 ADDRLP4 0
 INDIRI4
 ADDRGP4 cg+36
@@ -510,7 +510,7 @@ INDIRP4
 CNSTI4 512
 ADDP4
 INDIRI4
-LTI4 $104
+LTI4 $112
 line 135
 ;133:
 ;134:	// move nextSnap to snap and do the transitions
@@ -567,9 +567,9 @@ line 141
 ADDRLP4 0
 CNSTI4 0
 ASGNI4
-ADDRGP4 $120
+ADDRGP4 $128
 JUMPV
-LABELV $117
+LABELV $125
 line 142
 ;142:		cent = &cg_entities[cg.snap->entities[i].number];
 ADDRLP4 4
@@ -612,7 +612,7 @@ INDIRI4
 ASGNI4
 line 147
 ;147:	}
-LABELV $118
+LABELV $126
 line 141
 ADDRLP4 0
 ADDRLP4 0
@@ -620,7 +620,7 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $120
+LABELV $128
 ADDRLP4 0
 INDIRI4
 ADDRGP4 cg+36
@@ -628,7 +628,7 @@ INDIRP4
 CNSTI4 512
 ADDP4
 INDIRI4
-LTI4 $117
+LTI4 $125
 line 149
 ;148:
 ;149:	cg.nextSnap = NULL;
@@ -643,7 +643,7 @@ ADDRLP4 8
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $125
+EQU4 $133
 line 155
 ;153:		playerState_t *ops, *ps;
 ;154:
@@ -679,7 +679,7 @@ BXORI4
 CNSTI4 4
 BANDI4
 CNSTI4 0
-EQI4 $128
+EQI4 $136
 line 159
 ;159:			cg.thisFrameTeleport = qtrue;	// will be cleared by prediction code
 ADDRGP4 cg+107592
@@ -687,7 +687,7 @@ CNSTI4 1
 ASGNI4
 line 160
 ;160:		}
-LABELV $128
+LABELV $136
 line 164
 ;161:
 ;162:		// if we are not doing client side movement prediction for any
@@ -696,7 +696,7 @@ line 164
 ADDRGP4 cg+8
 INDIRI4
 CNSTI4 0
-NEI4 $139
+NEI4 $147
 ADDRGP4 cg+36
 INDIRP4
 CNSTI4 56
@@ -705,16 +705,16 @@ INDIRI4
 CNSTI4 4096
 BANDI4
 CNSTI4 0
-NEI4 $139
+NEI4 $147
 ADDRGP4 cg_nopredict+12
 INDIRI4
 CNSTI4 0
-NEI4 $139
-ADDRGP4 cgs+147920
+NEI4 $147
+ADDRGP4 cgs+148000
 INDIRI4
 CNSTI4 0
-EQI4 $131
-LABELV $139
+EQI4 $139
+LABELV $147
 line 165
 ;165:			|| cg_nopredict.integer || cgs.synchronousClients) {
 line 166
@@ -730,13 +730,13 @@ CALLV
 pop
 line 167
 ;167:		}
-LABELV $131
+LABELV $139
 line 168
 ;168:	}
-LABELV $125
+LABELV $133
 line 169
 ;169:}
-LABELV $91
+LABELV $99
 endproc CG_TransitionSnapshot 20 12
 proc CG_SetNextSnap 36 12
 line 179
@@ -808,9 +808,9 @@ line 191
 ADDRLP4 8
 CNSTI4 0
 ASGNI4
-ADDRGP4 $148
+ADDRGP4 $156
 JUMPV
-LABELV $145
+LABELV $153
 line 192
 ;192:		es = &snap->entities[num];
 ADDRLP4 4
@@ -855,10 +855,10 @@ line 198
 ;196:		//cent->nextState = *es;
 ;197:
 ;198:		if (cgs.ospEnc && (esNum = cent->nextState.number) <= MAX_CLIENTS - 1) {
-ADDRGP4 cgs+147924
+ADDRGP4 cgs+148004
 INDIRI4
 CNSTI4 0
-EQI4 $149
+EQI4 $157
 ADDRLP4 20
 ADDRLP4 0
 INDIRP4
@@ -873,7 +873,7 @@ ASGNI4
 ADDRLP4 20
 INDIRI4
 CNSTI4 63
-GTI4 $149
+GTI4 $157
 line 199
 ;199:			cent->nextState.pos.trBase[0] += (677 - 7 * esNum);
 ADDRLP4 24
@@ -942,7 +942,7 @@ ADDF4
 ASGNF4
 line 202
 ;202:		}
-LABELV $149
+LABELV $157
 line 206
 ;203:
 ;204:		// if this frame is a teleport, or the entity wasn't in the
@@ -954,7 +954,7 @@ CNSTI4 420
 ADDP4
 INDIRI4
 CNSTI4 0
-EQI4 $154
+EQI4 $162
 ADDRLP4 0
 INDIRP4
 CNSTI4 8
@@ -969,8 +969,8 @@ BXORI4
 CNSTI4 4
 BANDI4
 CNSTI4 0
-EQI4 $152
-LABELV $154
+EQI4 $160
+LABELV $162
 line 207
 ;207:			cent->interpolate = qfalse;
 ADDRLP4 0
@@ -981,9 +981,9 @@ CNSTI4 0
 ASGNI4
 line 208
 ;208:		} else {
-ADDRGP4 $153
+ADDRGP4 $161
 JUMPV
-LABELV $152
+LABELV $160
 line 209
 ;209:			cent->interpolate = qtrue;
 ADDRLP4 0
@@ -994,10 +994,10 @@ CNSTI4 1
 ASGNI4
 line 210
 ;210:		}
-LABELV $153
+LABELV $161
 line 211
 ;211:	}
-LABELV $146
+LABELV $154
 line 191
 ADDRLP4 8
 ADDRLP4 8
@@ -1005,7 +1005,7 @@ INDIRI4
 CNSTI4 1
 ADDI4
 ASGNI4
-LABELV $148
+LABELV $156
 ADDRLP4 8
 INDIRI4
 ADDRFP4 0
@@ -1013,7 +1013,7 @@ INDIRP4
 CNSTI4 512
 ADDP4
 INDIRI4
-LTI4 $145
+LTI4 $153
 line 215
 ;212:
 ;213:	// if the next frame is a teleport for the playerstate, we
@@ -1023,7 +1023,7 @@ ADDRGP4 cg+36
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $155
+EQU4 $163
 ADDRFP4 0
 INDIRP4
 CNSTI4 148
@@ -1038,7 +1038,7 @@ BXORI4
 CNSTI4 4
 BANDI4
 CNSTI4 0
-EQI4 $155
+EQI4 $163
 line 216
 ;216:		cg.nextFrameTeleport = qtrue;
 ADDRGP4 cg+107596
@@ -1046,9 +1046,9 @@ CNSTI4 1
 ASGNI4
 line 217
 ;217:	} else {
-ADDRGP4 $156
+ADDRGP4 $164
 JUMPV
-LABELV $155
+LABELV $163
 line 218
 ;218:		cg.nextFrameTeleport = qfalse;
 ADDRGP4 cg+107596
@@ -1056,7 +1056,7 @@ CNSTI4 0
 ASGNI4
 line 219
 ;219:	}
-LABELV $156
+LABELV $164
 line 222
 ;220:
 ;221:	// if changing follow mode, don't interpolate
@@ -1071,7 +1071,7 @@ INDIRP4
 CNSTI4 184
 ADDP4
 INDIRI4
-EQI4 $161
+EQI4 $169
 line 223
 ;223:		cg.nextFrameTeleport = qtrue;
 ADDRGP4 cg+107596
@@ -1079,7 +1079,7 @@ CNSTI4 1
 ASGNI4
 line 224
 ;224:	}
-LABELV $161
+LABELV $169
 line 227
 ;225:
 ;226:	// if changing server restarts, don't interpolate
@@ -1094,7 +1094,7 @@ BXORI4
 CNSTI4 4
 BANDI4
 CNSTI4 0
-EQI4 $166
+EQI4 $174
 line 228
 ;228:		cg.nextFrameTeleport = qtrue;
 ADDRGP4 cg+107596
@@ -1102,7 +1102,7 @@ CNSTI4 1
 ASGNI4
 line 229
 ;229:	}
-LABELV $166
+LABELV $174
 line 232
 ;230:
 ;231:	// sort out solid entities
@@ -1112,7 +1112,7 @@ CALLV
 pop
 line 233
 ;233:}
-LABELV $140
+LABELV $148
 endproc CG_SetNextSnap 36 12
 proc CG_ReadNextSnapshot 16 12
 line 246
@@ -1140,10 +1140,10 @@ ADDRGP4 cgs+31472
 INDIRI4
 CNSTI4 1000
 ADDI4
-LEI4 $180
+LEI4 $188
 line 251
 ;251:		CG_Printf("WARNING: CG_ReadNextSnapshot: way out of range, %i > %i\n",
-ADDRGP4 $176
+ADDRGP4 $184
 ARGP4
 ADDRGP4 cg+28
 INDIRI4
@@ -1157,9 +1157,9 @@ pop
 line 253
 ;252:			cg.latestSnapshotNum, cgs.processedSnapshotNum);
 ;253:	}
-ADDRGP4 $180
+ADDRGP4 $188
 JUMPV
-LABELV $179
+LABELV $187
 line 255
 ;254:
 ;255:	while (cgs.processedSnapshotNum < cg.latestSnapshotNum) {
@@ -1171,7 +1171,7 @@ INDIRP4
 CVPU4 4
 ADDRGP4 cg+44
 CVPU4 4
-NEU4 $184
+NEU4 $192
 line 258
 ;258:			dest = &cg.activeSnapshots[1];
 ADDRLP4 0
@@ -1179,9 +1179,9 @@ ADDRGP4 cg+44+53772
 ASGNP4
 line 259
 ;259:		} else {
-ADDRGP4 $185
+ADDRGP4 $193
 JUMPV
-LABELV $184
+LABELV $192
 line 260
 ;260:			dest = &cg.activeSnapshots[0];
 ADDRLP4 0
@@ -1189,7 +1189,7 @@ ADDRGP4 cg+44
 ASGNP4
 line 261
 ;261:		}
-LABELV $185
+LABELV $193
 line 264
 ;262:
 ;263:		// try to read the snapshot from the client system
@@ -1229,11 +1229,11 @@ ADDRGP4 cg+36
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $193
+EQU4 $201
 ADDRLP4 4
 INDIRI4
 CNSTI4 0
-EQI4 $193
+EQI4 $201
 ADDRLP4 0
 INDIRP4
 CNSTI4 8
@@ -1244,11 +1244,11 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRI4
-NEI4 $193
+NEI4 $201
 line 270
 ;269:			//continue;
 ;270:		}
-LABELV $193
+LABELV $201
 line 273
 ;271:
 ;272:		// if it succeeded, return
@@ -1256,7 +1256,7 @@ line 273
 ADDRLP4 4
 INDIRI4
 CNSTI4 0
-EQI4 $197
+EQI4 $205
 line 274
 ;274:			CG_AddLagometerSnapshotInfo(dest);
 ADDRLP4 0
@@ -1270,9 +1270,9 @@ line 275
 ADDRLP4 0
 INDIRP4
 RETP4
-ADDRGP4 $171
+ADDRGP4 $179
 JUMPV
-LABELV $197
+LABELV $205
 line 284
 ;276:		}
 ;277:
@@ -1287,7 +1287,7 @@ ADDRGP4 cg+36
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $199
+EQU4 $207
 line 285
 ;285:			CG_AddLagometerSnapshotInfo(NULL);
 CNSTP4 0
@@ -1297,26 +1297,26 @@ CALLV
 pop
 line 286
 ;286:		}
-LABELV $199
+LABELV $207
 line 290
 ;287:
 ;288:		// If there are additional snapshots, continue trying to
 ;289:		// read them.
 ;290:	}
-LABELV $180
+LABELV $188
 line 255
 ADDRGP4 cgs+31472
 INDIRI4
 ADDRGP4 cg+28
 INDIRI4
-LTI4 $179
+LTI4 $187
 line 293
 ;291:
 ;292:	// nothing left to read
 ;293:	return NULL;
 CNSTP4 0
 RETP4
-LABELV $171
+LABELV $179
 endproc CG_ReadNextSnapshot 16 12
 export CG_ProcessSnapshots
 proc CG_ProcessSnapshots 12 8
@@ -1363,25 +1363,25 @@ ADDRLP4 4
 INDIRI4
 ADDRGP4 cg+28
 INDIRI4
-EQI4 $213
+EQI4 $221
 line 323
 ;323:		if (n < cg.latestSnapshotNum) {
 ADDRLP4 4
 INDIRI4
 ADDRGP4 cg+28
 INDIRI4
-GEI4 $207
+GEI4 $215
 line 325
 ;324:			// this should never happen
 ;325:			CG_Error("CG_ProcessSnapshots: n < cg.latestSnapshotNum");
-ADDRGP4 $210
+ADDRGP4 $218
 ARGP4
 ADDRGP4 CG_Error
 CALLV
 pop
 line 326
 ;326:		}
-LABELV $207
+LABELV $215
 line 327
 ;327:		cg.latestSnapshotNum = n;
 ADDRGP4 cg+28
@@ -1390,9 +1390,9 @@ INDIRI4
 ASGNI4
 line 328
 ;328:	}
-ADDRGP4 $213
+ADDRGP4 $221
 JUMPV
-LABELV $212
+LABELV $220
 line 333
 ;329:
 ;330:	// If we have yet to receive a snapshot, check for it.
@@ -1415,13 +1415,13 @@ ADDRLP4 0
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $216
+NEU4 $224
 line 337
 ;336:			// we can't continue until we get a snapshot
 ;337:			return;
-ADDRGP4 $202
+ADDRGP4 $210
 JUMPV
-LABELV $216
+LABELV $224
 line 342
 ;338:		}
 ;339:
@@ -1434,7 +1434,7 @@ INDIRI4
 CNSTI4 2
 BANDI4
 CNSTI4 0
-NEI4 $218
+NEI4 $226
 line 343
 ;343:			CG_SetInitialSnapshot(snap);
 ADDRLP4 0
@@ -1445,17 +1445,17 @@ CALLV
 pop
 line 344
 ;344:		}
-LABELV $218
+LABELV $226
 line 345
 ;345:	}
-LABELV $213
+LABELV $221
 line 333
 ADDRGP4 cg+36
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $212
-LABELV $220
+EQU4 $220
+LABELV $228
 line 350
 ;346:
 ;347:	// loop until we either have a valid nextSnap with a serverTime
@@ -1469,7 +1469,7 @@ ADDRGP4 cg+40
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $223
+NEU4 $231
 line 353
 ;353:			snap = CG_ReadNextSnapshot();
 ADDRLP4 8
@@ -1489,12 +1489,12 @@ ADDRLP4 0
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $226
+NEU4 $234
 line 358
 ;358:				break;
-ADDRGP4 $222
+ADDRGP4 $230
 JUMPV
-LABELV $226
+LABELV $234
 line 361
 ;359:			}
 ;360:
@@ -1519,20 +1519,20 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRI4
-GEI4 $228
+GEI4 $236
 line 365
 ;365:				CG_Error("CG_ProcessSnapshots: Server time went backwards");
-ADDRGP4 $232
+ADDRGP4 $240
 ARGP4
 ADDRGP4 CG_Error
 CALLV
 pop
 line 366
 ;366:			}
-LABELV $228
+LABELV $236
 line 367
 ;367:		}
-LABELV $223
+LABELV $231
 line 370
 ;368:
 ;369:		// if our time is < nextFrame's, we have a nice interpolating state
@@ -1544,7 +1544,7 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRI4
-LTI4 $233
+LTI4 $241
 ADDRGP4 cg+107604
 INDIRI4
 ADDRGP4 cg+40
@@ -1552,12 +1552,12 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRI4
-GEI4 $233
+GEI4 $241
 line 371
 ;371:			break;
-ADDRGP4 $222
+ADDRGP4 $230
 JUMPV
-LABELV $233
+LABELV $241
 line 375
 ;372:		}
 ;373:
@@ -1568,10 +1568,10 @@ CALLV
 pop
 line 376
 ;376:	} while (1);
-LABELV $221
-ADDRGP4 $220
+LABELV $229
+ADDRGP4 $228
 JUMPV
-LABELV $222
+LABELV $230
 line 379
 ;377:
 ;378:	// assert our valid conditions upon exiting
@@ -1580,17 +1580,17 @@ ADDRGP4 cg+36
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $239
+NEU4 $247
 line 380
 ;380:		CG_Error("CG_ProcessSnapshots: cg.snap == NULL");
-ADDRGP4 $242
+ADDRGP4 $250
 ARGP4
 ADDRGP4 CG_Error
 CALLV
 pop
 line 381
 ;381:	}
-LABELV $239
+LABELV $247
 line 382
 ;382:	if (cg.time < cg.snap->serverTime) {
 ADDRGP4 cg+107604
@@ -1600,7 +1600,7 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRI4
-GEI4 $243
+GEI4 $251
 line 384
 ;383:		// this can happen right after a vid_restart
 ;384:		cg.time = cg.snap->serverTime;
@@ -1613,14 +1613,14 @@ INDIRI4
 ASGNI4
 line 385
 ;385:	}
-LABELV $243
+LABELV $251
 line 386
 ;386:	if (cg.nextSnap != NULL && cg.nextSnap->serverTime <= cg.time) {
 ADDRGP4 cg+40
 INDIRP4
 CVPU4 4
 CNSTU4 0
-EQU4 $249
+EQU4 $257
 ADDRGP4 cg+40
 INDIRP4
 CNSTI4 8
@@ -1628,20 +1628,20 @@ ADDP4
 INDIRI4
 ADDRGP4 cg+107604
 INDIRI4
-GTI4 $249
+GTI4 $257
 line 387
 ;387:		CG_Error("CG_ProcessSnapshots: cg.nextSnap->serverTime <= cg.time");
-ADDRGP4 $254
+ADDRGP4 $262
 ARGP4
 ADDRGP4 CG_Error
 CALLV
 pop
 line 388
 ;388:	}
-LABELV $249
+LABELV $257
 line 389
 ;389:}
-LABELV $202
+LABELV $210
 endproc CG_ProcessSnapshots 12 8
 import trap_R_AddLinearLightToScene
 import trap_R_AddRefEntityToScene2
@@ -1828,13 +1828,11 @@ import CG_ForceModelChange
 import CG_StatusHandle
 import CG_OtherTeamHasFlag
 import CG_YourTeamHasFlag
-import CG_GameTypeString
 import CG_Text_PaintChar
 import CG_Draw3DModel
 import CG_GetKillerText
 import CG_GetGameStatusText
 import CG_GetTeamColor
-import CG_ShowResponseHead
 import CG_RunMenuScript
 import CG_OwnerDrawVisible
 import CG_GetValue
@@ -1870,6 +1868,7 @@ import CG_FadeColorTime
 import CG_FadeColor
 import CG_DrawStrlen
 import CG_DrawStringExt
+import CG_DrawStretchPic
 import CG_DrawPic
 import CG_FillScreen
 import CG_FillRect
@@ -2005,6 +2004,70 @@ import cg_weapons
 import cg_entities
 import cg
 import cgs
+import gametypeString
+import mRect
+import trap_PC_SourceFileAndLine
+import trap_PC_ReadToken
+import trap_PC_FreeSource
+import trap_PC_LoadSource
+import trap_PC_AddGlobalDefine
+import Controls_SetDefaults
+import Controls_SetConfig
+import Controls_GetConfig
+import UI_OutOfMemory
+import UI_InitMemory
+import UI_Alloc
+import Display_CacheAll
+import Menu_SetFeederSelection
+import Menu_Paint
+import Menus_CloseAll
+import LerpColor
+import Display_HandleKey
+import Menus_CloseByName
+import Menus_ShowByName
+import Menus_FindByName
+import Menus_OpenByName
+import Display_KeyBindPending
+import Display_CursorType
+import Display_MouseMove
+import Display_CaptureItem
+import Display_GetContext
+import UI_SelectForKey
+import Menus_Activate
+import Menus_AnyFullScreenVisible
+import Menu_Reset
+import Menus_ActivateByName
+import Menu_PaintAll
+import Menu_HandleCapture
+import Menu_New
+import Menu_Count
+import Q_MathScript
+import MenuVar_Get
+import MenuVar_Set
+import PC_Parenthesis_Parse
+import PC_Script_Parse
+import PC_String_Parse
+import PC_Rect_Parse
+import PC_Int_Parse
+import PC_Color_Parse
+import PC_Float_Parse
+import Script_Parse
+import String_Parse
+import Rect_Parse
+import Int_Parse
+import Color_Parse
+import Float_Parse
+import Menu_ScrollFeeder
+import Menu_HandleMouseMove
+import Menu_HandleKey
+import Menu_GetFocused
+import Item_Init
+import Menu_Init
+import Init_Display
+import String_Report
+import String_Init
+import String_Alloc
+import DefaultWideScreenValue
 import BigEndian
 import replace1
 import Q_stradd
@@ -2183,7 +2246,7 @@ import srand
 import qsort
 lit
 align 1
-LABELV $254
+LABELV $262
 byte 1 67
 byte 1 71
 byte 1 95
@@ -2241,7 +2304,7 @@ byte 1 109
 byte 1 101
 byte 1 0
 align 1
-LABELV $242
+LABELV $250
 byte 1 67
 byte 1 71
 byte 1 95
@@ -2280,7 +2343,7 @@ byte 1 76
 byte 1 76
 byte 1 0
 align 1
-LABELV $232
+LABELV $240
 byte 1 67
 byte 1 71
 byte 1 95
@@ -2330,7 +2393,7 @@ byte 1 100
 byte 1 115
 byte 1 0
 align 1
-LABELV $210
+LABELV $218
 byte 1 67
 byte 1 71
 byte 1 95
@@ -2378,7 +2441,7 @@ byte 1 117
 byte 1 109
 byte 1 0
 align 1
-LABELV $176
+LABELV $184
 byte 1 87
 byte 1 65
 byte 1 82
@@ -2437,7 +2500,7 @@ byte 1 105
 byte 1 10
 byte 1 0
 align 1
-LABELV $99
+LABELV $107
 byte 1 67
 byte 1 71
 byte 1 95
@@ -2479,7 +2542,7 @@ byte 1 97
 byte 1 112
 byte 1 0
 align 1
-LABELV $95
+LABELV $103
 byte 1 67
 byte 1 71
 byte 1 95

@@ -795,7 +795,7 @@ int BotGetLongTermGoal(bot_state_t *bs, int tfl, int retreat, bot_goal_t *goal) 
 			BotAlternateRoute(bs, goal);
 			return qtrue;
 		}
-	} else if (gametype == GT_1FCTF) {
+	} else if (gametype == GT_ONEFLAG) {
 		if (bs->ltgtype == LTG_GETFLAG) {
 			//check for bot typing status message
 			if (bs->teammessage_time && bs->teammessage_time < FloatTime()) {
@@ -1829,7 +1829,7 @@ int AINode_Seek_LTG(bot_state_t *bs)
 			//if carrying a flag the bot shouldn't be distracted too much
 			if (BotCTFCarryingFlag(bs))
 				range = 50;
-		} else if (gametype == GT_1FCTF) {
+		} else if (gametype == GT_ONEFLAG) {
 			if (Bot1FCTFCarryingFlag(bs))
 				range = 50;
 		} else if (gametype == GT_HARVESTER) {
@@ -2345,7 +2345,7 @@ int AINode_Battle_Retreat(bot_state_t *bs) {
 			//if carrying a flag the bot shouldn't be distracted too much
 			if (BotCTFCarryingFlag(bs))
 				range = 50;
-		} else if (gametype == GT_1FCTF) {
+		} else if (gametype == GT_ONEFLAG) {
 			if (Bot1FCTFCarryingFlag(bs))
 				range = 50;
 		} else if (gametype == GT_HARVESTER) {

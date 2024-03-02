@@ -201,10 +201,6 @@ cd vm\ui
 @if errorlevel 1 goto quit
 %cc3% %uidir%\ui_shared.c
 @if errorlevel 1 goto quit
-%cc3% %uidir%\ui_syscalls.c
-@if errorlevel 1 goto quit
-%cc3% %uidir%\ui_util.c
-@if errorlevel 1 goto quit
 
 %cc3% %gamedir%\bg_lib.c 
 @if errorlevel 1 goto quit

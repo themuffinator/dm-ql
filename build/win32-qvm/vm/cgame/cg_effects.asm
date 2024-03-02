@@ -29,12 +29,12 @@ line 22
 ADDRGP4 cg_noProjectileTrail+12
 INDIRI4
 CNSTI4 0
-EQI4 $74
+EQI4 $82
 line 23
 ;23:		return;
-ADDRGP4 $73
+ADDRGP4 $81
 JUMPV
-LABELV $74
+LABELV $82
 line 26
 ;24:	}
 ;25:
@@ -186,9 +186,9 @@ ASGNF4
 line 36
 ;35:
 ;36:	for (; i < len; i += spacing) {
-ADDRGP4 $92
+ADDRGP4 $100
 JUMPV
-LABELV $89
+LABELV $97
 line 40
 ;37:		localEntity_t *le;
 ;38:		refEntity_t *re;
@@ -287,7 +287,7 @@ line 48
 ADDRGP4 intShaderTime
 INDIRI4
 CNSTI4 0
-EQI4 $95
+EQI4 $103
 line 49
 ;49:			re->u.intShaderTime = cg.time;
 ADDRLP4 60
@@ -297,9 +297,9 @@ ADDP4
 ADDRGP4 cg+107604
 INDIRI4
 ASGNI4
-ADDRGP4 $96
+ADDRGP4 $104
 JUMPV
-LABELV $95
+LABELV $103
 line 51
 ;50:		else
 ;51:			re->u.shaderTime = cg.time / 1000.0f;
@@ -313,7 +313,7 @@ CVIF4 4
 CNSTF4 981668463
 MULF4
 ASGNF4
-LABELV $96
+LABELV $104
 line 53
 ;52:
 ;53:		re->reType = RT_SPRITE;
@@ -343,7 +343,7 @@ ADDRLP4 60
 INDIRP4
 CNSTI4 112
 ADDP4
-ADDRGP4 cgs+146664+324
+ADDRGP4 cgs+146664+404
 INDIRI4
 ASGNI4
 line 57
@@ -508,7 +508,7 @@ ADDF4
 ASGNF4
 line 72
 ;72:	}
-LABELV $90
+LABELV $98
 line 36
 ADDRLP4 24
 ADDRLP4 24
@@ -519,20 +519,20 @@ INDIRF4
 ADDF4
 CVFI4 4
 ASGNI4
-LABELV $92
+LABELV $100
 ADDRLP4 24
 INDIRI4
 CVIF4 4
 ADDRLP4 28
 INDIRF4
-LTF4 $89
+LTF4 $97
 line 73
 ;73:}
-LABELV $73
+LABELV $81
 endproc CG_BubbleTrail 88 4
 data
 align 4
-LABELV $109
+LABELV $117
 byte 4 146
 export CG_SmokePuff
 code
@@ -598,7 +598,7 @@ ADDP4
 ASGNP4
 line 100
 ;100:	re->rotation = Q_random(&seed) * 360;
-ADDRGP4 $109
+ADDRGP4 $117
 ARGP4
 ADDRLP4 12
 ADDRGP4 Q_random
@@ -628,7 +628,7 @@ line 103
 ADDRGP4 intShaderTime
 INDIRI4
 CNSTI4 0
-EQI4 $110
+EQI4 $118
 line 104
 ;104:		re->u.intShaderTime = startTime;
 ADDRLP4 4
@@ -638,9 +638,9 @@ ADDP4
 ADDRFP4 32
 INDIRI4
 ASGNI4
-ADDRGP4 $111
+ADDRGP4 $119
 JUMPV
-LABELV $110
+LABELV $118
 line 106
 ;105:	else
 ;106:		re->u.shaderTime = startTime / 1000.0f;
@@ -654,7 +654,7 @@ CVIF4 4
 CNSTF4 981668463
 MULF4
 ASGNF4
-LABELV $111
+LABELV $119
 line 108
 ;107:
 ;108:	le->leType = LE_MOVE_SCALE_FADE;
@@ -702,7 +702,7 @@ ADDRFP4 36
 INDIRI4
 ADDRFP4 32
 INDIRI4
-LEI4 $112
+LEI4 $120
 line 113
 ;113:		le->lifeRate = 1.0 / (le->endTime - le->fadeInTime);
 ADDRLP4 0
@@ -726,9 +726,9 @@ DIVF4
 ASGNF4
 line 114
 ;114:	} else {
-ADDRGP4 $113
+ADDRGP4 $121
 JUMPV
-LABELV $112
+LABELV $120
 line 115
 ;115:		le->lifeRate = 1.0 / (le->endTime - le->startTime);
 ADDRLP4 0
@@ -752,7 +752,7 @@ DIVF4
 ASGNF4
 line 116
 ;116:	}
-LABELV $113
+LABELV $121
 line 117
 ;117:	le->color[0] = r;
 ADDRLP4 0
@@ -855,14 +855,14 @@ line 132
 ADDRGP4 cgs+20100+11288
 INDIRI4
 CNSTI4 3
-NEI4 $114
+NEI4 $122
 line 133
 ;133:		re->customShader = cgs.media.smokePuffRageProShader;
 ADDRLP4 4
 INDIRP4
 CNSTI4 112
 ADDP4
-ADDRGP4 cgs+146664+312
+ADDRGP4 cgs+146664+392
 INDIRI4
 ASGNI4
 line 134
@@ -899,9 +899,9 @@ CNSTU1 255
 ASGNU1
 line 138
 ;138:	} else {
-ADDRGP4 $115
+ADDRGP4 $123
 JUMPV
-LABELV $114
+LABELV $122
 line 139
 ;139:		re->shaderRGBA[0] = le->color[0] * 0xff;
 ADDRLP4 20
@@ -920,7 +920,7 @@ ADDRLP4 20
 INDIRF4
 ADDRLP4 24
 INDIRF4
-LTF4 $121
+LTF4 $129
 ADDRLP4 16
 ADDRLP4 20
 INDIRF4
@@ -932,16 +932,16 @@ CVIU4 4
 CNSTU4 2147483648
 ADDU4
 ASGNU4
-ADDRGP4 $122
+ADDRGP4 $130
 JUMPV
-LABELV $121
+LABELV $129
 ADDRLP4 16
 ADDRLP4 20
 INDIRF4
 CVFI4 4
 CVIU4 4
 ASGNU4
-LABELV $122
+LABELV $130
 ADDRLP4 4
 INDIRP4
 CNSTI4 116
@@ -968,7 +968,7 @@ ADDRLP4 32
 INDIRF4
 ADDRLP4 36
 INDIRF4
-LTF4 $124
+LTF4 $132
 ADDRLP4 28
 ADDRLP4 32
 INDIRF4
@@ -980,16 +980,16 @@ CVIU4 4
 CNSTU4 2147483648
 ADDU4
 ASGNU4
-ADDRGP4 $125
+ADDRGP4 $133
 JUMPV
-LABELV $124
+LABELV $132
 ADDRLP4 28
 ADDRLP4 32
 INDIRF4
 CVFI4 4
 CVIU4 4
 ASGNU4
-LABELV $125
+LABELV $133
 ADDRLP4 4
 INDIRP4
 CNSTI4 117
@@ -1016,7 +1016,7 @@ ADDRLP4 44
 INDIRF4
 ADDRLP4 48
 INDIRF4
-LTF4 $127
+LTF4 $135
 ADDRLP4 40
 ADDRLP4 44
 INDIRF4
@@ -1028,16 +1028,16 @@ CVIU4 4
 CNSTU4 2147483648
 ADDU4
 ASGNU4
-ADDRGP4 $128
+ADDRGP4 $136
 JUMPV
-LABELV $127
+LABELV $135
 ADDRLP4 40
 ADDRLP4 44
 INDIRF4
 CVFI4 4
 CVIU4 4
 ASGNU4
-LABELV $128
+LABELV $136
 ADDRLP4 4
 INDIRP4
 CNSTI4 118
@@ -1056,7 +1056,7 @@ CNSTU1 255
 ASGNU1
 line 143
 ;143:	}
-LABELV $115
+LABELV $123
 line 145
 ;144:
 ;145:	re->reType = RT_SPRITE;
@@ -1082,7 +1082,7 @@ line 148
 ADDRLP4 0
 INDIRP4
 RETP4
-LABELV $108
+LABELV $116
 endproc CG_SmokePuff 52 4
 export CG_SpawnEffect
 proc CG_SpawnEffect 28 4
@@ -1223,7 +1223,7 @@ line 175
 ADDRGP4 intShaderTime
 INDIRI4
 CNSTI4 0
-EQI4 $132
+EQI4 $140
 line 176
 ;176:		re->u.intShaderTime = cg.time;
 ADDRLP4 4
@@ -1233,9 +1233,9 @@ ADDP4
 ADDRGP4 cg+107604
 INDIRI4
 ASGNI4
-ADDRGP4 $133
+ADDRGP4 $141
 JUMPV
-LABELV $132
+LABELV $140
 line 178
 ;177:	else
 ;178:		re->u.shaderTime = cg.time / 1000.0f;
@@ -1249,7 +1249,7 @@ CVIF4 4
 CNSTF4 981668463
 MULF4
 ASGNF4
-LABELV $133
+LABELV $141
 line 180
 ;179:
 ;180:	re->hModel = cgs.media.teleportEffectModel;
@@ -1257,7 +1257,7 @@ ADDRLP4 4
 INDIRP4
 CNSTI4 8
 ADDP4
-ADDRGP4 cgs+146664+516
+ADDRGP4 cgs+146664+596
 INDIRI4
 ASGNI4
 line 181
@@ -1300,7 +1300,7 @@ ADDF4
 ASGNF4
 line 186
 ;186:}
-LABELV $129
+LABELV $137
 endproc CG_SpawnEffect 28 4
 export CG_LightningBoltBeam
 proc CG_LightningBoltBeam 12 0
@@ -1411,7 +1411,7 @@ INDIRI4
 ASGNI4
 line 212
 ;212:}
-LABELV $138
+LABELV $146
 endproc CG_LightningBoltBeam 12 0
 export CG_KamikazeEffect
 proc CG_KamikazeEffect 24 0
@@ -1571,7 +1571,7 @@ line 239
 ADDRGP4 intShaderTime
 INDIRI4
 CNSTI4 0
-EQI4 $146
+EQI4 $154
 line 240
 ;240:		re->u.intShaderTime = cg.time;
 ADDRLP4 4
@@ -1581,9 +1581,9 @@ ADDP4
 ADDRGP4 cg+107604
 INDIRI4
 ASGNI4
-ADDRGP4 $147
+ADDRGP4 $155
 JUMPV
-LABELV $146
+LABELV $154
 line 242
 ;241:	else
 ;242:		re->u.shaderTime = cg.time / 1000.0f;
@@ -1597,7 +1597,7 @@ CVIF4 4
 CNSTF4 981668463
 MULF4
 ASGNF4
-LABELV $147
+LABELV $155
 line 244
 ;243:
 ;244:	re->hModel = cgs.media.kamikazeEffectModel;
@@ -1605,7 +1605,7 @@ ADDRLP4 4
 INDIRP4
 CNSTI4 8
 ADDP4
-ADDRGP4 cgs+146664+524
+ADDRGP4 cgs+146664+604
 INDIRI4
 ASGNI4
 line 246
@@ -1622,7 +1622,7 @@ ASGNB 12
 line 248
 ;247:
 ;248:}
-LABELV $143
+LABELV $151
 endproc CG_KamikazeEffect 24 0
 export CG_ObeliskExplode
 proc CG_ObeliskExplode 20 24
@@ -1659,10 +1659,10 @@ ADDRLP4 4
 ARGP4
 ADDRGP4 vec3_origin
 ARGP4
-ADDRGP4 cgs+146664+480
+ADDRGP4 cgs+146664+560
 INDIRI4
 ARGI4
-ADDRGP4 cgs+146664+500
+ADDRGP4 cgs+146664+580
 INDIRI4
 ARGI4
 CNSTI4 600
@@ -1714,7 +1714,7 @@ CNSTF4 0
 ASGNF4
 line 270
 ;270:}
-LABELV $152
+LABELV $160
 endproc CG_ObeliskExplode 20 24
 export CG_ObeliskPain
 proc CG_ObeliskPain 12 16
@@ -1748,43 +1748,43 @@ line 283
 ADDRLP4 0
 INDIRF4
 CNSTF4 1073741824
-GEF4 $159
+GEF4 $167
 line 284
 ;284:		sfx = cgs.media.obeliskHitSound1;
 ADDRLP4 4
-ADDRGP4 cgs+146664+848
+ADDRGP4 cgs+146664+928
 INDIRI4
 ASGNI4
 line 285
 ;285:	} else if (r == 2) {
-ADDRGP4 $160
+ADDRGP4 $168
 JUMPV
-LABELV $159
+LABELV $167
 ADDRLP4 0
 INDIRF4
 CNSTF4 1073741824
-NEF4 $163
+NEF4 $171
 line 286
 ;286:		sfx = cgs.media.obeliskHitSound2;
 ADDRLP4 4
-ADDRGP4 cgs+146664+852
+ADDRGP4 cgs+146664+932
 INDIRI4
 ASGNI4
 line 287
 ;287:	} else {
-ADDRGP4 $164
+ADDRGP4 $172
 JUMPV
-LABELV $163
+LABELV $171
 line 288
 ;288:		sfx = cgs.media.obeliskHitSound3;
 ADDRLP4 4
-ADDRGP4 cgs+146664+856
+ADDRGP4 cgs+146664+936
 INDIRI4
 ASGNI4
 line 289
 ;289:	}
-LABELV $164
-LABELV $160
+LABELV $172
+LABELV $168
 line 290
 ;290:	trap_S_StartSound(org, ENTITYNUM_NONE, CHAN_BODY, sfx);
 ADDRFP4 0
@@ -1802,7 +1802,7 @@ CALLV
 pop
 line 291
 ;291:}
-LABELV $158
+LABELV $166
 endproc CG_ObeliskPain 12 16
 export CG_InvulnerabilityImpact
 proc CG_InvulnerabilityImpact 36 16
@@ -1943,7 +1943,7 @@ line 318
 ADDRGP4 intShaderTime
 INDIRI4
 CNSTI4 0
-EQI4 $172
+EQI4 $180
 line 319
 ;319:		re->u.intShaderTime = cg.time;
 ADDRLP4 4
@@ -1953,9 +1953,9 @@ ADDP4
 ADDRGP4 cg+107604
 INDIRI4
 ASGNI4
-ADDRGP4 $173
+ADDRGP4 $181
 JUMPV
-LABELV $172
+LABELV $180
 line 321
 ;320:	else
 ;321:		re->u.shaderTime = cg.time / 1000.0f;
@@ -1969,7 +1969,7 @@ CVIF4 4
 CNSTF4 981668463
 MULF4
 ASGNF4
-LABELV $173
+LABELV $181
 line 323
 ;322:
 ;323:	re->hModel = cgs.media.invulnerabilityImpactModel;
@@ -1977,7 +1977,7 @@ ADDRLP4 4
 INDIRP4
 CNSTI4 8
 ADDP4
-ADDRGP4 cgs+146664+556
+ADDRGP4 cgs+146664+636
 INDIRI4
 ASGNI4
 line 325
@@ -2022,43 +2022,43 @@ line 329
 ADDRLP4 8
 INDIRI4
 CNSTI4 2
-GEI4 $178
+GEI4 $186
 line 330
 ;330:		sfx = cgs.media.invulnerabilityImpactSound1;
 ADDRLP4 12
-ADDRGP4 cgs+146664+832
+ADDRGP4 cgs+146664+912
 INDIRI4
 ASGNI4
 line 331
 ;331:	} else if (r == 2) {
-ADDRGP4 $179
+ADDRGP4 $187
 JUMPV
-LABELV $178
+LABELV $186
 ADDRLP4 8
 INDIRI4
 CNSTI4 2
-NEI4 $182
+NEI4 $190
 line 332
 ;332:		sfx = cgs.media.invulnerabilityImpactSound2;
 ADDRLP4 12
-ADDRGP4 cgs+146664+836
+ADDRGP4 cgs+146664+916
 INDIRI4
 ASGNI4
 line 333
 ;333:	} else {
-ADDRGP4 $183
+ADDRGP4 $191
 JUMPV
-LABELV $182
+LABELV $190
 line 334
 ;334:		sfx = cgs.media.invulnerabilityImpactSound3;
 ADDRLP4 12
-ADDRGP4 cgs+146664+840
+ADDRGP4 cgs+146664+920
 INDIRI4
 ASGNI4
 line 335
 ;335:	}
-LABELV $183
-LABELV $179
+LABELV $191
+LABELV $187
 line 336
 ;336:	trap_S_StartSound(org, ENTITYNUM_NONE, CHAN_BODY, sfx);
 ADDRFP4 0
@@ -2076,7 +2076,7 @@ CALLV
 pop
 line 337
 ;337:}
-LABELV $169
+LABELV $177
 endproc CG_InvulnerabilityImpact 36 16
 export CG_InvulnerabilityJuiced
 proc CG_InvulnerabilityJuiced 36 16
@@ -2215,7 +2215,7 @@ line 362
 ADDRGP4 intShaderTime
 INDIRI4
 CNSTI4 0
-EQI4 $191
+EQI4 $199
 line 363
 ;363:		re->u.intShaderTime = cg.time;
 ADDRLP4 4
@@ -2225,9 +2225,9 @@ ADDP4
 ADDRGP4 cg+107604
 INDIRI4
 ASGNI4
-ADDRGP4 $192
+ADDRGP4 $200
 JUMPV
-LABELV $191
+LABELV $199
 line 365
 ;364:	else
 ;365:		re->u.shaderTime = cg.time / 1000.0f;
@@ -2241,7 +2241,7 @@ CVIF4 4
 CNSTF4 981668463
 MULF4
 ASGNF4
-LABELV $192
+LABELV $200
 line 367
 ;366:
 ;367:	re->hModel = cgs.media.invulnerabilityJuicedModel;
@@ -2249,7 +2249,7 @@ ADDRLP4 4
 INDIRP4
 CNSTI4 8
 ADDP4
-ADDRGP4 cgs+146664+560
+ADDRGP4 cgs+146664+640
 INDIRI4
 ASGNI4
 line 369
@@ -2296,7 +2296,7 @@ CNSTI4 1023
 ARGI4
 CNSTI4 5
 ARGI4
-ADDRGP4 cgs+146664+844
+ADDRGP4 cgs+146664+924
 INDIRI4
 ARGI4
 ADDRGP4 trap_S_StartSound
@@ -2304,11 +2304,11 @@ CALLV
 pop
 line 374
 ;374:}
-LABELV $188
+LABELV $196
 endproc CG_InvulnerabilityJuiced 36 16
 bss
 align 4
-LABELV $202
+LABELV $210
 skip 12
 export CG_ScorePlum
 code
@@ -2334,17 +2334,17 @@ ADDRFP4 0
 INDIRI4
 ADDRGP4 cg+107636+140
 INDIRI4
-NEI4 $208
+NEI4 $216
 ADDRGP4 cg_scorePlum+12
 INDIRI4
 CNSTI4 0
-NEI4 $203
-LABELV $208
+NEI4 $211
+LABELV $216
 line 390
 ;390:		return;
-ADDRGP4 $201
+ADDRGP4 $209
 JUMPV
-LABELV $203
+LABELV $211
 line 393
 ;391:	}
 ;392:
@@ -2481,21 +2481,21 @@ INDIRP4
 CNSTI4 8
 ADDP4
 INDIRF4
-ADDRGP4 $202+8
+ADDRGP4 $210+8
 INDIRF4
 CNSTF4 1101004800
 SUBF4
-LTF4 $211
+LTF4 $219
 ADDRLP4 36
 INDIRP4
 CNSTI4 8
 ADDP4
 INDIRF4
-ADDRGP4 $202+8
+ADDRGP4 $210+8
 INDIRF4
 CNSTF4 1101004800
 ADDF4
-GTF4 $211
+GTF4 $219
 line 406
 ;406:		le->pos.trBase[2] -= 20;
 ADDRLP4 40
@@ -2514,12 +2514,12 @@ SUBF4
 ASGNF4
 line 407
 ;407:	}
-LABELV $211
+LABELV $219
 line 410
 ;408:
 ;409:	//CG_Printf( "Plum origin %i %i %i -- %i\n", (int)org[0], (int)org[1], (int)org[2], (int)Distance(org, lastPos));
 ;410:	VectorCopy(origin, lastPos);
-ADDRGP4 $202
+ADDRGP4 $210
 ADDRFP4 4
 INDIRP4
 INDIRB
@@ -2574,7 +2574,7 @@ CALLV
 pop
 line 419
 ;419:}
-LABELV $201
+LABELV $209
 endproc CG_ScorePlum 44 8
 export CG_MakeExplosion
 proc CG_MakeExplosion 64 8
@@ -2599,10 +2599,10 @@ line 435
 ADDRFP4 16
 INDIRI4
 CNSTI4 0
-GTI4 $218
+GTI4 $226
 line 436
 ;436:		CG_Error("CG_MakeExplosion: msec = %i", msec);
-ADDRGP4 $220
+ADDRGP4 $228
 ARGP4
 ADDRFP4 16
 INDIRI4
@@ -2612,7 +2612,7 @@ CALLV
 pop
 line 437
 ;437:	}
-LABELV $218
+LABELV $226
 line 440
 ;438:
 ;439:	// skew the time a bit so they aren't all in sync
@@ -2643,7 +2643,7 @@ line 443
 ADDRFP4 20
 INDIRI4
 CNSTI4 0
-EQI4 $221
+EQI4 $229
 line 444
 ;444:		ex->leType = LE_SPRITE_EXPLOSION;
 ADDRLP4 0
@@ -2737,9 +2737,9 @@ ADDF4
 ASGNF4
 line 450
 ;450:	} else {
-ADDRGP4 $222
+ADDRGP4 $230
 JUMPV
-LABELV $221
+LABELV $229
 line 451
 ;451:		ex->leType = LE_EXPLOSION;
 ADDRLP4 0
@@ -2763,7 +2763,7 @@ ADDRFP4 4
 INDIRP4
 CVPU4 4
 CNSTU4 0
-NEU4 $229
+NEU4 $237
 line 456
 ;456:			AxisClear(ex->refEntity.axis);
 ADDRLP4 0
@@ -2776,9 +2776,9 @@ CALLV
 pop
 line 457
 ;457:		} else {
-ADDRGP4 $230
+ADDRGP4 $238
 JUMPV
-LABELV $229
+LABELV $237
 line 458
 ;458:			ang = rand() % 360;
 ADDRLP4 44
@@ -2817,10 +2817,10 @@ CALLV
 pop
 line 461
 ;461:		}
-LABELV $230
+LABELV $238
 line 462
 ;462:	}
-LABELV $222
+LABELV $230
 line 464
 ;463:
 ;464:	ex->startTime = cg.time - offset;
@@ -2856,7 +2856,7 @@ line 468
 ADDRGP4 intShaderTime
 INDIRI4
 CNSTI4 0
-EQI4 $232
+EQI4 $240
 line 469
 ;469:		ex->refEntity.u.intShaderTime = ex->startTime;
 ADDRLP4 0
@@ -2869,9 +2869,9 @@ CNSTI4 16
 ADDP4
 INDIRI4
 ASGNI4
-ADDRGP4 $233
+ADDRGP4 $241
 JUMPV
-LABELV $232
+LABELV $240
 line 471
 ;470:	else
 ;471:		ex->refEntity.u.shaderTime = ex->startTime / 1000.0f;
@@ -2888,7 +2888,7 @@ CVIF4 4
 CNSTF4 981668463
 MULF4
 ASGNF4
-LABELV $233
+LABELV $241
 line 473
 ;472:
 ;473:	ex->refEntity.hModel = hModel;
@@ -2961,7 +2961,7 @@ line 482
 ADDRLP4 0
 INDIRP4
 RETP4
-LABELV $217
+LABELV $225
 endproc CG_MakeExplosion 64 8
 export CG_Bleed
 proc CG_Bleed 20 0
@@ -2984,12 +2984,12 @@ line 496
 ADDRGP4 cg_blood+12
 INDIRI4
 CNSTI4 0
-NEI4 $235
+NEI4 $243
 line 497
 ;497:		return;
-ADDRGP4 $234
+ADDRGP4 $242
 JUMPV
-LABELV $235
+LABELV $243
 line 500
 ;498:	}
 ;499:
@@ -3084,7 +3084,7 @@ ADDRLP4 0
 INDIRP4
 CNSTI4 264
 ADDP4
-ADDRGP4 cgs+146664+512
+ADDRGP4 cgs+146664+592
 INDIRI4
 ASGNI4
 line 514
@@ -3098,7 +3098,7 @@ INDIRP4
 CNSTI4 184
 ADDP4
 INDIRI4
-NEI4 $241
+NEI4 $249
 line 515
 ;515:		ex->refEntity.renderfx |= RF_THIRD_PERSON;
 ADDRLP4 16
@@ -3117,10 +3117,10 @@ BORI4
 ASGNI4
 line 516
 ;516:	}
-LABELV $241
+LABELV $249
 line 517
 ;517:}
-LABELV $234
+LABELV $242
 endproc CG_Bleed 20 0
 proc CG_LaunchGib 20 8
 line 526
@@ -3298,7 +3298,7 @@ CNSTI4 2
 ASGNI4
 line 550
 ;550:}
-LABELV $244
+LABELV $252
 endproc CG_LaunchGib 20 8
 export CG_GibPlayer
 proc CG_GibPlayer 148 12
@@ -3321,12 +3321,12 @@ line 564
 ADDRGP4 cg_blood+12
 INDIRI4
 CNSTI4 0
-NEI4 $248
+NEI4 $256
 line 565
 ;565:		return;
-ADDRGP4 $247
+ADDRGP4 $255
 JUMPV
-LABELV $248
+LABELV $256
 line 568
 ;566:	}
 ;567:
@@ -3406,7 +3406,7 @@ INDIRI4
 CNSTI4 1
 BANDI4
 CNSTI4 0
-EQI4 $253
+EQI4 $261
 line 573
 ;573:		CG_LaunchGib(origin, velocity, cgs.media.gibSkull);
 ADDRLP4 12
@@ -3421,9 +3421,9 @@ CALLV
 pop
 line 574
 ;574:	} else {
-ADDRGP4 $254
+ADDRGP4 $262
 JUMPV
-LABELV $253
+LABELV $261
 line 575
 ;575:		CG_LaunchGib(origin, velocity, cgs.media.gibBrain);
 ADDRLP4 12
@@ -3438,7 +3438,7 @@ CALLV
 pop
 line 576
 ;576:	}
-LABELV $254
+LABELV $262
 line 579
 ;577:
 ;578:	// allow gibs to be turned off for speed
@@ -3446,12 +3446,12 @@ line 579
 ADDRGP4 cg_gibs+12
 INDIRI4
 CNSTI4 0
-NEI4 $259
+NEI4 $267
 line 580
 ;580:		return;
-ADDRGP4 $247
+ADDRGP4 $255
 JUMPV
-LABELV $259
+LABELV $267
 line 583
 ;581:	}
 ;582:
@@ -4166,7 +4166,7 @@ CALLV
 pop
 line 636
 ;636:}
-LABELV $247
+LABELV $255
 endproc CG_GibPlayer 148 12
 export CG_LaunchExplode
 proc CG_LaunchExplode 20 8
@@ -4343,7 +4343,7 @@ CNSTI4 0
 ASGNI4
 line 667
 ;667:}
-LABELV $298
+LABELV $306
 endproc CG_LaunchExplode 20 8
 export CG_BigExplode
 proc CG_BigExplode 84 12
@@ -4366,12 +4366,12 @@ line 681
 ADDRGP4 cg_blood+12
 INDIRI4
 CNSTI4 0
-NEI4 $302
+NEI4 $310
 line 682
 ;682:		return;
-ADDRGP4 $301
+ADDRGP4 $309
 JUMPV
-LABELV $302
+LABELV $310
 line 685
 ;683:	}
 ;684:
@@ -4770,7 +4770,7 @@ CALLV
 pop
 line 714
 ;714:}
-LABELV $301
+LABELV $309
 endproc CG_BigExplode 84 12
 import trap_R_AddLinearLightToScene
 import trap_R_AddRefEntityToScene2
@@ -4944,13 +4944,11 @@ import CG_ForceModelChange
 import CG_StatusHandle
 import CG_OtherTeamHasFlag
 import CG_YourTeamHasFlag
-import CG_GameTypeString
 import CG_Text_PaintChar
 import CG_Draw3DModel
 import CG_GetKillerText
 import CG_GetGameStatusText
 import CG_GetTeamColor
-import CG_ShowResponseHead
 import CG_RunMenuScript
 import CG_OwnerDrawVisible
 import CG_GetValue
@@ -4986,6 +4984,7 @@ import CG_FadeColorTime
 import CG_FadeColor
 import CG_DrawStrlen
 import CG_DrawStringExt
+import CG_DrawStretchPic
 import CG_DrawPic
 import CG_FillScreen
 import CG_FillRect
@@ -5121,6 +5120,70 @@ import cg_weapons
 import cg_entities
 import cg
 import cgs
+import gametypeString
+import mRect
+import trap_PC_SourceFileAndLine
+import trap_PC_ReadToken
+import trap_PC_FreeSource
+import trap_PC_LoadSource
+import trap_PC_AddGlobalDefine
+import Controls_SetDefaults
+import Controls_SetConfig
+import Controls_GetConfig
+import UI_OutOfMemory
+import UI_InitMemory
+import UI_Alloc
+import Display_CacheAll
+import Menu_SetFeederSelection
+import Menu_Paint
+import Menus_CloseAll
+import LerpColor
+import Display_HandleKey
+import Menus_CloseByName
+import Menus_ShowByName
+import Menus_FindByName
+import Menus_OpenByName
+import Display_KeyBindPending
+import Display_CursorType
+import Display_MouseMove
+import Display_CaptureItem
+import Display_GetContext
+import UI_SelectForKey
+import Menus_Activate
+import Menus_AnyFullScreenVisible
+import Menu_Reset
+import Menus_ActivateByName
+import Menu_PaintAll
+import Menu_HandleCapture
+import Menu_New
+import Menu_Count
+import Q_MathScript
+import MenuVar_Get
+import MenuVar_Set
+import PC_Parenthesis_Parse
+import PC_Script_Parse
+import PC_String_Parse
+import PC_Rect_Parse
+import PC_Int_Parse
+import PC_Color_Parse
+import PC_Float_Parse
+import Script_Parse
+import String_Parse
+import Rect_Parse
+import Int_Parse
+import Color_Parse
+import Float_Parse
+import Menu_ScrollFeeder
+import Menu_HandleMouseMove
+import Menu_HandleKey
+import Menu_GetFocused
+import Item_Init
+import Menu_Init
+import Init_Display
+import String_Report
+import String_Init
+import String_Alloc
+import DefaultWideScreenValue
 import BigEndian
 import replace1
 import Q_stradd
@@ -5299,7 +5362,7 @@ import srand
 import qsort
 lit
 align 1
-LABELV $220
+LABELV $228
 byte 1 67
 byte 1 71
 byte 1 95

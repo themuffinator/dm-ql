@@ -1167,7 +1167,7 @@ static qboolean ValidVoteCommand(int clientNum, char *command) {
 Cmd_CallVote_f
 ==================
 */
-void Cmd_CallVote_f(gentity_t *ent) {
+static void Cmd_CallVote_f(gentity_t *ent) {
 	int		i, n;
 	char	arg[MAX_STRING_TOKENS], *argn[4];
 	char	cmd[MAX_STRING_TOKENS], *s;

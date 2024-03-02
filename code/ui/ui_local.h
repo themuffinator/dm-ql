@@ -27,7 +27,7 @@
 #define	MAX_EDIT_LINE			256
 
 #define MAX_MENUDEPTH			8
-#define MAX_MENUITEMS			96
+#define MAX_MENUITEMS			1024	//96
 
 #define MTYPE_NULL				0
 #define MTYPE_SLIDER			1	
@@ -243,6 +243,7 @@ int UI_AdjustTimeByGame(int time);
 void UI_ShowPostGame(qboolean newHigh);
 void UI_ClearScores();
 void UI_LoadArenas(void);
+//void UI_LoadArenasIntoMapList(void); //QL
 
 //
 // ui_menu.c
@@ -310,13 +311,6 @@ extern void UI_CinematicsMenu_Cache( void );
 //
 extern void UI_ModsMenu( void );
 extern void UI_ModsMenu_Cache( void );
-
-//
-// ui_cdkey.c
-//
-extern void UI_CDKeyMenu( void );
-extern void UI_CDKeyMenu_Cache( void );
-extern void UI_CDKeyMenu_f( void );
 
 //
 // ui_playermodel.c
@@ -515,7 +509,7 @@ typedef struct {
 #define MAPS_PER_TIER 3
 #define MAX_TIERS 16
 #define MAX_MODS 64
-#define MAX_DEMOS 256
+#define MAX_DEMOS 2048
 #define MAX_MOVIES 256
 #define MAX_PLAYERMODELS 256
 
@@ -733,17 +727,17 @@ extern uiInfo_t uiInfo;
 
 extern void			UI_Init( void );
 extern void			UI_Shutdown( void );
-extern void			UI_KeyEvent( int key );
 extern void			UI_MouseEvent( int dx, int dy );
 extern void			UI_Refresh( int realtime );
 extern qboolean		UI_ConsoleCommand( int realTime );
 extern float		UI_ClampCvar( float min, float max, float value );
 extern void			UI_DrawNamedPic( float x, float y, float width, float height, const char *picname );
-extern void			UI_DrawHandlePic( float x, float y, float w, float h, qhandle_t hShader ); 
-extern void			UI_FillRect( float x, float y, float width, float height, const float *color );
+extern void			UI_DrawHandlePic( float x, float y, float w, float h, qhandle_t hShader, int widescreen);
+extern void			UI_DrawStretchPic(float x, float y, float w, float h, float s1, float t1, float s2, float t2, qhandle_t hShader, int widescreen); //, rectDef_t menuRect);
+extern void			UI_FillRect(float x, float y, float w, float h, const vec4_t color, int widescreen); //, rectDef_t menuRect);
 extern void			UI_DrawRect( float x, float y, float width, float height, const float *color );
-extern void     UI_DrawTopBottom(float x, float y, float w, float h);
-extern void     UI_DrawSides(float x, float y, float w, float h);
+extern void			UI_DrawTopBottom(float x, float y, float w, float h);
+extern void			UI_DrawSides(float x, float y, float w, float h);
 extern void			UI_UpdateScreen( void );
 extern void			UI_SetColor( const float *rgba );
 extern void			UI_LerpColor(vec4_t a, vec4_t b, vec4_t c, float t);
@@ -755,7 +749,6 @@ extern void			UI_DrawString( int x, int y, const char* str, int style, vec4_t co
 extern void			UI_DrawChar( int x, int y, int ch, int style, vec4_t color );
 extern qboolean 	UI_CursorInRect (int x, int y, int width, int height);
 extern void			UI_AdjustFrom640( float *x, float *y, float *w, float *h );
-extern void			UI_DrawTextBox (int x, int y, int width, int lines);
 extern qboolean		UI_IsFullscreen( void );
 extern void			UI_SetActiveMenu( uiMenuCommand_t menu );
 extern void			UI_PushMenu ( menuframework_s *menu );
@@ -764,10 +757,9 @@ extern void			UI_ForceMenuOff (void);
 extern char			*UI_Argv( int arg );
 extern char			*UI_Cvar_VariableString( const char *var_name );
 extern void			UI_Refresh( int time );
-extern void			UI_KeyEvent( int key );
 extern void			UI_StartDemoLoop( void );
 extern qboolean		m_entersound;
-void UI_LoadBestScores(const char *map, int game);
+void				UI_LoadBestScores(const char *map, int game);
 extern uiStatic_t	uis;
 
 //
